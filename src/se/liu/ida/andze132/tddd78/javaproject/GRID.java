@@ -31,7 +31,7 @@ public class GRID
 
     public void buildTower(int y, int x){
         for (int i = 0; i < squares.length; i++) {
-            for (int j = 0; j < squares.length; j++) {
+            for (int j = 0; j < squares[i].length; j++) {
                 if(i*40<y && y<i*40+40 && j*40<x && x<j*40+40){
                     if(squares[i][j] == SquareType.GRASS){
                     squares[i][j] = SquareType.TOWER;}

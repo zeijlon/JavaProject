@@ -25,7 +25,7 @@ public class GameFrame extends JFrame {
                     grid.buildTower(y, x);
                     basicenemy = false;
                 }
-                if (900+10<=x && x<= 940+10 && 300<=y && y<=340){
+                else if (grid.getSquares()[1].length*40+40 <= x &&  y>=40 && x<=grid.getSquares()[1].length*40+80 && y<=80){
                     System.out.println("clicked");
                     basicenemy = true;
                 }

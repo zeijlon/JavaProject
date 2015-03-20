@@ -23,14 +23,14 @@ public class GameComponent extends JComponent {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
 
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
+        for (int i = 0; i < grid.getSquares().length; i++) {
+            for (int j = 0; j < grid.getSquares()[i].length; j++) {
                 g2d.setColor(squareTypeColor(grid.getSquares()[i][j]));
                 g2d.fill(new Rectangle(j * SQUARE_WIDTH, i * SQUARE_WIDTH, SQUARE_WIDTH - 5, SQUARE_HEIGHT - 5));
             }
         }
         g2d.setColor(Color.BLACK);
-        g2d.draw(new Rectangle(900, 300, SQUARE_WIDTH, SQUARE_HEIGHT));
+        g2d.draw(new Rectangle(grid.getSquares()[1].length * SQUARE_WIDTH + SQUARE_HEIGHT, SQUARE_HEIGHT, SQUARE_WIDTH, SQUARE_HEIGHT));
     }
 
 
