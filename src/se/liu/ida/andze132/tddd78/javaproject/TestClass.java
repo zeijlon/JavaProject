@@ -1,7 +1,10 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class TestClass
@@ -11,12 +14,14 @@ public class TestClass
     public static void main(String[] args) {
 	GRID test = new GRID(1);
 	final GameFrame frame = new GameFrame(test);
+		System.out.println(3/2);
+
 
 
 	final Action doOneStep = new AbstractAction()
 	{
 	    public void actionPerformed(ActionEvent e) {
-		System.out.println("hej");
+			frame.repaint();
 	    }
 	};
 
