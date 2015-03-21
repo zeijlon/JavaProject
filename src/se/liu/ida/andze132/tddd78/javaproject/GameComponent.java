@@ -6,14 +6,20 @@ import java.awt.*;
 public class GameComponent extends JComponent {
     private GRID grid;
     private Shop shop;
+    private GameLoop game;
+
+    private EnemySpawner spawner;
+
+
     private final static int SQUARE_WIDTH = 40;
     private final static int SQUARE_HEIGHT = 40;
 
 
 
-    public GameComponent(GRID grid, Shop shop) {
+    public GameComponent(GRID grid, Shop shop, EnemySpawner spawner) {
         this.grid = grid;
         this.shop = shop;
+        this.spawner = spawner;
     }
 
     @Override
@@ -29,11 +35,8 @@ public class GameComponent extends JComponent {
 
         grid.draw(g2d);
         shop.draw(g2d);
+        spawner.draw(g2d);
+
+        }
 
     }
-
-
-
-
-
-}

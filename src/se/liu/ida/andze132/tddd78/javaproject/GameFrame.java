@@ -8,9 +8,9 @@ import java.awt.event.MouseEvent;
 public class GameFrame extends JFrame {
     private boolean basicenemy = false;
 
-    public GameFrame(GRID grid, Shop shop) throws HeadlessException {
+    public GameFrame(GRID grid, Shop shop, EnemySpawner spawner) throws HeadlessException {
         super("DAWN OF THE POLAR BEARS");
-        GameComponent gameComponent = new GameComponent(grid, shop);
+        GameComponent gameComponent = new GameComponent(grid, shop, spawner);
         this.setLayout(new BorderLayout());
         this.add(gameComponent, BorderLayout.CENTER);
         this.getContentPane().setBackground(Color.LIGHT_GRAY);

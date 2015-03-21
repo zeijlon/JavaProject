@@ -1,5 +1,8 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
  */
@@ -15,15 +18,6 @@ public class Enemy {
         this.speed = speed;
         this.goldgain = goldgain;
         this.damage = damage;
-
-        boolean alive = true;
-    }
-
-    public void spawnEnemy(){
-        int spawnRate = 1000, spawnTime = 0;
-        if(spawnTime >= spawnRate){
-
-        }
     }
 }
 

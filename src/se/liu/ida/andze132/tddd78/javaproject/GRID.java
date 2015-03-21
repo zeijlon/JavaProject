@@ -1,7 +1,6 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class GRID
 {

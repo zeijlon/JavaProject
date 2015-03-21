@@ -3,6 +3,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
 
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
@@ -12,16 +13,20 @@ public class GameLoop {
     public GRID grid;
     public Shop shop;
     public JFrame frame;
+    public EnemySpawner spawner;
     private boolean gameRunning;
     private int lastFpsTime, fps;
 
-    public GameLoop(GRID grid, Shop shop, JFrame frame) {
+
+
+    public GameLoop(GRID grid, Shop shop, JFrame frame, EnemySpawner spawner) {
         this.grid = grid;
         this.shop = shop;
         this.frame = frame;
         this.lastFpsTime = 0;
         this.fps = 0;
         this.gameRunning = true;
+        this.spawner = spawner;
 
         gameLoop();
     }
@@ -59,7 +64,7 @@ public class GameLoop {
             // update the game logic
             doGameUpdates(delta);
 
-            // draw everyting
+            // draw everything
             frame.repaint();
 
             // we want each frame to take 10 milliseconds, to do this
@@ -68,14 +73,14 @@ public class GameLoop {
             // us our final value to wait for
             // remember this is in ms, whereas our lastLoopTime etc. vars are in ns.
             try {
-                Thread.sleep( (lastLoopTime-System.nanoTime() + OPTIMAL_TIME)/1000000 );
+                Thread.sleep((lastLoopTime-System.nanoTime() + OPTIMAL_TIME)/1000000 );
             } catch (Exception e) {
             }
         }
     }
 
     private void doGameUpdates(double delta) {
-
+        spawner.spawnBasicEnemy();
     }
 
 }
