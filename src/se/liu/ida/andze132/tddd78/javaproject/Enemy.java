@@ -14,11 +14,18 @@ public class Enemy {
     private int damage;
     public int X;
     public int Y;
+    public final static int right = 0, left = 1, up = 2, down = 3;
+    public int direction = right;
+    public int enemyWalk = 0;
+    public int yC = 0;
+    public int xC = 0;
+    public boolean hasUp = false;
+    public boolean hasDown = false;
+    public boolean hasLeft = false;
+    public boolean hasRight = true;
+
     public boolean enemySpawned = false;
-    public boolean moveLeft = false;
-    public boolean moveRight = true;
-    public boolean moveUp = false;
-    public boolean moveDown = false;
+
 
 
     public Enemy(final int hp, final int speed, final int goldgain, final int damage) {

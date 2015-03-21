@@ -10,9 +10,7 @@ public class GameComponent extends JComponent {
     private EnemySpawner spawner;
 
 
-    private final static int SQUARE_WIDTH = 40;
-    private final static int SQUARE_HEIGHT = 40;
-
+    public final static int TILE_SIZE = 40;
 
 
     public GameComponent(GRID grid, Shop shop, EnemySpawner spawner) {
@@ -24,7 +22,7 @@ public class GameComponent extends JComponent {
     @Override
     public Dimension getPreferredSize() {
         super.getPreferredSize();
-        return new Dimension(grid.getSquares().length * SQUARE_WIDTH + 500, grid.getSquares().length * SQUARE_HEIGHT);
+        return new Dimension(grid.getSquares().length * TILE_SIZE + 500, grid.getSquares().length * TILE_SIZE);
     }
 
     @Override
