@@ -1,6 +1,6 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
-public class BasicEnemy extends Enemies
+public class BasicEnemy extends Enemy
 {
     private int hp = 100;
     private int speed = 10;
