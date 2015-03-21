@@ -81,6 +81,10 @@ public class GameLoop {
 
     private void doGameUpdates(double delta) {
         spawner.spawnBasicEnemy();
+        spawner.moveEnemy();
+        spawner.checkEnemyFinished();
+        if (Shop.health <= 0)
+        {gameRunning = false;
     }
 
-}
+}}

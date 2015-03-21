@@ -5,7 +5,7 @@ public final class Maps
 
     private Maps() {}
 
-    public static SquareType[][] getMap(int n) {
+    public static int[][] getMap(int n) {
 	switch (n) {
 	    case 1:
 		return map1();
@@ -15,36 +15,19 @@ public final class Maps
 	}
     }
 
-    public static SquareType[][] map1() {
-	SquareType[][] squares = new SquareType[][] {
-		{ SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			},
-		{ SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			},
-		{ SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			 },
-		{ SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			},
-		{ SquareType.START, SquareType.PATH, SquareType.PATH, SquareType.PATH, SquareType.PATH, SquareType.PATH,
-			SquareType.PATH, SquareType.PATH, SquareType.PATH, SquareType.PATH, SquareType.FINISH
-			},
-		{ SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			},
-		{ SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			 },
-		{ SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			},
-		{ SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS, SquareType.GRASS,
-			}
-		 };
-	return squares;
-    }
-}
+    public static int[][] map1() {
+		int[][] squares = new int[][]{
+				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 1, 1, 1, 1, 0},
+				{3, 1, 1, 0, 0, 1, 0, 0, 1, 4},
+				{0, 0, 1, 0, 0, 1, 0, 0, 0, 0},
+				{0, 0, 1, 0, 0, 1, 0, 0, 0, 0},
+				{1, 1, 1, 0, 0, 1, 0, 1, 1, 1},
+				{1, 0, 0, 0, 0, 1, 1, 1, 0, 1},
+				{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+				{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+	};
+		return squares;
+	}}
+

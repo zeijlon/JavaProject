@@ -6,7 +6,6 @@ import java.awt.*;
 public class GameComponent extends JComponent {
     private GRID grid;
     private Shop shop;
-    private GameLoop game;
 
     private EnemySpawner spawner;
 
@@ -25,7 +24,7 @@ public class GameComponent extends JComponent {
     @Override
     public Dimension getPreferredSize() {
         super.getPreferredSize();
-        return new Dimension(grid.getSquares().length * SQUARE_WIDTH + 200, grid.getSquares().length * SQUARE_HEIGHT);
+        return new Dimension(grid.getSquares().length * SQUARE_WIDTH + 500, grid.getSquares().length * SQUARE_HEIGHT);
     }
 
     @Override
@@ -33,10 +32,10 @@ public class GameComponent extends JComponent {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
 
+
         grid.draw(g2d);
         shop.draw(g2d);
         spawner.draw(g2d);
-
         }
 
     }

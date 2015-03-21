@@ -7,13 +7,20 @@ public class GRID
     private final static int SQUARE_WIDTH = 40;
     private final static int SQUARE_HEIGHT = 40;
 
-    private SquareType[][] squares;
+    protected final static int GRASS = 0;
+    protected final static int PATH = 1;
+    protected final static int TOWER = 2;
+    protected final static int START = 3;
+    protected final static int FINISH = 4;
+
+
+    private int[][] squares;
 
     public GRID(int n) {
 	this.squares = Maps.getMap(n);
     }
 
-    public SquareType[][] getSquares() {
+    public int[][] getSquares() {
 	return squares;
     }
 
@@ -27,7 +34,7 @@ public class GRID
         }
     }
 
-    public Image checkSquareType(SquareType squaretype) {
+    public Image checkSquareType(int squaretype) {
         switch (squaretype) {
             case GRASS:
                 return Toolkit.getDefaultToolkit().getImage("images/grass.png");
@@ -49,8 +56,8 @@ public class GRID
         for (int i = 0; i < squares.length; i++) {
             for (int j = 0; j < squares[i].length; j++) {
                 if(i*40<y && y<i*40+40 && j*40<x && x<j*40+40){
-                    if(squares[i][j] == SquareType.GRASS){
-                    squares[i][j] = SquareType.TOWER;}
+                    if(squares[i][j] == GRASS){
+                    squares[i][j] = TOWER;}
                 }
             }
         }

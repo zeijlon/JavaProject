@@ -12,12 +12,36 @@ public class Enemy {
     private int speed;
     private int goldgain;
     private int damage;
+    public int X;
+    public int Y;
+    public boolean enemySpawned = false;
+    public boolean moveLeft = false;
+    public boolean moveRight = true;
+    public boolean moveUp = false;
+    public boolean moveDown = false;
+
 
     public Enemy(final int hp, final int speed, final int goldgain, final int damage) {
         this.hp = hp;
         this.speed = speed;
         this.goldgain = goldgain;
         this.damage = damage;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public int getGoldgain() {
+        return goldgain;
+    }
+
+    public int getDamage() {
+        return damage;
     }
 }
 
