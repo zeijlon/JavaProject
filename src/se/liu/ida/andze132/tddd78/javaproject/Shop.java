@@ -32,7 +32,6 @@ public class Shop {
     public void draw(Graphics g) {
         // Code below draws the Shop buttons on the screen.
         int height = button.getHeight(null);
-        System.out.println(height + "   " + GRID_SIZE_X);
         for (int y = 0; y < shopButtons.length; y++) {
             for (int x = 0; x < shopButtons[y].length; x++) {
             g.drawImage(button, GRID_SIZE_X + SHOP_MARGIN + (x*70), y * (height + 20) + 75, null);
