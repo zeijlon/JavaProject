@@ -24,7 +24,9 @@ public class Enemy {
     public boolean hasLeft = false;
     public boolean hasRight = true;
 
-    public boolean enemySpawned = false;
+    public int[][] hasWalked;
+
+
 
 
 

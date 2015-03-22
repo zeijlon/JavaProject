@@ -12,6 +12,8 @@ public class GRID
     protected final static int TOWER = 2;
     protected final static int START = 3;
     protected final static int FINISH = 4;
+    protected final static int CROSSROAD = 5;
+
 
 
     private int[][] squares;
@@ -46,6 +48,8 @@ public class GRID
                 return Toolkit.getDefaultToolkit().getImage("images/start.png");
             case FINISH:
                 return Toolkit.getDefaultToolkit().getImage("images/finish.png");
+            case CROSSROAD:
+                return Toolkit.getDefaultToolkit().getImage("images/path.png");
             default:
                 throw new IllegalArgumentException("Invalid input squaretype");
         }

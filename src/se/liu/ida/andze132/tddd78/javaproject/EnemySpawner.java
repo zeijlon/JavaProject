@@ -34,25 +34,30 @@ public class EnemySpawner {
                     }
                 }
             }
-            basic.enemySpawned = true;
-            checkDirection(basic);
+            defineHasWalked(basic);
+            decideDirection(basic);
             spawnTime = 0;
         } else {
             spawnTime++;
         }
     }
 
-    public void checkDirection(Enemy enemy){
-        if(!collision(enemy.yC, enemy.xC + 1)){
-            enemy.direction = Enemy.right;
+    public void defineHasWalked(Enemy enemy){
+        int height = grid.getSquares().length;
+        int width = GRID.checkLargestRow(grid);
+        enemy.hasWalked = new int[height][width] ;
         }
-        else if(!collision(enemy.yC, enemy.xC - 1)){
+
+    public void decideDirection(Enemy enemy) {
+        if (!collision(enemy, enemy.yC, enemy.xC + 1)) {
+            enemy.direction = Enemy.right;
+        } else if (!collision(enemy, enemy.yC, enemy.xC - 1)) {
             enemy.direction = Enemy.left;
         }
-        if(!collision(enemy.yC + 1, enemy.xC)){
+        if (!collision(enemy, enemy.yC + 1, enemy.xC)) {
             enemy.direction = Enemy.down;
         }
-        if(!collision(enemy.yC - 1, enemy.xC)){
+        if (!collision(enemy, enemy.yC - 1, enemy.xC)) {
             enemy.direction = Enemy.up;
         }
     }
@@ -68,7 +73,6 @@ public class EnemySpawner {
             } else if (enemy.direction == Enemy.up) {
                 enemy.Y -= enemy.getSpeed();
             }
-            //hhejeje
 
             enemy.enemyWalk += enemy.getSpeed();
 
@@ -76,27 +80,30 @@ public class EnemySpawner {
             if (enemy.enemyWalk == GameComponent.TILE_SIZE) {
 
                 if (enemy.direction == Enemy.right) {
+                    enemy.hasWalked[enemy.yC][enemy.xC] = grid.getSquares()[enemy.yC][enemy.xC];
                     enemy.xC += 1;
-                    System.out.println(enemy.xC);
-                    if (collision(enemy.yC, enemy.xC + 1)) {
+                    if (collision(enemy, enemy.yC, enemy.xC + 1)) {
                         enemy.hasRight = true;
                         changeDirection(enemy);
                     }
                 } else if (enemy.direction == Enemy.left) {
+                    enemy.hasWalked[enemy.yC][enemy.xC] = grid.getSquares()[enemy.yC][enemy.xC];
                     enemy.xC -= 1;
-                    if (collision(enemy.yC, enemy.xC - 1)) {
+                    if (collision(enemy, enemy.yC, enemy.xC - 1)) {
                         enemy.hasLeft = true;
                         changeDirection(enemy);
                     }
                 } else if (enemy.direction == Enemy.down) {
+                    enemy.hasWalked[enemy.yC][enemy.xC] = grid.getSquares()[enemy.yC][enemy.xC];
                     enemy.yC += 1;
-                    if (collision(enemy.yC + 1, enemy.xC)) {
+                    if (collision(enemy, enemy.yC + 1, enemy.xC)) {
                         enemy.hasDown = true;
                         changeDirection(enemy);
                     }
                 } else if (enemy.direction == Enemy.up) {
+                    enemy.hasWalked[enemy.yC][enemy.xC] = grid.getSquares()[enemy.yC][enemy.xC];
                     enemy.yC -= 1;
-                    if (collision(enemy.yC - 1, enemy.xC)) {
+                    if (collision(enemy, enemy.yC - 1, enemy.xC)) {
                         enemy.hasUp = true;
                         changeDirection(enemy);
                     }
@@ -110,10 +117,12 @@ public class EnemySpawner {
         }
     }
 
-    public boolean collision(int y, int x) {
+    public boolean collision(Enemy enemy, int y, int x) {
         try {
-            if (grid.getSquares()[y][x] == GRID.PATH || grid.getSquares()[y][x] == GRID.FINISH) {
-                return false;
+            if (enemy.hasWalked[y][x] != GRID.PATH) {
+                if (grid.getSquares()[y][x] == GRID.PATH || grid.getSquares()[y][x] == GRID.CROSSROAD || grid.getSquares()[y][x] == GRID.FINISH) {
+                    return false;
+                }
             }
         } catch (Exception e) {
             return true;
@@ -124,25 +133,25 @@ public class EnemySpawner {
 
     public void changeDirection(Enemy enemy) {
         if (enemy.hasRight) {
-            if (!collision(enemy.yC + 1, enemy.xC)) {
+            if (!collision(enemy, enemy.yC + 1, enemy.xC)) {
                 enemy.direction = Enemy.down;
             } else {
                 enemy.direction = Enemy.up;
             }
         } else if (enemy.hasDown) {
-            if (!collision(enemy.yC, enemy.xC + 1)) {
+            if (!collision(enemy, enemy.yC, enemy.xC + 1)) {
                 enemy.direction = Enemy.right;
             } else {
                 enemy.direction = Enemy.left;
             }
         } else if (enemy.hasUp) {
-            if (!collision(enemy.yC, enemy.xC + 1)) {
+            if (!collision(enemy, enemy.yC, enemy.xC + 1)) {
                 enemy.direction = Enemy.right;
             } else {
                 enemy.direction = Enemy.left;
             }
         } else if (enemy.hasLeft) {
-            if (!collision(enemy.yC + 1, enemy.xC)) {
+            if (!collision(enemy, enemy.yC + 1, enemy.xC)) {
                 enemy.direction = Enemy.down;
             } else {
                 enemy.direction = Enemy.up;
@@ -164,9 +173,7 @@ public class EnemySpawner {
 
     public void draw(Graphics g) {
         for (Enemy enemy : enemies) {
-            if (enemy.enemySpawned) {
                 g.drawImage(basicEnemy, enemy.X, enemy.Y, null);
-            }
 
         }
     }
