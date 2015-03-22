@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6166df02-5b19-4bed-9a27-c7e03e8e8dfb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/GameComponent.class" afterPath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/GameComponent.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameComponent.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameComponent.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaProject.iws" afterPath="$PROJECT_DIR$/JavaProject.iws" />
     </list>
     <ignored path="JavaProject.iws" />
@@ -555,7 +554,7 @@
       <workItem from="1426948459056" duration="29944000" />
       <workItem from="1427015756011" duration="9481000" />
       <workItem from="1427027248252" duration="718000" />
-      <workItem from="1427029185032" duration="4580000" />
+      <workItem from="1427029185032" duration="4586000" />
     </task>
     <task id="LOCAL-00001" summary="Removed unnecessary class.">
       <created>1426851409760</created>
@@ -641,11 +640,17 @@
       <option name="project" value="LOCAL" />
       <updated>1427029489581</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="kuk">
+      <created>1427033843040</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1427033843040</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75590000" />
+    <option name="totallyTimeSpent" value="75596000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="248" y="1" width="1472" height="1040" extended-state="0" />
