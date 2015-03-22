@@ -15,7 +15,7 @@ public class Enemy {
     public int X;
     public int Y;
     public final static int right = 0, left = 1, up = 2, down = 3;
-    public int direction = right;
+    public int direction;
     public int enemyWalk = 0;
     public int yC = 0;
     public int xC = 0;

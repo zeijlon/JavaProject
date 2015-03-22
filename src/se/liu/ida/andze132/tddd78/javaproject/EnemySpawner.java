@@ -35,9 +35,25 @@ public class EnemySpawner {
                 }
             }
             basic.enemySpawned = true;
+            checkDirection(basic);
             spawnTime = 0;
         } else {
             spawnTime++;
+        }
+    }
+
+    public void checkDirection(Enemy enemy){
+        if(!collision(enemy.yC, enemy.xC + 1)){
+            enemy.direction = Enemy.right;
+        }
+        else if(!collision(enemy.yC, enemy.xC - 1)){
+            enemy.direction = Enemy.left;
+        }
+        if(!collision(enemy.yC + 1, enemy.xC)){
+            enemy.direction = Enemy.down;
+        }
+        if(!collision(enemy.yC - 1, enemy.xC)){
+            enemy.direction = Enemy.up;
         }
     }
 
@@ -54,97 +70,84 @@ public class EnemySpawner {
             }
 
             enemies.get(i).enemyWalk += enemies.get(i).getSpeed();
-            System.out.println(enemies.get(i).enemyWalk);
 
 
             if (enemies.get(i).enemyWalk == GameComponent.TILE_SIZE) {
 
                 if (enemies.get(i).direction == Enemy.right) {
                     enemies.get(i).xC += 1;
-                    enemies.get(i).hasRight = true;
-                }
-                else if (enemies.get(i).direction == Enemy.left) {
-                    enemies.get(i).hasLeft = true;
+                    System.out.println(enemies.get(i).xC);
+                    if (collision(enemies.get(i).yC, enemies.get(i).xC + 1)) {
+                        enemies.get(i).hasRight = true;
+                        changeDirection(enemies.get(i));
+                    }
+                } else if (enemies.get(i).direction == Enemy.left) {
                     enemies.get(i).xC -= 1;
+                    if (collision(enemies.get(i).yC, enemies.get(i).xC - 1)) {
+                        enemies.get(i).hasLeft = true;
+                        changeDirection(enemies.get(i));
+                    }
                 } else if (enemies.get(i).direction == Enemy.down) {
                     enemies.get(i).yC += 1;
-                    enemies.get(i).hasDown = true;
+                    if (collision(enemies.get(i).yC + 1, enemies.get(i).xC)) {
+                        enemies.get(i).hasDown = true;
+                        changeDirection(enemies.get(i));
+                    }
                 } else if (enemies.get(i).direction == Enemy.up) {
                     enemies.get(i).yC -= 1;
-                    enemies.get(i).hasUp = true;
+                    if (collision(enemies.get(i).yC - 1, enemies.get(i).xC)) {
+                        enemies.get(i).hasUp = true;
+                        changeDirection(enemies.get(i));
+                    }
                 }
-                if (!enemies.get(i).hasUp) {
-                    if (grid.getSquares()[enemies.get(i).yC-1][enemies.get(i).xC] == GRID.PATH || grid.getSquares()[enemies.get(i).yC-1][enemies.get(i).xC] == GRID.FINISH) {
-                        enemies.get(i).direction = Enemy.up;
-                    }
-
-                } else if (!enemies.get(i).hasDown) {
-                    if (grid.getSquares()[enemies.get(i).yC+1][enemies.get(i).xC] == GRID.PATH || grid.getSquares()[enemies.get(i).yC+1][enemies.get(i).xC] == GRID.FINISH) {
-                        enemies.get(i).direction = Enemy.down;
-                    }
-
-                } else if (!enemies.get(i).hasLeft) {
-                    if (grid.getSquares()[enemies.get(i).yC][enemies.get(i).xC-1] == GRID.PATH || grid.getSquares()[enemies.get(i).yC][enemies.get(i).xC-1] == GRID.FINISH) {
-                        enemies.get(i).direction = Enemy.left;
-                    }
-
-                } else if (!enemies.get(i).hasRight) {
-                    if (grid.getSquares()[enemies.get(i).yC][enemies.get(i).xC+1] == GRID.PATH || grid.getSquares()[enemies.get(i).yC][enemies.get(i).xC+1] == GRID.FINISH) {
-                        enemies.get(i).direction = Enemy.right;
-                    }
-
-                }
-                enemies.get(i).hasRight = false;
-                enemies.get(i).hasLeft = false;
                 enemies.get(i).hasDown = false;
+                enemies.get(i).hasLeft = false;
                 enemies.get(i).hasUp = false;
+                enemies.get(i).hasRight = false;
                 enemies.get(i).enemyWalk = 0;
-
             }
         }
     }
 
-           /* if (enemies.get(i).direction == Enemy.right) {
-                 if (grid.getSquares()[y / 40][(x + 40) / 40] == GRID.PATH || grid.getSquares()[y / 40][(x + 40) / 40] == GRID.FINISH) {
-                    enemies.get(i).X += enemies.get(i).getSpeed();
-                }
-                else if (grid.getSquares()[(y - 40) / 40][x / 40] == GRID.PATH || grid.getSquares()[(y - 40) / 40][x / 40] == GRID.FINISH) {
-                    enemies.get(i).direction = Enemy.up;
-                    System.out.println("up");
-                } else if (grid.getSquares()[(y + 40) / 40][x / 40] == GRID.PATH || grid.getSquares()[(y + 40) / 40][x / 40] == GRID.FINISH) {
-                    enemies.get(i).direction = Enemy.down;
-                    System.out.println("down");
-                }
-            } else if (enemies.get(i).direction == Enemy.left) {
-                 if (grid.getSquares()[y / 40][(x - 40) / 40] == GRID.PATH || grid.getSquares()[y / 40][(x - 40) / 40] == GRID.FINISH) {
-                    enemies.get(i).X -= enemies.get(i).getSpeed();
-                }
-                else if (grid.getSquares()[(y - 40) / 40][x / 40] == GRID.PATH || grid.getSquares()[(y - 40) / 40][x / 40] == GRID.FINISH) {
-                    enemies.get(i).direction = Enemy.up;
-                } else if (grid.getSquares()[(y + 40) / 40][x / 40] == GRID.PATH || grid.getSquares()[(y + 40) / 40][x / 40] == GRID.FINISH) {
-                    enemies.get(i).direction = Enemy.down;
-                }
-            } else if (enemies.get(i).direction == Enemy.up) {
-                 if (grid.getSquares()[(y - 40) / 40][x / 40] == GRID.PATH || grid.getSquares()[(y - 40) / 40][(x) / 40] == GRID.FINISH) {
-                    enemies.get(i).Y -= enemies.get(i).getSpeed();
-                }
-                else if (grid.getSquares()[y / 40][(x + 40) / 40] == GRID.PATH || grid.getSquares()[y / 40][(x + 40) / 40] == GRID.FINISH) {
-                    enemies.get(i).direction = Enemy.right;
-                } else if (grid.getSquares()[y / 40][(x - 40) / 40] == GRID.PATH || grid.getSquares()[y / 40][(x - 40) / 40] == GRID.FINISH) {
-                    enemies.get(i).direction = Enemy.left;
-                }
-            } else if (enemies.get(i).direction == Enemy.down) {
-                if (grid.getSquares()[(y + 40) / 40][x / 40] == GRID.PATH || grid.getSquares()[(y + 40) / 40][x / 40] == GRID.FINISH) {
-                    enemies.get(i).Y += enemies.get(i).getSpeed();
-                }
-                else if (grid.getSquares()[y / 40][(x + 40) / 40] == GRID.PATH || grid.getSquares()[y / 40][(x + 40) / 40] == GRID.FINISH) {
-                    enemies.get(i).direction = Enemy.right;
-                } else if (grid.getSquares()[y / 40][(x - 40) / 40] == GRID.PATH || grid.getSquares()[y / 40][(x - 40) / 40] == GRID.FINISH) {
-                    enemies.get(i).direction = Enemy.left;
-                }
+    public boolean collision(int y, int x) {
+        try {
+            if (grid.getSquares()[y][x] == GRID.PATH || grid.getSquares()[y][x] == GRID.FINISH) {
+                return false;
+            }
+        } catch (Exception e) {
+            return true;
+        }
+        return true;
+    }
+
+
+    public void changeDirection(Enemy enemy) {
+        if (enemy.hasRight) {
+            if (!collision(enemy.yC + 1, enemy.xC)) {
+                enemy.direction = Enemy.down;
+            } else {
+                enemy.direction = Enemy.up;
+            }
+        } else if (enemy.hasDown) {
+            if (!collision(enemy.yC, enemy.xC + 1)) {
+                enemy.direction = Enemy.right;
+            } else {
+                enemy.direction = Enemy.left;
+            }
+        } else if (enemy.hasUp) {
+            if (!collision(enemy.yC, enemy.xC + 1)) {
+                enemy.direction = Enemy.right;
+            } else {
+                enemy.direction = Enemy.left;
+            }
+        } else if (enemy.hasLeft) {
+            if (!collision(enemy.yC + 1, enemy.xC)) {
+                enemy.direction = Enemy.down;
+            } else {
+                enemy.direction = Enemy.up;
             }
         }
-    }*/
+    }
 
     public void checkEnemyFinished() {
         for (int i = 0; i < enemies.size(); i++) {
