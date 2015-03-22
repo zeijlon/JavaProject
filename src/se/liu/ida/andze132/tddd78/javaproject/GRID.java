@@ -52,6 +52,16 @@ public class GRID
 
     }
 
+    public static int checkLargestRow(GRID grid){
+        int largestRow = 0;
+        for (int i = 0; i < grid.getSquares().length; i++) {
+            if(grid.getSquares()[i].length > largestRow){
+                largestRow = grid.getSquares()[i].length;
+            }
+        }
+        return largestRow;
+    }
+
     public void buildTower(int y, int x){
         for (int i = 0; i < squares.length; i++) {
             for (int j = 0; j < squares[i].length; j++) {

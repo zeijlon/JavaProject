@@ -19,8 +19,8 @@ public class GameFrame extends JFrame {
         
         class MyTracker extends MouseAdapter {
             public void mouseClicked(MouseEvent e){
-                int x = (int) e.getX()+10;
-                int y = (int) e.getY()-30;
+                int x = e.getX() + 10;
+                int y = e.getY() - 30;
                 if(basicenemy){
                     grid.buildTower(y, x);
                     basicenemy = false;

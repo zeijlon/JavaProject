@@ -24,13 +24,8 @@ public class GameComponent extends JComponent {
     @Override
     public Dimension getPreferredSize() {
         super.getPreferredSize();
-        int largestRow = 0;
-        for (int i = 0; i < grid.getSquares().length; i++) {
-                if(grid.getSquares()[i].length > largestRow){
-                    largestRow = grid.getSquares()[i].length;
-                }
-        }
-        return new Dimension(largestRow * TILE_SIZE + SHOP_SIZE_X, grid.getSquares().length * TILE_SIZE + INFO_BOX);
+        int row = GRID.checkLargestRow(grid);
+        return new Dimension(row * TILE_SIZE + SHOP_SIZE_X, grid.getSquares().length * TILE_SIZE + INFO_BOX);
     }
 
     @Override
