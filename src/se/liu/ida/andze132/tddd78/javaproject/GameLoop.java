@@ -13,6 +13,8 @@ public class GameLoop {
     public JFrame frame;
     public EnemySpawner spawner;
     private boolean gameRunning;
+    public boolean gamePaused;
+    public static boolean gameIsPaused = false;
     private int lastFpsTime, fps;
     protected static int currentFPS;
 
@@ -25,6 +27,7 @@ public class GameLoop {
         this.lastFpsTime = 0;
         this.fps = 0;
         this.gameRunning = true;
+        this.gamePaused = false;
         this.spawner = spawner;
 
         gameLoop();
@@ -63,7 +66,9 @@ public class GameLoop {
             }
 
             // update the game logic
-            doGameUpdates(delta);
+            if (!gameIsPaused) {
+                doGameUpdates(delta);
+            }
 
             // draw everything
             frame.repaint();

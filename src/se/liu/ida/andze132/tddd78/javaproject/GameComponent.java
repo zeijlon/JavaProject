@@ -2,6 +2,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class GameComponent extends JComponent {
     private GRID grid;
@@ -19,6 +20,28 @@ public class GameComponent extends JComponent {
         this.grid = grid;
         this.shop = shop;
         this.spawner = spawner;
+
+        this.addKeyBindings();
+    }
+
+    private void addKeyBindings() {
+        InputMap inputMap = getInputMap(JComponent.WHEN_FOCUSED);
+
+        Action pause = new PauseGame();
+        getActionMap().put("pause", pause);
+        inputMap.put(KeyStroke.getKeyStroke("P"), "pause");
+    }
+
+    class PauseGame extends AbstractAction
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            if (GameLoop.gameIsPaused) {
+                GameLoop.gameIsPaused = false;
+            } else {
+                GameLoop.gameIsPaused = true;
+            }
+        }
     }
 
     @Override
