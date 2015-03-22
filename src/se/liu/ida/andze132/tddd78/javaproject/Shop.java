@@ -30,7 +30,8 @@ public class Shop {
 
         //Code below draws health and gold on the screen.
         g.drawImage(coin, 445, 20, null);
-        g.drawString(""+gold, 480, 40);
+        g.setFont(new Font("courier new", Font.BOLD, 14));
+        g.drawString("" + gold, 480, 40);
         g.drawImage(heart, 500, 20, null);
         g.drawString(""+health, 535, 40);
     }

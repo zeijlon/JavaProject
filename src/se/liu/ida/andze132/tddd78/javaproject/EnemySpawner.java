@@ -11,7 +11,7 @@ public class EnemySpawner {
     public GRID grid;
 
     public List<Enemy> enemies = new ArrayList<>();
-    public int spawnRate = 300, spawnTime = 0;
+    public int spawnRate = 100, spawnTime = 0;
 
 
     Image basicEnemy = Toolkit.getDefaultToolkit().getImage("images/basicEnemy.png");
@@ -58,53 +58,53 @@ public class EnemySpawner {
     }
 
     public void moveEnemy() {
-        for (int i = 0; i < enemies.size(); i++) {
-            if (enemies.get(i).direction == Enemy.right) {
-                enemies.get(i).X += enemies.get(i).getSpeed();
-            } else if (enemies.get(i).direction == Enemy.left) {
-                enemies.get(i).X -= enemies.get(i).getSpeed();
-            } else if (enemies.get(i).direction == Enemy.down) {
-                enemies.get(i).Y += enemies.get(i).getSpeed();
-            } else if (enemies.get(i).direction == Enemy.up) {
-                enemies.get(i).Y -= enemies.get(i).getSpeed();
+        for (Enemy enemy : enemies) {
+            if (enemy.direction == Enemy.right) {
+                enemy.X += enemy.getSpeed();
+            } else if (enemy.direction == Enemy.left) {
+                enemy.X -= enemy.getSpeed();
+            } else if (enemy.direction == Enemy.down) {
+                enemy.Y += enemy.getSpeed();
+            } else if (enemy.direction == Enemy.up) {
+                enemy.Y -= enemy.getSpeed();
             }
 
-            enemies.get(i).enemyWalk += enemies.get(i).getSpeed();
+            enemy.enemyWalk += enemy.getSpeed();
 
 
-            if (enemies.get(i).enemyWalk == GameComponent.TILE_SIZE) {
+            if (enemy.enemyWalk == GameComponent.TILE_SIZE) {
 
-                if (enemies.get(i).direction == Enemy.right) {
-                    enemies.get(i).xC += 1;
-                    System.out.println(enemies.get(i).xC);
-                    if (collision(enemies.get(i).yC, enemies.get(i).xC + 1)) {
-                        enemies.get(i).hasRight = true;
-                        changeDirection(enemies.get(i));
+                if (enemy.direction == Enemy.right) {
+                    enemy.xC += 1;
+                    System.out.println(enemy.xC);
+                    if (collision(enemy.yC, enemy.xC + 1)) {
+                        enemy.hasRight = true;
+                        changeDirection(enemy);
                     }
-                } else if (enemies.get(i).direction == Enemy.left) {
-                    enemies.get(i).xC -= 1;
-                    if (collision(enemies.get(i).yC, enemies.get(i).xC - 1)) {
-                        enemies.get(i).hasLeft = true;
-                        changeDirection(enemies.get(i));
+                } else if (enemy.direction == Enemy.left) {
+                    enemy.xC -= 1;
+                    if (collision(enemy.yC, enemy.xC - 1)) {
+                        enemy.hasLeft = true;
+                        changeDirection(enemy);
                     }
-                } else if (enemies.get(i).direction == Enemy.down) {
-                    enemies.get(i).yC += 1;
-                    if (collision(enemies.get(i).yC + 1, enemies.get(i).xC)) {
-                        enemies.get(i).hasDown = true;
-                        changeDirection(enemies.get(i));
+                } else if (enemy.direction == Enemy.down) {
+                    enemy.yC += 1;
+                    if (collision(enemy.yC + 1, enemy.xC)) {
+                        enemy.hasDown = true;
+                        changeDirection(enemy);
                     }
-                } else if (enemies.get(i).direction == Enemy.up) {
-                    enemies.get(i).yC -= 1;
-                    if (collision(enemies.get(i).yC - 1, enemies.get(i).xC)) {
-                        enemies.get(i).hasUp = true;
-                        changeDirection(enemies.get(i));
+                } else if (enemy.direction == Enemy.up) {
+                    enemy.yC -= 1;
+                    if (collision(enemy.yC - 1, enemy.xC)) {
+                        enemy.hasUp = true;
+                        changeDirection(enemy);
                     }
                 }
-                enemies.get(i).hasDown = false;
-                enemies.get(i).hasLeft = false;
-                enemies.get(i).hasUp = false;
-                enemies.get(i).hasRight = false;
-                enemies.get(i).enemyWalk = 0;
+                enemy.hasDown = false;
+                enemy.hasLeft = false;
+                enemy.hasUp = false;
+                enemy.hasRight = false;
+                enemy.enemyWalk = 0;
             }
         }
     }
@@ -162,9 +162,9 @@ public class EnemySpawner {
 
 
     public void draw(Graphics g) {
-        for (int i = 0; i < enemies.size(); i++) {
-            if (enemies.get(i).enemySpawned) {
-                g.drawImage(basicEnemy, enemies.get(i).X, enemies.get(i).Y, null);
+        for (Enemy enemy : enemies) {
+            if (enemy.enemySpawned) {
+                g.drawImage(basicEnemy, enemy.X, enemy.Y, null);
             }
 
         }
