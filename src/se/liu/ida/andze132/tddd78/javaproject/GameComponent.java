@@ -11,6 +11,8 @@ public class GameComponent extends JComponent {
 
 
     public final static int TILE_SIZE = 40;
+    public final static int SHOP_SIZE_X = 175;
+    public final static int INFO_BOX = 175;
 
 
     public GameComponent(GRID grid, Shop shop, EnemySpawner spawner) {
@@ -22,7 +24,7 @@ public class GameComponent extends JComponent {
     @Override
     public Dimension getPreferredSize() {
         super.getPreferredSize();
-        return new Dimension(grid.getSquares().length * TILE_SIZE + 500, grid.getSquares().length * TILE_SIZE);
+        return new Dimension(grid.getSquares()[0].length * TILE_SIZE + SHOP_SIZE_X, grid.getSquares().length * TILE_SIZE + INFO_BOX);
     }
 
     @Override
@@ -37,3 +39,5 @@ public class GameComponent extends JComponent {
         }
 
     }
+
+//grid.getSquares().length * TILE_SIZE + SHOP_SIZE_X, grid.getSquares().length * TILE_SIZE + INFO_BOX

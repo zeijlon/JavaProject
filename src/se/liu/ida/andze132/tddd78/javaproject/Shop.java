@@ -19,19 +19,20 @@ public class Shop {
     public static Image heart = Toolkit.getDefaultToolkit().getImage("images/heart.png");
 
 
-    public static Button[] shopButtons = new Button[4];
+    public static Button[][] shopButtons = new Button[4][2];
 
     public void draw(Graphics g) {
         // Code below draws the Shop buttons on the screen.
         int height = button.getHeight(null);
-        for (int i = 0; i < shopButtons.length; i++) {
-            g.drawImage(button, 475, i * (height + 20) + 75, null);
-        }
+        for (int y = 0; y < shopButtons.length; y++) {
+            for (int x = 0; x < shopButtons[y].length; x++) {
+            g.drawImage(button, 425 + (x*70), y * (height + 20) + 75, null);
+        }}
 
         //Code below draws health and gold on the screen.
-        g.drawImage(coin, 445, 20, null);
+        g.drawImage(coin, 425, 20, null);
         g.setFont(new Font("courier new", Font.BOLD, 14));
-        g.drawString("" + gold, 480, 40);
+        g.drawString("" + gold, 460, 40);
         g.drawImage(heart, 500, 20, null);
         g.drawString(""+health, 535, 40);
     }

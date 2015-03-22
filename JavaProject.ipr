@@ -1474,6 +1474,7 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="myTodoPanelSettings">
