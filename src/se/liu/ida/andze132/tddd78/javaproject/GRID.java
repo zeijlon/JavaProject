@@ -12,6 +12,8 @@ public class GRID
     protected final static int TOWER = 2;
     protected final static int START = 3;
     protected final static int FINISH = 4;
+    protected final static int CROSSROAD = 5;
+
 
 
     private int[][] squares;
@@ -46,10 +48,22 @@ public class GRID
                 return Toolkit.getDefaultToolkit().getImage("images/start.png");
             case FINISH:
                 return Toolkit.getDefaultToolkit().getImage("images/finish.png");
+            case CROSSROAD:
+                return Toolkit.getDefaultToolkit().getImage("images/path.png");
             default:
                 throw new IllegalArgumentException("Invalid input squaretype");
         }
 
+    }
+
+    public static int checkLargestRow(GRID grid){
+        int largestRow = 0;
+        for (int i = 0; i < grid.getSquares().length; i++) {
+            if(grid.getSquares()[i].length > largestRow){
+                largestRow = grid.getSquares()[i].length;
+            }
+        }
+        return largestRow;
     }
 
     public void buildTower(int y, int x){
