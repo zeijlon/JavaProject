@@ -2,8 +2,6 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.*;
 
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
@@ -16,6 +14,7 @@ public class GameLoop {
     public EnemySpawner spawner;
     private boolean gameRunning;
     private int lastFpsTime, fps;
+    protected static int currentFPS;
 
 
 
@@ -30,6 +29,7 @@ public class GameLoop {
 
         gameLoop();
     }
+
 
     public void gameLoop()
     {
@@ -57,6 +57,7 @@ public class GameLoop {
             if (lastFpsTime >= 1000000000)
             {
                 System.out.println("(FPS: "+fps+")");
+                currentFPS = fps;
                 lastFpsTime = 0;
                 fps = 0;
             }

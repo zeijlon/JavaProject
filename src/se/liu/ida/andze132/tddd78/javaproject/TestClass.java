@@ -7,7 +7,6 @@ public class TestClass {
         Shop shop = new Shop(grid);
         EnemySpawner spawner = new EnemySpawner(grid);
         final GameFrame frame = new GameFrame(grid, shop, spawner);
-        new GameLoop(grid, shop, frame, spawner);
+        GameLoop game = new GameLoop(grid, shop, frame, spawner);
     }
 }
-

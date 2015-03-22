@@ -68,7 +68,6 @@ public class EnemySpawner {
             } else if (enemy.direction == Enemy.up) {
                 enemy.Y -= enemy.getSpeed();
             }
-            //hhejeje
 
             enemy.enemyWalk += enemy.getSpeed();
 
@@ -77,7 +76,6 @@ public class EnemySpawner {
 
                 if (enemy.direction == Enemy.right) {
                     enemy.xC += 1;
-                    System.out.println(enemy.xC);
                     if (collision(enemy.yC, enemy.xC + 1)) {
                         enemy.hasRight = true;
                         changeDirection(enemy);

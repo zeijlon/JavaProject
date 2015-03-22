@@ -32,7 +32,6 @@ public class Shop {
     public void draw(Graphics g) {
         // Code below draws the Shop buttons on the screen.
         int height = button.getHeight(null);
-        System.out.println(height + "   " + GRID_SIZE_X);
         for (int y = 0; y < shopButtons.length; y++) {
             for (int x = 0; x < shopButtons[y].length; x++) {
             g.drawImage(button, GRID_SIZE_X + SHOP_MARGIN + (x*70), y * (height + 20) + 75, null);
@@ -41,8 +40,12 @@ public class Shop {
         //Code below draws health and gold on the screen.
         g.drawImage(coin, GRID_SIZE_X + SHOP_MARGIN, 20, null);
         g.setFont(new Font("courier new", Font.BOLD, 14));
-        g.drawString("" + gold, GRID_SIZE_X + SHOP_MARGIN + 35, 40);
+        g.drawString(String.valueOf(gold), GRID_SIZE_X + SHOP_MARGIN + 35, 40);
         g.drawImage(heart, GRID_SIZE_X + (SHOP_MARGIN*4), 20, null);
-        g.drawString(""+health, GRID_SIZE_X + (SHOP_MARGIN*4) + 35, 40);
+        g.drawString(String.valueOf(health), GRID_SIZE_X + (SHOP_MARGIN * 4) + 35, 40);
+
+        g.setColor(Color.green);
+        g.setFont(new Font("courier new", Font.BOLD, 20));
+        g.drawString("FPS: " + GameLoop.currentFPS, GRID_SIZE_X - 100, 20);
     }
 }
