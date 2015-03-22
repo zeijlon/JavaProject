@@ -68,6 +68,7 @@ public class EnemySpawner {
             } else if (enemy.direction == Enemy.up) {
                 enemy.Y -= enemy.getSpeed();
             }
+            //hhejeje
 
             enemy.enemyWalk += enemy.getSpeed();
 
