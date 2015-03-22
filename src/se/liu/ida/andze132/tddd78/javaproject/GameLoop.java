@@ -15,6 +15,9 @@ public class GameLoop {
     public JFrame frame;
     public EnemySpawner spawner;
     private boolean gameRunning;
+    private boolean gameOn;
+    private boolean gamePaused;
+    private boolean menu;
     private int lastFpsTime, fps;
 
 
@@ -26,6 +29,7 @@ public class GameLoop {
         this.lastFpsTime = 0;
         this.fps = 0;
         this.gameRunning = true;
+        this.gameOn = false;
         this.spawner = spawner;
 
         gameLoop();
@@ -80,11 +84,19 @@ public class GameLoop {
     }
 
     private void doGameUpdates(double delta) {
+        while (gameOn){
         spawner.spawnBasicEnemy();
         spawner.moveEnemy();
         spawner.checkEnemyFinished();
         if (Shop.health <= 0)
-        {gameRunning = false;
-    }
+        {   gameOn = false;
+            menu = true;
+    }}
+        while (gamePaused){
+
+        }
+        while (menu){
+            
+        }
 
 }}
