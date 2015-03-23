@@ -8,7 +8,8 @@ import java.util.*;
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
  */
-public class GameLoop {
+public class GameLoop
+{
 
     public GRID grid;
     public Shop shop;
@@ -21,82 +22,82 @@ public class GameLoop {
     private int lastFpsTime, fps;
 
 
-
     public GameLoop(GRID grid, Shop shop, JFrame frame, EnemySpawner spawner) {
-        this.grid = grid;
-        this.shop = shop;
-        this.frame = frame;
-        this.lastFpsTime = 0;
-        this.fps = 0;
-        this.gameRunning = true;
-        this.gameOn = true;
-        this.spawner = spawner;
+	this.grid = grid;
+	this.shop = shop;
+	this.frame = frame;
+	this.lastFpsTime = 0;
+	this.fps = 0;
+	this.gameRunning = true;
+	this.gameOn = true;
+	this.spawner = spawner;
 
-        gameLoop();
+	gameLoop();
     }
 
     public void gameLoop()
     {
-        long lastLoopTime = System.nanoTime();
-        final int TARGET_FPS = 60;
-        final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
+	long lastLoopTime = System.nanoTime();
+	final int TARGET_FPS = 60;
+	final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
 
-        // keep looping round til the game ends
-        while (gameRunning)
-        {
-            // work out how long its been since the last update, this
-            // will be used to calculate how far the entities should
-            // move this loop
-            long now = System.nanoTime();
-            long updateLength = now - lastLoopTime;
-            lastLoopTime = now;
-            double delta = updateLength / ((double)OPTIMAL_TIME);
+	// keep looping round til the game ends
+	while (gameRunning) {
+	    // work out how long its been since the last update, this
+	    // will be used to calculate how far the entities should
+	    // move this loop
+	    long now = System.nanoTime();
+	    long updateLength = now - lastLoopTime;
+	    lastLoopTime = now;
+	    double delta = updateLength / ((double) OPTIMAL_TIME);
 
-            // update the frame counter
-            lastFpsTime += updateLength;
-            fps++;
+	    // update the frame counter
+	    lastFpsTime += updateLength;
+	    fps++;
 
-            // update our FPS counter if a second has passed since
-            // we last recorded
-            if (lastFpsTime >= 1000000000)
-            {
-                System.out.println("(FPS: "+fps+")");
-                lastFpsTime = 0;
-                fps = 0;
-            }
+	    // update our FPS counter if a second has passed since
+	    // we last recorded
+	    if (lastFpsTime >= 1000000000) {
+		//System.out.println("(FPS: " + fps + ")");
+		lastFpsTime = 0;
+		fps = 0;
+	    }
 
-            // update the game logic
-            doGameUpdates(delta);
+	    // update the game logic
+	    doGameUpdates(delta);
 
-            // draw everything
-            frame.repaint();
+	    // draw everything
+	    frame.repaint();
 
-            // we want each frame to take 10 milliseconds, to do this
-            // we've recorded when we started the frame. We add 10 milliseconds
-            // to this and then factor in the current time to give
-            // us our final value to wait for
-            // remember this is in ms, whereas our lastLoopTime etc. vars are in ns.
-            try {
-                Thread.sleep((lastLoopTime-System.nanoTime() + OPTIMAL_TIME)/1000000 );
-            } catch (Exception e) {
-            }
-        }
+	    // we want each frame to take 10 milliseconds, to do this
+	    // we've recorded when we started the frame. We add 10 milliseconds
+	    // to this and then factor in the current time to give
+	    // us our final value to wait for
+	    // remember this is in ms, whereas our lastLoopTime etc. vars are in ns.
+	    try {
+		Thread.sleep((lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000);
+	    } catch (Exception e) {
+	    }
+	}
     }
 
     private void doGameUpdates(double delta) {
-	if (gameOn){
+	if (gameOn) {
 	    spawner.waveHandler();
+	    spawner.checkEnemyFinished();
+
 	    spawner.moveEnemy();
-        spawner.checkEnemyFinished();
-        if (Shop.health <= 0)
-        {   gameOn = false;
-            menu = true;
-    }}
-        if (gamePaused){
+	    if (Shop.health <= 0) {
+		gameOn = false;
+		menu = true;
+	    }
+	}
+	if (gamePaused) {
 
-        }
-        if (menu){
-            
-        }
+	}
+	if (menu) {
 
-}}
+	}
+
+    }
+}
