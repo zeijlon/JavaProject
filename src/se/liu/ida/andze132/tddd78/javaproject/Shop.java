@@ -18,23 +18,23 @@ public class Shop {
     public static Button[][] shopButtons = new Button[4][2];
 
     private GRID grid;
-    private int GRID_SIZE_X;
-    private int GRID_SIZE_Y;
+    public int GRID_SIZE_X;
+    public int GRID_SIZE_Y;
 
     public final static int SHOP_MARGIN = 25;
 
     public Shop(GRID grid) {
         this.grid = grid;
         this.GRID_SIZE_X = GRID.checkLargestRow(grid) * GameComponent.TILE_SIZE;
-        this.GRID_SIZE_Y = grid.getSquares().length;
+        this.GRID_SIZE_Y = grid.getSquares().length * GameComponent.TILE_SIZE;
         }
 
     public void draw(Graphics g) {
         // Code below draws the Shop buttons on the screen.
-        int height = button.getHeight(null);
+        int buttonSize = button.getHeight(null);
         for (int y = 0; y < shopButtons.length; y++) {
             for (int x = 0; x < shopButtons[y].length; x++) {
-            g.drawImage(button, GRID_SIZE_X + SHOP_MARGIN + (x*70), y * (height + 20) + 75, null);
+            g.drawImage(button, GRID_SIZE_X + SHOP_MARGIN + (x*70), y * (buttonSize + 20) + 75, null);
         }}
 
         //Code below draws health and gold on the screen.
@@ -43,5 +43,9 @@ public class Shop {
         g.drawString("" + gold, GRID_SIZE_X + SHOP_MARGIN + 35, 40);
         g.drawImage(heart, GRID_SIZE_X + (SHOP_MARGIN*4), 20, null);
         g.drawString(""+health, GRID_SIZE_X + (SHOP_MARGIN*4) + 35, 40);
+
+	//Draw next round button
+	g.setColor(Color.black);
+	g.drawRect(GRID_SIZE_X + SHOP_MARGIN, GRID_SIZE_Y + SHOP_MARGIN, 50, 50);
     }
 }

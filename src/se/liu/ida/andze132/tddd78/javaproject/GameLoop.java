@@ -29,7 +29,7 @@ public class GameLoop {
         this.lastFpsTime = 0;
         this.fps = 0;
         this.gameRunning = true;
-        this.gameOn = false;
+        this.gameOn = true;
         this.spawner = spawner;
 
         gameLoop();
@@ -84,18 +84,18 @@ public class GameLoop {
     }
 
     private void doGameUpdates(double delta) {
-        while (gameOn){
-        spawner.spawnBasicEnemy();
-        spawner.moveEnemy();
+	if (gameOn){
+	    spawner.waveHandler();
+	    spawner.moveEnemy();
         spawner.checkEnemyFinished();
         if (Shop.health <= 0)
         {   gameOn = false;
             menu = true;
     }}
-        while (gamePaused){
+        if (gamePaused){
 
         }
-        while (menu){
+        if (menu){
             
         }
 
