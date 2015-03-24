@@ -2,7 +2,6 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class GameFrame extends JFrame
 {

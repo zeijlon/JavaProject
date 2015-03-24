@@ -9,7 +9,7 @@ import java.awt.*;
  */
 public class Shop
 {
-    public static int gold = 10;
+    public static int gold = 10000;
     public static int health = 100;
     public static int SHOPBUTTON_SIZE = 52;
 
@@ -35,8 +35,9 @@ public class Shop
     public void defineShopButtons() {
 	for (int i = 0; i < shopButtons.length; i++) {
 	    for (int j = 0; j < shopButtons[i].length; j++) {
-		shopButtons[i][j] = new Rectangle(grid.GRID_SIZE_X + SHOP_MARGIN + (j * 70), i * (SHOPBUTTON_SIZE + 20) + 75,
-						  SHOPBUTTON_SIZE, SHOPBUTTON_SIZE);
+		shopButtons[i][j] =
+			new Rectangle(grid.gridWidth + SHOP_MARGIN + (j * 70), i * (SHOPBUTTON_SIZE + 20) + 75, SHOPBUTTON_SIZE,
+				      SHOPBUTTON_SIZE);
 
 	    }
 	}
@@ -51,24 +52,36 @@ public class Shop
 
 		if (shopButtons[y][x].contains(GameFrame.motionPoint)) {
 		    g.setColor(new Color(0, 0, 0, 150));
-		    g.fillRect(grid.GRID_SIZE_X + SHOP_MARGIN + (x * 70), y * (SHOPBUTTON_SIZE + 20) + 75, SHOPBUTTON_SIZE,
+		    g.fillRect(grid.gridWidth + SHOP_MARGIN + (x * 70), y * (SHOPBUTTON_SIZE + 20) + 75, SHOPBUTTON_SIZE,
 			       SHOPBUTTON_SIZE);
 		} else {
 
-		    g.drawImage(button, grid.GRID_SIZE_X + SHOP_MARGIN + (x * 70), y * (SHOPBUTTON_SIZE + 20) + 75, null);
+		    g.drawImage(button, grid.gridWidth + SHOP_MARGIN + (x * 70), y * (SHOPBUTTON_SIZE + 20) + 75, null);
 		}
+
 	    }
 	}
 
 	//Code below draws health and gold on the screen.
 	g.setColor(Color.black);
-	g.drawImage(coin, grid.GRID_SIZE_X + SHOP_MARGIN, 20, null);
+	g.drawImage(coin, grid.gridWidth + SHOP_MARGIN, 20, null);
 	g.setFont(new Font("courier new", Font.BOLD, 14));
-	g.drawString(String.valueOf(gold), grid.GRID_SIZE_X + SHOP_MARGIN + 35, 40);
-	g.drawImage(heart, grid.GRID_SIZE_X + (SHOP_MARGIN * 4), 20, null);
-	g.drawString(String.valueOf(health), grid.GRID_SIZE_X + (SHOP_MARGIN * 4) + 35, 40);
+	g.drawString(String.valueOf(gold), grid.gridWidth + SHOP_MARGIN + 35, 40);
+	g.drawImage(heart, grid.gridWidth + (SHOP_MARGIN * 4), 20, null);
+	g.drawString(String.valueOf(health), grid.gridWidth + (SHOP_MARGIN * 4) + 35, 40);
 
 
     }
+
+    public void checkButtonClick() {
+	if (shopButtons[0][0].contains(GameFrame.clickPoint)) {
+	    grid.basicTowerButtonClicked = true;
+	}
+	else if(shopButtons[3][1].contains(GameFrame.clickPoint)){
+	    grid.trashCanClicked = true;
+	}
+	grid.createTower();
+    }
+
 
 }

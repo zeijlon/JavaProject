@@ -5,7 +5,8 @@ package se.liu.ida.andze132.tddd78.javaproject;
  */
 
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class KeyHandler extends MouseAdapter
 {

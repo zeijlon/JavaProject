@@ -1,11 +1,15 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GRID
 {
     private final static int SQUARE_WIDTH = 40;
     private final static int SQUARE_HEIGHT = 40;
+
+    public static Image basicTower = (Toolkit.getDefaultToolkit().getImage("images/basicTower.png"));
 
     protected final static int GRASS = 0;
     protected final static int PATH = 1;
@@ -14,16 +18,31 @@ public class GRID
     protected final static int FINISH = 4;
     protected final static int CROSSROAD = 5;
 
-    protected int GRID_SIZE_X;
-    protected int GRID_SIZE_Y;
+    protected int gridWidth;
+    protected int gridHeight;
 
+    public boolean basicTowerButtonClicked;
+    public boolean trashCanClicked;
+    public boolean holdsItem;
+
+
+    public List<Towers> towers = new ArrayList<>();
 
     private int[][] squares;
+    private Rectangle[][] rectangles;
 
     public GRID(int n) {
 	this.squares = Maps.getMap(n);
-	this.GRID_SIZE_X = checkLargestRow(this) * GameComponent.TILE_SIZE;
-	this.GRID_SIZE_Y = squares.length * GameComponent.TILE_SIZE;
+	this.gridWidth = checkLargestRow(this) * GameComponent.TILE_SIZE;
+	this.gridHeight = squares.length * GameComponent.TILE_SIZE;
+
+	this.basicTowerButtonClicked = false;
+	this.trashCanClicked = false;
+	this.holdsItem = false;
+
+
+	rectangles = new Rectangle[squares.length][checkLargestRow(this)];
+	defineRectangles();
     }
 
     public int[][] getSquares() {
@@ -31,12 +50,31 @@ public class GRID
     }
 
 
+    public void defineRectangles() {
+	for (int i = 0; i < squares.length; i++) {
+	    for (int j = 0; j < squares[i].length; j++) {
+		rectangles[i][j] = new Rectangle(j * SQUARE_WIDTH, i * SQUARE_HEIGHT, SQUARE_WIDTH, SQUARE_HEIGHT);
+	    }
+	}
+    }
+
     public void draw(Graphics g2d) {
 	for (int i = 0; i < squares.length; i++) {
 	    for (int j = 0; j < squares[i].length; j++) {
 		Image img = checkSquareType(squares[i][j]);
-		g2d.drawImage(img, j * SQUARE_WIDTH, i * SQUARE_WIDTH, null);
+		g2d.drawImage(img, j * SQUARE_WIDTH, i * SQUARE_HEIGHT, null);
 	    }
+	}
+
+	for (int i = 0; i < towers.size(); i++) {
+	    g2d.drawImage(basicTower, towers.get(i).X, towers.get(i).Y, null);
+	}
+	if(holdsItem) {
+	    Double dX = new Double(GameFrame.motionPoint.getX());
+	    Double dY = new Double(GameFrame.motionPoint.getY());
+	    int X = dX.intValue();
+	    int Y = dY.intValue();
+	    g2d.drawImage(basicTower, X, Y, null);
 	}
     }
 
@@ -70,17 +108,37 @@ public class GRID
 	return largestRow;
     }
 
-    public void buildTower(int y, int x) {
-	for (int i = 0; i < squares.length; i++) {
-	    for (int j = 0; j < squares[i].length; j++) {
-		if (i * 40 < y && y < i * 40 + 40 && j * 40 < x && x < j * 40 + 40) {
-		    if (squares[i][j] == GRASS) {
-			squares[i][j] = TOWER;
-		    }
-		}
-	    }
+    public void createTower() {
+	if (basicTowerButtonClicked) {
+	    holdsItem = true;
+	    basicTowerButtonClicked = false;
 	}
+	else if(trashCanClicked){
+	    holdsItem = false;
+	    trashCanClicked = false;
+	}
+	buildTower();
     }
 
-}
+    public void buildTower() {
+	if (holdsItem){
+	    for (int i = 0; i < rectangles.length; i++) {
+		for (int j = 0; j < rectangles[i].length; j++) {
+		    if (rectangles[i][j].contains(GameFrame.clickPoint)) {
+			if (squares[i][j] == GRASS) {
+			    Towers tower = new BasicTower();
+			    if(Shop.gold>=tower.getCost()){
+				towers.add(tower);
+			    squares[i][j] = TOWER;
+			    tower.X = j * SQUARE_WIDTH;
+			    tower.Y = i * SQUARE_WIDTH;
+			    tower.targeted = false;
+				holdsItem=false;
+			    Shop.gold -= tower.getCost();
+			}}
+		    }
+		}
 
+	    }
+	}
+    }}

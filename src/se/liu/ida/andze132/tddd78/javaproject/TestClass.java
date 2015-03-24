@@ -11,4 +11,3 @@ public class TestClass
 	GameLoop gameloop = new GameLoop(grid, shop, frame, spawner);
     }
 }
-

@@ -2,8 +2,6 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.*;
 
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
@@ -87,6 +85,8 @@ public class GameLoop
 	    spawner.checkEnemyFinished();
 
 	    spawner.moveEnemy();
+
+	    shop.checkButtonClick();
 	    if (Shop.health <= 0) {
 		gameOn = false;
 		menu = true;

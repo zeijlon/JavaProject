@@ -29,7 +29,7 @@ public class EnemySpawner
 	this.enemiesSpawned = 0;
 	this.betweenRounds = true;
 
-	this.nextRoundButton = new Rectangle(grid.GRID_SIZE_X + Shop.SHOP_MARGIN, grid.GRID_SIZE_Y + Shop.SHOP_MARGIN, 50, 50);
+	this.nextRoundButton = new Rectangle(grid.gridWidth + Shop.SHOP_MARGIN, grid.gridHeight + Shop.SHOP_MARGIN, 50, 50);
     }
 
 
@@ -50,16 +50,17 @@ public class EnemySpawner
 	    } else {spawnTime++;}
 
 	}
-
+	if(!grid.holdsItem){
 	if (nextRoundButton.contains(GameFrame.clickPoint)) {
 	    if (betweenRounds) {
 		level++;
 		betweenRounds = false;
-		GameFrame.clickPoint = new Point();
 	    }
+	    GameFrame.clickPoint = new Point();
+
 
 	}
-    }
+    }}
 
     public void spawnBasicEnemy() {
 	Enemy basic = new BasicEnemy();
@@ -203,16 +204,16 @@ public class EnemySpawner
 	g.setColor(Color.red);
 	g.setFont(new Font("courier new", Font.BOLD, 20));
 	if (level >= 1) {
-	    g.drawString("ROUND: " + level, grid.GRID_SIZE_X + Shop.SHOP_MARGIN, grid.GRID_SIZE_Y);
+	    g.drawString("ROUND: " + level, grid.gridWidth + Shop.SHOP_MARGIN, grid.gridHeight);
 	}
 
 	//Draw next round button
 	if (betweenRounds) {
 	    g.setColor(Color.black);
-	    g.fillRect(grid.GRID_SIZE_X + Shop.SHOP_MARGIN, grid.GRID_SIZE_Y + Shop.SHOP_MARGIN, 50, 50);
+	    g.fillRect(grid.gridWidth + Shop.SHOP_MARGIN, grid.gridHeight + Shop.SHOP_MARGIN, 50, 50);
 	} else {
 	    g.setColor(Color.green);
-	    g.fillRect(grid.GRID_SIZE_X + Shop.SHOP_MARGIN, grid.GRID_SIZE_Y + Shop.SHOP_MARGIN, 50, 50);
+	    g.fillRect(grid.gridWidth + Shop.SHOP_MARGIN, grid.gridHeight + Shop.SHOP_MARGIN, 50, 50);
 	}
     }
 
