@@ -2,9 +2,9 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
-public class GameComponent extends JComponent {
+public class GameComponent extends JComponent
+{
     private GRID grid;
     private Shop shop;
 
@@ -17,49 +17,25 @@ public class GameComponent extends JComponent {
 
 
     public GameComponent(GRID grid, Shop shop, EnemySpawner spawner) {
-        this.grid = grid;
-        this.shop = shop;
-        this.spawner = spawner;
-
-        this.addKeyBindings();
+	this.grid = grid;
+	this.shop = shop;
+	this.spawner = spawner;
     }
 
-    private void addKeyBindings() {
-        InputMap inputMap = getInputMap(JComponent.WHEN_FOCUSED);
-
-        Action pause = new PauseGame();
-        getActionMap().put("pause", pause);
-        inputMap.put(KeyStroke.getKeyStroke("P"), "pause");
+    @Override public Dimension getPreferredSize() {
+	super.getPreferredSize();
+	int row = GRID.checkLargestRow(grid);
+	return new Dimension(row * TILE_SIZE + SHOP_SIZE_X, grid.getSquares().length * TILE_SIZE + INFO_BOX);
     }
 
-    class PauseGame extends AbstractAction
-    {
-        public void actionPerformed(ActionEvent e)
-        {
-            if (GameLoop.gameIsPaused) {
-                GameLoop.gameIsPaused = false;
-            } else {
-                GameLoop.gameIsPaused = true;
-            }
-        }
+    @Override protected void paintComponent(Graphics g) {
+	super.paintComponent(g);
+	final Graphics2D g2d = (Graphics2D) g;
+
+
+	grid.draw(g2d);
+	shop.draw(g2d);
+	spawner.draw(g2d);
     }
 
-    @Override
-    public Dimension getPreferredSize() {
-        super.getPreferredSize();
-        int row = GRID.checkLargestRow(grid);
-        return new Dimension(row * TILE_SIZE + SHOP_SIZE_X, grid.getSquares().length * TILE_SIZE + INFO_BOX);
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        final Graphics2D g2d = (Graphics2D) g;
-
-
-        grid.draw(g2d);
-        shop.draw(g2d);
-        spawner.draw(g2d);
-        }
-
-    }
+}

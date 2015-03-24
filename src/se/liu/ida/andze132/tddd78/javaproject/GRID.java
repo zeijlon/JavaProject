@@ -12,12 +12,18 @@ public class GRID
     protected final static int TOWER = 2;
     protected final static int START = 3;
     protected final static int FINISH = 4;
+    protected final static int CROSSROAD = 5;
+
+    protected int GRID_SIZE_X;
+    protected int GRID_SIZE_Y;
 
 
     private int[][] squares;
 
     public GRID(int n) {
 	this.squares = Maps.getMap(n);
+	this.GRID_SIZE_X = checkLargestRow(this) * GameComponent.TILE_SIZE;
+	this.GRID_SIZE_Y = squares.length * GameComponent.TILE_SIZE;
     }
 
     public int[][] getSquares() {
@@ -25,52 +31,55 @@ public class GRID
     }
 
 
-    public void draw(Graphics g2d){
-        for (int i = 0; i < squares.length; i++) {
-            for (int j = 0; j < squares[i].length; j++) {
-                Image img = checkSquareType(squares[i][j]);
-                g2d.drawImage(img,j * SQUARE_WIDTH, i * SQUARE_WIDTH, null);
-            }
-        }
+    public void draw(Graphics g2d) {
+	for (int i = 0; i < squares.length; i++) {
+	    for (int j = 0; j < squares[i].length; j++) {
+		Image img = checkSquareType(squares[i][j]);
+		g2d.drawImage(img, j * SQUARE_WIDTH, i * SQUARE_WIDTH, null);
+	    }
+	}
     }
 
     public Image checkSquareType(int squaretype) {
-        switch (squaretype) {
-            case GRASS:
-                return Toolkit.getDefaultToolkit().getImage("images/grass.png");
-            case PATH:
-                return Toolkit.getDefaultToolkit().getImage("images/path.png");
-            case TOWER:
-                return Toolkit.getDefaultToolkit().getImage("images/grass.png");
-            case START:
-                return Toolkit.getDefaultToolkit().getImage("images/start.png");
-            case FINISH:
-                return Toolkit.getDefaultToolkit().getImage("images/finish.png");
-            default:
-                throw new IllegalArgumentException("Invalid input squaretype");
-        }
+	switch (squaretype) {
+	    case GRASS:
+		return Toolkit.getDefaultToolkit().getImage("images/grass.png");
+	    case PATH:
+		return Toolkit.getDefaultToolkit().getImage("images/path.png");
+	    case TOWER:
+		return Toolkit.getDefaultToolkit().getImage("images/grass.png");
+	    case START:
+		return Toolkit.getDefaultToolkit().getImage("images/start.png");
+	    case FINISH:
+		return Toolkit.getDefaultToolkit().getImage("images/finish.png");
+	    case CROSSROAD:
+		return Toolkit.getDefaultToolkit().getImage("images/path.png");
+	    default:
+		throw new IllegalArgumentException("Invalid input squaretype");
+	}
 
     }
 
-    public static int checkLargestRow(GRID grid){
-        int largestRow = 0;
-        for (int i = 0; i < grid.getSquares().length; i++) {
-            if(grid.getSquares()[i].length > largestRow){
-                largestRow = grid.getSquares()[i].length;
-            }
-        }
-        return largestRow;
+    public static int checkLargestRow(GRID grid) {
+	int largestRow = 0;
+	for (int i = 0; i < grid.squares.length; i++) {
+	    if (grid.squares[i].length > largestRow) {
+		largestRow = grid.squares[i].length;
+	    }
+	}
+	return largestRow;
     }
 
-    public void buildTower(int y, int x){
-        for (int i = 0; i < squares.length; i++) {
-            for (int j = 0; j < squares[i].length; j++) {
-                if(i*40<y && y<i*40+40 && j*40<x && x<j*40+40){
-                    if(squares[i][j] == GRASS){
-                    squares[i][j] = TOWER;}
-                }
-            }
-        }
+    public void buildTower(int y, int x) {
+	for (int i = 0; i < squares.length; i++) {
+	    for (int j = 0; j < squares[i].length; j++) {
+		if (i * 40 < y && y < i * 40 + 40 && j * 40 < x && x < j * 40 + 40) {
+		    if (squares[i][j] == GRASS) {
+			squares[i][j] = TOWER;
+		    }
+		}
+	    }
+	}
     }
 
 }
