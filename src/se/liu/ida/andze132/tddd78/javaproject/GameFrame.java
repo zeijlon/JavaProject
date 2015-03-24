@@ -14,6 +14,12 @@ public class GameFrame extends JFrame
 	this.setLayout(new BorderLayout());
 	this.add(gameComponent, BorderLayout.CENTER);
 	this.getContentPane().setBackground(Color.LIGHT_GRAY);
+	final JMenu menu = new JMenu("Menu");
+	menu.add(new JMenuItem("exit",'E'));
+	final JMenuBar bar = new JMenuBar();
+	bar.add(menu);
+	bar.add(Box.createHorizontalGlue());
+	this.setJMenuBar(bar);
 	this.pack();
 	this.setVisible(true);
 

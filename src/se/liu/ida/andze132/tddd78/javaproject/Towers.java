@@ -22,23 +22,23 @@ public class Towers
 	this.bulletspeed = bulletspeed;
 	this.cost = cost;
 	this.sell = sell;
-	}
+    }
 
 
     public int getDamage() {
-        return damage;
+	return damage;
     }
 
     public int getBulletspeed() {
-        return bulletspeed;
+	return bulletspeed;
     }
 
     public int getCost() {
-        return cost;
+	return cost;
     }
 
     public int getSell() {
-        return sell;
+	return sell;
     }
 }
 

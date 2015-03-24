@@ -76,8 +76,7 @@ public class Shop
     public void checkButtonClick() {
 	if (shopButtons[0][0].contains(GameFrame.clickPoint)) {
 	    grid.basicTowerButtonClicked = true;
-	}
-	else if(shopButtons[3][1].contains(GameFrame.clickPoint)){
+	} else if (shopButtons[3][1].contains(GameFrame.clickPoint)) {
 	    grid.trashCanClicked = true;
 	}
 	grid.createTower();

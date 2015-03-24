@@ -50,24 +50,23 @@ public class EnemySpawner
 	    } else {spawnTime++;}
 
 	}
-	if(!grid.holdsItem){
-	if (nextRoundButton.contains(GameFrame.clickPoint)) {
-	    if (betweenRounds) {
-		level++;
-		betweenRounds = false;
+	if (!grid.holdsItem) {
+	    if (nextRoundButton.contains(GameFrame.clickPoint)) {
+		if (betweenRounds) {
+		    level++;
+		    betweenRounds = false;
+		}
+		GameFrame.clickPoint = new Point();
 	    }
-	    GameFrame.clickPoint = new Point();
-
-
 	}
-    }}
+    }
 
     public void spawnBasicEnemy() {
 	Enemy basic = new BasicEnemy();
 	enemies.add(basic);
 	for (int y = 0; y < grid.getSquares().length; y++) {
 	    for (int x = 0; x < grid.getSquares()[y].length; x++) {
-		if (grid.getSquares()[y][x] == 3) {
+		if (grid.getSquares()[y][x] == GRID.START) {
 		    basic.setyC(y);
 		    basic.setxC(x);
 		    basic.setY(y * 40);

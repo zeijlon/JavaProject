@@ -1,29 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="6166df02-5b19-4bed-9a27-c7e03e8e8dfb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/BasicEnemy.class" afterPath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/BasicEnemy.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/BasicTower.class" afterPath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/BasicTower.class" />
+    <list default="true" readonly="true" id="6166df02-5b19-4bed-9a27-c7e03e8e8dfb" name="Default" comment="kuk">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/TowerHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/EnemySpawner.class" afterPath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/EnemySpawner.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/GRID.class" afterPath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/GRID.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/GameFrame.class" afterPath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/GameFrame.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/GameLoop.class" afterPath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/GameLoop.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/KeyHandler.class" afterPath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/KeyHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/Maps.class" afterPath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/Maps.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/Shop.class" afterPath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/Shop.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/Towers.class" afterPath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/Towers.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/BasicEnemy.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/BasicEnemy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/BasicTower.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/BasicTower.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/EnemySpawner.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/EnemySpawner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GRID.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GRID.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameFrame.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameLoop.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameLoop.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaProject.ipr" afterPath="$PROJECT_DIR$/JavaProject.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaProject.iws" afterPath="$PROJECT_DIR$/JavaProject.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/KeyHandler.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/KeyHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Maps.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Maps.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Shop.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Shop.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/TestClass.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/TestClass.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Towers.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Towers.java" />
     </list>
     <ignored path="JavaProject.iws" />
@@ -53,32 +44,22 @@
       <file leaf-file-name="BasicEnemy.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/BasicEnemy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
-              <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KeyHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/KeyHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="532">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BasicTower.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/BasicTower.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="342">
+              <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
               <folding>
-                <element signature="e#314#315#0" expanded="true" />
-                <element signature="e#361#362#0" expanded="true" />
+                <element signature="e#258#259#0" expanded="false" />
+                <element signature="e#305#306#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameComponent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameComponent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="874">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,16 +67,15 @@
       <file leaf-file-name="Towers.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Towers.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="950">
+            <state vertical-scroll-proportion="0.0" vertical-offset="88" max-vertical-offset="836">
               <caret line="27" column="28" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
               <folding>
-                <element signature="e#547#548#0" expanded="true" />
-                <element signature="e#582#583#0" expanded="true" />
-                <element signature="e#616#617#0" expanded="true" />
-                <element signature="e#644#645#0" expanded="true" />
-                <element signature="e#671#672#0" expanded="true" />
-                <element signature="e#699#700#0" expanded="true" />
-                <element signature="e#726#727#0" expanded="true" />
+                <element signature="e#578#579#0" expanded="false" />
+                <element signature="e#605#606#0" expanded="false" />
+                <element signature="e#633#634#0" expanded="false" />
+                <element signature="e#653#654#0" expanded="false" />
+                <element signature="e#681#682#0" expanded="false" />
+                <element signature="e#701#702#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -104,8 +84,28 @@
       <file leaf-file-name="GRID.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GRID.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1959" max-vertical-offset="2812">
-              <caret line="117" column="36" selection-start-line="117" selection-start-column="36" selection-end-line="117" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1019" max-vertical-offset="2850">
+              <caret line="124" column="46" selection-start-line="124" selection-start-column="46" selection-end-line="124" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameFrame.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameFrame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
+              <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KeyHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/KeyHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="532">
+              <caret line="19" column="69" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -114,8 +114,18 @@
       <file leaf-file-name="EnemySpawner.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/EnemySpawner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="667" max-vertical-offset="4351">
-              <caret line="52" column="28" selection-start-line="52" selection-start-column="28" selection-end-line="52" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="787" max-vertical-offset="4332">
+              <caret line="58" column="51" selection-start-line="58" selection-start-column="51" selection-end-line="58" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TowerHandler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/TowerHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.296875" vertical-offset="0" max-vertical-offset="448">
+              <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -124,27 +134,17 @@
       <file leaf-file-name="GameLoop.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameLoop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="382" max-vertical-offset="2071">
-              <caret line="88" column="36" selection-start-line="88" selection-start-column="36" selection-end-line="88" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1437" max-vertical-offset="2071">
+              <caret line="99" column="9" selection-start-line="99" selection-start-column="9" selection-end-line="99" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Shop.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Shop.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1161" max-vertical-offset="1767">
-              <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestClass.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TestClass.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/TestClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37623763" vertical-offset="0" max-vertical-offset="606">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
               <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
               <folding />
             </state>
@@ -164,17 +164,18 @@
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Enemies.java" />
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameComponent.java" />
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Enemy.java" />
-        <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameFrame.java" />
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Maps.java" />
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/TestClass.java" />
-        <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameLoop.java" />
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/BasicEnemy.java" />
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/BasicTower.java" />
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Towers.java" />
-        <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/KeyHandler.java" />
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Shop.java" />
-        <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/EnemySpawner.java" />
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GRID.java" />
+        <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameLoop.java" />
+        <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameFrame.java" />
+        <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/KeyHandler.java" />
+        <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/EnemySpawner.java" />
+        <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/TowerHandler.java" />
       </list>
     </option>
   </component>
@@ -182,10 +183,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="178" />
-    <option name="y" value="45" />
-    <option name="width" value="1605" />
-    <option name="height" value="951" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -212,7 +213,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -265,7 +266,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -292,6 +293,55 @@
     <property name="OverrideImplement.overriding.sorted" value="false" />
   </component>
   <component name="RunManager" selected="Application.TestClass">
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -308,28 +358,9 @@
       <setting name="launchBrowser" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -360,33 +391,42 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
+    <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
+      <module name="" />
       <envs />
-      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
       <tasks />
+      <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
@@ -445,9 +485,7 @@
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
-    <configuration default="true" type="JarApplication" factoryName="JAR Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <envs />
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
     <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
@@ -466,18 +504,17 @@
       </ExternalSystemSettings>
       <method />
     </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
-      <option name="BCName" value="" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="FlashPlayerDebugger.exe" />
-        </LauncherParameters>
-      </option>
-      <option name="moduleName" value="" />
-      <option name="trusted" value="true" />
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
@@ -497,41 +534,6 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
-      <module name="" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <option name="MODE" value="default_activity" />
-      <option name="DEPLOY" value="true" />
-      <option name="ARTIFACT_NAME" value="" />
-      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
     <configuration default="false" name="TestClass" type="Application" factoryName="Application" nameIsGenerated="true">
@@ -588,6 +590,8 @@
       <workItem from="1427134937612" duration="18553000" />
       <workItem from="1427188374175" duration="6304000" />
       <workItem from="1427206042592" duration="6945000" />
+      <workItem from="1427221790402" duration="4319000" />
+      <workItem from="1427230020882" duration="2360000" />
     </task>
     <task id="LOCAL-00001" summary="Removed unnecessary class.">
       <created>1426851409760</created>
@@ -731,39 +735,39 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123676000" />
+    <option name="totallyTimeSpent" value="130355000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="178" y="45" width="1605" height="951" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39795917" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3196005" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3196005" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12507817" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28231293" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28096676" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18594436" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39795917" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -823,7 +827,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="663">
           <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -941,7 +944,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="340">
           <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
-          <folding />
+          <folding>
+            <element signature="e#258#259#0" expanded="false" />
+            <element signature="e#305#306#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -981,7 +987,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="663">
           <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1084,7 +1089,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="340">
           <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="e#258#259#0" expanded="false" />
+            <element signature="e#305#306#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1116,7 +1124,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="952">
           <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1146,7 +1153,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="340">
           <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="e#258#259#0" expanded="false" />
+            <element signature="e#305#306#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1170,7 +1180,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1201,11 +1210,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="374">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/basicEnemy.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameHandler.java">
@@ -1299,35 +1303,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="428" max-vertical-offset="874">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="228" max-vertical-offset="570">
-          <caret line="12" column="77" selection-start-line="12" selection-start-column="77" selection-end-line="12" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Maps.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5400517" vertical-offset="0" max-vertical-offset="774">
           <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///sw/jdk1.8.0_40/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="16081" max-vertical-offset="26543">
-          <caret line="900" column="0" selection-start-line="900" selection-start-column="0" selection-end-line="900" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1336,33 +1315,9 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
-            <element signature="e#314#315#0" expanded="true" />
-            <element signature="e#361#362#0" expanded="true" />
+            <element signature="e#314#315#0" expanded="false" />
+            <element signature="e#361#362#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/KeyHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="532">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameLoop.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1240" max-vertical-offset="2071">
-          <caret line="88" column="36" selection-start-line="88" selection-start-column="36" selection-end-line="88" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/EnemySpawner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="667" max-vertical-offset="4351">
-          <caret line="52" column="28" selection-start-line="52" selection-start-column="28" selection-end-line="52" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1374,12 +1329,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/BasicEnemy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/images/basicEnemy.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Towers.java">
@@ -1387,29 +1339,87 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="950">
           <caret line="27" column="28" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
           <folding>
-            <element signature="e#547#548#0" expanded="true" />
-            <element signature="e#582#583#0" expanded="true" />
-            <element signature="e#616#617#0" expanded="true" />
-            <element signature="e#644#645#0" expanded="true" />
-            <element signature="e#671#672#0" expanded="true" />
-            <element signature="e#699#700#0" expanded="true" />
-            <element signature="e#726#727#0" expanded="true" />
+            <element signature="e#578#579#0" expanded="false" />
+            <element signature="e#605#606#0" expanded="false" />
+            <element signature="e#633#634#0" expanded="false" />
+            <element signature="e#653#654#0" expanded="false" />
+            <element signature="e#681#682#0" expanded="false" />
+            <element signature="e#701#702#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GRID.java">
+    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/BasicEnemy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1959" max-vertical-offset="2812">
-          <caret line="117" column="36" selection-start-line="117" selection-start-column="36" selection-end-line="117" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
+          <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
+          <folding>
+            <element signature="e#258#259#0" expanded="false" />
+            <element signature="e#305#306#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameLoop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1342" max-vertical-offset="2071">
+          <caret line="99" column="9" selection-start-line="99" selection-start-column="9" selection-end-line="99" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="428" max-vertical-offset="874">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/KeyHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="532">
+          <caret line="19" column="69" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/TestClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37623763" vertical-offset="0" max-vertical-offset="606">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
           <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GRID.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2216" max-vertical-offset="2850">
+          <caret line="124" column="46" selection-start-line="124" selection-start-column="46" selection-end-line="124" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/EnemySpawner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="787" max-vertical-offset="4332">
+          <caret line="58" column="51" selection-start-line="58" selection-start-column="51" selection-end-line="58" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/TowerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.296875" vertical-offset="0" max-vertical-offset="448">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
           <folding />
         </state>
       </provider>
