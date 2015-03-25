@@ -7,8 +7,8 @@ public class GameComponent extends JComponent
 {
     private GRID grid;
     private Shop shop;
-
     private EnemySpawner spawner;
+    private TowerHandler towerHandler;
 
 
     public final static int TILE_SIZE = 40;
@@ -16,10 +16,11 @@ public class GameComponent extends JComponent
     public final static int INFO_BOX = 175;
 
 
-    public GameComponent(GRID grid, Shop shop, EnemySpawner spawner) {
+    public GameComponent(GRID grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler) {
 	this.grid = grid;
 	this.shop = shop;
 	this.spawner = spawner;
+	this.towerHandler = towerHandler;
     }
 
     @Override public Dimension getPreferredSize() {
@@ -36,6 +37,7 @@ public class GameComponent extends JComponent
 	grid.draw(g2d);
 	shop.draw(g2d);
 	spawner.draw(g2d);
+	towerHandler.draw(g2d);
     }
 
 }

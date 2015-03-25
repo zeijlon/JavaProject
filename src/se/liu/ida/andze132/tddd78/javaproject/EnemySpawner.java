@@ -9,12 +9,13 @@ import java.util.List;
  */
 public class EnemySpawner
 {
-    public GRID grid;
+    private GRID grid;
+    private Shop shop;
 
-    public List<Enemy> enemies = new ArrayList<>();
-    public int spawnRate = 50, spawnTime = 0;
-    public int level = 0, enemiesSpawned;
-    public int enemyCount = 10;
+    private List<Enemy> enemies = new ArrayList<>();
+    private int spawnRate = 50, spawnTime = 0;
+    private int level = 0, enemiesSpawned;
+    private int enemyCount = 10;
 
 
     private boolean betweenRounds;
@@ -22,10 +23,9 @@ public class EnemySpawner
     private Rectangle nextRoundButton;
 
 
-    Image basicEnemy = Toolkit.getDefaultToolkit().getImage("images/basicEnemy.png");
-
-    public EnemySpawner(GRID grid) {
+    public EnemySpawner(GRID grid, Shop shop) {
 	this.grid = grid;
+	this.shop = shop;
 	this.enemiesSpawned = 0;
 	this.betweenRounds = true;
 
@@ -50,7 +50,7 @@ public class EnemySpawner
 	    } else {spawnTime++;}
 
 	}
-	if (!grid.holdsItem) {
+	if (shop.getHoldsItem() == shop.getNothing()) {
 	    if (nextRoundButton.contains(GameFrame.clickPoint)) {
 		if (betweenRounds) {
 		    level++;
@@ -69,8 +69,8 @@ public class EnemySpawner
 		if (grid.getSquares()[y][x] == GRID.START) {
 		    basic.setyC(y);
 		    basic.setxC(x);
-		    basic.setY(y * 40);
-		    basic.setX(x * 40);
+		    basic.setY(y * GameComponent.TILE_SIZE);
+		    basic.setX(x * GameComponent.TILE_SIZE);
 		}
 	    }
 	}
@@ -189,7 +189,7 @@ public class EnemySpawner
 	    int x = enemies.get(i).getxC();
 	    int y = enemies.get(i).getyC();
 	    if (grid.getSquares()[y][x] == GRID.FINISH) {
-		Shop.health -= enemies.get(i).getDamage();
+		shop.setHealth(enemies.get(i).getDamage());
 		enemies.remove(i);
 	    }
 	}
@@ -198,7 +198,7 @@ public class EnemySpawner
 
     public void draw(Graphics g) {
 	for (Enemy enemy : enemies) {
-	    g.drawImage(basicEnemy, enemy.getX(), enemy.getY(), null);
+	    g.drawImage(enemy.getImage(), enemy.getX(), enemy.getY(), null);
 	}
 	g.setColor(Color.red);
 	g.setFont(new Font("courier new", Font.BOLD, 20));

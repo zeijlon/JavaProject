@@ -9,17 +9,21 @@ import java.awt.*;
  */
 public class Shop
 {
-    public static int gold = 10000;
-    public static int health = 100;
-    public static int SHOPBUTTON_SIZE = 52;
+    private int gold;
+    private int health;
+    public final static int SHOPBUTTON_SIZE = 52;
 
 
-    public static Image button = Toolkit.getDefaultToolkit().getImage("images/shopButton.png");
-    public static Image coin = Toolkit.getDefaultToolkit().getImage("images/coin.png");
-    public static Image heart = Toolkit.getDefaultToolkit().getImage("images/heart.png");
+    public Image button = Toolkit.getDefaultToolkit().getImage("images/shopButton.png");
+    public Image coin = Toolkit.getDefaultToolkit().getImage("images/coin.png");
+    public Image heart = Toolkit.getDefaultToolkit().getImage("images/heart.png");
 
 
-    public static Rectangle shopButtons[][] = new Rectangle[4][2];
+    private Rectangle[][] shopButtons = new Rectangle[4][2];
+    private Image[][] towerImages = new Image[4][2];
+
+    private int holdsItem;
+    private int basicTower = 0, nothing = 7;
 
     private GRID grid;
 
@@ -28,8 +32,14 @@ public class Shop
 
     public Shop(GRID grid) {
 	this.grid = grid;
+
+	this.gold = 10000;
+	this.health = 100;
+
+	this.holdsItem = nothing;
 	defineShopButtons();
-    }
+	towerImages = new Image[][] { { BasicTower.image, BasicTower.image }, { BasicTower.image, BasicTower.image },
+	{ BasicTower.image, BasicTower.image }, { BasicTower.image, heart } };}
 
 
     public void defineShopButtons() {
@@ -59,6 +69,8 @@ public class Shop
 		    g.drawImage(button, grid.gridWidth + SHOP_MARGIN + (x * 70), y * (SHOPBUTTON_SIZE + 20) + 75, null);
 		}
 
+		g.drawImage(towerImages[y][x], grid.gridWidth + SHOP_MARGIN + (x * 70), y * (SHOPBUTTON_SIZE + 20) + 75, null);
+
 	    }
 	}
 
@@ -73,14 +85,40 @@ public class Shop
 
     }
 
-    public void checkButtonClick() {
-	if (shopButtons[0][0].contains(GameFrame.clickPoint)) {
-	    grid.basicTowerButtonClicked = true;
-	} else if (shopButtons[3][1].contains(GameFrame.clickPoint)) {
-	    grid.trashCanClicked = true;
-	}
-	grid.createTower();
+    public Rectangle[][] getShopButtons() {
+	return shopButtons;
     }
 
 
+    public int getHoldsItem() {
+	return holdsItem;
+    }
+
+    public int getGold() {
+	return gold;
+    }
+
+    public int getHealth() {
+	return health;
+    }
+
+    public void setGold(final int cost) {
+	this.gold -= cost;
+    }
+
+    public void setHealth(final int damage) {
+	this.health -= damage;
+    }
+
+    public void setHoldsItem(final int holdsItem) {
+	this.holdsItem = holdsItem;
+    }
+
+    public int getBasicTower() {
+	return basicTower;
+    }
+
+    public int getNothing() {
+	return nothing;
+    }
 }

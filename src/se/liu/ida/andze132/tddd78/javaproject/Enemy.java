@@ -1,5 +1,6 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
+import java.awt.*;
 
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
@@ -27,14 +28,21 @@ public class Enemy
     private boolean hasLeft = false;
     private boolean hasRight = true;
 
+    private Image image;
+
     private int[][] hasWalked = null;
 
 
-    public Enemy(final int hp, final int speed, final int goldgain, final int damage) {
+    public Enemy(final int hp, final int speed, final int goldgain, final int damage, final Image image) {
 	this.hp = hp;
 	this.speed = speed;
 	this.goldgain = goldgain;
 	this.damage = damage;
+	this.image = image;
+    }
+
+    public Image getImage() {
+	return image;
     }
 
     public static int getRight() {

@@ -9,10 +9,12 @@ import javax.swing.*;
 public class GameLoop
 {
 
-    public GRID grid;
-    public Shop shop;
-    public JFrame frame;
-    public EnemySpawner spawner;
+    private GRID grid;
+    private Shop shop;
+    private JFrame frame;
+    private EnemySpawner spawner;
+    private TowerHandler towerHandler;
+
     private boolean gameRunning;
     private boolean gameOn;
     private boolean gamePaused;
@@ -20,15 +22,18 @@ public class GameLoop
     private int lastFpsTime, fps;
 
 
-    public GameLoop(GRID grid, Shop shop, JFrame frame, EnemySpawner spawner) {
+    public GameLoop(GRID grid, Shop shop, JFrame frame, EnemySpawner spawner, TowerHandler towerHandler) {
 	this.grid = grid;
 	this.shop = shop;
 	this.frame = frame;
+	this.spawner = spawner;
+	this.towerHandler = towerHandler;
+
 	this.lastFpsTime = 0;
 	this.fps = 0;
 	this.gameRunning = true;
 	this.gameOn = true;
-	this.spawner = spawner;
+	this.gamePaused = false;
 
 	gameLoop();
     }
@@ -74,7 +79,10 @@ public class GameLoop
 	    // remember this is in ms, whereas our lastLoopTime etc. vars are in ns.
 	    try {
 		Thread.sleep((lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000);
-	    } catch (Exception e) {
+	    } catch (InterruptedException e) {
+		e.printStackTrace();
+	    }
+	     catch (Exception ignored) {
 	    }
 	}
     }
@@ -86,8 +94,8 @@ public class GameLoop
 
 	    spawner.moveEnemy();
 
-	    shop.checkButtonClick();
-	    if (Shop.health <= 0) {
+	    towerHandler.checkButtonClick();
+	    if (shop.getHealth() <= 0) {
 		gameOn = false;
 		menu = true;
 	    }
