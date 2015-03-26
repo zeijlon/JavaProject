@@ -2,8 +2,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
 
-public class BasicEnemy extends Enemy
-{
+public class BasicEnemy extends Enemy {
     private static Image image = (Toolkit.getDefaultToolkit().getImage("images/basicEnemy.png"));
 
 
@@ -14,6 +13,6 @@ public class BasicEnemy extends Enemy
 
 
     public BasicEnemy() {
-	super(health, speed, goldgain, damage, image);
+        super(health, speed, goldgain, damage, image);
     }
 }

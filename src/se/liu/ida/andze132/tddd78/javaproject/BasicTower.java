@@ -7,19 +7,19 @@ import java.awt.*;
  */
 
 
-public class BasicTower extends Towers
-{
-    public static Image image = (Toolkit.getDefaultToolkit().getImage("images/coin.png"));
+public class BasicTower extends Towers {
+    public static Image image = (Toolkit.getDefaultToolkit().getImage("images/basicTower.png"));
 
 
-    private static int damage = 50;
-    private static int bulletspeed = 50;
-    private static int cost = 2;
+    private static int damage = 10;
+    private static int bulletspeed = 20;
+    public static int cost = 5;
     private static int sell = 50;
+    public static int radius = 150;
 
 
     public BasicTower() {
-	super(damage, bulletspeed, cost, sell, image);
+        super(damage, bulletspeed, cost, sell, image, radius);
     }
 
 }

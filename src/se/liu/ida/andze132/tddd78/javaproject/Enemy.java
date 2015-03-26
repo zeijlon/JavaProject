@@ -5,8 +5,7 @@ import java.awt.*;
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
  */
-public class Enemy
-{
+public class Enemy {
 
     private int hp;
     private int speed;
@@ -34,156 +33,158 @@ public class Enemy
 
 
     public Enemy(final int hp, final int speed, final int goldgain, final int damage, final Image image) {
-	this.hp = hp;
-	this.speed = speed;
-	this.goldgain = goldgain;
-	this.damage = damage;
-	this.image = image;
+        this.hp = hp;
+        this.speed = speed;
+        this.goldgain = goldgain;
+        this.damage = damage;
+        this.image = image;
     }
 
     public Image getImage() {
-	return image;
+        return image;
     }
 
     public static int getRight() {
-	return RIGHT;
+        return RIGHT;
     }
 
     public static int getLeft() {
-	return LEFT;
+        return LEFT;
     }
 
     public static int getUp() {
-	return UP;
+        return UP;
     }
 
     public static int getDown() {
-	return DOWN;
+        return DOWN;
     }
 
     public static int getStill() {
-	return STILL;
+        return STILL;
     }
 
     public int getHp() {
-	return hp;
+        return hp;
     }
 
     public int getSpeed() {
-	return speed;
+        return speed;
     }
 
     public int getGoldgain() {
-	return goldgain;
+        return goldgain;
     }
 
     public int getDamage() {
-	return damage;
+        return damage;
     }
 
-    public void setHp(final int hp) {
-	this.hp = hp;
+    public void setHp(final int damage) {
+        this.hp -= damage;
     }
 
     public void setSpeed(final int speed) {
-	this.speed = speed;
+        this.speed = speed;
     }
 
     public void setGoldgain(final int goldgain) {
-	this.goldgain = goldgain;
+        this.goldgain = goldgain;
     }
 
     public void setDamage(final int damage) {
-	this.damage = damage;
+        this.damage = damage;
     }
 
     public int getX() {
-	return X;
+        return X;
     }
 
     public void setX(final int x) {
-	X = x;
+        X = x;
     }
 
     public int getY() {
-	return Y;
+        return Y;
     }
 
     public void setY(final int y) {
-	Y = y;
+        Y = y;
     }
 
     public int getDirection() {
-	return direction;
+        return direction;
     }
 
     public void setDirection(final int direction) {
-	this.direction = direction;
+        this.direction = direction;
     }
 
     public int getEnemyWalk() {
-	return enemyWalk;
+        return enemyWalk;
     }
 
     public void setEnemyWalk(final int enemyWalk) {
-	this.enemyWalk = enemyWalk;
+        this.enemyWalk = enemyWalk;
     }
 
     public int getyC() {
-	return yC;
+        return yC;
     }
 
     public void setyC(final int yC) {
-	this.yC = yC;
+        this.yC = yC;
     }
 
     public int getxC() {
-	return xC;
+        return xC;
     }
 
     public void setxC(final int xC) {
-	this.xC = xC;
+        this.xC = xC;
     }
 
     public boolean isHasUp() {
-	return hasUp;
+        return hasUp;
     }
 
     public void setHasUp(final boolean hasUp) {
-	this.hasUp = hasUp;
+        this.hasUp = hasUp;
     }
 
     public boolean isHasDown() {
-	return hasDown;
+        return hasDown;
     }
 
     public void setHasDown(final boolean hasDown) {
-	this.hasDown = hasDown;
+        this.hasDown = hasDown;
     }
 
     public boolean isHasLeft() {
-	return hasLeft;
+        return hasLeft;
     }
 
     public void setHasLeft(final boolean hasLeft) {
-	this.hasLeft = hasLeft;
+        this.hasLeft = hasLeft;
     }
 
     public boolean isHasRight() {
-	return hasRight;
+        return hasRight;
     }
 
     public void setHasRight(final boolean hasRight) {
-	this.hasRight = hasRight;
+        this.hasRight = hasRight;
     }
 
     public int[][] getHasWalked() {
-	return hasWalked;
+        return hasWalked;
     }
 
     public void setHasWalked(final int[][] hasWalked) {
-	this.hasWalked = hasWalked;
+        this.hasWalked = hasWalked;
     }
+
+
 }
 
 
