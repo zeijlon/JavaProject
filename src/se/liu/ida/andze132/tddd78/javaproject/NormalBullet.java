@@ -7,8 +7,9 @@ import java.util.Vector;
  */
 public class NormalBullet extends Bullet
 {
-    public NormalBullet(final float x, final float y, final float velocity, final int targetX, final int targetY) {
+    private static double velocity = 10;
+    public NormalBullet(final float x, final float y, final int targetX, final int targetY) {
 	super(x, y, velocity, targetX, targetY);
     }
-    
+
 }
