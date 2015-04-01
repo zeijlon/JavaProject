@@ -14,7 +14,7 @@ public class EnemySpawner {
     private List<Enemy> enemies = new ArrayList<>();
     private int spawnRate = 50, spawnTime = 0;
     private int level = 0, enemiesSpawned;
-    private int enemyCount = 2;
+    private int enemyCount = 1;
 
 
     private boolean betweenRounds;

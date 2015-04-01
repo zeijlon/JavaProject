@@ -23,7 +23,7 @@ public class Towers {
     private int x;
     private int y;
 
-    private boolean targeted = false;
+    private boolean targeted;
 
     public Towers(final int damage, final int bulletspeed, final int cost, final int sell, final Image image, final int radius) {
         this.damage = damage;
@@ -32,6 +32,7 @@ public class Towers {
         this.sell = sell;
         this.image = image;
         this.radius = radius;
+        this.targeted = false;
     }
 
     public void setRange(int x, int y) {

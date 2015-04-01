@@ -19,6 +19,8 @@ public class GRID {
     private int[][] squares;
     private Rectangle[][] rectangles;
 
+    private Rectangle gridSize;
+
     public GRID(int n) {
         this.squares = Maps.getMap(n);
         this.gridWidth = checkLargestRow(this) * GameComponent.TILE_SIZE;
@@ -26,6 +28,7 @@ public class GRID {
 
         rectangles = new Rectangle[squares.length][checkLargestRow(this)];
         defineRectangles();
+        gridSize = new Rectangle(0,0, checkLargestRow(this)*GameComponent.TILE_SIZE, squares.length*GameComponent.TILE_SIZE);
     }
 
     public int[][] getSquares() {
@@ -90,5 +93,9 @@ public class GRID {
 
     public static int getSquareHeight() {
         return SQUARE_HEIGHT;
+    }
+
+    public Rectangle getGridSize() {
+        return gridSize;
     }
 }

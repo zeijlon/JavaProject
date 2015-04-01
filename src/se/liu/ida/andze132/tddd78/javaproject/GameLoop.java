@@ -13,6 +13,7 @@ public class GameLoop {
     private JFrame frame;
     private EnemySpawner spawner;
     private TowerHandler towerHandler;
+    private BulletHandler bulletHandler;
 
     private boolean gameRunning;
     private boolean gameOn;
@@ -21,12 +22,13 @@ public class GameLoop {
     private int lastFpsTime, fps;
 
 
-    public GameLoop(GRID grid, Shop shop, JFrame frame, EnemySpawner spawner, TowerHandler towerHandler) {
+    public GameLoop(GRID grid, Shop shop, JFrame frame, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler) {
         this.grid = grid;
         this.shop = shop;
         this.frame = frame;
         this.spawner = spawner;
         this.towerHandler = towerHandler;
+        this.bulletHandler = bulletHandler;
 
         this.lastFpsTime = 0;
         this.fps = 0;
@@ -88,11 +90,12 @@ public class GameLoop {
         if (gameOn) {
             spawner.waveHandler();
             spawner.checkEnemyFinished();
-
             spawner.moveEnemy();
 
             towerHandler.checkButtonClick();
             towerHandler.checkEnemyWithinReach();
+
+            bulletHandler.updateBullets();
             if (shop.getHealth() <= 0) {
                 gameOn = false;
                 menu = true;
