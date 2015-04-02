@@ -2,6 +2,8 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GameFrame extends JFrame {
     public static Point motionPoint = new Point();
@@ -13,7 +15,7 @@ public class GameFrame extends JFrame {
         this.setLayout(new BorderLayout());
         this.add(gameComponent, BorderLayout.CENTER);
         this.getContentPane().setBackground(Color.LIGHT_GRAY);
-        createMenu();
+        this.createMenus();
         this.pack();
         this.setVisible(true);
 
@@ -22,13 +24,23 @@ public class GameFrame extends JFrame {
 
     }
 
-    public void createMenu() {
-        final JMenu menu = new JMenu("Menu");
-        menu.add(new JMenuItem("exit", 'E'));
-        final JMenuBar bar = new JMenuBar();
-        bar.add(menu);
-        bar.add(Box.createHorizontalGlue());
-        this.setJMenuBar(bar);
-    }
+    private void createMenus() {
+    	class ExitListener implements ActionListener
+    	{
+    	    public void actionPerformed(ActionEvent exit) {
+    		int answer = JOptionPane.showConfirmDialog(null, "Do you want to exit?", "Confirm", JOptionPane.YES_NO_OPTION);
+    		if (answer == JOptionPane.YES_OPTION) {System.exit(0);}
+    	    }
+    	}
+    	final JMenu menu = new JMenu("Menu");
+    	JMenuItem exit = new JMenuItem("exit", 'E');
+    	exit.addActionListener(new ExitListener());
+    	menu.add(exit);
+    	final JMenuBar bar = new JMenuBar();
+    	bar.add(menu);
+    	bar.add(Box.createHorizontalGlue());
+    	this.setJMenuBar(bar);
+    	this.setVisible(true);
+        }
 
 }
