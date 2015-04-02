@@ -9,9 +9,9 @@ public class GameFrame extends JFrame {
     public static Point motionPoint = new Point();
     public static Point clickPoint = new Point();
 
-    public GameFrame(GRID grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler) throws HeadlessException {
+    public GameFrame(GRID grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler) throws HeadlessException {
         super("DAWN OF THE POLAR BEARS");
-        GameComponent gameComponent = new GameComponent(grid, shop, spawner, towerHandler);
+        GameComponent gameComponent = new GameComponent(grid, shop, spawner, towerHandler, bulletHandler);
         this.setLayout(new BorderLayout());
         this.add(gameComponent, BorderLayout.CENTER);
         this.getContentPane().setBackground(Color.LIGHT_GRAY);

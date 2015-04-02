@@ -1,26 +1,60 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Created by Administratör on 2015-03-30.
+ * Created by Administratï¿½r on 2015-03-30.
  */
 public class Bullet
 {
+    private double angle;
     private double x;
     private double y;
-    private double velocity;
-    private int targetX;
-    private int targetY;
+    private double stepsPerFrame;
 
-    public Bullet(final double x, final double y, final double velocity, final int targetX, final int targetY) {
-	this.x = x;
-	this.y = y;
-	this.velocity = velocity;
-	this.targetX = targetX;
-	this.targetY = targetY;
+    private Image image;
+
+    public Bullet(int x, int y, Image image) {
+        this.x = x;
+        this.y = y;
+        this.image = image;
     }
 
-    public void updateBullet(){
+    public double getAngle() {
+        return angle;
+    }
 
-        }
+    public double getX() {
+        return x;
+    }
 
+    public double getY() {
+        return y;
+    }
+
+    public double getStepsPerFrame() {
+        return stepsPerFrame;
+    }
+
+    public void setAngle(double angle) {
+        this.angle = angle;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public void setStepsPerFrame(int stepsPerFrame) {
+        this.stepsPerFrame = stepsPerFrame;
+    }
+
+    public Image getImage() {
+        return image;
+    }
 }

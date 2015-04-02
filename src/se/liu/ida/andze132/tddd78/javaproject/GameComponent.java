@@ -8,6 +8,7 @@ public class GameComponent extends JComponent {
     private Shop shop;
     private EnemySpawner spawner;
     private TowerHandler towerHandler;
+    private BulletHandler bulletHandler;
 
 
     public final static int TILE_SIZE = 40;
@@ -15,11 +16,12 @@ public class GameComponent extends JComponent {
     public final static int INFO_BOX = 175;
 
 
-    public GameComponent(GRID grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler) {
+    public GameComponent(GRID grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler) {
         this.grid = grid;
         this.shop = shop;
         this.spawner = spawner;
         this.towerHandler = towerHandler;
+        this.bulletHandler = bulletHandler;
     }
 
     @Override
@@ -39,6 +41,7 @@ public class GameComponent extends JComponent {
         shop.draw(g2d);
         spawner.draw(g2d);
         towerHandler.draw(g2d);
+        bulletHandler.draw(g2d);
     }
 
 }

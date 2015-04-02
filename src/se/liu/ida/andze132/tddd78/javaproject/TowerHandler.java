@@ -19,13 +19,15 @@ public class TowerHandler {
     private GRID grid;
     private Shop shop;
     private EnemySpawner spawner;
+    private BulletHandler bulletHandler;
 
     private int bulletTravel;
 
-    public TowerHandler(GRID grid, Shop shop, EnemySpawner spawner) {
+    public TowerHandler(GRID grid, Shop shop, EnemySpawner spawner, BulletHandler bulletHandler) {
         this.grid = grid;
         this.shop = shop;
         this.spawner = spawner;
+        this.bulletHandler = bulletHandler;
         this.buttonClicked = not;
         this.bulletTravel = 0;
     }
@@ -75,20 +77,14 @@ public class TowerHandler {
         for (Towers tower : towers) {
             for (Enemy enemy : spawner.getEnemies()) {
                 if(tower.getRange().contains(enemy.getX()+GameComponent.TILE_SIZE/2, enemy.getY()+GameComponent.TILE_SIZE/2)){
-                    System.out.println("Enemy within range");
-                    shootEnemy(enemy, tower);
+                    bulletHandler.shootEnemy(enemy, tower);
                 }
             }
         }
     }
 
     public void shootEnemy(Enemy enemy, Towers tower){
-        if(tower.getBulletspeed() <= bulletTravel){
-        enemy.setHp(tower.getDamage());
-        bulletTravel = 0;}
-        else{
-            bulletTravel ++;
-        }
+
     }
 
     public void draw(Graphics g) {
