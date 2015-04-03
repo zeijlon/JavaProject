@@ -1,14 +1,18 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
-public class BasicEnemy extends Enemy
-{
-    private static int HEALTH = 100;
-    private static int SPEED = 1;
-    private static int GOLDGAIN = 1;
-    private static int DAMAGE = 1;
+import java.awt.*;
+
+public class BasicEnemy extends Enemy {
+    private static Image image = (Toolkit.getDefaultToolkit().getImage("images/basicEnemy.png"));
+
+
+    private static int health = 100;
+    private static int speed = 1;
+    private static int goldgain = 1;
+    private static int damage = 1;
 
 
     public BasicEnemy() {
-	super(HEALTH, SPEED, GOLDGAIN, DAMAGE);
+        super(health, speed, goldgain, damage, image);
     }
 }
