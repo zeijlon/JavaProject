@@ -2,6 +2,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -32,14 +33,16 @@ public class BulletHandler {
     }
 
     public void updateBullets(){
-        for (Bullet bullet : bullets) {
-            bullet.setX(bullet.getX() + bullet.getStepsPerFrame() * Math.cos(Math.toRadians(bullet.getAngle())));
-            bullet.setY(bullet.getY() + bullet.getStepsPerFrame() * Math.sin(Math.toRadians(bullet.getAngle())));
-            if(!grid.getGridSize().contains(bullet.getX(), bullet.getY())){
-              bullets.remove(bullet);
+        for (int i = 0; i < bullets.size(); i++) {
+            bullets.get(i).setX(bullets.get(i).getX() + 10); //bullet.getStepsPerFrame() * Math.cos(Math.toRadians(bullet.getAngle())));
+            bullets.get(i).setY(bullets.get(i).getY() + 10); //bullet.getStepsPerFrame() * Math.sin(Math.toRadians(bullet.getAngle())));
+            if(!grid.getGridSize().contains(bullets.get(i).getX(), bullets.get(i).getY())){
+                bullets.remove(i);
             }
+                 }
         }
-    }
+
+
 
     public void draw(Graphics g){
         for (Bullet bullet : bullets) {
