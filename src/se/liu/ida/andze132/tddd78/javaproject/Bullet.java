@@ -1,14 +1,11 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Administrat�r on 2015-03-30.
  */
-public class Bullet
-{
+public class Bullet {
     private double angle;
     private double x;
     private double y;

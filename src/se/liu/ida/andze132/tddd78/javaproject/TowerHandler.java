@@ -1,10 +1,8 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
-import javafx.scene.shape.Circle;
-
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.*;
 
 /**
  * Created by Administratör on 2015-03-24.
@@ -76,14 +74,14 @@ public class TowerHandler {
     public void checkEnemyWithinReach() {
         for (Towers tower : towers) {
             for (Enemy enemy : spawner.getEnemies()) {
-                if(tower.getRange().contains(enemy.getX()+GameComponent.TILE_SIZE/2, enemy.getY()+GameComponent.TILE_SIZE/2)){
+                if (tower.getRange().contains(enemy.getX() + GameComponent.TILE_SIZE / 2, enemy.getY() + GameComponent.TILE_SIZE / 2)) {
                     bulletHandler.shootEnemy(enemy, tower);
                 }
             }
         }
     }
 
-    public void shootEnemy(Enemy enemy, Towers tower){
+    public void shootEnemy(Enemy enemy, Towers tower) {
 
     }
 
@@ -91,9 +89,9 @@ public class TowerHandler {
         g.setColor(Color.black);
         for (Towers tower : towers) {
             g.drawImage(tower.getImage(), tower.getX(), tower.getY(), null);
-           // if (tower.isTargeted()) {
-                g.drawOval(tower.getX() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getY() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getRadius(), tower.getRadius());
-           // }
+            // if (tower.isTargeted()) {
+            g.drawOval(tower.getX() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getY() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getRadius(), tower.getRadius());
+            // }
         }
         Double dX = GameFrame.motionPoint.getX();
         Double dY = GameFrame.motionPoint.getY();

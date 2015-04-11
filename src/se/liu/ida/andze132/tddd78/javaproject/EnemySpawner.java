@@ -190,29 +190,32 @@ public class EnemySpawner {
     }
 
     public void checkEnemyFinished() {
-        try{
-        for (Enemy enemy : enemies) {
-            if(enemy.getHp() <= 0){
-                removeEnemy(enemy);
-                shop.withdrawGold(enemy.getGoldgain());
+        try {
+            for (Enemy enemy : enemies) {
+                if (enemy.getHp() <= 0) {
+                    removeEnemy(enemy);
+                    shop.withdrawGold(enemy.getGoldgain());
+                }
+
+                int x = enemy.getxC();
+                int y = enemy.getyC();
+                if (grid.getSquares()[y][x] == GRID.FINISH) {
+                    shop.setHealth(enemy.getDamage());
+                    enemies.remove(enemy);
+                }
             }
 
-            int x = enemy.getxC();
-            int y = enemy.getyC();
-            if (grid.getSquares()[y][x] == GRID.FINISH) {
-                shop.setHealth(enemy.getDamage());
-                enemies.remove(enemy);
-            }}
 
-
-    }catch(Exception e){}}
+        } catch (Exception e) {
+        }
+    }
 
 
     public void draw(Graphics g) {
         for (Enemy enemy : enemies) {
             g.drawImage(enemy.getImage(), enemy.getX(), enemy.getY(), null);
             g.setFont(new Font("courier new", Font.BOLD, 14));
-            g.drawString(""+enemy.getHp(), enemy.getX(), enemy.getY());
+            g.drawString("" + enemy.getHp(), enemy.getX(), enemy.getY());
         }
         g.setColor(Color.red);
         g.setFont(new Font("courier new", Font.BOLD, 20));

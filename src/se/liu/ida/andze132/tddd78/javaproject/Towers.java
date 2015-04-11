@@ -36,7 +36,7 @@ public class Towers {
     }
 
     public void setRange(int x, int y) {
-        this.range = new Circle(x+GameComponent.TILE_SIZE/2, y+GameComponent.TILE_SIZE/2, radius/2);
+        this.range = new Circle(x + GameComponent.TILE_SIZE / 2, y + GameComponent.TILE_SIZE / 2, radius / 2);
     }
 
     public Image getImage() {
