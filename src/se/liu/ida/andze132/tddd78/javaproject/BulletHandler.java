@@ -30,8 +30,8 @@ public class BulletHandler {
     }
 
     public void shootEnemy(Enemy enemy, Towers tower) {
-        Bullet bullet = new NormalBullet(tower.getX()+10, tower.getY()+10);
-        bullet.setAngle(Math.toDegrees(Math.atan2(enemy.getY()+20 - bullet.getY(), enemy.getX()+20 - bullet.getX())));
+        Bullet bullet = new NormalBullet(tower.getX() + 10, tower.getY() + 10);
+        bullet.setAngle(Math.toDegrees(Math.atan2(enemy.getY() + 20 - bullet.getY(), enemy.getX() + 20 - bullet.getX())));
         bullets.add(bullet);
 
     }
@@ -43,7 +43,8 @@ public class BulletHandler {
             bullets.get(i).setY(bullets.get(i).getY() + bullets.get(i).getBulletSpeed() * Math.sin(Math.toRadians(bullets.get(i).getAngle())));
             if (!grid.getGridSize().contains(bullets.get(i).getX(), bullets.get(i).getY())) {
                 bullets.remove(i);
-            }}
+            }
+        }
         for (int i = 0; i < spawner.getEnemies().size(); i++) {
             for (int j = 0; j < bullets.size(); j++) {
                 if (spawner.getEnemies().get(i).getEnemyRect().intersects(bullets.get(j).getBulletRect())) {
@@ -52,7 +53,7 @@ public class BulletHandler {
                 }
             }
         }
-        }
+    }
 
 
     public void draw(Graphics g) {

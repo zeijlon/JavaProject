@@ -31,22 +31,25 @@ public class TowerHandler {
     }
 
     public void checkButtonClick() {
-        if (shop.getShopButtons()[0][0].contains(GameFrame.clickPoint)) {
-            buttonClicked = basicTower;
-        } else if (shop.getShopButtons()[3][1].contains(GameFrame.clickPoint)) {
-            buttonClicked = trashCan;
-        }
-        createTower();
-    }
-
-    public void createTower() {
-        if (buttonClicked == basicTower) {
-            shop.setHoldsItem(shop.getBasicTower());
-        } else if (buttonClicked == trashCan) {
+        if (shop.getShopButtons()[0][0].contains(GameFrame.clickPoint) && shop.getShopButtons()[0][0].contains(GameFrame.motionPoint)) {
+            if (shop.getGold() >= BasicTower.cost) {
+                shop.setHoldsItem(shop.getBasicTower());
+            } else {
+                shop.setHoldsItem(shop.getNothing());
+            }
+        } else if (shop.getShopButtons()[3][1].contains(GameFrame.clickPoint) && shop.getShopButtons()[0][0].contains(GameFrame.motionPoint)) {
             shop.setHoldsItem(shop.getNothing());
+        }
+        if(shop.getHoldsItem() == shop.getBasicTower()){
+            if (shop.getGold() >= BasicTower.cost) {
+                shop.setHoldsItem(shop.getBasicTower());
+            } else {
+                shop.setHoldsItem(shop.getNothing());
+            }
         }
         buildTower();
     }
+
 
     public void buildTower() {
         if (shop.getHoldsItem() == shop.getBasicTower()) {
@@ -71,38 +74,36 @@ public class TowerHandler {
         }
     }
 
+
     public void towerPhysic() {
         for (Towers tower : towers) {
             if (!tower.isShooting()) {
                 checkEnemyWithinReach(tower);
             } else {
-                    double x = (double) tower.getTargetEnemy().getX();
-                    double y = (double) tower.getTargetEnemy().getY();
-                    double w = (double) GameComponent.TILE_SIZE;
-                    double h = (double) GameComponent.TILE_SIZE;
-                    if (spawner.isBetweenRounds()) {
-                        tower.setShooting(false);
-                    } else if(tower.getTargetEnemy().getHp() <= 0){
-                        tower.setShooting(false);
-                    }
-                    else if (!tower.getRange().intersects(x, y, w, h)) {
-                        System.out.println("outta range");
-                        tower.setShooting(false);
-                    } else if (tower.getReloadTick() >= tower.getReloadTime()) {
-                        System.out.println("fuvk");
-                        bulletHandler.shootEnemy(tower.getTargetEnemy(), tower);
-                        tower.setReloadTick(0);
-                    } else {
-                        tower.setReloadTick(tower.getReloadTick() + 1);
-                    }
+                double x = (double) tower.getTargetEnemy().getX();
+                double y = (double) tower.getTargetEnemy().getY();
+                double w = (double) GameComponent.TILE_SIZE;
+                double h = (double) GameComponent.TILE_SIZE;
+                if (spawner.isBetweenRounds()) {
+                    tower.setShooting(false);
+                } else if (tower.getTargetEnemy().getHp() <= 0) {
+                    tower.setShooting(false);
+                } else if (!tower.getRange().intersects(x, y, w, h)) {
+                    tower.setShooting(false);
+                } else if (tower.getReloadTick() >= tower.getReloadTime()) {
+                    bulletHandler.shootEnemy(tower.getTargetEnemy(), tower);
+                    tower.setReloadTick(0);
+                } else {
+                    tower.setReloadTick(tower.getReloadTick() + 1);
                 }
-
             }
 
         }
 
+    }
+
     public void checkEnemyWithinReach(Towers tower) {
-        for (int i = spawner.getEnemies().size()-1; i >= 0; i--) {
+        for (int i = spawner.getEnemies().size() - 1; i >= 0; i--) {
             double x = (double) spawner.getEnemies().get(i).getX();
             double y = (double) spawner.getEnemies().get(i).getY();
             double w = (double) GameComponent.TILE_SIZE;
