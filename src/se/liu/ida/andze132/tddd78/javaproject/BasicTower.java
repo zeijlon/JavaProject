@@ -16,10 +16,11 @@ public class BasicTower extends Towers {
     public static int cost = 5;
     private static int sell = 50;
     public static int radius = 150;
+    public static int reloadTime = 30; //less is bettter
 
 
     public BasicTower() {
-        super(damage, bulletspeed, cost, sell, image, radius);
+        super(damage, bulletspeed, cost, sell, image, radius, reloadTime);
     }
 
 }

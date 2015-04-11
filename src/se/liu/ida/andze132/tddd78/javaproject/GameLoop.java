@@ -93,7 +93,7 @@ public class GameLoop {
             spawner.moveEnemy();
 
             towerHandler.checkButtonClick();
-            towerHandler.checkEnemyWithinReach();
+            towerHandler.towerPhysic();
 
             bulletHandler.updateBullets();
             if (shop.getHealth() <= 0) {

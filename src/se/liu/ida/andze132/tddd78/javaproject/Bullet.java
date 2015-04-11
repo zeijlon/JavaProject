@@ -9,14 +9,19 @@ public class Bullet {
     private double angle;
     private double x;
     private double y;
-    private double stepsPerFrame;
+    private double bulletSpeed;
+    private int damage;
 
     private Image image;
 
-    public Bullet(int x, int y, Image image) {
+    private Rectangle bulletRect;
+
+    public Bullet(int x, int y, Image image, int bulletSpeed, int damage) {
         this.x = x;
         this.y = y;
         this.image = image;
+        this.bulletSpeed = bulletSpeed;
+        this.damage = damage;
     }
 
     public double getAngle() {
@@ -31,9 +36,6 @@ public class Bullet {
         return y;
     }
 
-    public double getStepsPerFrame() {
-        return stepsPerFrame;
-    }
 
     public void setAngle(double angle) {
         this.angle = angle;
@@ -47,11 +49,27 @@ public class Bullet {
         this.y = y;
     }
 
-    public void setStepsPerFrame(int stepsPerFrame) {
-        this.stepsPerFrame = stepsPerFrame;
+    public double getBulletSpeed() {
+        return bulletSpeed;
+    }
+
+    public void setBulletSpeed(double bulletSpeed) {
+        this.bulletSpeed = bulletSpeed;
+    }
+
+    public Rectangle getBulletRect() {
+        return bulletRect;
+    }
+
+    public void setBulletRect(Rectangle bulletRect) {
+        this.bulletRect = bulletRect;
     }
 
     public Image getImage() {
         return image;
+    }
+
+    public int getDamage() {
+        return damage;
     }
 }

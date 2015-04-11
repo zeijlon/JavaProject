@@ -71,27 +71,54 @@ public class TowerHandler {
         }
     }
 
-    public void checkEnemyWithinReach() {
+    public void towerPhysic() {
         for (Towers tower : towers) {
-            for (Enemy enemy : spawner.getEnemies()) {
-                if (tower.getRange().contains(enemy.getX() + GameComponent.TILE_SIZE / 2, enemy.getY() + GameComponent.TILE_SIZE / 2)) {
-                    bulletHandler.shootEnemy(enemy, tower);
+            if (!tower.isShooting()) {
+                checkEnemyWithinReach(tower);
+            } else {
+                    double x = (double) tower.getTargetEnemy().getX();
+                    double y = (double) tower.getTargetEnemy().getY();
+                    double w = (double) GameComponent.TILE_SIZE;
+                    double h = (double) GameComponent.TILE_SIZE;
+                    if (spawner.isBetweenRounds()) {
+                        tower.setShooting(false);
+                    } else if(tower.getTargetEnemy().getHp() <= 0){
+                        tower.setShooting(false);
+                    }
+                    else if (!tower.getRange().intersects(x, y, w, h)) {
+                        System.out.println("outta range");
+                        tower.setShooting(false);
+                    } else if (tower.getReloadTick() >= tower.getReloadTime()) {
+                        System.out.println("fuvk");
+                        bulletHandler.shootEnemy(tower.getTargetEnemy(), tower);
+                        tower.setReloadTick(0);
+                    } else {
+                        tower.setReloadTick(tower.getReloadTick() + 1);
+                    }
                 }
+
+            }
+
+        }
+
+    public void checkEnemyWithinReach(Towers tower) {
+        for (int i = spawner.getEnemies().size()-1; i >= 0; i--) {
+            double x = (double) spawner.getEnemies().get(i).getX();
+            double y = (double) spawner.getEnemies().get(i).getY();
+            double w = (double) GameComponent.TILE_SIZE;
+            double h = (double) GameComponent.TILE_SIZE;
+            if (tower.getRange().intersects(x, y, w, h)) {
+                tower.setShooting(true);
+                tower.setTargetEnemy(spawner.getEnemies().get(i));
             }
         }
-    }
-
-    public void shootEnemy(Enemy enemy, Towers tower) {
-
     }
 
     public void draw(Graphics g) {
         g.setColor(Color.black);
         for (Towers tower : towers) {
             g.drawImage(tower.getImage(), tower.getX(), tower.getY(), null);
-            // if (tower.isTargeted()) {
             g.drawOval(tower.getX() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getY() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getRadius(), tower.getRadius());
-            // }
         }
         Double dX = GameFrame.motionPoint.getX();
         Double dY = GameFrame.motionPoint.getY();

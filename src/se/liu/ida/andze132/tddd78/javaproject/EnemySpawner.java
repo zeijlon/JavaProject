@@ -77,6 +77,11 @@ public class EnemySpawner {
         }
         defineHasWalked(basic);
         decideDirection(basic);
+        defineEnemyRect(basic);
+    }
+
+    public void defineEnemyRect(Enemy enemy) {
+        enemy.setEnemyRect(new Rectangle(enemy.getX(), enemy.getY(), GameComponent.TILE_SIZE, GameComponent.TILE_SIZE));
     }
 
     public void defineHasWalked(Enemy enemy) {
@@ -110,7 +115,7 @@ public class EnemySpawner {
             } else if (enemy.getDirection() == Enemy.getUp()) {
                 enemy.setY(enemy.getY() - enemy.getSpeed());
             }
-
+            defineEnemyRect(enemy);
             enemy.setEnemyWalk(enemy.getEnemyWalk() + enemy.getSpeed());
 
 
@@ -193,7 +198,7 @@ public class EnemySpawner {
         try {
             for (Enemy enemy : enemies) {
                 if (enemy.getHp() <= 0) {
-                    removeEnemy(enemy);
+                    enemies.remove(enemy);
                     shop.withdrawGold(enemy.getGoldgain());
                 }
 
@@ -206,7 +211,7 @@ public class EnemySpawner {
             }
 
 
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
