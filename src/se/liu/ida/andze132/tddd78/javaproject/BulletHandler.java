@@ -47,10 +47,11 @@ public class BulletHandler {
         }
         for (int i = 0; i < spawner.getEnemies().size(); i++) {
             for (int j = 0; j < bullets.size(); j++) {
+                if(bullets.get(j) != null){
                 if (spawner.getEnemies().get(i).getEnemyRect().intersects(bullets.get(j).getBulletRect())) {
                     spawner.getEnemies().get(i).setHp(bullets.get(j).getDamage());
                     bullets.remove(j);
-                }
+                }}
             }
         }
     }
