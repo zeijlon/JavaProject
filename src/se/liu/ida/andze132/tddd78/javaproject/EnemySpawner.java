@@ -216,7 +216,7 @@ public class EnemySpawner {
     }
 
 
-    public void draw(Graphics g) {
+    public void draw(Graphics2D g) {
         for (Enemy enemy : enemies) {
             g.drawImage(enemy.getImage(), enemy.getX(), enemy.getY(), null);
             g.setFont(new Font("courier new", Font.BOLD, 14));

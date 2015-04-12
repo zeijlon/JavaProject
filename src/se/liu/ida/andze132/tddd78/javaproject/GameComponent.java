@@ -36,7 +36,6 @@ public class GameComponent extends JComponent {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
 
-
         grid.draw(g2d);
         shop.draw(g2d);
         spawner.draw(g2d);

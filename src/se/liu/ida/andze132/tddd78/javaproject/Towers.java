@@ -10,7 +10,6 @@ import java.awt.*;
 
 public class Towers {
 
-    private int damage;
     private int cost;
     private int sell;
     private int radius;
@@ -32,8 +31,7 @@ public class Towers {
 
     private boolean targeted;
 
-    public Towers(final int damage, final int cost, final int sell, final Image image, final int radius, final int reloadTime) {
-        this.damage = damage;
+    public Towers(final int cost, final int sell, final Image image, final int radius, final int reloadTime) {
         this.cost = cost;
         this.sell = sell;
         this.image = image;
@@ -51,10 +49,6 @@ public class Towers {
 
     public Image getImage() {
         return image;
-    }
-
-    public int getDamage() {
-        return damage;
     }
 
     public int getCost() {

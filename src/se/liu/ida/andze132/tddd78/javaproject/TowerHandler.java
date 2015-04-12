@@ -1,6 +1,8 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +39,9 @@ public class TowerHandler {
             } else {
                 shop.setHoldsItem(shop.getNothing());
             }
-        } else if (shop.getShopButtons()[3][1].contains(GameFrame.clickPoint) && shop.getShopButtons()[0][0].contains(GameFrame.motionPoint)) {
+        } else if (shop.getShopButtons()[3][1].contains(GameFrame.clickPoint) && shop.getShopButtons()[3][1].contains(GameFrame.motionPoint)) {
             shop.setHoldsItem(shop.getNothing());
+            System.out.println("hej");
         }
         if(shop.getHoldsItem() == shop.getBasicTower()){
             if (shop.getGold() >= BasicTower.cost) {
@@ -115,10 +118,14 @@ public class TowerHandler {
         }
     }
 
-    public void draw(Graphics g) {
+    public void draw(Graphics2D g) {
         g.setColor(Color.black);
         for (Towers tower : towers) {
+
+
             g.drawImage(tower.getImage(), tower.getX(), tower.getY(), null);
+
+
             g.drawOval(tower.getX() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getY() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getRadius(), tower.getRadius());
         }
         Double dX = GameFrame.motionPoint.getX();

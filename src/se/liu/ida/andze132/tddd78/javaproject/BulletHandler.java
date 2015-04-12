@@ -57,7 +57,7 @@ public class BulletHandler {
     }
 
 
-    public void draw(Graphics g) {
+    public void draw(Graphics2D g) {
         for (Bullet bullet : bullets) {
             Double x = bullet.getX();
             int X = x.intValue();

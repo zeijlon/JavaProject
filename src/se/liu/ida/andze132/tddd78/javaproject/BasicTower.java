@@ -11,7 +11,6 @@ public class BasicTower extends Towers {
     public static Image image = (Toolkit.getDefaultToolkit().getImage("images/basicTower.png"));
 
 
-    private static int damage = 10;
     public static int cost = 5;
     private static int sell = 50;
     public static int radius = 150;
@@ -19,7 +18,7 @@ public class BasicTower extends Towers {
 
 
     public BasicTower() {
-        super(damage, cost, sell, image, radius, reloadTime);
+        super(cost, sell, image, radius, reloadTime);
     }
 
 }
