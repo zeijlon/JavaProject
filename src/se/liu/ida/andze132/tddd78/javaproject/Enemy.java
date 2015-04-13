@@ -11,17 +11,21 @@ public class Enemy {
     private int speed;
     private int goldgain;
     private int damage;
+
     private int X;
     private int Y;
+
     private final static int RIGHT = 0;
     private final static int LEFT = 1;
     private final static int UP = 2;
     private final static int DOWN = 3;
     private final static int STILL = 4;
+
     private int direction;
     private int enemyWalk = 0;
     private int yC = 0;
     private int xC = 0;
+
     private boolean hasUp = false;
     private boolean hasDown = false;
     private boolean hasLeft = false;
@@ -31,6 +35,8 @@ public class Enemy {
 
     private int[][] hasWalked = null;
 
+    private Rectangle enemyRect;
+
 
     public Enemy(final int hp, final int speed, final int goldgain, final int damage, final Image image) {
         this.hp = hp;
@@ -38,6 +44,14 @@ public class Enemy {
         this.goldgain = goldgain;
         this.damage = damage;
         this.image = image;
+    }
+
+    public void setEnemyRect(Rectangle enemyRect) {
+        this.enemyRect = enemyRect;
+    }
+
+    public Rectangle getEnemyRect() {
+        return enemyRect;
     }
 
     public Image getImage() {

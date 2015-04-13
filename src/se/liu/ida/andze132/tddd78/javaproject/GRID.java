@@ -28,7 +28,7 @@ public class GRID {
 
         rectangles = new Rectangle[squares.length][checkLargestRow(this)];
         defineRectangles();
-        gridSize = new Rectangle(0,0, checkLargestRow(this)*GameComponent.TILE_SIZE, squares.length*GameComponent.TILE_SIZE);
+        gridSize = new Rectangle(0, 0, checkLargestRow(this) * GameComponent.TILE_SIZE, squares.length * GameComponent.TILE_SIZE);
     }
 
     public int[][] getSquares() {

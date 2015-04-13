@@ -1,10 +1,10 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
-import javafx.scene.shape.Circle;
-
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.*;
 
 /**
  * Created by Administratör on 2015-03-24.
@@ -33,22 +33,26 @@ public class TowerHandler {
     }
 
     public void checkButtonClick() {
-        if (shop.getShopButtons()[0][0].contains(GameFrame.clickPoint)) {
-            buttonClicked = basicTower;
-        } else if (shop.getShopButtons()[3][1].contains(GameFrame.clickPoint)) {
-            buttonClicked = trashCan;
-        }
-        createTower();
-    }
-
-    public void createTower() {
-        if (buttonClicked == basicTower) {
-            shop.setHoldsItem(shop.getBasicTower());
-        } else if (buttonClicked == trashCan) {
+        if (shop.getShopButtons()[0][0].contains(GameFrame.clickPoint) && shop.getShopButtons()[0][0].contains(GameFrame.motionPoint)) {
+            if (shop.getGold() >= BasicTower.cost) {
+                shop.setHoldsItem(shop.getBasicTower());
+            } else {
+                shop.setHoldsItem(shop.getNothing());
+            }
+        } else if (shop.getShopButtons()[3][1].contains(GameFrame.clickPoint) && shop.getShopButtons()[3][1].contains(GameFrame.motionPoint)) {
             shop.setHoldsItem(shop.getNothing());
+            System.out.println("hej");
+        }
+        if(shop.getHoldsItem() == shop.getBasicTower()){
+            if (shop.getGold() >= BasicTower.cost) {
+                shop.setHoldsItem(shop.getBasicTower());
+            } else {
+                shop.setHoldsItem(shop.getNothing());
+            }
         }
         buildTower();
     }
+
 
     public void buildTower() {
         if (shop.getHoldsItem() == shop.getBasicTower()) {
@@ -73,27 +77,56 @@ public class TowerHandler {
         }
     }
 
-    public void checkEnemyWithinReach() {
+
+    public void towerPhysic() {
         for (Towers tower : towers) {
-            for (Enemy enemy : spawner.getEnemies()) {
-                if(tower.getRange().contains(enemy.getX()+GameComponent.TILE_SIZE/2, enemy.getY()+GameComponent.TILE_SIZE/2)){
-                    bulletHandler.shootEnemy(enemy, tower);
+            if (!tower.isShooting()) {
+                checkEnemyWithinReach(tower);
+            } else {
+                double x = (double) tower.getTargetEnemy().getX();
+                double y = (double) tower.getTargetEnemy().getY();
+                double w = (double) GameComponent.TILE_SIZE;
+                double h = (double) GameComponent.TILE_SIZE;
+                if (spawner.isBetweenRounds()) {
+                    tower.setShooting(false);
+                } else if (tower.getTargetEnemy().getHp() <= 0) {
+                    tower.setShooting(false);
+                } else if (!tower.getRange().intersects(x, y, w, h)) {
+                    tower.setShooting(false);
+                } else if (tower.getReloadTick() >= tower.getReloadTime()) {
+                    bulletHandler.shootEnemy(tower.getTargetEnemy(), tower);
+                    tower.setReloadTick(0);
+                } else {
+                    tower.setReloadTick(tower.getReloadTick() + 1);
                 }
+            }
+
+        }
+
+    }
+
+    public void checkEnemyWithinReach(Towers tower) {
+        for (int i = spawner.getEnemies().size() - 1; i >= 0; i--) {
+            double x = (double) spawner.getEnemies().get(i).getX();
+            double y = (double) spawner.getEnemies().get(i).getY();
+            double w = (double) GameComponent.TILE_SIZE;
+            double h = (double) GameComponent.TILE_SIZE;
+            if (tower.getRange().intersects(x, y, w, h)) {
+                tower.setShooting(true);
+                tower.setTargetEnemy(spawner.getEnemies().get(i));
             }
         }
     }
 
-    public void shootEnemy(Enemy enemy, Towers tower){
-
-    }
-
-    public void draw(Graphics g) {
+    public void draw(Graphics2D g) {
         g.setColor(Color.black);
         for (Towers tower : towers) {
+
+
             g.drawImage(tower.getImage(), tower.getX(), tower.getY(), null);
-           // if (tower.isTargeted()) {
-                g.drawOval(tower.getX() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getY() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getRadius(), tower.getRadius());
-           // }
+
+
+            g.drawOval(tower.getX() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getY() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getRadius(), tower.getRadius());
         }
         Double dX = GameFrame.motionPoint.getX();
         Double dY = GameFrame.motionPoint.getY();
