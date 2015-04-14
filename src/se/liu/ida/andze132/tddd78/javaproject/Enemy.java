@@ -12,16 +12,10 @@ public class Enemy {
     private int goldgain;
     private int damage;
 
-    private int X;
-    private int Y;
+    private int x;
+    private int y;
 
-    private final static int RIGHT = 0;
-    private final static int LEFT = 1;
-    private final static int UP = 2;
-    private final static int DOWN = 3;
-    private final static int STILL = 4;
-
-    private int direction;
+    private Direction direction = null;
     private int enemyWalk = 0;
     private int yC = 0;
     private int xC = 0;
@@ -29,13 +23,13 @@ public class Enemy {
     private boolean hasUp = false;
     private boolean hasDown = false;
     private boolean hasLeft = false;
-    private boolean hasRight = true;
+    private boolean hasRight = false;
 
     private Image image;
 
     private int[][] hasWalked = null;
 
-    private Rectangle enemyRect;
+    private Rectangle enemyRect = null;
 
 
     public Enemy(final int hp, final int speed, final int goldgain, final int damage, final Image image) {
@@ -58,26 +52,6 @@ public class Enemy {
         return image;
     }
 
-    public static int getRight() {
-        return RIGHT;
-    }
-
-    public static int getLeft() {
-        return LEFT;
-    }
-
-    public static int getUp() {
-        return UP;
-    }
-
-    public static int getDown() {
-        return DOWN;
-    }
-
-    public static int getStill() {
-        return STILL;
-    }
-
     public int getHp() {
         return hp;
     }
@@ -98,39 +72,27 @@ public class Enemy {
         this.hp -= damage;
     }
 
-    public void setSpeed(final int speed) {
-        this.speed = speed;
-    }
-
-    public void setGoldgain(final int goldgain) {
-        this.goldgain = goldgain;
-    }
-
-    public void setDamage(final int damage) {
-        this.damage = damage;
-    }
-
     public int getX() {
-        return X;
+        return x;
     }
 
     public void setX(final int x) {
-        X = x;
+        this.x = x;
     }
 
     public int getY() {
-        return Y;
+        return y;
     }
 
     public void setY(final int y) {
-        Y = y;
+        this.y = y;
     }
 
-    public int getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 
-    public void setDirection(final int direction) {
+    public void setDirection(final Direction direction) {
         this.direction = direction;
     }
 

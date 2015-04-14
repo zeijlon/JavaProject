@@ -3,7 +3,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
 import java.awt.*;
 
 public class BasicEnemy extends Enemy {
-    private static Image image = (Toolkit.getDefaultToolkit().getImage("images/basicEnemy.png"));
+    private static Image image = (Toolkit.getDefaultToolkit().getImage("images/basicEnemy60.png"));
 
 
     private static int health = 100;

@@ -10,30 +10,29 @@ import java.util.List;
 public class BulletHandler {
 
     private GRID grid;
-    private Shop shop;
     private EnemySpawner spawner;
     private List<Bullet> bullets = new ArrayList<>();
 
-    public BulletHandler(GRID grid, Shop shop, EnemySpawner spawner) {
+    public BulletHandler(GRID grid, EnemySpawner spawner) {
         this.grid = grid;
-        this.shop = shop;
         this.spawner = spawner;
 
     }
 
     public void defineBullets(Bullet bullet) {
         Double x = bullet.getX();
-        int X = x.intValue();
+        int xValue = x.intValue();
         Double y = bullet.getY();
-        int Y = y.intValue();
-        bullet.setBulletRect(new Rectangle(X, Y, 20, 20));
+        int yValue = y.intValue();
+        bullet.setBulletRect(new Rectangle(xValue, yValue, 20, 20));
     }
 
     public void shootEnemy(Enemy enemy, Towers tower) {
         Bullet bullet = new NormalBullet(tower.getX() + 10, tower.getY() + 10);
         bullet.setAngle(Math.toDegrees(Math.atan2(enemy.getY() + 20 - bullet.getY(), enemy.getX() + 20 - bullet.getX())));
+        tower.setAngle(Math.toDegrees(Math.atan2(enemy.getY() + 20 - bullet.getY(), enemy.getX() + 20 - bullet.getX())));
         bullets.add(bullet);
-
+        System.out.println("shoot");
     }
 
     public void updateBullets() {
@@ -44,14 +43,15 @@ public class BulletHandler {
             if (!grid.getGridSize().contains(bullets.get(i).getX(), bullets.get(i).getY())) {
                 bullets.remove(i);
             }
+
         }
         for (int i = 0; i < spawner.getEnemies().size(); i++) {
             for (int j = 0; j < bullets.size(); j++) {
-                if(bullets.get(j) != null){
+                try{
                 if (spawner.getEnemies().get(i).getEnemyRect().intersects(bullets.get(j).getBulletRect())) {
                     spawner.getEnemies().get(i).setHp(bullets.get(j).getDamage());
                     bullets.remove(j);
-                }}
+                }}catch (RuntimeException ignored){}
             }
         }
     }
@@ -60,10 +60,10 @@ public class BulletHandler {
     public void draw(Graphics2D g) {
         for (Bullet bullet : bullets) {
             Double x = bullet.getX();
-            int X = x.intValue();
+            int xValue = x.intValue();
             Double y = bullet.getY();
-            int Y = y.intValue();
-            g.drawImage(bullet.getImage(), X, Y, null);
+            int yValue = y.intValue();
+            g.drawImage(bullet.getImage(), xValue, yValue, null);
         }
     }
 }

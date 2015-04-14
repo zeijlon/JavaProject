@@ -8,9 +8,9 @@ public final class TestClass {
         GRID grid = new GRID(1);
         Shop shop = new Shop(grid);
         EnemySpawner spawner = new EnemySpawner(grid, shop);
-        BulletHandler bulletHandler = new BulletHandler(grid, shop, spawner);
+        BulletHandler bulletHandler = new BulletHandler(grid, spawner);
         TowerHandler towerHandler = new TowerHandler(grid, shop, spawner, bulletHandler);
         final GameFrame frame = new GameFrame(grid, shop, spawner, towerHandler, bulletHandler);
-        GameLoop gameloop = new GameLoop(grid, shop, frame, spawner, towerHandler, bulletHandler);
+        GameLoop gameloop = new GameLoop(shop, frame, spawner, towerHandler, bulletHandler);
     }
 }

@@ -3,9 +3,6 @@ package se.liu.ida.andze132.tddd78.javaproject;
 import java.awt.*;
 
 public class GRID {
-    private final static int SQUARE_WIDTH = 40;
-    private final static int SQUARE_HEIGHT = 40;
-
     protected final static int GRASS = 0;
     protected final static int PATH = 1;
     protected final static int TOWER = 2;
@@ -39,7 +36,7 @@ public class GRID {
     public void defineRectangles() {
         for (int i = 0; i < squares.length; i++) {
             for (int j = 0; j < squares[i].length; j++) {
-                rectangles[i][j] = new Rectangle(j * SQUARE_WIDTH, i * SQUARE_HEIGHT, SQUARE_WIDTH, SQUARE_HEIGHT);
+                rectangles[i][j] = new Rectangle(j * GameComponent.TILE_SIZE, i * GameComponent.TILE_SIZE, GameComponent.TILE_SIZE, GameComponent.TILE_SIZE);
             }
         }
     }
@@ -48,7 +45,7 @@ public class GRID {
         for (int i = 0; i < squares.length; i++) {
             for (int j = 0; j < squares[i].length; j++) {
                 Image img = checkSquareType(squares[i][j]);
-                g2d.drawImage(img, j * SQUARE_WIDTH, i * SQUARE_HEIGHT, null);
+                g2d.drawImage(img, j * GameComponent.TILE_SIZE, i * GameComponent.TILE_SIZE, null);
             }
         }
     }
@@ -56,17 +53,17 @@ public class GRID {
     public Image checkSquareType(int squaretype) {
         switch (squaretype) {
             case GRASS:
-                return Toolkit.getDefaultToolkit().getImage("images/grass.png");
+                return Toolkit.getDefaultToolkit().getImage("images/grass60.png");
             case PATH:
-                return Toolkit.getDefaultToolkit().getImage("images/path.png");
+                return Toolkit.getDefaultToolkit().getImage("images/path60.png");
             case TOWER:
-                return Toolkit.getDefaultToolkit().getImage("images/grass.png");
+                return Toolkit.getDefaultToolkit().getImage("images/grass60.png");
             case START:
-                return Toolkit.getDefaultToolkit().getImage("images/start.png");
+                return Toolkit.getDefaultToolkit().getImage("images/start60.png");
             case FINISH:
-                return Toolkit.getDefaultToolkit().getImage("images/finish.png");
+                return Toolkit.getDefaultToolkit().getImage("images/finish60.png");
             case CROSSROAD:
-                return Toolkit.getDefaultToolkit().getImage("images/path.png");
+                return Toolkit.getDefaultToolkit().getImage("images/path60.png");
             default:
                 throw new IllegalArgumentException("Invalid input squaretype");
         }
@@ -87,15 +84,7 @@ public class GRID {
         return rectangles;
     }
 
-    public static int getSquareWidth() {
-        return SQUARE_WIDTH;
-    }
-
-    public static int getSquareHeight() {
-        return SQUARE_HEIGHT;
-    }
-
-    public Rectangle getGridSize() {
+    public Shape getGridSize() {
         return gridSize;
     }
 }

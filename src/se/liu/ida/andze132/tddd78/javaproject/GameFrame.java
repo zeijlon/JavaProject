@@ -15,7 +15,8 @@ public class GameFrame extends JFrame {
         this.setLayout(new BorderLayout());
         this.add(gameComponent, BorderLayout.CENTER);
         this.getContentPane().setBackground(Color.LIGHT_GRAY);
-        this.createMenus();
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.createMenu();
         this.pack();
         this.setVisible(true);
 
@@ -24,7 +25,7 @@ public class GameFrame extends JFrame {
 
     }
 
-    private void createMenus() {
+    private void createMenu() {
         class ExitListener implements ActionListener {
             public void actionPerformed(ActionEvent exit) {
                 int answer = JOptionPane.showConfirmDialog(null, "Do you want to exit?", "Confirm", JOptionPane.YES_NO_OPTION);
@@ -37,10 +38,10 @@ public class GameFrame extends JFrame {
         JMenuItem exit = new JMenuItem("exit", 'E');
         exit.addActionListener(new ExitListener());
         menu.add(exit);
-        final JMenuBar bar = new JMenuBar();
-        bar.add(menu);
-        bar.add(Box.createHorizontalGlue());
-        this.setJMenuBar(bar);
+        final JMenuBar menuBar = new JMenuBar();
+        menuBar.add(menu);
+        menuBar.add(Box.createHorizontalGlue());
+        this.setJMenuBar(menuBar);
         this.setVisible(true);
     }
 

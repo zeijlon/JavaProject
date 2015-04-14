@@ -8,7 +8,7 @@ import java.awt.*;
 
 
 public class BasicTower extends Towers {
-    public static Image image = (Toolkit.getDefaultToolkit().getImage("images/basicTower.png"));
+    public static Image image = (Toolkit.getDefaultToolkit().getImage("images/basicTower60.png"));
 
 
     public static int cost = 5;
@@ -16,9 +16,8 @@ public class BasicTower extends Towers {
     public static int radius = 150;
     public static int reloadTime = 30; //less is bettter
 
-
     public BasicTower() {
-        super(cost, sell, image, radius, reloadTime);
+        super(cost, image, radius, reloadTime);
     }
 
 }

@@ -1,7 +1,10 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 
 /**
@@ -13,10 +16,13 @@ public class Shop {
     public final static int SHOPBUTTON_SIZE = 52;
 
 
-    private Image button = Toolkit.getDefaultToolkit().getImage("images/shopButton.png");
+    private Image button = Toolkit.getDefaultToolkit().getImage("images/shopButton60.png");
+    private Image buttonFocus = Toolkit.getDefaultToolkit().getImage("images/shopButtonFocus60.png");
     private Image coin = Toolkit.getDefaultToolkit().getImage("images/coin.png");
     private Image heart = Toolkit.getDefaultToolkit().getImage("images/heart.png");
-    private Image trashCan = Toolkit.getDefaultToolkit().getImage("images/trashCan.png");
+    private Image trashCan = Toolkit.getDefaultToolkit().getImage("images/trashCan60.png");
+
+
 
 
     private Rectangle[][] shopButtons = new Rectangle[4][2];
@@ -62,13 +68,13 @@ public class Shop {
             for (int x = 0; x < shopButtons[y].length; x++) {
 
                 if (shopButtons[y][x].contains(GameFrame.motionPoint)) {
-                    g.setColor(new Color(0, 0, 0, 150));
-                    g.fillRect(grid.gridWidth + SHOP_MARGIN + (x * 70), y * (SHOPBUTTON_SIZE + 20) + 75, SHOPBUTTON_SIZE,
-                            SHOPBUTTON_SIZE);
+                    g.drawImage(buttonFocus, grid.gridWidth + SHOP_MARGIN + (x * 70), y * (SHOPBUTTON_SIZE + 20) + 75, null);
+
                 } else {
 
                     g.drawImage(button, grid.gridWidth + SHOP_MARGIN + (x * 70), y * (SHOPBUTTON_SIZE + 20) + 75, null);
                 }
+
 
                 g.drawImage(towerImages[y][x], grid.gridWidth + SHOP_MARGIN + (x * 70), y * (SHOPBUTTON_SIZE + 20) + 75, null);
 
