@@ -32,7 +32,6 @@ public class BulletHandler {
         bullet.setAngle(Math.toDegrees(Math.atan2(enemy.getY() + 20 - bullet.getY(), enemy.getX() + 20 - bullet.getX())));
         tower.setAngle(Math.toDegrees(Math.atan2(enemy.getY() + 20 - bullet.getY(), enemy.getX() + 20 - bullet.getX())));
         bullets.add(bullet);
-        System.out.println("shoot");
     }
 
     public void updateBullets() {
