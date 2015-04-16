@@ -33,7 +33,7 @@ public class Shop {
         this.grid = grid;
 
         this.gold = 10;
-        this.health = 100;
+        this.health = 1;
 
         this.holdsItem = null;
         defineShopButtons();

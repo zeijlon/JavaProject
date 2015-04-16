@@ -35,7 +35,7 @@ public class GameLoop {
 
     public void gameLoop() {
         long lastLoopTime = System.nanoTime();
-        final int targetFps = 60;
+        final int targetFps = 120;
         final long optimalTime = 1000000000 / targetFps;
 
         while (menu.isGameRunning()) {
@@ -67,6 +67,7 @@ public class GameLoop {
 
     private void doGameUpdates() {
         if (menu.isGameOn()) {
+            frame.pack();
             spawner.waveHandler();
             spawner.checkEnemyFinished();
             spawner.moveEnemy();

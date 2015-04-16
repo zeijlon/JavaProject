@@ -6,7 +6,7 @@ import java.awt.*;
 
 
 /**
- * Created by Administratör on 2015-04-13.
+ * Created by Administratï¿½r on 2015-04-13.
  */
 public class Menu
 {
@@ -41,8 +41,12 @@ public class Menu
         if (newGameButton.contains(GameFrame.clickPoint)){
             ifMenu = false;
             gameOn = true;
+        }
+        else{
+            GameFrame.clickPoint = new Point();
 
-        }}
+        }
+    }
     public void ifQuitGame(){
         if (quitGameButton.contains(GameFrame.clickPoint)){
             int answer = JOptionPane.showConfirmDialog(null,"Are you sure you want to quit? ","Confirm",JOptionPane.YES_NO_OPTION);
@@ -66,7 +70,6 @@ public class Menu
                }
            }
     public void escape(){
-        System.out.println("manson");
             ifMenu = true;
             gameOn = false;
         GameFrame.clickPoint = new Point();

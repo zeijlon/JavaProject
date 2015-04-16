@@ -39,6 +39,7 @@ public class TowerHandler {
         } else if (shop.getShopButtons()[3][1].contains(GameFrame.clickPoint) && shop.getShopButtons()[3][1].contains(GameFrame.motionPoint)) {
             shop.setHoldsItem(null);
         }
+
         if(buildTower!=null){
         buildTower(buildTower);}
     }
