@@ -52,7 +52,7 @@ public class Enemy {
                 speed = 1;
                 goldgain = 1;
                 damage = 2;
-                image = (Toolkit.getDefaultToolkit().getImage("images/Isbjornen1.gif"));
+                image = (Toolkit.getDefaultToolkit().getImage("images/isbjörne.gif"));
                 break;
             case ARMOREDENEMY:
                 hp = 200;
