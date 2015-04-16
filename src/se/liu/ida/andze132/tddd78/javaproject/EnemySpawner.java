@@ -12,7 +12,7 @@ public class EnemySpawner {
     private Shop shop;
 
     private List<Enemy> enemies = new ArrayList<>();
-    private int spawnRate = 50, spawnTime = 0;
+    private int spawnTime = 0;
     private int level = 0, enemiesSpawned;
     private int enemyCount = 1;
 
@@ -34,6 +34,7 @@ public class EnemySpawner {
 
     public void waveHandler() {
         if (!betweenRounds) {
+            final int spawnRate = 75;
             if (spawnTime >= spawnRate) {
                 if (enemiesSpawned < enemyCount) {
                     spawnBasicEnemy();
@@ -92,27 +93,28 @@ public class EnemySpawner {
 
     public void decideDirection(Enemy enemy) {
         if (!collision(enemy, enemy.getyC(), enemy.getxC() + 1)) {
-            enemy.setDirection(Enemy.getRight());
+            enemy.setDirection(Direction.RIGHT);
         } else if (!collision(enemy, enemy.getyC(), enemy.getxC() - 1)) {
-            enemy.setDirection(Enemy.getLeft());
+            enemy.setDirection(Direction.LEFT);
         }
         if (!collision(enemy, enemy.getyC() + 1, enemy.getxC())) {
-            enemy.setDirection(Enemy.getDown());
+            enemy.setDirection(Direction.DOWN);
         }
         if (!collision(enemy, enemy.getyC() - 1, enemy.getxC())) {
-            enemy.setDirection(Enemy.getUp());
+            enemy.setDirection(Direction.UP
+            );
         }
     }
 
     public void moveEnemy() {
         for (Enemy enemy : enemies) {
-            if (enemy.getDirection() == Enemy.getRight()) {
+            if (enemy.getDirection() == Direction.RIGHT) {
                 enemy.setX(enemy.getX() + enemy.getSpeed());
-            } else if (enemy.getDirection() == Enemy.getLeft()) {
+            } else if (enemy.getDirection() == Direction.LEFT) {
                 enemy.setX(enemy.getX() - enemy.getSpeed());
-            } else if (enemy.getDirection() == Enemy.getDown()) {
+            } else if (enemy.getDirection() == Direction.DOWN) {
                 enemy.setY(enemy.getY() + enemy.getSpeed());
-            } else if (enemy.getDirection() == Enemy.getUp()) {
+            } else if (enemy.getDirection() == Direction.UP) {
                 enemy.setY(enemy.getY() - enemy.getSpeed());
             }
             defineEnemyRect(enemy);
@@ -121,33 +123,34 @@ public class EnemySpawner {
 
             if (enemy.getEnemyWalk() == GameComponent.TILE_SIZE) {
 
-                if (enemy.getDirection() == Enemy.getRight()) {
+                if (enemy.getDirection() == Direction.RIGHT) {
                     enemy.getHasWalked()[enemy.getyC()][enemy.getxC()] = grid.getSquares()[enemy.getyC()][enemy.getxC()];
                     enemy.setxC(enemy.getxC() + 1);
                     if (collision(enemy, enemy.getyC(), enemy.getxC() + 1)) {
                         enemy.setHasRight(true);
                         changeDirection(enemy);
                     }
-                } else if (enemy.getDirection() == Enemy.getLeft()) {
+                } else if (enemy.getDirection() == Direction.LEFT) {
                     enemy.getHasWalked()[enemy.getyC()][enemy.getxC()] = grid.getSquares()[enemy.getyC()][enemy.getxC()];
                     enemy.setxC(enemy.getxC() - 1);
                     if (collision(enemy, enemy.getyC(), enemy.getxC() - 1)) {
                         enemy.setHasLeft(true);
                         changeDirection(enemy);
                     }
-                } else if (enemy.getDirection() == Enemy.getDown()) {
+                } else if (enemy.getDirection() == Direction.DOWN) {
                     enemy.getHasWalked()[enemy.getyC()][enemy.getxC()] = grid.getSquares()[enemy.getyC()][enemy.getxC()];
                     enemy.setyC(enemy.getyC() + 1);
                     if (collision(enemy, enemy.getyC() + 1, enemy.getxC())) {
                         enemy.setHasDown(true);
                         changeDirection(enemy);
                     }
-                } else if (enemy.getDirection() == Enemy.getUp()) {
+                } else if (enemy.getDirection() == Direction.UP) {
                     enemy.getHasWalked()[enemy.getyC()][enemy.getxC()] = grid.getSquares()[enemy.getyC()][enemy.getxC()];
                     enemy.setyC(enemy.getyC() - 1);
                     if (collision(enemy, enemy.getyC() - 1, enemy.getxC())) {
                         enemy.setHasUp(true);
                         changeDirection(enemy);
+
                     }
                 }
                 enemy.setHasDown(false);
@@ -177,50 +180,46 @@ public class EnemySpawner {
     public void changeDirection(Enemy enemy) {
         if (enemy.isHasRight() || enemy.isHasLeft()) {
             if (!collision(enemy, enemy.getyC() + 1, enemy.getxC())) {
-                enemy.setDirection(Enemy.getDown());
+                enemy.setDirection(Direction.DOWN);
             } else if (!collision(enemy, enemy.getyC() - 1, enemy.getxC())) {
-                enemy.setDirection(Enemy.getUp());
+                enemy.setDirection(Direction.UP);
             } else {
-                enemy.setDirection(Enemy.getStill());
+                enemy.setDirection(Direction.STILL);
             }
         } else if (enemy.isHasDown() || enemy.isHasUp()) {
             if (!collision(enemy, enemy.getyC(), enemy.getxC() + 1)) {
-                enemy.setDirection(Enemy.getRight());
+                enemy.setDirection(Direction.RIGHT);
             } else if (!collision(enemy, enemy.getyC(), enemy.getxC() - 1)) {
-                enemy.setDirection(Enemy.getLeft());
+                enemy.setDirection(Direction.LEFT);
             } else {
-                enemy.setDirection(Enemy.getStill());
+                enemy.setDirection(Direction.STILL);
             }
         }
     }
 
     public void checkEnemyFinished() {
-        try {
-            for (Enemy enemy : enemies) {
-                if (enemy.getHp() <= 0) {
-                    enemies.remove(enemy);
-                    shop.withdrawGold(enemy.getGoldgain());
+        for (int i = 0; i < enemies.size(); i++) {
+            int x = enemies.get(i).getxC();
+            int y = enemies.get(i).getyC();
+            if (enemies.get(i).getHp() <= 0) {
+                    shop.withdrawGold(enemies.get(i).getGoldgain());
+                enemies.remove(enemies.get(i));
                 }
-
-                int x = enemy.getxC();
-                int y = enemy.getyC();
-                if (grid.getSquares()[y][x] == GRID.FINISH) {
-                    shop.setHealth(enemy.getDamage());
-                    enemies.remove(enemy);
+                else if (grid.getSquares()[y][x] == GRID.FINISH) {
+                    shop.setHealth(enemies.get(i).getDamage());
+                    enemies.remove(enemies.get(i));
                 }
             }
 
 
-        } catch (Exception ignored) {
         }
-    }
 
 
     public void draw(Graphics2D g) {
         for (Enemy enemy : enemies) {
             g.drawImage(enemy.getImage(), enemy.getX(), enemy.getY(), null);
             g.setFont(new Font("courier new", Font.BOLD, 14));
-            g.drawString("" + enemy.getHp(), enemy.getX(), enemy.getY());
+            g.drawString(String.valueOf(enemy.getHp()), enemy.getX(), enemy.getY());
         }
         g.setColor(Color.red);
         g.setFont(new Font("courier new", Font.BOLD, 20));
@@ -242,15 +241,8 @@ public class EnemySpawner {
         return betweenRounds;
     }
 
-    public void setBetweenRounds(final boolean betweenRounds) {
-        this.betweenRounds = betweenRounds;
-    }
-
     public List<Enemy> getEnemies() {
         return enemies;
     }
 
-    public void removeEnemy(Enemy enemy) {
-        this.enemies.remove(enemy);
-    }
 }

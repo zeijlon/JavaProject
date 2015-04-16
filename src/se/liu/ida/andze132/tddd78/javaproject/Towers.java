@@ -11,34 +11,29 @@ import java.awt.*;
 public class Towers {
 
     private int cost;
-    private int sell;
     private int radius;
     private int reloadTime;
     private int reloadTick;
-    private boolean firstShot;
     private boolean shooting;
 
 
-    private Enemy targetEnemy;
+    private Enemy targetEnemy = null;
 
     private Image image;
 
-    private Circle range;
+    private Circle range = null;
+
+    private double angle;
 
 
     private int x;
     private int y;
 
-    private boolean targeted;
-
-    public Towers(final int cost, final int sell, final Image image, final int radius, final int reloadTime) {
+    public Towers(final int cost, final Image image, final int radius, final int reloadTime) {
         this.cost = cost;
-        this.sell = sell;
         this.image = image;
         this.radius = radius;
         this.reloadTime = reloadTime;
-        this.targeted = false;
-        this.firstShot = true;
         this.shooting = false;
         this.reloadTick = reloadTime;
     }
@@ -55,20 +50,12 @@ public class Towers {
         return cost;
     }
 
-    public int getSell() {
-        return sell;
-    }
-
     public int getX() {
         return x;
     }
 
     public int getY() {
         return y;
-    }
-
-    public boolean isTargeted() {
-        return targeted;
     }
 
     public void setX(final int x) {
@@ -79,10 +66,6 @@ public class Towers {
         this.y = y;
     }
 
-    public void setTargeted(final boolean targeted) {
-        this.targeted = targeted;
-    }
-
     public int getRadius() {
         return radius;
     }
@@ -91,20 +74,8 @@ public class Towers {
         return reloadTime;
     }
 
-    public void setReloadTime(int reloadTime) {
-        this.reloadTime = reloadTime;
-    }
-
     public Circle getRange() {
         return range;
-    }
-
-    public boolean isFirstShot() {
-        return firstShot;
-    }
-
-    public void setFirstShot(boolean firstShot) {
-        this.firstShot = firstShot;
     }
 
     public boolean isShooting() {
@@ -129,6 +100,14 @@ public class Towers {
 
     public void setReloadTick(int reloadTick) {
         this.reloadTick = reloadTick;
+    }
+
+    public void setAngle(double angle) {
+        this.angle = angle;
+    }
+
+    public double getAngle() {
+        return angle;
     }
 }
 

@@ -14,7 +14,7 @@ public class Bullet {
 
     private Image image;
 
-    private Rectangle bulletRect;
+    private Rectangle bulletRect = null;
 
     public Bullet(int x, int y, Image image, int bulletSpeed, int damage) {
         this.x = x;
@@ -51,10 +51,6 @@ public class Bullet {
 
     public double getBulletSpeed() {
         return bulletSpeed;
-    }
-
-    public void setBulletSpeed(double bulletSpeed) {
-        this.bulletSpeed = bulletSpeed;
     }
 
     public Rectangle getBulletRect() {
