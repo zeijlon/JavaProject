@@ -9,14 +9,13 @@ public class GameFrame extends JFrame {
     public static Point motionPoint = new Point();
     public static Point clickPoint = new Point();
 
-    public GameFrame(GRID grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler) throws HeadlessException {
+    public GameFrame(GRID grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu) throws HeadlessException {
         super("DAWN OF THE POLAR BEARS");
-        GameComponent gameComponent = new GameComponent(grid, shop, spawner, towerHandler, bulletHandler);
+        GameComponent gameComponent = new GameComponent(grid, shop, spawner, towerHandler, bulletHandler,menu);
         this.setLayout(new BorderLayout());
         this.add(gameComponent, BorderLayout.CENTER);
         this.getContentPane().setBackground(Color.LIGHT_GRAY);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.createMenu();
+        this.createMenus();
         this.pack();
         this.setVisible(true);
 
@@ -25,7 +24,7 @@ public class GameFrame extends JFrame {
 
     }
 
-    private void createMenu() {
+    private void createMenus() {
         class ExitListener implements ActionListener {
             public void actionPerformed(ActionEvent exit) {
                 int answer = JOptionPane.showConfirmDialog(null, "Do you want to exit?", "Confirm", JOptionPane.YES_NO_OPTION);
@@ -38,10 +37,10 @@ public class GameFrame extends JFrame {
         JMenuItem exit = new JMenuItem("exit", 'E');
         exit.addActionListener(new ExitListener());
         menu.add(exit);
-        final JMenuBar menuBar = new JMenuBar();
-        menuBar.add(menu);
-        menuBar.add(Box.createHorizontalGlue());
-        this.setJMenuBar(menuBar);
+        final JMenuBar bar = new JMenuBar();
+        bar.add(menu);
+        bar.add(Box.createHorizontalGlue());
+        this.setJMenuBar(bar);
         this.setVisible(true);
     }
 

@@ -10,8 +10,8 @@ public class GRID {
     protected final static int FINISH = 4;
     protected final static int CROSSROAD = 5;
 
-    protected int gridWidth;
-    protected int gridHeight;
+    private int Width;
+    private int Height;
 
     private int[][] squares;
     private Rectangle[][] rectangles;
@@ -20,8 +20,8 @@ public class GRID {
 
     public GRID(int n) {
         this.squares = Maps.getMap(n);
-        this.gridWidth = checkLargestRow(this) * GameComponent.TILE_SIZE;
-        this.gridHeight = squares.length * GameComponent.TILE_SIZE;
+        this.Width = checkLargestRow(this) * GameComponent.TILE_SIZE;
+        this.Height = squares.length * GameComponent.TILE_SIZE;
 
         rectangles = new Rectangle[squares.length][checkLargestRow(this)];
         defineRectangles();
@@ -86,5 +86,13 @@ public class GRID {
 
     public Shape getGridSize() {
         return gridSize;
+    }
+
+    public int getWidth() {
+        return Width;
+    }
+
+    public int getHeight() {
+        return Height;
     }
 }

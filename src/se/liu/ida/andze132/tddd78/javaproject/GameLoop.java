@@ -13,36 +13,32 @@ public class GameLoop {
     private EnemySpawner spawner;
     private TowerHandler towerHandler;
     private BulletHandler bulletHandler;
+    private Menu menu;
 
-    private boolean gameRunning;
-    private boolean gameOn;
-    private boolean gamePaused;
-    private boolean menu;
+
     private int lastFpsTime, fps;
 
 
-    public GameLoop(Shop shop, JFrame frame, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler) {
+    public GameLoop(Shop shop, JFrame frame, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu) {
         this.shop = shop;
         this.frame = frame;
         this.spawner = spawner;
         this.towerHandler = towerHandler;
         this.bulletHandler = bulletHandler;
+        this.menu = menu;
 
         this.lastFpsTime = 0;
         this.fps = 0;
-        this.gameRunning = true;
-        this.gameOn = true;
-        this.gamePaused = false;
 
         gameLoop();
     }
 
     public void gameLoop() {
         long lastLoopTime = System.nanoTime();
-        final int targetFps = 120;
+        final int targetFps = 60;
         final long optimalTime = 1000000000 / targetFps;
 
-        while (gameRunning) {
+        while (menu.isGameRunning()) {
             long now = System.nanoTime();
             long updateLength = now - lastLoopTime;
             lastLoopTime = now;
@@ -70,7 +66,7 @@ public class GameLoop {
     }
 
     private void doGameUpdates() {
-        if (gameOn) {
+        if (menu.isGameOn()) {
             spawner.waveHandler();
             spawner.checkEnemyFinished();
             spawner.moveEnemy();
@@ -80,16 +76,21 @@ public class GameLoop {
 
             bulletHandler.updateBullets();
             if (shop.getHealth() <= 0) {
-                gameOn = false;
-                menu = true;
+                menu.setGameOn(false);
+                menu.setIfMenu(true);
             }
         }
-        //if (gamePaused) {
+
+
+        else if (menu.isIfMenu()) {
+            menu.ifNewGame();
+            menu.ifLevelSelect();
+            menu.ifOptions();
+            menu.ifQuitGame();
 
         }
-       // if (menu) {
 
         }
 
-   // }
-//}
+    }
+

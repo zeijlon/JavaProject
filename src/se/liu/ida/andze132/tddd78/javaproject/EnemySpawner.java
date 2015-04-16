@@ -15,6 +15,10 @@ public class EnemySpawner {
     private int spawnTime = 0;
     private int level = 0, enemiesSpawned;
     private int enemyCount = 1;
+    private int basicEnemyCount = 1;
+    private int armoredEnemyCount = 1;
+   // private int enemyCount = basicEnemyCount+=level*2+armoredEnemyCount;
+
 
 
     private boolean betweenRounds;
@@ -28,7 +32,7 @@ public class EnemySpawner {
         this.enemiesSpawned = 0;
         this.betweenRounds = true;
 
-        this.nextRoundButton = new Rectangle(grid.gridWidth + Shop.SHOP_MARGIN, grid.gridHeight + Shop.SHOP_MARGIN, 50, 50);
+        this.nextRoundButton = new Rectangle(grid.getWidth() + Shop.SHOP_MARGIN, grid.getHeight() + Shop.SHOP_MARGIN, 50, 50);
     }
 
 
@@ -38,14 +42,24 @@ public class EnemySpawner {
             if (spawnTime >= spawnRate) {
                 if (enemiesSpawned < enemyCount) {
                     spawnBasicEnemy();
+                    if(level == 5 ) {
+                        spawnArmoredEnemy();
+                        armoredEnemyCount +=1;
+                                                 }
+                    else if (level > 9) {
+                        spawnArmoredEnemy();}
+
                     enemiesSpawned += 1;
                     spawnTime = 0;
                 } else {
                     if (enemies.isEmpty()) {
-                        betweenRounds = true;
-                        enemiesSpawned = 0;
-                        enemyCount += level * 2;
-                    }
+                        if ( level > 9) {
+                            armoredEnemyCount += level * 2;
+                        }
+                            betweenRounds = true;
+                            enemiesSpawned = 0;
+                            enemyCount += level * 2;
+                        }
                 }
             } else {
                 spawnTime++;
@@ -61,6 +75,9 @@ public class EnemySpawner {
                 GameFrame.clickPoint = new Point();
             }
         }
+    }
+    public void addAllEnemiesForSpawn(){
+        enemyCount = basicEnemyCount+armoredEnemyCount;
     }
 
     public void spawnBasicEnemy() {
@@ -79,6 +96,23 @@ public class EnemySpawner {
         defineHasWalked(basic);
         decideDirection(basic);
         defineEnemyRect(basic);
+    }
+    public void spawnArmoredEnemy() {
+        Enemy armored = new ArmoredEnemy();
+        enemies.add(armored);
+        for (int y = 0; y < grid.getSquares().length; y++) {
+            for (int x = 0; x < grid.getSquares()[y].length; x++) {
+                if (grid.getSquares()[y][x] == GRID.START) {
+                    armored.setyC(y);
+                    armored.setxC(x);
+                    armored.setY(y * GameComponent.TILE_SIZE);
+                    armored.setX(x * GameComponent.TILE_SIZE);
+                }
+            }
+        }
+        defineHasWalked(armored);
+        decideDirection(armored);
+        defineEnemyRect(armored);
     }
 
     public void defineEnemyRect(Enemy enemy) {
@@ -121,7 +155,7 @@ public class EnemySpawner {
             enemy.setEnemyWalk(enemy.getEnemyWalk() + enemy.getSpeed());
 
 
-            if (enemy.getEnemyWalk() == GameComponent.TILE_SIZE) {
+            if (enemy.getEnemyWalk() >= GameComponent.TILE_SIZE) {
 
                 if (enemy.getDirection() == Direction.RIGHT) {
                     enemy.getHasWalked()[enemy.getyC()][enemy.getxC()] = grid.getSquares()[enemy.getyC()][enemy.getxC()];
@@ -224,16 +258,16 @@ public class EnemySpawner {
         g.setColor(Color.red);
         g.setFont(new Font("courier new", Font.BOLD, 20));
         if (level >= 1) {
-            g.drawString("ROUND: " + level, grid.gridWidth + Shop.SHOP_MARGIN, grid.gridHeight);
+            g.drawString("ROUND: " + level, grid.getWidth() + Shop.SHOP_MARGIN, grid.getHeight());
         }
 
         //Draw next round button
         if (betweenRounds) {
             g.setColor(Color.black);
-            g.fillRect(grid.gridWidth + Shop.SHOP_MARGIN, grid.gridHeight + Shop.SHOP_MARGIN, 50, 50);
+            g.fillRect(grid.getWidth() + Shop.SHOP_MARGIN, grid.getHeight() + Shop.SHOP_MARGIN, 50, 50);
         } else {
             g.setColor(Color.green);
-            g.fillRect(grid.gridWidth + Shop.SHOP_MARGIN, grid.gridHeight + Shop.SHOP_MARGIN, 50, 50);
+            g.fillRect(grid.getWidth() + Shop.SHOP_MARGIN, grid.getHeight() + Shop.SHOP_MARGIN, 50, 50);
         }
     }
 
