@@ -1,10 +1,7 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 
 
 /**
@@ -15,24 +12,20 @@ public class Shop {
     private int health;
     public final static int SHOPBUTTON_SIZE = 52;
 
-
     private Image button = Toolkit.getDefaultToolkit().getImage("images/shopButton60.png");
     private Image buttonFocus = Toolkit.getDefaultToolkit().getImage("images/shopButtonFocus60.png");
     private Image coin = Toolkit.getDefaultToolkit().getImage("images/coin.png");
     private Image heart = Toolkit.getDefaultToolkit().getImage("images/heart.png");
     private Image trashCan = Toolkit.getDefaultToolkit().getImage("images/trashCan60.png");
-
-
+    private Image basicTowerImage = (Toolkit.getDefaultToolkit().getImage("images/basicTower60.png"));
 
 
     private Rectangle[][] shopButtons = new Rectangle[4][2];
     private Image[][] towerImages = new Image[4][2];
 
-    private int holdsItem;
-    private int basicTower = 0, nothing = 7;
+    private Towers holdsItem;
 
     private GRID grid;
-
 
     public final static int SHOP_MARGIN = 25;
 
@@ -42,10 +35,10 @@ public class Shop {
         this.gold = 10;
         this.health = 100;
 
-        this.holdsItem = nothing;
+        this.holdsItem = null;
         defineShopButtons();
-        towerImages = new Image[][]{{BasicTower.image, BasicTower.image}, {BasicTower.image, BasicTower.image},
-                {BasicTower.image, BasicTower.image}, {BasicTower.image, trashCan}};
+        towerImages = new Image[][]{{basicTowerImage, basicTowerImage}, {basicTowerImage, basicTowerImage},
+                {basicTowerImage, basicTowerImage}, {basicTowerImage, trashCan}};
     }
 
 
@@ -97,7 +90,7 @@ public class Shop {
     }
 
 
-    public int getHoldsItem() {
+    public Towers getHoldsItem() {
         return holdsItem;
     }
 
@@ -121,15 +114,11 @@ public class Shop {
         this.health -= damage;
     }
 
-    public void setHoldsItem(final int holdsItem) {
+    public void setHoldsItem(final Towers holdsItem) {
         this.holdsItem = holdsItem;
     }
 
-    public int getBasicTower() {
-        return basicTower;
-    }
-
-    public int getNothing() {
-        return nothing;
+    public Image getBasicTowerImage() {
+        return basicTowerImage;
     }
 }

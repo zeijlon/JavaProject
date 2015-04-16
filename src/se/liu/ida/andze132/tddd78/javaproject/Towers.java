@@ -11,15 +11,16 @@ import java.awt.*;
 public class Towers {
 
     private int cost;
+    private int sell;
     private int radius;
     private int reloadTime;
     private int reloadTick;
     private boolean shooting;
-
+    private TowerType type;
 
     private Enemy targetEnemy = null;
 
-    private Image image;
+    private Image image = null;
 
     private Circle range = null;
 
@@ -29,14 +30,25 @@ public class Towers {
     private int x;
     private int y;
 
-    public Towers(final int cost, final Image image, final int radius, final int reloadTime) {
-        this.cost = cost;
-        this.image = image;
-        this.radius = radius;
-        this.reloadTime = reloadTime;
-        this.shooting = false;
-        this.reloadTick = reloadTime;
+    public Towers(TowerType type) {
+        this.type = type;
+        decideEnemy(type);
+
     }
+
+    public void decideEnemy(TowerType tower){
+            switch(tower){
+                case BASICTOWER:
+                    image = (Toolkit.getDefaultToolkit().getImage("images/basicTower60.png"));
+                    cost = 5;
+                    sell = 5;
+                    radius = 200;
+                    reloadTime = 100; //less is bettter
+                    reloadTick = reloadTime;
+                    break;
+
+            }
+        }
 
     public void setRange(int x, int y) {
         this.range = new Circle(x + GameComponent.TILE_SIZE / 2, y + GameComponent.TILE_SIZE / 2, radius / 2);
@@ -108,6 +120,10 @@ public class Towers {
 
     public double getAngle() {
         return angle;
+    }
+
+    public TowerType getType() {
+        return type;
     }
 }
 

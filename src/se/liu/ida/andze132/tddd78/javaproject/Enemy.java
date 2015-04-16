@@ -25,19 +25,16 @@ public class Enemy {
     private boolean hasLeft = false;
     private boolean hasRight = false;
 
-    private Image image;
+    private Image image = null;
 
     private int[][] hasWalked = null;
 
     private Rectangle enemyRect = null;
 
 
-    public Enemy(final int hp, final int speed, final int goldgain, final int damage, final Image image) {
-        this.hp = hp;
-        this.speed = speed;
-        this.goldgain = goldgain;
-        this.damage = damage;
-        this.image = image;
+    public Enemy(final EnemyType type) {
+
+        decideEnemy(type);
     }
 
     public void setEnemyRect(Rectangle enemyRect) {
@@ -46,6 +43,25 @@ public class Enemy {
 
     public Rectangle getEnemyRect() {
         return enemyRect;
+    }
+
+    public void decideEnemy(EnemyType enemy){
+        switch(enemy){
+            case BASICENEMY:
+                hp = 100;
+                speed = 1;
+                goldgain = 1;
+                damage = 2;
+                image = (Toolkit.getDefaultToolkit().getImage("images/basicEnemy60.png"));
+                break;
+            case ARMOREDENEMY:
+                hp = 200;
+                speed = 4;
+                goldgain = 2;
+                damage = 5;
+                image = (Toolkit.getDefaultToolkit().getImage("images/heart.png"));
+                break;
+        }
     }
 
     public Image getImage() {

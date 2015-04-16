@@ -28,10 +28,10 @@ public class BulletHandler {
     }
 
     public void shootEnemy(Enemy enemy, Towers tower) {
-        Bullet bullet = new NormalBullet(tower.getX() + 10, tower.getY() + 10);
-        bullet.setAngle(Math.toDegrees(Math.atan2(enemy.getY() + 20 - bullet.getY(), enemy.getX() + 20 - bullet.getX())));
-        tower.setAngle(Math.toDegrees(Math.atan2(enemy.getY() + 20 - bullet.getY(), enemy.getX() + 20 - bullet.getX())));
-        bullets.add(bullet);
+            //Random random = new Random(); + Math.toRadians(random.nextInt(360))
+            Bullet bullet = new NormalBullet(tower.getX() + 20, tower.getY() + 20);
+            bullet.setAngle(Math.toDegrees(Math.atan2(enemy.getY() + 20 - bullet.getY(), enemy.getX() + 20 - bullet.getX())));
+            bullets.add(bullet);
     }
 
     public void updateBullets() {
@@ -57,12 +57,12 @@ public class BulletHandler {
 
 
     public void draw(Graphics2D g) {
-        for (Bullet bullet : bullets) {
-            Double x = bullet.getX();
+        for (int i = 0; i < bullets.size(); i++) {
+            Double x = bullets.get(i).getX();
             int xValue = x.intValue();
-            Double y = bullet.getY();
+            Double y = bullets.get(i).getY();
             int yValue = y.intValue();
-            g.drawImage(bullet.getImage(), xValue, yValue, null);
+            g.drawImage(bullets.get(i).getImage(), xValue, yValue, null);
         }
     }
 }

@@ -52,7 +52,7 @@ public class EnemySpawner {
             }
 
         }
-        if (shop.getHoldsItem() == shop.getNothing()) {
+        if (shop.getHoldsItem() == null) {
             if (nextRoundButton.contains(GameFrame.clickPoint)) {
                 if (betweenRounds) {
                     level++;
