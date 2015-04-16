@@ -11,7 +11,7 @@ public class Enemy {
     private int speed;
     private int goldgain;
     private int damage;
-
+    private double angle;
     private int x;
     private int y;
 
@@ -176,7 +176,13 @@ public class Enemy {
         this.hasWalked = hasWalked;
     }
 
+    public double getAngle() {
+        return angle;
+    }
 
+    public void setAngle(final double angle) {
+        this.angle = angle;
+    }
 }
 
 

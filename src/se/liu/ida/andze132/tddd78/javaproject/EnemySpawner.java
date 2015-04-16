@@ -1,6 +1,7 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -143,12 +144,16 @@ public class EnemySpawner {
     public void moveEnemy() {
         for (Enemy enemy : enemies) {
             if (enemy.getDirection() == Direction.RIGHT) {
+                enemy.setAngle(Math.PI/2);
                 enemy.setX(enemy.getX() + enemy.getSpeed());
             } else if (enemy.getDirection() == Direction.LEFT) {
+                enemy.setAngle(3*Math.PI/2);
                 enemy.setX(enemy.getX() - enemy.getSpeed());
             } else if (enemy.getDirection() == Direction.DOWN) {
+                enemy.setAngle(Math.PI);
                 enemy.setY(enemy.getY() + enemy.getSpeed());
             } else if (enemy.getDirection() == Direction.UP) {
+                enemy.setAngle(0);
                 enemy.setY(enemy.getY() - enemy.getSpeed());
             }
             defineEnemyRect(enemy);
@@ -251,7 +256,13 @@ public class EnemySpawner {
 
     public void draw(Graphics2D g) {
         for (Enemy enemy : enemies) {
+            AffineTransform at = new AffineTransform();
+            AffineTransform old = g.getTransform();
+            at.rotate(enemy.getAngle(), enemy.getX() + enemy.getImage().getWidth(null) / 2,
+                      enemy.getY() + enemy.getImage().getHeight(null) / 2);
+            g.transform(at);
             g.drawImage(enemy.getImage(), enemy.getX(), enemy.getY(), null);
+            g.setTransform(old);
             g.setFont(new Font("courier new", Font.BOLD, 14));
             g.drawString(String.valueOf(enemy.getHp()), enemy.getX(), enemy.getY());
         }
