@@ -36,7 +36,18 @@ public class TowerHandler {
             } else {
                 shop.setHoldsItem(null);
             }
-        } else if (shop.getShopButtons()[3][1].contains(GameFrame.clickPoint) && shop.getShopButtons()[3][1].contains(GameFrame.motionPoint)) {
+        }
+        else if(shop.getShopButtons()[0][1].contains(GameFrame.clickPoint) && shop.getShopButtons()[0][1].contains(GameFrame.motionPoint)){
+            Towers tower = new ArmorpiercingTower();
+            if (shop.getGold() >= tower.getCost()) {
+                shop.setHoldsItem(tower);
+                buildTower = tower;
+            } else {
+                shop.setHoldsItem(null);
+            }
+        }
+
+        else if (shop.getShopButtons()[3][1].contains(GameFrame.clickPoint) && shop.getShopButtons()[3][1].contains(GameFrame.motionPoint)) {
             shop.setHoldsItem(null);
         }
 
@@ -55,6 +66,7 @@ public class TowerHandler {
                                 tower.setX(j * GameComponent.TILE_SIZE);
                                 tower.setY(i * GameComponent.TILE_SIZE);
                                 tower.setRange(j * GameComponent.TILE_SIZE, i * GameComponent.TILE_SIZE);
+                                tower.setRectangle(new Rectangle(tower.getX(), tower.getY(), tower.getImage().getWidth(null), tower.getImage().getHeight(null)));
                                 shop.setGold(tower.getCost());
                                 shop.setHoldsItem(null);
                                 buildTower = null;
@@ -65,6 +77,17 @@ public class TowerHandler {
 
             }
 
+    public void checkTowerTargeted(){
+        for (Towers tower : towers) {
+            if(tower.getRectangle().contains(GameFrame.clickPoint)){
+                tower.setTargeted(true);
+            }
+            else{
+                tower.setTargeted(false);
+            }
+        }
+
+    }
 
     public void towerPhysic() {
         for (Towers tower : towers) {
@@ -111,11 +134,13 @@ public class TowerHandler {
             AffineTransform at = new AffineTransform();
             AffineTransform old = g.getTransform();
             at.rotate(tower.getAngle(), tower.getX() + tower.getImage().getWidth(null) / 2,
-                      tower.getY() + tower.getImage().getHeight(null) / 2);
+                    tower.getY() + tower.getImage().getHeight(null) / 2);
             g.transform(at);
             g.drawImage(tower.getImage(), tower.getX(), tower.getY(), null);
-            g.drawOval(tower.getX() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getY() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getRadius(), tower.getRadius());
             g.setTransform(old);
+            if(tower.isTargeted()) {
+                g.drawOval(tower.getX() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getY() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getRadius(), tower.getRadius());
+            }
         }
         Double dX = GameFrame.motionPoint.getX();
         Double dY = GameFrame.motionPoint.getY();

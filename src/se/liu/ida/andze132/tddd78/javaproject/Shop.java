@@ -18,6 +18,8 @@ public class Shop {
     private Image heart = Toolkit.getDefaultToolkit().getImage("images/heart.png");
     private Image trashCan = Toolkit.getDefaultToolkit().getImage("images/trashCan60.png");
     private Image basicTowerImage = (Toolkit.getDefaultToolkit().getImage("images/basicTower60.png"));
+    private Image armorPiercingTowerImage = (Toolkit.getDefaultToolkit().getImage("images/armorPiercingTower60.png"));
+
 
 
     private Rectangle[][] shopButtons = new Rectangle[4][2];
@@ -33,11 +35,11 @@ public class Shop {
         this.grid = grid;
 
         this.gold = 10;
-        this.health = 1;
+        this.health = 100;
 
         this.holdsItem = null;
         defineShopButtons();
-        towerImages = new Image[][]{{basicTowerImage, basicTowerImage}, {basicTowerImage, basicTowerImage},
+        towerImages = new Image[][]{{basicTowerImage, armorPiercingTowerImage}, {basicTowerImage, basicTowerImage},
                 {basicTowerImage, basicTowerImage}, {basicTowerImage, trashCan}};
     }
 

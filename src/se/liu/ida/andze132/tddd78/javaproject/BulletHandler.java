@@ -29,9 +29,21 @@ public class BulletHandler {
 
     public void shootEnemy(Enemy enemy, Towers tower) {
             //Random random = new Random(); + Math.toRadians(random.nextInt(360))
-            Bullet bullet = new NormalBullet(tower.getX() + 20, tower.getY() + 20);
+            Bullet bullet = decideBullet(tower);
             bullet.setAngle(Math.toDegrees(Math.atan2(enemy.getY() + 20 - bullet.getY(), enemy.getX() + 20 - bullet.getX())));
             bullets.add(bullet);
+    }
+
+    public Bullet decideBullet(Towers tower){
+        TowerType type = tower.getType();
+        switch (type){
+            case BASICTOWER:
+                return new NormalBullet(tower.getX() + 20, tower.getY() + 20);
+            case ARMORPIERCINGTOWER:
+                return new FMJBullet(tower.getX() + 20, tower.getY() + 20);
+            default:
+                return null;
+        }
     }
 
     public void updateBullets() {

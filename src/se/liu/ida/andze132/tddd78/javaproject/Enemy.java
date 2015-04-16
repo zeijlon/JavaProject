@@ -56,7 +56,7 @@ public class Enemy {
                 break;
             case ARMOREDENEMY:
                 hp = 200;
-                speed = 4;
+                speed = 2;
                 goldgain = 2;
                 damage = 5;
                 image = (Toolkit.getDefaultToolkit().getImage("images/heart.png"));

@@ -26,12 +26,17 @@ public class Towers {
 
     private double angle;
 
+    private boolean targeted;
+
+    private Rectangle rectangle = null;
+
 
     private int x;
     private int y;
 
     public Towers(TowerType type) {
         this.type = type;
+        this.targeted = true;
         decideEnemy(type);
 
     }
@@ -46,7 +51,14 @@ public class Towers {
                     reloadTime = 100; //less is bettter
                     reloadTick = reloadTime;
                     break;
-
+                case ARMORPIERCINGTOWER:
+                    image = (Toolkit.getDefaultToolkit().getImage("images/armorPiercingTower60.png"));
+                    cost = 10;
+                    sell = 5;
+                    radius = 400;
+                    reloadTime = 50; //less is bettter
+                    reloadTick = reloadTime;
+                    break;
             }
         }
 
@@ -124,6 +136,22 @@ public class Towers {
 
     public TowerType getType() {
         return type;
+    }
+
+    public boolean isTargeted() {
+        return targeted;
+    }
+
+    public void setTargeted(boolean targeted) {
+        this.targeted = targeted;
+    }
+
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
+    public void setRectangle(Rectangle rectangle) {
+        this.rectangle = rectangle;
     }
 }
 

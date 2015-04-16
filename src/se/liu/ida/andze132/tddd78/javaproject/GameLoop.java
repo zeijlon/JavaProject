@@ -76,6 +76,8 @@ public class GameLoop {
             towerHandler.towerPhysic();
 
             bulletHandler.updateBullets();
+
+            towerHandler.checkTowerTargeted();
             if (shop.getHealth() <= 0) {
                 menu.setGameOn(false);
                 menu.setIfMenu(true);
