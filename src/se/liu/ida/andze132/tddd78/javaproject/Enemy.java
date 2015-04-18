@@ -52,14 +52,14 @@ public class Enemy {
                 speed = 1;
                 goldgain = 1;
                 damage = 2;
-                image = (Toolkit.getDefaultToolkit().getImage("images/isbjörne.gif"));
+                image = (Toolkit.getDefaultToolkit().getImage("images/PolarBearNormal.gif"));
                 break;
             case ARMOREDENEMY:
                 hp = 200;
                 speed = 2;
                 goldgain = 2;
                 damage = 5;
-                image = (Toolkit.getDefaultToolkit().getImage("images/heart.png"));
+                image = (Toolkit.getDefaultToolkit().getImage("images/ArmoredPolarBear60.gif"));
                 break;
         }
     }
