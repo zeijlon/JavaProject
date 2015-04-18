@@ -59,7 +59,7 @@ public class Enemy {
                 speed = 2;
                 goldgain = 2;
                 damage = 5;
-                image = (Toolkit.getDefaultToolkit().getImage("images/ArmoredPolarBear60.gif"));
+                image = (Toolkit.getDefaultToolkit().getImage("images/ArmoredPolarBearFast60.gif"));
                 break;
         }
     }
