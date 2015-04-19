@@ -90,6 +90,10 @@ public class GameLoop {
             menu.ifLevelSelect();
             menu.ifOptions();
             menu.ifQuitGame();
+	    menu.chooseMap1();
+	    menu.chooseMap2();
+	    menu.chooseMap3();
+
 
         }
 

@@ -3,8 +3,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.net.MalformedURLException;
-import java.net.URL;
+
 
 public class GameComponent extends JComponent {
     private GRID grid;

@@ -56,7 +56,7 @@ public class Enemy {
                 break;
             case ARMOREDENEMY:
                 hp = 200;
-                speed = 2;
+                speed = 1;
                 goldgain = 2;
                 damage = 5;
                 image = (Toolkit.getDefaultToolkit().getImage("images/ArmoredPolarBearFast60.gif"));
