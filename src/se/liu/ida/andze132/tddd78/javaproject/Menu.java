@@ -45,6 +45,7 @@ public class Menu
 
     private Image menuImage = (Toolkit.getDefaultToolkit().getImage("images/DawnofthePolarBears.png"));
     private Image newGame = (Toolkit.getDefaultToolkit().getImage("images/NewGameT.png"));
+    private Image resumeGame = (Toolkit.getDefaultToolkit().getImage("images/resumeGame.png"));
     private Image quit = (Toolkit.getDefaultToolkit().getImage("images/QuitGame.png"));
     private Image levelSelect = (Toolkit.getDefaultToolkit().getImage("images/LevelSelect.png"));
     private Image options = (Toolkit.getDefaultToolkit().getImage("images/Options.png"));
@@ -150,7 +151,7 @@ public class Menu
 
         }}
         if(ifGamePaused){
-            g2d.drawImage(quit, 400,175,null);
+            g2d.drawImage(resumeGame, 400,175,null);
         }
 
     }
