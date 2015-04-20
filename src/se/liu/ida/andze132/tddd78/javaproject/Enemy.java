@@ -1,7 +1,6 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
@@ -30,7 +29,7 @@ public class Enemy {
 
     private int[][] hasWalked = null;
 
-    private Ellipse2D enemyOval = null;
+    private Rectangle enemyRect = null;
 
 
     public Enemy(final EnemyType type) {
@@ -38,25 +37,12 @@ public class Enemy {
         decideEnemy(type);
     }
 
-    public void setEnemyEllipse() {
-        switch (this.getDirection()){
-            case RIGHT:
-                this.enemyOval = new Ellipse2D.Float(this.getX(), this.getY()+10, GameComponent.TILE_SIZE, GameComponent.TILE_SIZE-20);
-                break;
-            case LEFT:
-                this.enemyOval = new Ellipse2D.Float(this.getX(), this.getY()+10, GameComponent.TILE_SIZE, GameComponent.TILE_SIZE-20);
-                break;
-            case DOWN:
-                this.enemyOval = new Ellipse2D.Float(this.getX()+10, this.getY(), GameComponent.TILE_SIZE-20, GameComponent.TILE_SIZE);
-                break;
-            case UP:
-                this.enemyOval = new Ellipse2D.Float(this.getX()+10, this.getY(), GameComponent.TILE_SIZE-20, GameComponent.TILE_SIZE);
-                break;
-        }
+    public void setEnemyRect(Rectangle enemyRect) {
+        this.enemyRect = enemyRect;
     }
 
-    public Ellipse2D getEnemyEllipse() {
-        return enemyOval;
+    public Rectangle getEnemyRect() {
+        return enemyRect;
     }
 
     public void decideEnemy(EnemyType enemy){
@@ -66,9 +52,8 @@ public class Enemy {
                 speed = 1;
                 goldgain = 1;
                 damage = 2;
-                image = (Toolkit.getDefaultToolkit().getImage("images/PolarBearNormal.gif"));
+                image = (Toolkit.getDefaultToolkit().getImage("images/Isbjornen1.gif"));
                 image = image.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
-
                 break;
             case ARMOREDENEMY:
                 hp = 200;
