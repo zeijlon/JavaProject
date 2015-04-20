@@ -2,7 +2,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 
 import javax.swing.*;
-
+import java.awt.*;
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
  */
@@ -83,6 +83,7 @@ public class GameLoop {
             if (shop.getHealth() <= 0) {
                 menu.setGameOn(false);
                 menu.setIfMenu(true);
+		GameFrame.clickPoint = new Point();
             }
         } else if (menu.isIfMenu()) {
             menu.ifMenuedit();

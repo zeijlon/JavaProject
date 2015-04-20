@@ -71,7 +71,7 @@ public class Enemy {
                 speed = 2;
                 goldgain = 2;
                 damage = 5;
-                image = (Toolkit.getDefaultToolkit().getImage("images/heart.png"));
+                image = (Toolkit.getDefaultToolkit().getImage("images/ArmoredPolarBearNormal60.gif"));
                 break;
         }
     }

@@ -96,6 +96,9 @@ public class Menu
             if (answer == JOptionPane.YES_OPTION) {
                 System.exit(0);
             }
+	    else{
+	                    GameFrame.clickPoint = null;
+	                }
         }
 
         else if (selectLevel.contains(GameFrame.clickPoint)) {

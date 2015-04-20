@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6166df02-5b19-4bed-9a27-c7e03e8e8dfb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/Map1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/Map2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/Map3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/Enemy.class" afterPath="$PROJECT_DIR$/out/production/JavaProject/se/liu/ida/andze132/tddd78/javaproject/Enemy.class" />
+      <change type="DELETED" beforePath="C:\Users\Oile995\IdeaProjects\JavaProjects\out\production\JavaProject\se\liu\ida\andze132\tddd78\javaproject\EnemySpawner.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Oile995\IdeaProjects\JavaProjects\out\production\JavaProject\se\liu\ida\andze132\tddd78\javaproject\GameFrame.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Oile995\IdeaProjects\JavaProjects\out\production\JavaProject\se\liu\ida\andze132\tddd78\javaproject\KeyHandler.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Oile995\IdeaProjects\JavaProjects\out\production\JavaProject\se\liu\ida\andze132\tddd78\javaproject\Shop.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Oile995\IdeaProjects\JavaProjects\out\production\JavaProject\se\liu\ida\andze132\tddd78\javaproject\Towers.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Enemy.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Enemy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameComponent.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameComponent.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameLoop.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameLoop.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaProject.iws" afterPath="$PROJECT_DIR$/JavaProject.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Maps.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Maps.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Menu.java" afterPath="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Menu.java" />
     </list>
     <ignored path="JavaProject.iws" />
@@ -45,7 +44,7 @@
       <file leaf-file-name="BasicTower.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/BasicTower.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+            <state vertical-scroll-proportion="0.0" vertical-offset="133" max-vertical-offset="323">
               <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding />
             </state>
@@ -55,22 +54,9 @@
       <file leaf-file-name="TowerHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/TowerHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="3097">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2147" max-vertical-offset="3591">
               <caret line="113" column="9" selection-start-line="109" selection-start-column="12" selection-end-line="113" selection-end-column="9" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Towers.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Towers.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="437" max-vertical-offset="2299">
-              <caret line="86" column="5" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
-              <folding>
-                <element signature="e#1955#1956#0" expanded="true" />
-                <element signature="e#1981#1982#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -78,8 +64,8 @@
       <file leaf-file-name="EnemySpawner.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/EnemySpawner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4621" max-vertical-offset="5567">
-              <caret line="257" column="0" selection-start-line="257" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2679" max-vertical-offset="5776">
+              <caret line="94" column="35" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -88,8 +74,8 @@
       <file leaf-file-name="GameComponent.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameComponent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="886" max-vertical-offset="1558">
-              <caret line="68" column="31" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1254" max-vertical-offset="1501">
+              <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -98,8 +84,8 @@
       <file leaf-file-name="Maps.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Maps.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1349">
-              <caret line="54" column="60" selection-start-line="54" selection-start-column="60" selection-end-line="54" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1026" max-vertical-offset="1387">
+              <caret line="54" column="56" selection-start-line="54" selection-start-column="56" selection-end-line="54" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -108,7 +94,7 @@
       <file leaf-file-name="GameFrame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="61" max-vertical-offset="988">
+            <state vertical-scroll-proportion="0.0" vertical-offset="304" max-vertical-offset="1007">
               <caret line="16" column="16" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="16" />
               <folding />
             </state>
@@ -118,12 +104,9 @@
       <file leaf-file-name="GRID.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GRID.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1824">
+            <state vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="1862">
               <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
-              <folding>
-                <element signature="e#967#968#0" expanded="true" />
-                <element signature="e#997#998#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -131,26 +114,19 @@
       <file leaf-file-name="Menu.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.5252976" vertical-offset="1075" max-vertical-offset="3801">
-              <caret line="132" column="43" selection-start-line="132" selection-start-column="43" selection-end-line="132" selection-end-column="43" />
-              <folding>
-                <element signature="e#4356#4357#0" expanded="true" />
-                <element signature="e#4385#4386#0" expanded="true" />
-                <element signature="e#4436#4437#0" expanded="true" />
-                <element signature="e#4472#4473#0" expanded="true" />
-                <element signature="e#4505#4506#0" expanded="true" />
-                <element signature="e#4535#4536#0" expanded="true" />
-                <element signature="e#4570#4571#0" expanded="true" />
-                <element signature="e#4602#4603#0" expanded="true" />
-                <element signature="e#4635#4636#0" expanded="true" />
-                <element signature="e#4664#4665#0" expanded="true" />
-                <element signature="e#4702#4703#0" expanded="true" />
-                <element signature="e#4736#4737#0" expanded="true" />
-                <element signature="e#4780#4781#0" expanded="true" />
-                <element signature="e#4812#4813#0" expanded="true" />
-                <element signature="e#4863#4864#0" expanded="true" />
-                <element signature="e#4899#4900#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-0.84821427" vertical-offset="2470" max-vertical-offset="3401">
+              <caret line="100" column="25" selection-start-line="100" selection-start-column="25" selection-end-line="100" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Enemy.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Enemy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1045" max-vertical-offset="2736">
+              <caret line="73" column="98" selection-start-line="73" selection-start-column="98" selection-end-line="73" selection-end-column="98" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -158,8 +134,8 @@
       <file leaf-file-name="GameLoop.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameLoop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="460" max-vertical-offset="2071">
-              <caret line="37" column="24" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1247" max-vertical-offset="1919">
+              <caret line="89" column="9" selection-start-line="87" selection-start-column="36" selection-end-line="89" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -193,12 +169,12 @@
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/EnemySpawner.java" />
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Shop.java" />
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameFrame.java" />
-        <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Enemy.java" />
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameComponent.java" />
-        <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameLoop.java" />
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Maps.java" />
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GRID.java" />
+        <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameLoop.java" />
         <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Menu.java" />
+        <option value="$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Enemy.java" />
       </list>
     </option>
   </component>
@@ -664,7 +640,11 @@
       <workItem from="1429285070002" duration="160000" />
       <workItem from="1429370778754" duration="1223000" />
       <workItem from="1429394423464" duration="1427000" />
-      <workItem from="1429450589279" duration="6837000" />
+      <workItem from="1429450589279" duration="6938000" />
+      <workItem from="1429552604315" duration="1213000" />
+      <workItem from="1429555987384" duration="642000" />
+      <workItem from="1429559933006" duration="20000" />
+      <workItem from="1429559977270" duration="978000" />
     </task>
     <task id="LOCAL-00001" summary="Removed unnecessary class.">
       <created>1426851409760</created>
@@ -882,11 +862,17 @@
       <option name="project" value="LOCAL" />
       <updated>1429386620300</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="nästan fixat lvlselect men clickskiten funkar inte för något annat än newgame">
+      <created>1429458166754</created>
+      <option name="number" value="00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1429458166754</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="229576000" />
+    <option name="totallyTimeSpent" value="232530000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -939,7 +925,8 @@
     <MESSAGE value="Removed unnecessary class." />
     <MESSAGE value="fixat musklick" />
     <MESSAGE value="kuk" />
-    <option name="LAST_COMMIT_MESSAGE" value="kuk" />
+    <MESSAGE value="nästan fixat lvlselect men clickskiten funkar inte för något annat än newgame" />
+    <option name="LAST_COMMIT_MESSAGE" value="nästan fixat lvlselect men clickskiten funkar inte för något annat än newgame" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1200,7 +1187,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="418">
           <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1208,7 +1194,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1216,7 +1201,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="133" max-vertical-offset="361">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1227,30 +1211,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Enemy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="627" max-vertical-offset="2470">
-          <caret line="58" column="25" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/EnemySpawner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4621" max-vertical-offset="5567">
-          <caret line="257" column="0" selection-start-line="257" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Towers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="437" max-vertical-offset="2299">
-          <caret line="86" column="5" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
-          <folding>
-            <element signature="e#1955#1956#0" expanded="true" />
-            <element signature="e#1981#1982#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="1482" max-vertical-offset="2394">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1272,8 +1237,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="886" max-vertical-offset="1558">
-          <caret line="68" column="31" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1254" max-vertical-offset="1501">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1288,8 +1253,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Maps.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1349">
-          <caret line="54" column="60" selection-start-line="54" selection-start-column="60" selection-end-line="54" selection-end-column="60" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1026" max-vertical-offset="1387">
+          <caret line="54" column="56" selection-start-line="54" selection-start-column="56" selection-end-line="54" selection-end-column="56" />
           <folding />
         </state>
       </provider>
@@ -1298,43 +1263,39 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1824">
           <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
-          <folding>
-            <element signature="e#967#968#0" expanded="true" />
-            <element signature="e#997#998#0" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/EnemySpawner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2679" max-vertical-offset="5776">
+          <caret line="94" column="35" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/GameLoop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="460" max-vertical-offset="2071">
-          <caret line="37" column="24" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1247" max-vertical-offset="1919">
+          <caret line="89" column="9" selection-start-line="87" selection-start-column="36" selection-end-line="89" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Enemy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1045" max-vertical-offset="2736">
+          <caret line="73" column="98" selection-start-line="73" selection-start-column="98" selection-end-line="73" selection-end-column="98" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/se/liu/ida/andze132/tddd78/javaproject/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.5252976" vertical-offset="1075" max-vertical-offset="3801">
-          <caret line="132" column="43" selection-start-line="132" selection-start-column="43" selection-end-line="132" selection-end-column="43" />
-          <folding>
-            <element signature="e#4356#4357#0" expanded="true" />
-            <element signature="e#4385#4386#0" expanded="true" />
-            <element signature="e#4436#4437#0" expanded="true" />
-            <element signature="e#4472#4473#0" expanded="true" />
-            <element signature="e#4505#4506#0" expanded="true" />
-            <element signature="e#4535#4536#0" expanded="true" />
-            <element signature="e#4570#4571#0" expanded="true" />
-            <element signature="e#4602#4603#0" expanded="true" />
-            <element signature="e#4635#4636#0" expanded="true" />
-            <element signature="e#4664#4665#0" expanded="true" />
-            <element signature="e#4702#4703#0" expanded="true" />
-            <element signature="e#4736#4737#0" expanded="true" />
-            <element signature="e#4780#4781#0" expanded="true" />
-            <element signature="e#4812#4813#0" expanded="true" />
-            <element signature="e#4863#4864#0" expanded="true" />
-            <element signature="e#4899#4900#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-0.84821427" vertical-offset="2470" max-vertical-offset="3401">
+          <caret line="100" column="25" selection-start-line="100" selection-start-column="25" selection-end-line="100" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
