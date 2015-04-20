@@ -43,26 +43,26 @@ public class Towers {
 
     }
 
-    public void decideEnemy(TowerType tower){
-            switch(tower){
-                case BASICTOWER:
-                    image = (Toolkit.getDefaultToolkit().getImage("images/basicTower60.png"));
-                    cost = 5;
-                    sell = 5;
-                    radius = 400;
-                    reloadTime = 20; //less is bettter
-                    reloadTick = reloadTime;
-                    break;
-                case ARMORPIERCINGTOWER:
-                    image = (Toolkit.getDefaultToolkit().getImage("images/armorPiercingTower60.png"));
-                    cost = 10;
-                    sell = 5;
-                    radius = 400;
-                    reloadTime = 100; //less is bettter
-                    reloadTick = reloadTime;
-                    break;
-            }
+    public void decideEnemy(TowerType tower) {
+        switch (tower) {
+            case BASICTOWER:
+                image = (Toolkit.getDefaultToolkit().getImage("images/basicTower60.png"));
+                cost = 5;
+                sell = 5;
+                radius = 400;
+                reloadTime = 20; //less is bettter
+                reloadTick = reloadTime;
+                break;
+            case ARMORPIERCINGTOWER:
+                image = (Toolkit.getDefaultToolkit().getImage("images/armorPiercingTower60.png"));
+                cost = 10;
+                sell = 5;
+                radius = 400;
+                reloadTime = 100; //less is bettter
+                reloadTick = reloadTime;
+                break;
         }
+    }
 
     public void setRange() {
         this.range = new Ellipse2D.Float(x - (this.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), y - (this.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), this.getRadius(), this.getRadius());

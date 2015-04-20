@@ -12,7 +12,7 @@ public class GameFrame extends JFrame {
 
     public GameFrame(GRID grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu) throws HeadlessException {
         super("DAWN OF THE POLAR BEARS");
-        GameComponent gameComponent = new GameComponent(grid, shop, spawner, towerHandler, bulletHandler,menu);
+        GameComponent gameComponent = new GameComponent(grid, shop, spawner, towerHandler, bulletHandler, menu);
         this.setLayout(new BorderLayout());
         this.add(gameComponent, BorderLayout.CENTER);
         this.getContentPane().setBackground(Color.LIGHT_GRAY);

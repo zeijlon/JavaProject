@@ -12,8 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class KeyHandler extends MouseAdapter
-{
+public class KeyHandler extends MouseAdapter {
     @Override
     public void mousePressed(final MouseEvent e) {
         super.mousePressed(e);
@@ -34,4 +33,4 @@ public class KeyHandler extends MouseAdapter
     }
 
 
-     }
+}

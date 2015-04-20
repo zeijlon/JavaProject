@@ -58,7 +58,7 @@ public class GameLoop {
 
             try {
                 Thread.sleep((lastLoopTime - System.nanoTime() + optimalTime) / 1000000);
-            }  catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (Exception ignored) {
             }
@@ -84,22 +84,11 @@ public class GameLoop {
                 menu.setGameOn(false);
                 menu.setIfMenu(true);
             }
-        }
-
-
-        else if (menu.isIfMenu()) {
-            menu.ifNewGame();
-            menu.ifLevelSelect();
-            menu.ifOptions();
-            menu.ifQuitGame();
-	    menu.chooseMap1();
-	    menu.chooseMap2();
-	    menu.chooseMap3();
-
-
-        }
-
+        } else if (menu.isIfMenu()) {
+            menu.ifMenuedit();
         }
 
     }
+
+}
 

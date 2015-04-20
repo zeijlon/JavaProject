@@ -21,7 +21,6 @@ public class Shop {
     private Image armorPiercingTowerImage = (Toolkit.getDefaultToolkit().getImage("images/armorPiercingTower60.png"));
 
 
-
     private Rectangle[][] shopButtons = new Rectangle[4][2];
     private Image[][] towerImages = new Image[4][2];
 
@@ -107,6 +106,7 @@ public class Shop {
     public void setGold(final int gold) {
         this.gold = gold;
     }
+
     public void setHealth(final int health) {
         this.health = health;
     }

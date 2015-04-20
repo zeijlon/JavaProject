@@ -28,15 +28,15 @@ public class BulletHandler {
     }
 
     public void shootEnemy(Enemy enemy, Towers tower) {
-            //Random random = new Random(); + Math.toRadians(random.nextInt(360))
-            Bullet bullet = decideBullet(tower);
-            bullet.setAngle(Math.toDegrees(Math.atan2(enemy.getY() + 20 - bullet.getY(), enemy.getX() + 20 - bullet.getX())));
-            bullets.add(bullet);
+        //Random random = new Random(); + Math.toRadians(random.nextInt(360))
+        Bullet bullet = decideBullet(tower);
+        bullet.setAngle(Math.toDegrees(Math.atan2(enemy.getY() + 20 - bullet.getY(), enemy.getX() + 20 - bullet.getX())));
+        bullets.add(bullet);
     }
 
-    public Bullet decideBullet(Towers tower){
+    public Bullet decideBullet(Towers tower) {
         TowerType type = tower.getType();
-        switch (type){
+        switch (type) {
             case BASICTOWER:
                 return new NormalBullet(tower.getX() + 20, tower.getY() + 20);
             case ARMORPIERCINGTOWER:
@@ -54,12 +54,14 @@ public class BulletHandler {
             if (!grid.getGridSize().contains(bullets.get(i).getX(), bullets.get(i).getY())) {
                 bullets.remove(i);
             }
-        for (int j = 0; j < spawner.getEnemies().size(); j++) {
-                try{
-                if (spawner.getEnemies().get(j).getEnemyEllipse().intersects(bullets.get(i).getBulletRect())) {
-                    spawner.getEnemies().get(j).setHp(bullets.get(i).getDamage());
-                    bullets.remove(i);
-                }}catch (RuntimeException ignored){}
+            for (int j = 0; j < spawner.getEnemies().size(); j++) {
+                try {
+                    if (spawner.getEnemies().get(j).getEnemyEllipse().intersects(bullets.get(i).getBulletRect())) {
+                        spawner.getEnemies().get(j).setHp(bullets.get(i).getDamage());
+                        bullets.remove(i);
+                    }
+                } catch (RuntimeException ignored) {
+                }
             }
         }
     }
@@ -74,5 +76,9 @@ public class BulletHandler {
             g.drawImage(bullets.get(i).getImage(), xValue, yValue, null);
             //g.drawRect((int)bullets.get(i).getBulletRect().getX(), (int)bullets.get(i).getBulletRect().getY(), (int)bullets.get(i).getBulletRect().getWidth(), (int)bullets.get(i).getBulletRect().getHeight());
         }
+    }
+
+    public void setBullets(List<Bullet> bullets) {
+        this.bullets = bullets;
     }
 }

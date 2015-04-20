@@ -30,75 +30,76 @@ public class TowerHandler {
     }
 
     public void checkButtonClick() {
-        if(GameFrame.clickPoint != null){
-        if (shop.getShopButtons()[0][0].contains(GameFrame.clickPoint)) {
-            Towers tower = new BasicTower();
-            if (shop.getGold() >= tower.getCost()) {
-                shop.setHoldsItem(tower);
-                buildTower = tower;
-            } else {
+        if (GameFrame.clickPoint != null) {
+            if (shop.getShopButtons()[0][0].contains(GameFrame.clickPoint)) {
+                Towers tower = new BasicTower();
+                if (shop.getGold() >= tower.getCost()) {
+                    shop.setHoldsItem(tower);
+                    buildTower = tower;
+                } else {
+                    shop.setHoldsItem(null);
+                }
+            } else if (shop.getShopButtons()[0][1].contains(GameFrame.clickPoint)) {
+                Towers tower = new ArmorpiercingTower();
+                if (shop.getGold() >= tower.getCost()) {
+                    shop.setHoldsItem(tower);
+                    buildTower = tower;
+                } else {
+                    shop.setHoldsItem(null);
+                }
+            } else if (shop.getShopButtons()[3][1].contains(GameFrame.clickPoint)) {
                 shop.setHoldsItem(null);
             }
-        }
-        else if(shop.getShopButtons()[0][1].contains(GameFrame.clickPoint)){
-            Towers tower = new ArmorpiercingTower();
-            if (shop.getGold() >= tower.getCost()) {
-                shop.setHoldsItem(tower);
-                buildTower = tower;
-            } else {
-                shop.setHoldsItem(null);
+
+            if (buildTower != null) {
+                buildTower(buildTower);
             }
         }
-
-        else if (shop.getShopButtons()[3][1].contains(GameFrame.clickPoint)) {
-            shop.setHoldsItem(null);
-        }
-
-        if(buildTower!=null){
-        buildTower(buildTower);}
-    }}
+    }
 
 
     public void buildTower(Towers tower) {
-        if(GameFrame.clickPoint !=null){
+        if (GameFrame.clickPoint != null) {
             for (int i = 0; i < grid.getRectangles().length; i++) {
                 for (int j = 0; j < grid.getRectangles()[i].length; j++) {
                     if (grid.getRectangles()[i][j].contains(GameFrame.clickPoint)) {
                         if (grid.getSquares()[i][j] == GRID.GRASS) {
-                                towers.add(tower);
-                                grid.getSquares()[i][j] = GRID.TOWER;
-                                tower.setX(j * GameComponent.TILE_SIZE);
-                                tower.setY(i * GameComponent.TILE_SIZE);
-                                tower.setRange();
-                                tower.setRectangle(new Rectangle(tower.getX(), tower.getY(), tower.getImage().getWidth(null), tower.getImage().getHeight(null)));
-                                shop.setGold(shop.getGold() - tower.getCost());
-                                shop.setHoldsItem(null);
-                                buildTower = null;
-                            }
+                            towers.add(tower);
+                            grid.getSquares()[i][j] = GRID.TOWER;
+                            tower.setX(j * GameComponent.TILE_SIZE);
+                            tower.setY(i * GameComponent.TILE_SIZE);
+                            tower.setRange();
+                            tower.setRectangle(new Rectangle(tower.getX(), tower.getY(), tower.getImage().getWidth(null), tower.getImage().getHeight(null)));
+                            shop.setGold(shop.getGold() - tower.getCost());
+                            shop.setHoldsItem(null);
+                            buildTower = null;
                         }
                     }
                 }
-
-            }}
-
-    public void checkTowerTargeted(){
-        for (Towers tower : towers) {
-            if(GameFrame.clickPoint != null){
-            if(tower.getRectangle().contains(GameFrame.clickPoint)){
-                tower.setTargeted(true);
-                upgradeTower = new Rectangle( 200, grid.getHeight() + 50, 100, 100);
             }
-            else if(upgradeTower.contains(GameFrame.clickPoint)){
-                if(tower.isTargeted()){
-                if(GameFrame.mouseReleased){
-                upgradeTower(tower);}
-            }}
-            else{
-                tower.setTargeted(false);
-            }
+
         }
+    }
 
-    }}
+    public void checkTowerTargeted() {
+        for (Towers tower : towers) {
+            if (GameFrame.clickPoint != null) {
+                if (tower.getRectangle().contains(GameFrame.clickPoint)) {
+                    tower.setTargeted(true);
+                    upgradeTower = new Rectangle(200, grid.getHeight() + 50, 100, 100);
+                } else if (upgradeTower.contains(GameFrame.clickPoint)) {
+                    if (tower.isTargeted()) {
+                        if (GameFrame.mouseReleased) {
+                            upgradeTower(tower);
+                        }
+                    }
+                } else {
+                    tower.setTargeted(false);
+                }
+            }
+
+        }
+    }
 
     public void towerPhysic() {
         for (Towers tower : towers) {
@@ -112,7 +113,7 @@ public class TowerHandler {
                 double w = GameComponent.TILE_SIZE;
                 double h = GameComponent.TILE_SIZE;
                 if (spawner.isBetweenRounds() || tower.getTargetEnemy().getHp() <= 0 ||
-                    !tower.getRange().intersects(x, y, w, h)) {
+                        !tower.getRange().intersects(x, y, w, h)) {
                     tower.setShooting(false);
                 } else if (tower.getReloadTick() >= tower.getReloadTime()) {
                     bulletHandler.shootEnemy(tower.getTargetEnemy(), tower);
@@ -141,9 +142,9 @@ public class TowerHandler {
         return !areaA.isEmpty();
     }
 
-    public void upgradeTower(Towers tower){
-        if(shop.getGold()>= 5){
-            tower.setRadius(tower.getRadius()+5);
+    public void upgradeTower(Towers tower) {
+        if (shop.getGold() >= 5) {
+            tower.setRadius(tower.getRadius() + 5);
             tower.setRange();
             shop.setGold(shop.getGold() - 5);
         }
@@ -160,21 +161,25 @@ public class TowerHandler {
             g.transform(at);
             g.drawImage(tower.getImage(), tower.getX(), tower.getY(), null);
             g.setTransform(old);
-            if(tower.isTargeted()) {
+            if (tower.isTargeted()) {
                 g.drawOval(tower.getX() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getY() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getRadius(), tower.getRadius());
-                g.fillRect( 200, grid.getHeight() + 50, 100, 100);
+                g.fillRect(200, grid.getHeight() + 50, 100, 100);
             }
         }
         Double dX = GameFrame.motionPoint.getX();
         Double dY = GameFrame.motionPoint.getY();
         int x = dX.intValue();
         int y = dY.intValue();
-        if(shop.getHoldsItem() != null) {
+        if (shop.getHoldsItem() != null) {
             g.drawImage(shop.getHoldsItem().getImage(), x - GameComponent.TILE_SIZE / 2, y - GameComponent.TILE_SIZE / 2, null);
             g.drawOval(x - (shop.getHoldsItem().getRadius() / 2), y - (shop.getHoldsItem().getRadius() / 2),
-                       shop.getHoldsItem().getRadius(), shop.getHoldsItem().getRadius());
+                    shop.getHoldsItem().getRadius(), shop.getHoldsItem().getRadius());
         }
 
+    }
+
+    public void setTowers(Collection<Towers> towers) {
+        this.towers = towers;
     }
 }
 

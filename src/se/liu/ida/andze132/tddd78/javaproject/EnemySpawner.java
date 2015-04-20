@@ -20,8 +20,7 @@ public class EnemySpawner {
     private int enemyCount = 1;
     private int basicEnemyCount = 1;
     private int armoredEnemyCount = 1;
-   // private int enemyCount = basicEnemyCount+=level*2+armoredEnemyCount;
-
+    // private int enemyCount = basicEnemyCount+=level*2+armoredEnemyCount;
 
 
     private boolean betweenRounds;
@@ -45,24 +44,24 @@ public class EnemySpawner {
             if (spawnTime >= spawnRate) {
                 if (enemiesSpawned < enemyCount) {
                     spawnBasicEnemy();
-                    if(level == 5 ) {
+                    if (level == 5) {
                         spawnArmoredEnemy();
-                        armoredEnemyCount +=1;
-                                                 }
-                    else if (level > 9) {
-                        spawnArmoredEnemy();}
+                        armoredEnemyCount += 1;
+                    } else if (level > 9) {
+                        spawnArmoredEnemy();
+                    }
 
                     enemiesSpawned += 1;
                     spawnTime = 0;
                 } else {
                     if (enemies.isEmpty()) {
-                        if ( level > 9) {
+                        if (level > 9) {
                             armoredEnemyCount += level * 2;
                         }
-                            betweenRounds = true;
-                            enemiesSpawned = 0;
-                            enemyCount += level * 2;
-                        }
+                        betweenRounds = true;
+                        enemiesSpawned = 0;
+                        enemyCount += level * 2;
+                    }
                 }
             } else {
                 spawnTime++;
@@ -70,18 +69,20 @@ public class EnemySpawner {
 
         }
         if (shop.getHoldsItem() == null) {
-            if(GameFrame.clickPoint != null){
-            if (nextRoundButton.contains(GameFrame.clickPoint)) {
-                if (betweenRounds) {
-                    level++;
-                    betweenRounds = false;
-                }}
+            if (GameFrame.clickPoint != null) {
+                if (nextRoundButton.contains(GameFrame.clickPoint)) {
+                    if (betweenRounds) {
+                        level++;
+                        betweenRounds = false;
+                    }
+                }
                 //GameFrame.clickPoint = new Point();
             }
         }
     }
-    public void addAllEnemiesForSpawn(){
-        enemyCount = basicEnemyCount+armoredEnemyCount;
+
+    public void addAllEnemiesForSpawn() {
+        enemyCount = basicEnemyCount + armoredEnemyCount;
     }
 
     public void spawnBasicEnemy() {
@@ -101,6 +102,7 @@ public class EnemySpawner {
         decideDirection(basic);
         basic.setEnemyEllipse();
     }
+
     public void spawnArmoredEnemy() {
         Enemy armored = new ArmoredEnemy();
         enemies.add(armored);
@@ -144,10 +146,10 @@ public class EnemySpawner {
     public void moveEnemy() {
         for (Enemy enemy : enemies) {
             if (enemy.getDirection() == Direction.RIGHT) {
-                enemy.setAngle(Math.PI/2);
+                enemy.setAngle(Math.PI / 2);
                 enemy.setX(enemy.getX() + enemy.getSpeed());
             } else if (enemy.getDirection() == Direction.LEFT) {
-                enemy.setAngle(3*Math.PI/2);
+                enemy.setAngle(3 * Math.PI / 2);
                 enemy.setX(enemy.getX() - enemy.getSpeed());
             } else if (enemy.getDirection() == Direction.DOWN) {
                 enemy.setAngle(Math.PI);
@@ -241,22 +243,21 @@ public class EnemySpawner {
             int x = enemies.get(i).getxC();
             int y = enemies.get(i).getyC();
             if (enemies.get(i).getHp() <= 0) {
-                    shop.setGold(shop.getGold() + enemies.get(i).getGoldgain());
+                shop.setGold(shop.getGold() + enemies.get(i).getGoldgain());
                 enemies.remove(enemies.get(i));
-                }
-                else if (grid.getSquares()[y][x] == GRID.FINISH) {
-                    shop.setHealth(shop.getHealth() - enemies.get(i).getDamage());
-                    enemies.remove(enemies.get(i));
-                }
+            } else if (grid.getSquares()[y][x] == GRID.FINISH) {
+                shop.setHealth(shop.getHealth() - enemies.get(i).getDamage());
+                enemies.remove(enemies.get(i));
             }
-
-
         }
 
 
+    }
+
+
     public void draw(Graphics2D g) {
-        for (int i = enemies.size()-1; i >= 0 ; i--) {
-            g.drawOval((int) enemies.get(i).getEnemyEllipse().getX(), (int) enemies.get(i).getEnemyEllipse().getY(), (int) enemies.get(i).getEnemyEllipse().getWidth(), (int)enemies.get(i).getEnemyEllipse().getHeight());
+        for (int i = enemies.size() - 1; i >= 0; i--) {
+            g.drawOval((int) enemies.get(i).getEnemyEllipse().getX(), (int) enemies.get(i).getEnemyEllipse().getY(), (int) enemies.get(i).getEnemyEllipse().getWidth(), (int) enemies.get(i).getEnemyEllipse().getHeight());
             AffineTransform at = new AffineTransform();
             AffineTransform old = g.getTransform();
             at.rotate(enemies.get(i).getAngle(), enemies.get(i).getX() + enemies.get(i).getImage().getWidth(null) / 2,
@@ -295,5 +296,19 @@ public class EnemySpawner {
         this.level = level;
     }
 
+    public void setArmoredEnemyCount(int armoredEnemyCount) {
+        this.armoredEnemyCount = armoredEnemyCount;
+    }
 
+    public void setBasicEnemyCount(int basicEnemyCount) {
+        this.basicEnemyCount = basicEnemyCount;
+    }
+
+    public void setEnemies(List<Enemy> enemies) {
+        this.enemies = enemies;
+    }
+
+    public void setEnemyCount(int enemyCount) {
+        this.enemyCount = enemyCount;
+    }
 }

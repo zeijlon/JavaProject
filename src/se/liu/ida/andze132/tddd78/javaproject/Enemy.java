@@ -1,6 +1,8 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
@@ -29,7 +31,7 @@ public class Enemy {
 
     private int[][] hasWalked = null;
 
-    private Rectangle enemyRect = null;
+    private Ellipse2D enemyEllipse = null;
 
 
     public Enemy(final EnemyType type) {
@@ -37,22 +39,31 @@ public class Enemy {
         decideEnemy(type);
     }
 
-    public void setEnemyRect(Rectangle enemyRect) {
-        this.enemyRect = enemyRect;
+    public Ellipse2D getEnemyEllipse() {
+        return enemyEllipse;
     }
 
-    public Rectangle getEnemyRect() {
-        return enemyRect;
+    public void setEnemyEllipse() {
+        switch (this.direction) {
+            case RIGHT:
+            case LEFT:
+                this.enemyEllipse = new Ellipse2D.Float(this.getX(), this.getY() + 10, GameComponent.TILE_SIZE, GameComponent.TILE_SIZE - 20);
+                break;
+            case DOWN:
+            case UP:
+                this.enemyEllipse = new Ellipse2D.Float(this.getX() + 10, this.getY(), GameComponent.TILE_SIZE-20, GameComponent.TILE_SIZE);
+                break;
+        }
     }
 
-    public void decideEnemy(EnemyType enemy){
-        switch(enemy){
+    public void decideEnemy(EnemyType enemy) {
+        switch (enemy) {
             case BASICENEMY:
                 hp = 100;
                 speed = 1;
                 goldgain = 1;
                 damage = 2;
-                image = (Toolkit.getDefaultToolkit().getImage("images/Isbjornen1.gif"));
+                image = (Toolkit.getDefaultToolkit().getImage("images/PolarBearNormal.gif"));
                 image = image.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
                 break;
             case ARMOREDENEMY:

@@ -33,45 +33,44 @@ public class GameComponent extends JComponent {
     public Dimension getPreferredSize() {
         super.getPreferredSize();
         int row = GRID.checkLargestRow(grid);
-        if(menu.isIfMenu()){
-            return new Dimension(819,460);
+        if (menu.isIfMenu()) {
+            return new Dimension(819, 460);
+        } else {
+            return new Dimension(row * TILE_SIZE + SHOP_SIZE_X, grid.getSquares().length * TILE_SIZE + INFO_BOX);
         }
-        else{
-        return new Dimension(row * TILE_SIZE + SHOP_SIZE_X, grid.getSquares().length * TILE_SIZE + INFO_BOX);
-    }}
+    }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
-        if(menu.isIfMenu()){
+        if (menu.isIfMenu()) {
             menu.draw(g2d);
+        } else {
+
+
+            grid.draw(g2d);
+            shop.draw(g2d);
+            spawner.draw(g2d);
+            towerHandler.draw(g2d);
+            bulletHandler.draw(g2d);
         }
-        else{
-
-
-
-        grid.draw(g2d);
-        shop.draw(g2d);
-        spawner.draw(g2d);
-        towerHandler.draw(g2d);
-        bulletHandler.draw(g2d);}
     }
 
 
-    class EscapeAction extends AbstractAction
-        {
-    	public void actionPerformed(ActionEvent e)
-        { menu.escape();
+    class EscapeAction extends AbstractAction {
+        public void actionPerformed(ActionEvent e) {
+            menu.escape();
         }
-        }
-       private void addKeyBindings() {
-       	InputMap inputMap = getInputMap(JComponent.WHEN_FOCUSED);
+    }
 
-       	Action exitGame = new EscapeAction();
-       	getActionMap().put("exitGame", exitGame);
-       	inputMap.put(KeyStroke.getKeyStroke("ESCAPE"), "exitGame");
-   }
+    private void addKeyBindings() {
+        InputMap inputMap = getInputMap(JComponent.WHEN_FOCUSED);
+
+        Action exitGame = new EscapeAction();
+        getActionMap().put("exitGame", exitGame);
+        inputMap.put(KeyStroke.getKeyStroke("ESCAPE"), "exitGame");
+    }
 
 
 }

@@ -95,4 +95,13 @@ public class GRID {
     public int getHeight() {
         return Height;
     }
+
+    public void setMapSize(int n)
+    {
+        squares = Maps.getMap(n);
+    }
+
+    public void setSquares(int[][] squares) {
+        this.squares = squares;
+    }
 }

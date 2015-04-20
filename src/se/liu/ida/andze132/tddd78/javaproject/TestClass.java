@@ -5,13 +5,8 @@ public final class TestClass {
     }
 
     public static void main(String[] args) {
-        GRID grid = new GRID(1);
-        Shop shop = new Shop(grid);
-        EnemySpawner spawner = new EnemySpawner(grid, shop);
-        BulletHandler bulletHandler = new BulletHandler(grid, spawner);
-        TowerHandler towerHandler = new TowerHandler(grid, shop, spawner, bulletHandler);
-        Menu menu = new Menu(grid,shop,spawner,towerHandler,bulletHandler);
-        final GameFrame frame = new GameFrame(grid, shop, spawner, towerHandler, bulletHandler, menu);
-        GameLoop gameloop = new GameLoop(shop,frame,spawner,towerHandler,bulletHandler,menu);
+
+        Menu menu = new Menu();
+
     }
 }
