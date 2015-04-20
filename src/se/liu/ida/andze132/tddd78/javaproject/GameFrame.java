@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 public class GameFrame extends JFrame {
     public static Point motionPoint = new Point();
     public static Point clickPoint = new Point();
+    public static Boolean mouseReleased = true;
 
     public GameFrame(GRID grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu) throws HeadlessException {
         super("DAWN OF THE POLAR BEARS");

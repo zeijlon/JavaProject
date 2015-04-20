@@ -2,6 +2,8 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Arc2D;
+import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,12 +70,13 @@ public class EnemySpawner {
 
         }
         if (shop.getHoldsItem() == null) {
+            if(GameFrame.clickPoint != null){
             if (nextRoundButton.contains(GameFrame.clickPoint)) {
                 if (betweenRounds) {
                     level++;
                     betweenRounds = false;
-                }
-                GameFrame.clickPoint = new Point();
+                }}
+                //GameFrame.clickPoint = new Point();
             }
         }
     }
@@ -96,7 +99,7 @@ public class EnemySpawner {
         }
         defineHasWalked(basic);
         decideDirection(basic);
-        defineEnemyRect(basic);
+        basic.setEnemyEllipse();
     }
     public void spawnArmoredEnemy() {
         Enemy armored = new ArmoredEnemy();
@@ -113,12 +116,9 @@ public class EnemySpawner {
         }
         defineHasWalked(armored);
         decideDirection(armored);
-        defineEnemyRect(armored);
+        armored.setEnemyEllipse();
     }
 
-    public void defineEnemyRect(Enemy enemy) {
-        enemy.setEnemyRect(new Rectangle(enemy.getX(), enemy.getY(), GameComponent.TILE_SIZE, GameComponent.TILE_SIZE));
-    }
 
     public void defineHasWalked(Enemy enemy) {
         int height = grid.getSquares().length;
@@ -156,7 +156,7 @@ public class EnemySpawner {
                 enemy.setAngle(0);
                 enemy.setY(enemy.getY() - enemy.getSpeed());
             }
-            defineEnemyRect(enemy);
+            enemy.setEnemyEllipse();
             enemy.setEnemyWalk(enemy.getEnemyWalk() + enemy.getSpeed());
 
 
@@ -241,11 +241,11 @@ public class EnemySpawner {
             int x = enemies.get(i).getxC();
             int y = enemies.get(i).getyC();
             if (enemies.get(i).getHp() <= 0) {
-                    shop.withdrawGold(enemies.get(i).getGoldgain());
+                    shop.setGold(shop.getGold() + enemies.get(i).getGoldgain());
                 enemies.remove(enemies.get(i));
                 }
                 else if (grid.getSquares()[y][x] == GRID.FINISH) {
-                    shop.setHealth(enemies.get(i).getDamage());
+                    shop.setHealth(shop.getHealth() - enemies.get(i).getDamage());
                     enemies.remove(enemies.get(i));
                 }
             }
@@ -255,16 +255,17 @@ public class EnemySpawner {
 
 
     public void draw(Graphics2D g) {
-        for (Enemy enemy : enemies) {
+        for (int i = enemies.size()-1; i >= 0 ; i--) {
+            g.drawOval((int) enemies.get(i).getEnemyEllipse().getX(), (int) enemies.get(i).getEnemyEllipse().getY(), (int) enemies.get(i).getEnemyEllipse().getWidth(), (int)enemies.get(i).getEnemyEllipse().getHeight());
             AffineTransform at = new AffineTransform();
             AffineTransform old = g.getTransform();
-            at.rotate(enemy.getAngle(), enemy.getX() + enemy.getImage().getWidth(null) / 2,
-                      enemy.getY() + enemy.getImage().getHeight(null) / 2);
+            at.rotate(enemies.get(i).getAngle(), enemies.get(i).getX() + enemies.get(i).getImage().getWidth(null) / 2,
+                    enemies.get(i).getY() + enemies.get(i).getImage().getHeight(null) / 2);
             g.transform(at);
-            g.drawImage(enemy.getImage(), enemy.getX(), enemy.getY(), null);
+            g.drawImage(enemies.get(i).getImage(), enemies.get(i).getX(), enemies.get(i).getY(), null);
             g.setTransform(old);
             g.setFont(new Font("courier new", Font.BOLD, 14));
-            g.drawString(String.valueOf(enemy.getHp()), enemy.getX(), enemy.getY());
+            g.drawString(String.valueOf(enemies.get(i).getHp()), enemies.get(i).getX(), enemies.get(i).getY());
         }
         g.setColor(Color.red);
         g.setFont(new Font("courier new", Font.BOLD, 20));
@@ -289,5 +290,10 @@ public class EnemySpawner {
     public List<Enemy> getEnemies() {
         return enemies;
     }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
 
 }

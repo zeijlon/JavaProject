@@ -38,41 +38,43 @@ public class Menu
 
 
     public void ifNewGame(){
+        if(GameFrame.clickPoint!=null){
         if (newGameButton.contains(GameFrame.clickPoint)){
+
             ifMenu = false;
             gameOn = true;
+//            shop.setHealth(1);
+           // shop.setGold(1000);
+          //  spawner.setLevel(0);
         }
-        else{
-            GameFrame.clickPoint = new Point();
-
-        }
-    }
+    }}
     public void ifQuitGame(){
+        if(GameFrame.clickPoint!=null){
         if (quitGameButton.contains(GameFrame.clickPoint)){
             int answer = JOptionPane.showConfirmDialog(null,"Are you sure you want to quit? ","Confirm",JOptionPane.YES_NO_OPTION);
                 if (answer == JOptionPane.YES_OPTION){
-                          System.exit(0);          }
-                else{
-                    GameFrame.clickPoint = new Point();
+                          System.exit(0);}
+            else{
+                    GameFrame.clickPoint = null;
                 }
-
-
         }
-    }
+    }}
     public void ifLevelSelect(){
+    if(GameFrame.clickPoint!=null){
+
            if (selectLevel.contains(GameFrame.clickPoint)){
 
            }
-       }
+       }}
     public void ifOptions(){
+        if(GameFrame.clickPoint!=null){
                if (optionsButton.contains(GameFrame.clickPoint)){
 
                }
-           }
+           }}
     public void escape(){
             ifMenu = true;
             gameOn = false;
-        GameFrame.clickPoint = new Point();
     }
 
 
@@ -83,7 +85,6 @@ public class Menu
         g2d.drawImage(levelSelect,400,225,null);
         g2d.drawImage(options,400,250,null);
         g2d.drawImage(quit, 400, 275,null);
-
     }
 
     public boolean isIfMenu() {

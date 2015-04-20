@@ -34,8 +34,8 @@ public class Shop {
     public Shop(GRID grid) {
         this.grid = grid;
 
-        this.gold = 10;
-        this.health = 100;
+        this.gold = 1000;
+        this.health = 1;
 
         this.holdsItem = null;
         defineShopButtons();
@@ -104,16 +104,11 @@ public class Shop {
         return health;
     }
 
-    public void setGold(final int cost) {
-        this.gold -= cost;
+    public void setGold(final int gold) {
+        this.gold = gold;
     }
-
-    public void withdrawGold(final int goldgain) {
-        this.gold += goldgain;
-    }
-
-    public void setHealth(final int damage) {
-        this.health -= damage;
+    public void setHealth(final int health) {
+        this.health = health;
     }
 
     public void setHoldsItem(final Towers holdsItem) {

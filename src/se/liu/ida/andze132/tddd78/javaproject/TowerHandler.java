@@ -2,6 +2,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -19,6 +20,7 @@ public class TowerHandler {
     private BulletHandler bulletHandler;
 
     private Towers buildTower = null;
+    private Rectangle upgradeTower = null;
 
     public TowerHandler(GRID grid, Shop shop, EnemySpawner spawner, BulletHandler bulletHandler) {
         this.grid = grid;
@@ -28,7 +30,8 @@ public class TowerHandler {
     }
 
     public void checkButtonClick() {
-        if (shop.getShopButtons()[0][0].contains(GameFrame.clickPoint) && shop.getShopButtons()[0][0].contains(GameFrame.motionPoint)) {
+        if(GameFrame.clickPoint != null){
+        if (shop.getShopButtons()[0][0].contains(GameFrame.clickPoint)) {
             Towers tower = new BasicTower();
             if (shop.getGold() >= tower.getCost()) {
                 shop.setHoldsItem(tower);
@@ -37,7 +40,7 @@ public class TowerHandler {
                 shop.setHoldsItem(null);
             }
         }
-        else if(shop.getShopButtons()[0][1].contains(GameFrame.clickPoint) && shop.getShopButtons()[0][1].contains(GameFrame.motionPoint)){
+        else if(shop.getShopButtons()[0][1].contains(GameFrame.clickPoint)){
             Towers tower = new ArmorpiercingTower();
             if (shop.getGold() >= tower.getCost()) {
                 shop.setHoldsItem(tower);
@@ -47,16 +50,17 @@ public class TowerHandler {
             }
         }
 
-        else if (shop.getShopButtons()[3][1].contains(GameFrame.clickPoint) && shop.getShopButtons()[3][1].contains(GameFrame.motionPoint)) {
+        else if (shop.getShopButtons()[3][1].contains(GameFrame.clickPoint)) {
             shop.setHoldsItem(null);
         }
 
         if(buildTower!=null){
         buildTower(buildTower);}
-    }
+    }}
 
 
     public void buildTower(Towers tower) {
+        if(GameFrame.clickPoint !=null){
             for (int i = 0; i < grid.getRectangles().length; i++) {
                 for (int j = 0; j < grid.getRectangles()[i].length; j++) {
                     if (grid.getRectangles()[i][j].contains(GameFrame.clickPoint)) {
@@ -65,9 +69,9 @@ public class TowerHandler {
                                 grid.getSquares()[i][j] = GRID.TOWER;
                                 tower.setX(j * GameComponent.TILE_SIZE);
                                 tower.setY(i * GameComponent.TILE_SIZE);
-                                tower.setRange(j * GameComponent.TILE_SIZE, i * GameComponent.TILE_SIZE);
+                                tower.setRange();
                                 tower.setRectangle(new Rectangle(tower.getX(), tower.getY(), tower.getImage().getWidth(null), tower.getImage().getHeight(null)));
-                                shop.setGold(tower.getCost());
+                                shop.setGold(shop.getGold() - tower.getCost());
                                 shop.setHoldsItem(null);
                                 buildTower = null;
                             }
@@ -75,19 +79,26 @@ public class TowerHandler {
                     }
                 }
 
-            }
+            }}
 
     public void checkTowerTargeted(){
         for (Towers tower : towers) {
+            if(GameFrame.clickPoint != null){
             if(tower.getRectangle().contains(GameFrame.clickPoint)){
                 tower.setTargeted(true);
+                upgradeTower = new Rectangle( 200, grid.getHeight() + 50, 100, 100);
             }
+            else if(upgradeTower.contains(GameFrame.clickPoint)){
+                if(tower.isTargeted()){
+                if(GameFrame.mouseReleased){
+                upgradeTower(tower);}
+            }}
             else{
                 tower.setTargeted(false);
             }
         }
 
-    }
+    }}
 
     public void towerPhysic() {
         for (Towers tower : towers) {
@@ -95,7 +106,7 @@ public class TowerHandler {
                 checkEnemyWithinReach(tower);
             } else {
                 tower.setAngle(Math.atan2(tower.getTargetEnemy().getY() - tower.getY(),
-                                          tower.getTargetEnemy().getX() - tower.getX()));
+                        tower.getTargetEnemy().getX() - tower.getX()));
                 double x = tower.getTargetEnemy().getX();
                 double y = tower.getTargetEnemy().getY();
                 double w = GameComponent.TILE_SIZE;
@@ -117,15 +128,26 @@ public class TowerHandler {
 
     public void checkEnemyWithinReach(Towers tower) {
         for (int i = spawner.getEnemies().size() - 1; i >= 0; i--) {
-            double x = spawner.getEnemies().get(i).getX();
-            double y = spawner.getEnemies().get(i).getY();
-            double w = GameComponent.TILE_SIZE;
-            double h = GameComponent.TILE_SIZE;
-            if (tower.getRange().intersects(x, y, w, h)) {
+            if (testIntersection(tower.getRange(), spawner.getEnemies().get(i).getEnemyEllipse())) {
                 tower.setShooting(true);
                 tower.setTargetEnemy(spawner.getEnemies().get(i));
             }
         }
+    }
+
+    public boolean testIntersection(Shape shapeA, Shape shapeB) {
+        Area areaA = new Area(shapeA);
+        areaA.intersect(new Area(shapeB));
+        return !areaA.isEmpty();
+    }
+
+    public void upgradeTower(Towers tower){
+        if(shop.getGold()>= 5){
+            tower.setRadius(tower.getRadius()+5);
+            tower.setRange();
+            shop.setGold(shop.getGold() - 5);
+        }
+        GameFrame.mouseReleased = false;
     }
 
     public void draw(Graphics2D g) {
@@ -140,6 +162,7 @@ public class TowerHandler {
             g.setTransform(old);
             if(tower.isTargeted()) {
                 g.drawOval(tower.getX() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getY() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getRadius(), tower.getRadius());
+                g.fillRect( 200, grid.getHeight() + 50, 100, 100);
             }
         }
         Double dX = GameFrame.motionPoint.getX();

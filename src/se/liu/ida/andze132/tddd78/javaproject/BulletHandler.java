@@ -54,14 +54,11 @@ public class BulletHandler {
             if (!grid.getGridSize().contains(bullets.get(i).getX(), bullets.get(i).getY())) {
                 bullets.remove(i);
             }
-
-        }
-        for (int i = 0; i < spawner.getEnemies().size(); i++) {
-            for (int j = 0; j < bullets.size(); j++) {
+        for (int j = 0; j < spawner.getEnemies().size(); j++) {
                 try{
-                if (spawner.getEnemies().get(i).getEnemyRect().intersects(bullets.get(j).getBulletRect())) {
-                    spawner.getEnemies().get(i).setHp(bullets.get(j).getDamage());
-                    bullets.remove(j);
+                if (spawner.getEnemies().get(j).getEnemyEllipse().intersects(bullets.get(i).getBulletRect())) {
+                    spawner.getEnemies().get(j).setHp(bullets.get(i).getDamage());
+                    bullets.remove(i);
                 }}catch (RuntimeException ignored){}
             }
         }
@@ -75,6 +72,7 @@ public class BulletHandler {
             Double y = bullets.get(i).getY();
             int yValue = y.intValue();
             g.drawImage(bullets.get(i).getImage(), xValue, yValue, null);
+            //g.drawRect((int)bullets.get(i).getBulletRect().getX(), (int)bullets.get(i).getBulletRect().getY(), (int)bullets.get(i).getBulletRect().getWidth(), (int)bullets.get(i).getBulletRect().getHeight());
         }
     }
 }

@@ -7,6 +7,8 @@ package se.liu.ida.andze132.tddd78.javaproject;
 import javafx.scene.shape.Circle;
 
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 public class Towers {
 
@@ -22,7 +24,7 @@ public class Towers {
 
     private Image image = null;
 
-    private Circle range = null;
+    private Ellipse2D range = null;
 
     private double angle;
 
@@ -47,8 +49,8 @@ public class Towers {
                     image = (Toolkit.getDefaultToolkit().getImage("images/basicTower60.png"));
                     cost = 5;
                     sell = 5;
-                    radius = 200;
-                    reloadTime = 100; //less is bettter
+                    radius = 400;
+                    reloadTime = 20; //less is bettter
                     reloadTick = reloadTime;
                     break;
                 case ARMORPIERCINGTOWER:
@@ -56,14 +58,23 @@ public class Towers {
                     cost = 10;
                     sell = 5;
                     radius = 400;
-                    reloadTime = 50; //less is bettter
+                    reloadTime = 100; //less is bettter
                     reloadTick = reloadTime;
                     break;
             }
         }
 
-    public void setRange(int x, int y) {
-        this.range = new Circle(x + GameComponent.TILE_SIZE / 2, y + GameComponent.TILE_SIZE / 2, radius / 2);
+    public void setRange() {
+        this.range = new Ellipse2D.Float(x - (this.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), y - (this.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), this.getRadius(), this.getRadius());
+
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
+    public void setReloadTime(int reloadTime) {
+        this.reloadTime = reloadTime;
     }
 
     public Image getImage() {
@@ -98,7 +109,7 @@ public class Towers {
         return reloadTime;
     }
 
-    public Circle getRange() {
+    public Ellipse2D getRange() {
         return range;
     }
 

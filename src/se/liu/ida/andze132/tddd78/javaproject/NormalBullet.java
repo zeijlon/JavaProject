@@ -8,7 +8,7 @@ import java.awt.*;
 public class NormalBullet extends Bullet {
     public static Image bullet = Toolkit.getDefaultToolkit().getImage("images/normalBullet.png");
 
-    public static int bulletSpeed = 5;
+    public static int bulletSpeed = 10;
     public static int damage = 10;
 
     public NormalBullet(int x, int y) {

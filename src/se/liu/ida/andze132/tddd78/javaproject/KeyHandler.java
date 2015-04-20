@@ -15,9 +15,16 @@ import java.awt.event.MouseEvent;
 public class KeyHandler extends MouseAdapter
 {
     @Override
-    public void mouseClicked(final MouseEvent e) {
-        super.mouseClicked(e);
+    public void mousePressed(final MouseEvent e) {
+        super.mousePressed(e);
         GameFrame.clickPoint = new Point(e.getX() - 8, e.getY() - 50);
+    }
+
+    @Override
+    public void mouseReleased(final MouseEvent e) {
+        super.mouseReleased(e);
+        GameFrame.clickPoint = null;
+        GameFrame.mouseReleased = true;
     }
 
     @Override
@@ -25,13 +32,6 @@ public class KeyHandler extends MouseAdapter
         super.mouseMoved(e);
         GameFrame.motionPoint = new Point(e.getX() - 8, e.getY() - 50);
     }
-    /*
-    @Override
-        public void pPressed(final KeyEvent e) {
 
-            super.pPressed(e);
-            GameFrame.
-        }
-*/
 
      }
