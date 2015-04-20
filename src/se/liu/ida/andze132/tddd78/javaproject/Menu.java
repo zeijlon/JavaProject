@@ -34,7 +34,7 @@ public class Menu
         drawlvlslct = false;
         ifGamePaused = false;
         mapSelected = 1;
-        this.grid =  new GRID(1);
+        this.grid =  new GRID(mapSelected);
         this.shop = new Shop(grid);
         this.spawner = new EnemySpawner(grid, shop);
         this.bulletHandler = new BulletHandler(grid, spawner);
@@ -60,9 +60,9 @@ public class Menu
     private Rectangle selectLevel = new Rectangle(400, 225, 150, 27);
     private Rectangle optionsButton = new Rectangle(400, 250, 150, 27);
     private Rectangle quitGameButton = new Rectangle(400, 275, 129, 25);
-    private Rectangle recmap1 = new Rectangle(550, 210, 75, 30);
-    private Rectangle recmap2 = new Rectangle(550, 235, 75, 30);
-    private Rectangle recmap3 = new Rectangle(550, 260, 75, 30);
+    private Rectangle recmap1 = new Rectangle(595, 200, 70, 35);
+    private Rectangle recmap2 = new Rectangle(595, 230, 70, 35);
+    private Rectangle recmap3 = new Rectangle(595, 260, 70, 35);
 
 
     public void ifMenuedit() {
@@ -84,14 +84,18 @@ public class Menu
 
             towerHandler.setTowers(new ArrayList<>());
             bulletHandler.setBullets(new ArrayList<>());
+            drawlvlslct = false;
         }
         else if (resumeGameButton.contains(GameFrame.clickPoint)) {
             ifMenu = false;
             gameOn = true;
             ifGamePaused = false;
+            drawlvlslct = false;
+
         }
 
         else if (quitGameButton.contains(GameFrame.clickPoint)) {
+            drawlvlslct = false;
             int answer = JOptionPane
                     .showConfirmDialog(null, "Are you sure you want to quit? ", "Confirm", JOptionPane.YES_NO_OPTION);
             if (answer == JOptionPane.YES_OPTION) {
@@ -107,6 +111,7 @@ public class Menu
         }
 
         else if (optionsButton.contains(GameFrame.clickPoint)) {
+            drawlvlslct = false;
 
         }
 
@@ -120,6 +125,9 @@ public class Menu
 
         else if (drawlvlslct && recmap3.contains(GameFrame.clickPoint)) {
             mapSelected = 3;
+        }
+
+            else{            drawlvlslct = false;
         }
     }}
 
@@ -138,17 +146,15 @@ public class Menu
         g2d.drawImage(options, 400, 250, null);
         g2d.drawImage(quit, 400, 275, null);
         if (drawlvlslct) {
-            g2d.drawImage(map1, 550, 210, null);
-            g2d.drawImage(map2, 550, 235, null);
-            g2d.drawImage(map3, 550, 260, null);
-            if(GameFrame.clickPoint != null){
-            if (recmap1.contains(GameFrame.clickPoint)) {
-                g2d.drawRect(550, 210, 75, 30);
-            } else if (recmap2.contains(GameFrame.clickPoint)) {
-                g2d.drawRect(550, 235, 75, 30);
-            } else if (recmap3.contains(GameFrame.clickPoint)) {
-                g2d.drawRect(550, 260, 75, 30);
-            }
+            g2d.drawImage(map1, 600, 200, null);
+            g2d.drawImage(map2, 600, 230, null);
+            g2d.drawImage(map3, 600, 260, null);
+            if (mapSelected == 1) {
+                g2d.drawRect(595, 195, 70, 35);
+            } else if (mapSelected == 2) {
+                g2d.drawRect(595, 225, 70, 35);
+            } else if (mapSelected == 3) {
+                g2d.drawRect(595, 255, 70, 35);
 
         }}
         if(ifGamePaused){
