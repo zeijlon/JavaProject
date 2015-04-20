@@ -4,11 +4,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
  * Created by Administratör on 2015-03-23.
  */
 
-import javafx.scene.input.KeyEvent;
-
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
