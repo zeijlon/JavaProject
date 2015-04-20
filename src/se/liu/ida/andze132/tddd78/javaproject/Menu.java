@@ -124,7 +124,7 @@ public class Menu
         }
 
         else if (drawlvlslct && recmap3.contains(GameFrame.clickPoint)) {
-            mapSelected = 3;
+            mapSelected = 4;
         }
 
             else{            drawlvlslct = false;
@@ -153,7 +153,7 @@ public class Menu
                 g2d.drawRect(595, 195, 70, 35);
             } else if (mapSelected == 2) {
                 g2d.drawRect(595, 225, 70, 35);
-            } else if (mapSelected == 3) {
+            } else if (mapSelected == 4) {
                 g2d.drawRect(595, 255, 70, 35);
 
         }}

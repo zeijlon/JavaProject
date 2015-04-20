@@ -6,6 +6,7 @@ import java.awt.geom.Arc2D;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
@@ -15,6 +16,7 @@ public class EnemySpawner {
     private Shop shop;
 
     private List<Enemy> enemies = new ArrayList<>();
+    private List<Start> starts = new ArrayList<>();
     private int spawnTime = 0;
     private int level = 0, enemiesSpawned;
     private int enemyCount = 1;
@@ -92,31 +94,42 @@ public class EnemySpawner {
         for (int y = 0; y < grid.getSquares().length; y++) {
             for (int x = 0; x < grid.getSquares()[y].length; x++) {
                 if (grid.getSquares()[y][x] == GRID.START) {
-                    basic.setyC(y);
-                    basic.setxC(x);
-                    basic.setY(y * GameComponent.TILE_SIZE);
-                    basic.setX(x * GameComponent.TILE_SIZE);
-                }
+                    Start start = new Start(x, y);
+                    starts.add(start);
+                                    }
             }
         }
+        Random random = new Random();
+        int n = starts.size();
+        int rnd = random.nextInt(n);
+        basic.setyC(starts.get(rnd).getY());
+        basic.setxC(starts.get(rnd).getX());
+        basic.setY(starts.get(rnd).getY() * GameComponent.TILE_SIZE);
+        basic.setX(starts.get(rnd).getX() * GameComponent.TILE_SIZE);
+
+
         defineHasWalked(basic);
         decideDirection(basic);
         basic.setEnemyEllipse();
     }
-
     public void spawnArmoredEnemy() {
         Enemy armored = new ArmoredEnemy();
         enemies.add(armored);
         for (int y = 0; y < grid.getSquares().length; y++) {
             for (int x = 0; x < grid.getSquares()[y].length; x++) {
                 if (grid.getSquares()[y][x] == GRID.START) {
-                    armored.setyC(y);
-                    armored.setxC(x);
-                    armored.setY(y * GameComponent.TILE_SIZE);
-                    armored.setX(x * GameComponent.TILE_SIZE);
+                    Start start = new Start(x, y);
+                    starts.add(start);
                 }
             }
         }
+        Random random = new Random();
+        int n = starts.size();
+        int rnd = random.nextInt(n);
+        armored.setyC(starts.get(rnd).getY());
+        armored.setxC(starts.get(rnd).getX());
+        armored.setY(starts.get(rnd).getY() * GameComponent.TILE_SIZE);
+        armored.setX(starts.get(rnd).getX() * GameComponent.TILE_SIZE);
         defineHasWalked(armored);
         decideDirection(armored);
         armored.setEnemyEllipse();
