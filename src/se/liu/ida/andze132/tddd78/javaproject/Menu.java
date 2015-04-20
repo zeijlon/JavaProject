@@ -44,8 +44,8 @@ public class Menu
     }
 
     private Image menuImage = (Toolkit.getDefaultToolkit().getImage("images/DawnofthePolarBears.png"));
+    private Image resumeGame = (Toolkit.getDefaultToolkit().getImage("images/ResumeGame.png"));
     private Image newGame = (Toolkit.getDefaultToolkit().getImage("images/NewGameT.png"));
-    private Image resumeGame = (Toolkit.getDefaultToolkit().getImage("images/resumeGame.png"));
     private Image quit = (Toolkit.getDefaultToolkit().getImage("images/QuitGame.png"));
     private Image levelSelect = (Toolkit.getDefaultToolkit().getImage("images/LevelSelect.png"));
     private Image options = (Toolkit.getDefaultToolkit().getImage("images/Options.png"));
@@ -97,9 +97,9 @@ public class Menu
             if (answer == JOptionPane.YES_OPTION) {
                 System.exit(0);
             }
-	    else{
-	                    GameFrame.clickPoint = null;
-	                }
+            else{
+                GameFrame.clickPoint = null;
+            }
         }
 
         else if (selectLevel.contains(GameFrame.clickPoint)) {
@@ -127,6 +127,7 @@ public class Menu
         ifMenu = true;
         gameOn = false;
         ifGamePaused = true;
+        frame.pack();
     }
 
     public void draw(Graphics g2d) {

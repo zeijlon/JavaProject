@@ -58,6 +58,7 @@ public class BulletHandler {
                 try {
                     if (spawner.getEnemies().get(j).getEnemyEllipse().intersects(bullets.get(i).getBulletRect())) {
                         spawner.getEnemies().get(j).setHp(bullets.get(i).getDamage());
+                        spawner.getEnemies().get(j).setHealthBarHp(bullets.get(i).getDamage());
                         bullets.remove(i);
                     }
                 } catch (RuntimeException ignored) {

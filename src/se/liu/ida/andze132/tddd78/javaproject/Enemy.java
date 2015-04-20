@@ -9,7 +9,9 @@ import java.awt.geom.Rectangle2D;
  */
 public class Enemy {
 
+    private double originalHp;
     private int hp;
+    private double healthBarHp = 60;
     private int speed;
     private int goldgain;
     private int damage;
@@ -35,7 +37,6 @@ public class Enemy {
 
 
     public Enemy(final EnemyType type) {
-
         decideEnemy(type);
     }
 
@@ -59,15 +60,17 @@ public class Enemy {
     public void decideEnemy(EnemyType enemy) {
         switch (enemy) {
             case BASICENEMY:
-                hp = 100;
+                originalHp = 100;
+                hp = (int)originalHp;
                 speed = 1;
                 goldgain = 1;
                 damage = 2;
                 image = (Toolkit.getDefaultToolkit().getImage("images/PolarBearNormal.gif"));
-                image = image.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+                //image = image.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
                 break;
             case ARMOREDENEMY:
-                hp = 200;
+                originalHp = 200;
+                hp = (int)originalHp;
                 speed = 2;
                 goldgain = 2;
                 damage = 5;
@@ -194,6 +197,15 @@ public class Enemy {
 
     public void setAngle(final double angle) {
         this.angle = angle;
+    }
+
+    public void setHealthBarHp(int damage) {
+        double x = damage/originalHp;
+        this.healthBarHp = healthBarHp - (60*x);
+    }
+
+    public double getHealthBarHp() {
+        return healthBarHp;
     }
 }
 

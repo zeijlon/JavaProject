@@ -6,8 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameFrame extends JFrame {
-    public static Point motionPoint = new Point();
-    public static Point clickPoint = new Point();
+    public static Point motionPoint = null;
+    public static Point clickPoint = null;
     public static Boolean mouseReleased = true;
 
     public GameFrame(GRID grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu) throws HeadlessException {
@@ -19,6 +19,7 @@ public class GameFrame extends JFrame {
         this.createMenus();
         this.pack();
         this.setVisible(true);
+        this.isResizable();
 
         this.addMouseListener(new KeyHandler());
         this.addMouseMotionListener(new KeyHandler());

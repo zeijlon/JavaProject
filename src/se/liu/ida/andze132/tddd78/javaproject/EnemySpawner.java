@@ -20,6 +20,7 @@ public class EnemySpawner {
     private int enemyCount = 1;
     private int basicEnemyCount = 1;
     private int armoredEnemyCount = 1;
+    private int healthBar = 60, healthSpace = 3, healthHeight = 6;
     // private int enemyCount = basicEnemyCount+=level*2+armoredEnemyCount;
 
 
@@ -254,10 +255,14 @@ public class EnemySpawner {
 
     }
 
+    public int transformHp(int health){
+        double hp = ((double) health / 100)*60;
+        return (int) hp;
+    }
 
     public void draw(Graphics2D g) {
         for (int i = enemies.size() - 1; i >= 0; i--) {
-            g.drawOval((int) enemies.get(i).getEnemyEllipse().getX(), (int) enemies.get(i).getEnemyEllipse().getY(), (int) enemies.get(i).getEnemyEllipse().getWidth(), (int) enemies.get(i).getEnemyEllipse().getHeight());
+            //g.drawOval((int) enemies.get(i).getEnemyEllipse().getX(), (int) enemies.get(i).getEnemyEllipse().getY(), (int) enemies.get(i).getEnemyEllipse().getWidth(), (int) enemies.get(i).getEnemyEllipse().getHeight());
             AffineTransform at = new AffineTransform();
             AffineTransform old = g.getTransform();
             at.rotate(enemies.get(i).getAngle(), enemies.get(i).getX() + enemies.get(i).getImage().getWidth(null) / 2,
@@ -265,8 +270,15 @@ public class EnemySpawner {
             g.transform(at);
             g.drawImage(enemies.get(i).getImage(), enemies.get(i).getX(), enemies.get(i).getY(), null);
             g.setTransform(old);
-            g.setFont(new Font("courier new", Font.BOLD, 14));
-            g.drawString(String.valueOf(enemies.get(i).getHp()), enemies.get(i).getX(), enemies.get(i).getY());
+
+            g.setColor(Color.red);
+            g.fillRect(enemies.get(i).getX(), enemies.get(i).getY() - (healthSpace + healthHeight), healthBar, healthHeight);
+
+            g.setColor(Color.green);
+            g.fillRect(enemies.get(i).getX(), enemies.get(i).getY() - (healthSpace + healthHeight),  (int)enemies.get(i).getHealthBarHp(), healthHeight);
+
+            g.setColor(Color.black);
+            g.drawRect(enemies.get(i).getX(), enemies.get(i).getY() - (healthSpace + healthHeight), healthBar-1, healthHeight-1);
         }
         g.setColor(Color.red);
         g.setFont(new Font("courier new", Font.BOLD, 20));
