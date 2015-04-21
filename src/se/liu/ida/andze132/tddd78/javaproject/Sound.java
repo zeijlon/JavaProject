@@ -7,31 +7,46 @@ import java.io.File;
 
 
 /**
- * Created by Administratör on 2015-04-21.
+ * Created by Administratï¿½r on 2015-04-21.
  */
 public class Sound
 {
     private static String beardeath = "sounds/beardeath.wav";
     private static String bossbeardeath = "sounds/bossbeardeath.wav";
     private static String mainTheme = "sounds/song.aiff";
+    public static boolean noMusic;
+    public static boolean noGameAudio;
 
-  public static synchronized void playSound(final String sound) {
+    public Sound() {
+	this.noMusic = false;
+	this.noGameAudio = false;
+    }
+
+    public static synchronized void playSound(final String sound) {
       new Thread(() -> {
 	try {
 	  Clip clip = AudioSystem.getClip();
 	    Clip clip2 = AudioSystem.getClip();
+	    if(noMusic){clip2.stop();}
+	    while(!noGameAudio){
+
+	    	    AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(sound));
+	    	    clip.open(inputStream);
+	    	  clip.start();
+	    	}
+	    while(!noMusic){
 	    if(sound == "sounds/song.aiff"){
 		String sound2 = sound;
 		AudioInputStream inputStream2 = AudioSystem.getAudioInputStream(new File(sound2));
 
 		clip2.open(inputStream2);
-		    while(Menu.ifMainSound){
+		clip2.start();
+		    while(Menu.ifMainSound && !noMusic){
 		    		clip2.loop(1);
 	    }}
-	    AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(sound));
-	    clip.open(inputStream);
-	  clip.start();
-	} catch (Exception e) {
+	    }
+
+	    } catch (Exception e) {
 	  System.err.println(e.getMessage());
 	}
       }).start();
