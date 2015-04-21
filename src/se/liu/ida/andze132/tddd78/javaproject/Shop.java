@@ -37,9 +37,6 @@ public class Shop {
         this.grid = grid;
         this.keyHandler = keyHandler;
 
-        this.gold = 1000;
-        this.health = 100;
-
         this.holdsItem = null;
         defineShopButtons();
         towerImages = new Image[][]{{basicTowerImage, armorPiercingTowerImage}, {basicTowerImage, basicTowerImage},

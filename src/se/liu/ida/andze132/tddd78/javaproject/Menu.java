@@ -10,8 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by Administrat�r on 2015-04-13.
  */
-public class Menu
-{
+public class Menu {
     private KeyHandler keyHandler;
     private GRID grid;
     private Shop shop;
@@ -32,7 +31,6 @@ public class Menu
     public static boolean ifMainSound;
 
 
-
     public Menu() {
         ifMenu = true;
         gameOn = false;
@@ -42,15 +40,15 @@ public class Menu
         ifNoBearSound = false;
         ifMainSound = false;
         mapSelected = 1;
-	drawoptions = false;
+        drawoptions = false;
         this.keyHandler = new KeyHandler();
-        this.grid =  new GRID(mapSelected);
+        this.grid = new GRID(mapSelected);
         this.shop = new Shop(grid, keyHandler);
         this.spawner = new EnemySpawner(grid, shop, keyHandler);
         this.bulletHandler = new BulletHandler(grid, spawner);
         this.towerHandler = new TowerHandler(grid, shop, spawner, bulletHandler, keyHandler);
         this.frame = new GameFrame(grid, shop, spawner, towerHandler, bulletHandler, this, keyHandler);
-        this.gameloop = new GameLoop(shop,frame,spawner,towerHandler,bulletHandler,this, keyHandler);
+        this.gameloop = new GameLoop(shop, frame, spawner, towerHandler, bulletHandler, this, keyHandler);
     }
 
     private Image menuImage = (Toolkit.getDefaultToolkit().getImage("images/DawnofthePolarBears.png"));
@@ -67,11 +65,8 @@ public class Menu
     private Image gameMusicOff = (Toolkit.getDefaultToolkit().getImage("images/gamemusicoff.png"));
 
 
-
-    
     private Rectangle gameAudiooff = new Rectangle(595, 230, 150, 30);
     private Rectangle gameMusicoff = new Rectangle(595, 260, 150, 30);
-    private Rectangle resumeGameButton = new Rectangle(360, 175, 150, 27);
     private Rectangle newGameButton = new Rectangle(360, 200, 150, 27);
     private Rectangle selectLevel = new Rectangle(360, 225, 150, 27);
     private Rectangle optionsButton = new Rectangle(360, 250, 150, 27);
@@ -80,106 +75,101 @@ public class Menu
     private Rectangle recmap2 = new Rectangle(545, 230, 70, 35);
     private Rectangle recmap3 = new Rectangle(545, 260, 70, 35);
     private Rectangle recmap4 = new Rectangle(545, 290, 70, 35);
+    private Rectangle resumeGameButton = new Rectangle();
 
 
 
     public void ifMenuedit() {
-        if(keyHandler.getClickPoint() != null){
-        if(newGameButton.contains(keyHandler.getClickPoint())){
-            ifMenu = false;
-            gameOn = true;
-            Sound.playMainTheme();
-            ifMainSound = true;
+        if (keyHandler.getClickPoint() != null) {
+            if (newGameButton.contains(keyHandler.getClickPoint())) {
+                ifMenu = false;
+                gameOn = true;
+
+                if(!Sound.noMusic){
+                Sound.playMainTheme();
+                ifMainSound = true;}
 
 
+                grid.setMapSize(mapSelected);
 
-            grid.setMapSize(mapSelected);
+                shop.setHealth(1);
+                shop.setGold(10);
+                spawner.setEnemies(new ArrayList<>());
+                spawner.setLevel(0);
+                spawner.setEnemyCount(1);
+                spawner.setBasicEnemyCount(1);
+                spawner.setArmoredEnemyCount(1);
 
-            shop.setHealth(1);
-            shop.setGold(10);
-            spawner.setEnemies(new ArrayList<>());
-            spawner.setLevel(0);
-            spawner.setEnemyCount(1);
-            spawner.setBasicEnemyCount(1);
-            spawner.setArmoredEnemyCount(1);
+                towerHandler.setTowers(new ArrayList<>());
+                bulletHandler.setBullets(new ArrayList<>());
+                drawlvlslct = false;
+                drawoptions = false;
 
-            towerHandler.setTowers(new ArrayList<>());
-            bulletHandler.setBullets(new ArrayList<>());
-            drawlvlslct = false;
-	    drawoptions = false;
-
-        }
-        else if (resumeGameButton.contains(keyHandler.getClickPoint())) {
-            ifMenu = false;
-            gameOn = true;
-            ifGamePaused = false;
-            drawlvlslct = false;
-	    drawoptions = false;
+            } else if (resumeGameButton.contains(keyHandler.getClickPoint())) {
+                ifMenu = false;
+                gameOn = true;
+                ifGamePaused = false;
+                drawlvlslct = false;
+                drawoptions = false;
 
 
-        }
+            } else if (quitGameButton.contains(keyHandler.getClickPoint())) {
+                drawlvlslct = false;
+                drawoptions = false;
 
-        else if (quitGameButton.contains(keyHandler.getClickPoint())) {
-            drawlvlslct = false;
-	    drawoptions = false;
+                int answer = JOptionPane
+                        .showConfirmDialog(null, "Are you sure you want to quit? ", "Confirm", JOptionPane.YES_NO_OPTION);
+                if (answer == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                } else {
+                    keyHandler.setClickPoint(null);
+                }
+            } else if (selectLevel.contains(keyHandler.getClickPoint())) {
+                drawlvlslct = true;
+                drawoptions = false;
 
-            int answer = JOptionPane
-                    .showConfirmDialog(null, "Are you sure you want to quit? ", "Confirm", JOptionPane.YES_NO_OPTION);
-            if (answer == JOptionPane.YES_OPTION) {
-                System.exit(0);
+            } else if (optionsButton.contains(keyHandler.getClickPoint())) {
+                drawlvlslct = false;
+                drawoptions = true;
+            } else if (drawoptions && gameAudiooff.contains(keyHandler.getClickPoint())) {
+                if (Sound.noGameAudio) {
+                    Sound.noGameAudio = false;
+                }
+                else if (!Sound.noGameAudio) {
+                    Sound.noGameAudio = true;
+                }
+            } else if (drawoptions && gameMusicoff.contains(keyHandler.getClickPoint())) {
+                if (Sound.noMusic) {
+                    Sound.noMusic = false;
+                }
+                else if (!Sound.noMusic) {
+                    Sound.noMusic = true;
+                }
+            } else if (drawlvlslct && recmap1.contains(keyHandler.getClickPoint())) {
+                mapSelected = 1;
+            } else if (drawlvlslct && recmap2.contains(keyHandler.getClickPoint())) {
+                mapSelected = 2;
+            } else if (drawlvlslct && recmap3.contains(keyHandler.getClickPoint())) {
+                mapSelected = 3;
+            } else if (drawlvlslct && recmap4.contains(keyHandler.getClickPoint())) {
+                mapSelected = 4;
+            } else {
+                drawlvlslct = false;
+                drawoptions = false;
+
             }
-            else{
-                keyHandler.setClickPoint(null);
-            }
         }
-
-        else if (selectLevel.contains(keyHandler.getClickPoint())) {
-            drawlvlslct = true;
-	    drawoptions = false;
-
-        }
-
-        else if (optionsButton.contains(keyHandler.getClickPoint())) {
-            drawlvlslct = false;
-	    drawoptions = true;
-        }
-	else if (drawoptions && gameAudiooff.contains(keyHandler.getClickPoint())) {
-	    if(Sound.noGameAudio = true){Sound.noGameAudio = false;}
-	    if(Sound.noGameAudio = false){Sound.noGameAudio = true;}
-	        }
-	else if (drawoptions && gameMusicoff.contains(keyHandler.getClickPoint())) {
-	    if(Sound.noMusic = true){Sound.noMusic = false;}
-	    if(Sound.noMusic = false){Sound.noMusic = true;}
-	        }
-
-
-        else if (drawlvlslct && recmap1.contains(keyHandler.getClickPoint())) {
-            mapSelected = 1;
-        }
-
-        else if (drawlvlslct && recmap2.contains(keyHandler.getClickPoint())) {
-            mapSelected = 2;
-        }
-
-        else if (drawlvlslct && recmap3.contains(keyHandler.getClickPoint())) {
-            mapSelected = 3;
-        }
-
-        else if (drawlvlslct && recmap4.contains(keyHandler.getClickPoint())) {
-            mapSelected = 4;
-        }
-
-            else{drawlvlslct = false;
-	    drawoptions = false;
-
-        }
-    }}
+        keyHandler.setClickPoint(null);
+    }
 
     public void escape() {
         ifMenu = true;
         gameOn = false;
         ifGamePaused = true;
         frame.pack();
+        resumeGameButton = new Rectangle(360, 175, 150, 27);
+
+
     }
 
     public void draw(Graphics g2d) {
@@ -204,34 +194,36 @@ public class Menu
                 g2d.drawRect(545, 225, 70, 35);
             } else if (mapSelected == 3) {
                 g2d.drawString("MEDIUM", 650, 350);
-                g2d.drawRect(545, 255, 70, 35);}
-            else if (mapSelected == 4) {
+                g2d.drawRect(545, 255, 70, 35);
+            } else if (mapSelected == 4) {
                 g2d.drawString("VERY HARD", 650, 350);
                 g2d.drawRect(545, 285, 70, 35);
-            } }
-	if(drawoptions){
-	    g2d.drawImage(gameAudioOff,595, 230,null);
-	    g2d.drawImage(gameMusicOff,595, 260,null);
-	    if(Sound.noGameAudio){
-		g2d.drawRect(595, 230,150,30);
-	    }
-	     if(Sound.noMusic){
-		g2d.drawRect(595, 260,150,30);
+            }
+        }
+        if (drawoptions) {
+            g2d.drawImage(gameAudioOff, 595, 230, null);
+            g2d.drawImage(gameMusicOff, 595, 260, null);
+            if (Sound.noGameAudio) {
+                g2d.drawRect(595, 230, 150, 30);
+            }
+            if (Sound.noMusic) {
+                g2d.drawRect(595, 260, 150, 30);
 
-	    }
-		}
-        if(ifGamePaused){
-            g2d.drawImage(resumeGame, 350,175,null);
+            }
+        }
+        if (ifGamePaused) {
+            g2d.drawImage(resumeGame, 350, 175, null);
         }
     }
 
-    public void drawGrid(Graphics g2d, int[][] squares){
-    for (int i = 0; i < squares.length; i++) {
-    for (int j = 0; j < squares[i].length; j++) {
-        ImageIcon squareType = new ImageIcon(grid.checkSquareType(squares[i][j]).getScaledInstance(12, 12, Image.SCALE_DEFAULT));
-        g2d.drawImage(squareType.getImage(), 650 + j * 12, 200 + i * 12, null);
-    }}
-}
+    public void drawGrid(Graphics g2d, int[][] squares) {
+        for (int i = 0; i < squares.length; i++) {
+            for (int j = 0; j < squares[i].length; j++) {
+                ImageIcon squareType = new ImageIcon(grid.checkSquareType(squares[i][j]).getScaledInstance(12, 12, Image.SCALE_DEFAULT));
+                g2d.drawImage(squareType.getImage(), 650 + j * 12, 200 + i * 12, null);
+            }
+        }
+    }
 
     public boolean isIfMenu() {
         return ifMenu;
