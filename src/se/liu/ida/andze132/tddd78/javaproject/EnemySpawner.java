@@ -259,9 +259,11 @@ public class EnemySpawner {
             if (enemies.get(i).getHp() <= 0) {
                 shop.setGold(shop.getGold() + enemies.get(i).getGoldgain());
                 enemies.remove(enemies.get(i));
+                Sound.playDyingBear();
             } else if (grid.getSquares()[y][x] == GRID.FINISH) {
                 shop.setHealth(shop.getHealth() - enemies.get(i).getDamage());
                 enemies.remove(enemies.get(i));
+                Sound.playDyingBear();
             }
         }
 

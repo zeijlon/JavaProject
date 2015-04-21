@@ -25,6 +25,8 @@ public class Menu
     private Maps map;
     private boolean ifGamePaused;
     private int mapSelected;
+    private boolean ifNoBearSound;
+    public static boolean ifMainSound;
 
 
 
@@ -34,6 +36,8 @@ public class Menu
         gameRunning = true;
         drawlvlslct = false;
         ifGamePaused = false;
+        ifNoBearSound = false;
+        ifMainSound = false;
         mapSelected = 1;
         this.keyHandler = new KeyHandler();
         this.grid =  new GRID(mapSelected);
@@ -72,6 +76,9 @@ public class Menu
         if(newGameButton.contains(keyHandler.getClickPoint())){
             ifMenu = false;
             gameOn = true;
+            Sound.playMainTheme();
+            ifMainSound = true;
+
 
 
             grid.setMapSize(mapSelected);
