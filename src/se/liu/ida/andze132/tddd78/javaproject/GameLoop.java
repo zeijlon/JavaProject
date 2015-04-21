@@ -2,7 +2,6 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 
 import javax.swing.*;
-import java.awt.*;
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
  */
@@ -10,6 +9,7 @@ public class GameLoop {
 
     private Shop shop;
     private JFrame frame;
+    private KeyHandler keyHandler;
     private EnemySpawner spawner;
     private TowerHandler towerHandler;
     private BulletHandler bulletHandler;
@@ -19,13 +19,14 @@ public class GameLoop {
     private int lastFpsTime, fps;
 
 
-    public GameLoop(Shop shop, JFrame frame, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu) {
+    public GameLoop(Shop shop, JFrame frame, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu, KeyHandler keyHandler) {
         this.shop = shop;
         this.frame = frame;
         this.spawner = spawner;
         this.towerHandler = towerHandler;
         this.bulletHandler = bulletHandler;
         this.menu = menu;
+        this.keyHandler = keyHandler;
 
         this.lastFpsTime = 0;
         this.fps = 0;
@@ -83,7 +84,7 @@ public class GameLoop {
             if (shop.getHealth() <= 0) {
                 menu.setGameOn(false);
                 menu.setIfMenu(true);
-		GameFrame.clickPoint = new Point();
+                keyHandler.setClickPoint(null);
             }
         } else if (menu.isIfMenu()) {
             menu.ifMenuedit();

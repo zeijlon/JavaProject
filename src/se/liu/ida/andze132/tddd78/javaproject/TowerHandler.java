@@ -18,20 +18,22 @@ public class TowerHandler {
     private Shop shop;
     private EnemySpawner spawner;
     private BulletHandler bulletHandler;
+    private KeyHandler keyHandler;
 
     private Towers buildTower = null;
     private Rectangle upgradeTower = null;
 
-    public TowerHandler(GRID grid, Shop shop, EnemySpawner spawner, BulletHandler bulletHandler) {
+    public TowerHandler(GRID grid, Shop shop, EnemySpawner spawner, BulletHandler bulletHandler, KeyHandler keyHandler) {
         this.grid = grid;
         this.shop = shop;
         this.spawner = spawner;
         this.bulletHandler = bulletHandler;
+        this.keyHandler = keyHandler;
     }
 
     public void checkButtonClick() {
-        if (GameFrame.clickPoint != null) {
-            if (shop.getShopButtons()[0][0].contains(GameFrame.clickPoint)) {
+        if (keyHandler.getClickPoint() != null) {
+            if (shop.getShopButtons()[0][0].contains(keyHandler.getClickPoint())) {
                 Towers tower = new BasicTower();
                 if (shop.getGold() >= tower.getCost()) {
                     shop.setHoldsItem(tower);
@@ -39,7 +41,7 @@ public class TowerHandler {
                 } else {
                     shop.setHoldsItem(null);
                 }
-            } else if (shop.getShopButtons()[0][1].contains(GameFrame.clickPoint)) {
+            } else if (shop.getShopButtons()[0][1].contains(keyHandler.getClickPoint())) {
                 Towers tower = new ArmorpiercingTower();
                 if (shop.getGold() >= tower.getCost()) {
                     shop.setHoldsItem(tower);
@@ -47,7 +49,7 @@ public class TowerHandler {
                 } else {
                     shop.setHoldsItem(null);
                 }
-            } else if (shop.getShopButtons()[3][1].contains(GameFrame.clickPoint)) {
+            } else if (shop.getShopButtons()[3][1].contains(keyHandler.getClickPoint())) {
                 shop.setHoldsItem(null);
             }
 
@@ -59,10 +61,11 @@ public class TowerHandler {
 
 
     public void buildTower(Towers tower) {
-        if (GameFrame.clickPoint != null) {
+        if (keyHandler.getClickPoint() != null) {
             for (int i = 0; i < grid.getRectangles().length; i++) {
                 for (int j = 0; j < grid.getRectangles()[i].length; j++) {
-                    if (grid.getRectangles()[i][j].contains(GameFrame.clickPoint)) {
+                    if(keyHandler.getClickPoint() != null){
+                    if (grid.getRectangles()[i][j].contains(keyHandler.getClickPoint())) {
                         if (grid.getSquares()[i][j] == GRID.GRASS) {
                             towers.add(tower);
                             grid.getSquares()[i][j] = GRID.TOWER;
@@ -73,7 +76,7 @@ public class TowerHandler {
                             shop.setGold(shop.getGold() - tower.getCost());
                             shop.setHoldsItem(null);
                             buildTower = null;
-                        }
+                        }}
                     }
                 }
             }
@@ -83,13 +86,13 @@ public class TowerHandler {
 
     public void checkTowerTargeted() {
         for (Towers tower : towers) {
-            if (GameFrame.clickPoint != null) {
-                if (tower.getRectangle().contains(GameFrame.clickPoint)) {
+            if (keyHandler.getClickPoint() != null) {
+                if (tower.getRectangle().contains(keyHandler.getClickPoint())) {
                     tower.setTargeted(true);
                     upgradeTower = new Rectangle(200, grid.getHeight() + 50, 100, 100);
-                } else if (upgradeTower.contains(GameFrame.clickPoint)) {
+                } else if (upgradeTower.contains(keyHandler.getClickPoint())) {
                     if (tower.isTargeted()) {
-                        if (GameFrame.mouseReleased) {
+                        if (keyHandler.getMouseReleased()) {
                             upgradeTower(tower);
                         }
                     }
@@ -148,7 +151,7 @@ public class TowerHandler {
             tower.setRange();
             shop.setGold(shop.getGold() - 5);
         }
-        GameFrame.mouseReleased = false;
+        keyHandler.setMouseReleased(false);
     }
 
     public void draw(Graphics2D g) {
@@ -166,8 +169,8 @@ public class TowerHandler {
                 g.fillRect(200, grid.getHeight() + 50, 100, 100);
             }
         }
-        Double dX = GameFrame.motionPoint.getX();
-        Double dY = GameFrame.motionPoint.getY();
+        Double dX = keyHandler.getMotionPoint().getX();
+        Double dY = keyHandler.getMotionPoint().getY();
         int x = dX.intValue();
         int y = dY.intValue();
         if (shop.getHoldsItem() != null) {

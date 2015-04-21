@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 public class Menu
 {
+    private KeyHandler keyHandler;
     private GRID grid;
     private Shop shop;
     private EnemySpawner spawner;
@@ -34,13 +35,14 @@ public class Menu
         drawlvlslct = false;
         ifGamePaused = false;
         mapSelected = 1;
+        this.keyHandler = new KeyHandler();
         this.grid =  new GRID(mapSelected);
-        this.shop = new Shop(grid);
-        this.spawner = new EnemySpawner(grid, shop);
+        this.shop = new Shop(grid, keyHandler);
+        this.spawner = new EnemySpawner(grid, shop, keyHandler);
         this.bulletHandler = new BulletHandler(grid, spawner);
-        this.towerHandler = new TowerHandler(grid, shop, spawner, bulletHandler);
-        this.frame = new GameFrame(grid, shop, spawner, towerHandler, bulletHandler, this);
-        this.gameloop = new GameLoop(shop,frame,spawner,towerHandler,bulletHandler,this);
+        this.towerHandler = new TowerHandler(grid, shop, spawner, bulletHandler, keyHandler);
+        this.frame = new GameFrame(grid, shop, spawner, towerHandler, bulletHandler, this, keyHandler);
+        this.gameloop = new GameLoop(shop,frame,spawner,towerHandler,bulletHandler,this, keyHandler);
     }
 
     private Image menuImage = (Toolkit.getDefaultToolkit().getImage("images/DawnofthePolarBears.png"));
@@ -49,9 +51,9 @@ public class Menu
     private Image quit = (Toolkit.getDefaultToolkit().getImage("images/QuitGame.png"));
     private Image levelSelect = (Toolkit.getDefaultToolkit().getImage("images/LevelSelect.png"));
     private Image options = (Toolkit.getDefaultToolkit().getImage("images/Options.png"));
-    private Image map1 = (Toolkit.getDefaultToolkit().getImage("images/map1.png"));
-    private Image map2 = (Toolkit.getDefaultToolkit().getImage("images/map2.png"));
-    private Image map3 = (Toolkit.getDefaultToolkit().getImage("images/map3.png"));
+    private Image map1 = (Toolkit.getDefaultToolkit().getImage("images/Map1.png"));
+    private Image map2 = (Toolkit.getDefaultToolkit().getImage("images/Map2.png"));
+    private Image map3 = (Toolkit.getDefaultToolkit().getImage("images/Map3.png"));
 
 
 
@@ -66,8 +68,8 @@ public class Menu
 
 
     public void ifMenuedit() {
-        if(GameFrame.clickPoint != null){
-        if(newGameButton.contains(GameFrame.clickPoint)){
+        if(keyHandler.getClickPoint() != null){
+        if(newGameButton.contains(keyHandler.getClickPoint())){
             ifMenu = false;
             gameOn = true;
 
@@ -86,7 +88,7 @@ public class Menu
             bulletHandler.setBullets(new ArrayList<>());
             drawlvlslct = false;
         }
-        else if (resumeGameButton.contains(GameFrame.clickPoint)) {
+        else if (resumeGameButton.contains(keyHandler.getClickPoint())) {
             ifMenu = false;
             gameOn = true;
             ifGamePaused = false;
@@ -94,7 +96,7 @@ public class Menu
 
         }
 
-        else if (quitGameButton.contains(GameFrame.clickPoint)) {
+        else if (quitGameButton.contains(keyHandler.getClickPoint())) {
             drawlvlslct = false;
             int answer = JOptionPane
                     .showConfirmDialog(null, "Are you sure you want to quit? ", "Confirm", JOptionPane.YES_NO_OPTION);
@@ -102,28 +104,28 @@ public class Menu
                 System.exit(0);
             }
             else{
-                GameFrame.clickPoint = null;
+                keyHandler.setClickPoint(null);
             }
         }
 
-        else if (selectLevel.contains(GameFrame.clickPoint)) {
+        else if (selectLevel.contains(keyHandler.getClickPoint())) {
             drawlvlslct = true;
         }
 
-        else if (optionsButton.contains(GameFrame.clickPoint)) {
+        else if (optionsButton.contains(keyHandler.getClickPoint())) {
             drawlvlslct = false;
 
         }
 
-        else if (drawlvlslct && recmap1.contains(GameFrame.clickPoint)) {
+        else if (drawlvlslct && recmap1.contains(keyHandler.getClickPoint())) {
             mapSelected = 1;
         }
 
-        else if (drawlvlslct && recmap2.contains(GameFrame.clickPoint)) {
+        else if (drawlvlslct && recmap2.contains(keyHandler.getClickPoint())) {
             mapSelected = 2;
         }
 
-        else if (drawlvlslct && recmap3.contains(GameFrame.clickPoint)) {
+        else if (drawlvlslct && recmap3.contains(keyHandler.getClickPoint())) {
             mapSelected = 4;
         }
 

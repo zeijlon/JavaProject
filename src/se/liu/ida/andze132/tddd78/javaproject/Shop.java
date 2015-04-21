@@ -27,11 +27,13 @@ public class Shop {
     private Towers holdsItem;
 
     private GRID grid;
+    private KeyHandler keyHandler;
 
     public final static int SHOP_MARGIN = 25;
 
-    public Shop(GRID grid) {
+    public Shop(GRID grid, KeyHandler keyHandler) {
         this.grid = grid;
+        this.keyHandler = keyHandler;
 
         this.gold = 1000;
         this.health = 1;
@@ -61,7 +63,7 @@ public class Shop {
         for (int y = 0; y < shopButtons.length; y++) {
             for (int x = 0; x < shopButtons[y].length; x++) {
 
-                if (shopButtons[y][x].contains(GameFrame.motionPoint)) {
+                if (shopButtons[y][x].contains(keyHandler.getMotionPoint())) {
                     g.drawImage(buttonFocus, grid.getWidth() + SHOP_MARGIN + (x * 70), y * (SHOPBUTTON_SIZE + 20) + 75, null);
 
                 } else {

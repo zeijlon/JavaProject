@@ -2,8 +2,6 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Arc2D;
-import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,6 +12,7 @@ import java.util.Random;
 public class EnemySpawner {
     private GRID grid;
     private Shop shop;
+    private KeyHandler keyHandler;
 
     private List<Enemy> enemies = new ArrayList<>();
     private List<Start> starts = new ArrayList<>();
@@ -31,11 +30,12 @@ public class EnemySpawner {
     private Rectangle nextRoundButton;
 
 
-    public EnemySpawner(GRID grid, Shop shop) {
+    public EnemySpawner(GRID grid, Shop shop, KeyHandler keyHandler) {
         this.grid = grid;
         this.shop = shop;
         this.enemiesSpawned = 0;
         this.betweenRounds = true;
+        this.keyHandler = keyHandler;
 
         this.nextRoundButton = new Rectangle(grid.getWidth() + Shop.SHOP_MARGIN, grid.getHeight() + Shop.SHOP_MARGIN, 50, 50);
     }
@@ -72,8 +72,8 @@ public class EnemySpawner {
 
         }
         if (shop.getHoldsItem() == null) {
-            if (GameFrame.clickPoint != null) {
-                if (nextRoundButton.contains(GameFrame.clickPoint)) {
+            if (keyHandler.getClickPoint() != null) {
+                if (nextRoundButton.contains(keyHandler.getClickPoint())) {
                     if (betweenRounds) {
                         level++;
                         betweenRounds = false;

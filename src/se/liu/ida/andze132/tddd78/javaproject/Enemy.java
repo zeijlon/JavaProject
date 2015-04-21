@@ -2,7 +2,6 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
 
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
@@ -48,11 +47,12 @@ public class Enemy {
         switch (this.direction) {
             case RIGHT:
             case LEFT:
-                this.enemyEllipse = new Ellipse2D.Float(this.getX(), this.getY() + 10, GameComponent.TILE_SIZE, GameComponent.TILE_SIZE - 20);
+                this.enemyEllipse = new Ellipse2D.Float(x, y + 10, GameComponent.TILE_SIZE, GameComponent.TILE_SIZE - 20);
                 break;
+            case STILL:
             case DOWN:
             case UP:
-                this.enemyEllipse = new Ellipse2D.Float(this.getX() + 10, this.getY(), GameComponent.TILE_SIZE-20, GameComponent.TILE_SIZE);
+                this.enemyEllipse = new Ellipse2D.Float(x + 10, y, GameComponent.TILE_SIZE-20, GameComponent.TILE_SIZE);
                 break;
         }
     }

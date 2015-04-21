@@ -9,24 +9,50 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class KeyHandler extends MouseAdapter {
+    private Point motionPoint = null;
+    private Point clickPoint = null;
+    private Boolean mouseReleased = true;
+
     @Override
     public void mousePressed(final MouseEvent e) {
         super.mousePressed(e);
-        GameFrame.clickPoint = new Point(e.getX() - 8, e.getY() - 50);
+        clickPoint = new Point(e.getX() - 8, e.getY() - 50);
     }
 
     @Override
     public void mouseReleased(final MouseEvent e) {
         super.mouseReleased(e);
-        GameFrame.clickPoint = null;
-        GameFrame.mouseReleased = true;
+        clickPoint = null;
+        mouseReleased = true;
     }
 
     @Override
     public void mouseMoved(final MouseEvent e) {
         super.mouseMoved(e);
-        GameFrame.motionPoint = new Point(e.getX() - 8, e.getY() - 50);
+        motionPoint = new Point(e.getX() - 8, e.getY() - 50);
     }
 
+    public Point getMotionPoint() {
+        return motionPoint;
+    }
 
+    public void setMotionPoint(final Point motionPoint) {
+        this.motionPoint = motionPoint;
+    }
+
+    public Point getClickPoint() {
+        return clickPoint;
+    }
+
+    public void setClickPoint(final Point clickPoint) {
+        this.clickPoint = clickPoint;
+    }
+
+    public Boolean getMouseReleased() {
+        return mouseReleased;
+    }
+
+    public void setMouseReleased(final Boolean mouseReleased) {
+        this.mouseReleased = mouseReleased;
+    }
 }
