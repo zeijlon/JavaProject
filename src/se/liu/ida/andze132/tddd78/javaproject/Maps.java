@@ -2,8 +2,6 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 public final class Maps {
 
-    public static int[][][] maps = new int[][][]{map1(), map2(), map3(), map4()};
-
     private Maps() {
     }
 

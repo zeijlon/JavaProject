@@ -101,7 +101,9 @@ public class GRID {
         squares = Maps.getMap(n);
     }
 
-    public void setSquares(int[][] squares) {
-        this.squares = squares;
-    }
+// --Commented out by Inspection START (2015-04-21 23:57):
+//    public void setSquares(int[][] squares) {
+//        this.squares = squares;
+//    }
+// --Commented out by Inspection STOP (2015-04-21 23:57)
 }

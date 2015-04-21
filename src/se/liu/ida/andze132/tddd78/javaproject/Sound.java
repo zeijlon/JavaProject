@@ -1,64 +1,86 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import javax.sound.sampled.*;
 import java.io.File;
+import java.io.IOException;
+import java.util.Objects;
 
 
 /**
  * Created by Administrat�r on 2015-04-21.
  */
-public class Sound
+public final class Sound
 {
-    private static String beardeath = "sounds/beardeath.wav";
-    private static String bossbeardeath = "sounds/bossbeardeath.wav";
-    private static String mainTheme = "sounds/song.aiff";
-    public static boolean noMusic;
-    public static boolean noGameAudio;
+	private static String bossbeardeath = "sounds/bossbeardeath.wav";
+	private static boolean noMusic = false;
+    private static boolean noGameAudio = false;
+	private static boolean ifMainSound = false;
 
-    public Sound() {
-	this.noMusic = false;
-	this.noGameAudio = false;
-    }
+	private Sound() {
+	}
 
-    public static synchronized void playSound(final String sound) {
+
+	public static void playSound(final String sound) {
       new Thread(() -> {
-	try {
-	  Clip clip = AudioSystem.getClip();
-	    Clip clip2 = AudioSystem.getClip();
-	    if(noMusic){clip2.stop();}
-	    while(!noGameAudio){
+	try(Clip clip = AudioSystem.getClip();
+		Clip clip2 = AudioSystem.getClip()){
+		if(noMusic){clip2.stop();}
+		if(!noGameAudio){
 
 	    	    AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(sound));
 	    	    clip.open(inputStream);
 	    	  clip.start();
 	    	}
-	    while(!noMusic){
-	    if(sound == "sounds/song.aiff"){
-		String sound2 = sound;
-		AudioInputStream inputStream2 = AudioSystem.getAudioInputStream(new File(sound2));
+		if(!noMusic){
+	    if(Objects.equals(sound, "sounds/song.aiff")){
+			AudioInputStream inputStream2 = AudioSystem.getAudioInputStream(new File(sound));
 
 		clip2.open(inputStream2);
 		clip2.start();
-		    while(Menu.ifMainSound && !noMusic){
+			while(ifMainSound && !noMusic){
 		    		clip2.loop(1);
 	    }}
 	    }
 
-	    } catch (Exception e) {
-	  System.err.println(e.getMessage());
+	    } catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
+		e.printStackTrace();
 	}
-      }).start();
+		  catch(IllegalStateException ignored){}
+	  }).start();
     }
   public static void playDyingBear(){
-      playSound(beardeath);
+	  String beardeath = "sounds/beardeath.wav";
+	  playSound(beardeath);
   }
     public static void playDyingBossBear(){
         playSound("sounds/bossbeardeath.wav");
     }
     public static void playMainTheme(){
-	playSound(mainTheme);
+		String mainTheme = "sounds/song.aiff";
+		playSound(mainTheme);
     }
 
+	public static boolean isNoMusic() {
+		return noMusic;
+	}
+
+	public static void setNoMusic(boolean noMusic) {
+		Sound.noMusic = noMusic;
+	}
+
+	public static boolean isNoGameAudio() {
+		return noGameAudio;
+	}
+
+	public static void setNoGameAudio(boolean noGameAudio) {
+		Sound.noGameAudio = noGameAudio;
+	}
+
+	public static boolean isIfMainSound() {
+		return ifMainSound;
+	}
+
+	public static void setIfMainSound(boolean ifMainSound) {
+		Sound.ifMainSound = ifMainSound;
+	}
 }

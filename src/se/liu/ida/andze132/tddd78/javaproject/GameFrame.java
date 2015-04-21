@@ -37,10 +37,10 @@ public class GameFrame extends JFrame {
         JMenuItem exit = new JMenuItem("exit", 'E');
         exit.addActionListener(new ExitListener());
         menu.add(exit);
-        final JMenuBar bar = new JMenuBar();
-        bar.add(menu);
-        bar.add(Box.createHorizontalGlue());
-        this.setJMenuBar(bar);
+        final JMenuBar menuBar = new JMenuBar();
+        menuBar.add(menu);
+        menuBar.add(Box.createHorizontalGlue());
+        this.setJMenuBar(menuBar);
         this.setVisible(true);
     }
 

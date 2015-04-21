@@ -1,9 +1,7 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 
@@ -18,17 +16,13 @@ public class Menu {
     private TowerHandler towerHandler;
     private BulletHandler bulletHandler;
     private JFrame frame;
-    private GameLoop gameloop;
     private boolean ifMenu;
     private boolean gameOn;
     private boolean gameRunning;
     private boolean drawlvlslct;
     private boolean drawoptions;
-    private Maps map;
     private boolean ifGamePaused;
     private int mapSelected;
-    private boolean ifNoBearSound;
-    public static boolean ifMainSound;
 
 
     public Menu() {
@@ -37,8 +31,7 @@ public class Menu {
         gameRunning = true;
         drawlvlslct = false;
         ifGamePaused = false;
-        ifNoBearSound = false;
-        ifMainSound = false;
+        //boolean ifNoBearSound = false;
         mapSelected = 1;
         drawoptions = false;
         this.keyHandler = new KeyHandler();
@@ -48,7 +41,7 @@ public class Menu {
         this.bulletHandler = new BulletHandler(grid, spawner);
         this.towerHandler = new TowerHandler(grid, shop, spawner, bulletHandler, keyHandler);
         this.frame = new GameFrame(grid, shop, spawner, towerHandler, bulletHandler, this, keyHandler);
-        this.gameloop = new GameLoop(shop, frame, spawner, towerHandler, bulletHandler, this, keyHandler);
+        GameLoop gameloop = new GameLoop(shop, frame, spawner, towerHandler, bulletHandler, this, keyHandler);
     }
 
     private Image menuImage = (Toolkit.getDefaultToolkit().getImage("images/DawnofthePolarBears.png"));
@@ -85,9 +78,9 @@ public class Menu {
                 ifMenu = false;
                 gameOn = true;
 
-                if(!Sound.noMusic){
+                if(!Sound.isNoMusic()){
                 Sound.playMainTheme();
-                ifMainSound = true;}
+                Sound.setIfMainSound(true);}
 
 
                 grid.setMapSize(mapSelected);
@@ -132,18 +125,18 @@ public class Menu {
                 drawlvlslct = false;
                 drawoptions = true;
             } else if (drawoptions && gameAudiooff.contains(keyHandler.getClickPoint())) {
-                if (Sound.noGameAudio) {
-                    Sound.noGameAudio = false;
+                if (Sound.isNoGameAudio()) {
+                    Sound.setNoGameAudio(false);
                 }
-                else if (!Sound.noGameAudio) {
-                    Sound.noGameAudio = true;
+                else if (!Sound.isNoGameAudio()) {
+                    Sound.setNoGameAudio(true);
                 }
             } else if (drawoptions && gameMusicoff.contains(keyHandler.getClickPoint())) {
-                if (Sound.noMusic) {
-                    Sound.noMusic = false;
+                if (Sound.isNoMusic()) {
+                    Sound.setNoMusic(false);
                 }
-                else if (!Sound.noMusic) {
-                    Sound.noMusic = true;
+                else if (!Sound.isNoMusic()) {
+                    Sound.setNoMusic(true);
                 }
             } else if (drawlvlslct && recmap1.contains(keyHandler.getClickPoint())) {
                 mapSelected = 1;
@@ -203,10 +196,10 @@ public class Menu {
         if (drawoptions) {
             g2d.drawImage(gameAudioOff, 595, 230, null);
             g2d.drawImage(gameMusicOff, 595, 260, null);
-            if (Sound.noGameAudio) {
+            if (Sound.isNoGameAudio()) {
                 g2d.drawRect(595, 230, 150, 30);
             }
-            if (Sound.noMusic) {
+            if (Sound.isNoMusic()) {
                 g2d.drawRect(595, 260, 150, 30);
 
             }
@@ -233,24 +226,12 @@ public class Menu {
         this.ifMenu = ifMenu;
     }
 
-    public Image getnewGame() {
-        return newGame;
-    }
-
-    public Image getMenuImage() {
-        return menuImage;
-    }
-
     public boolean isGameOn() {
         return gameOn;
     }
 
     public boolean isGameRunning() {
         return gameRunning;
-    }
-
-    public void setGrid(final GRID grid) {
-        this.grid = grid;
     }
 
     public void setGameOn(final boolean gameOn) {

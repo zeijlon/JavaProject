@@ -9,9 +9,12 @@ import java.util.List;
  */
 public class BulletHandler {
 
+    public static final int RECT_SIZE = 20;
     private GRID grid;
     private EnemySpawner spawner;
     private List<Bullet> bullets = new ArrayList<>();
+
+
 
     public BulletHandler(GRID grid, EnemySpawner spawner) {
         this.grid = grid;
@@ -24,13 +27,13 @@ public class BulletHandler {
         int xValue = x.intValue();
         Double y = bullet.getY();
         int yValue = y.intValue();
-        bullet.setBulletRect(new Rectangle(xValue, yValue, 20, 20));
+        bullet.setBulletRect(new Rectangle(xValue, yValue, RECT_SIZE, RECT_SIZE));
     }
 
     public void shootEnemy(Enemy enemy, Towers tower) {
         //Random random = new Random(); + Math.toRadians(random.nextInt(360))
         Bullet bullet = decideBullet(tower);
-        bullet.setAngle(Math.toDegrees(Math.atan2(enemy.getY() + 20 - bullet.getY(), enemy.getX() + 20 - bullet.getX())));
+        bullet.setAngle(Math.toDegrees(Math.atan2(enemy.getY() + RECT_SIZE - bullet.getY(), enemy.getX() + RECT_SIZE - bullet.getX())));
         bullets.add(bullet);
     }
 
@@ -38,9 +41,9 @@ public class BulletHandler {
         TowerType type = tower.getType();
         switch (type) {
             case BASICTOWER:
-                return new NormalBullet(tower.getX() + 20, tower.getY() + 20);
+                return new NormalBullet(tower.getX() + RECT_SIZE, tower.getY() + RECT_SIZE);
             case ARMORPIERCINGTOWER:
-                return new FMJBullet(tower.getX() + 20, tower.getY() + 20);
+                return new FMJBullet(tower.getX() + RECT_SIZE, tower.getY() + RECT_SIZE);
             default:
                 return null;
         }
@@ -57,7 +60,7 @@ public class BulletHandler {
             for (int j = 0; j < spawner.getEnemies().size(); j++) {
                 try {
                     if (spawner.getEnemies().get(j).getEnemyEllipse().intersects(bullets.get(i).getBulletRect())) {
-                        spawner.getEnemies().get(j).setHp(bullets.get(i).getDamage());
+                        spawner.getEnemies().get(j).setHp(-bullets.get(i).getDamage());
                         spawner.getEnemies().get(j).setHealthBarHp(bullets.get(i).getDamage());
                         bullets.remove(i);
                     }

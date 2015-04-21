@@ -9,14 +9,16 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class KeyHandler extends MouseAdapter {
+    private static final int MENU_HEIGHT = 50;
     private Point motionPoint = null;
     private Point clickPoint = null;
     private Boolean mouseReleased = true;
 
+
     @Override
     public void mousePressed(final MouseEvent e) {
         super.mousePressed(e);
-        clickPoint = new Point(e.getX() - 8, e.getY() - 50);
+        clickPoint = new Point(e.getX() - 8, e.getY() - MENU_HEIGHT);
     }
 
     @Override
@@ -29,15 +31,11 @@ public class KeyHandler extends MouseAdapter {
     @Override
     public void mouseMoved(final MouseEvent e) {
         super.mouseMoved(e);
-        motionPoint = new Point(e.getX() - 8, e.getY() - 50);
+        motionPoint = new Point(e.getX() - 8, e.getY() - MENU_HEIGHT);
     }
 
     public Point getMotionPoint() {
         return motionPoint;
-    }
-
-    public void setMotionPoint(final Point motionPoint) {
-        this.motionPoint = motionPoint;
     }
 
     public Point getClickPoint() {

@@ -7,6 +7,8 @@ import javax.swing.*;
  */
 public class GameLoop {
 
+    private static final int ONE_BILLION = 1000000000;
+    private static final int ONE_MILLION = 1000000;
     private Shop shop;
     private JFrame frame;
     private KeyHandler keyHandler;
@@ -14,9 +16,9 @@ public class GameLoop {
     private TowerHandler towerHandler;
     private BulletHandler bulletHandler;
     private Menu menu;
-    private int targetFPS;
+    private long targetFPS;
     private long optimalTime;
-
+    private long lastLoopTime;
 
     private int lastFpsTime, fps;
 
@@ -31,26 +33,25 @@ public class GameLoop {
         this.keyHandler = keyHandler;
 
         this.targetFPS = 60;
-        this.optimalTime = 1000000000 / targetFPS;
+        this.optimalTime = ONE_BILLION / targetFPS;
         this.lastFpsTime = 0;
         this.fps = 0;
 
-        gameLoop();
+        loop();
     }
 
-    public void gameLoop() {
-        long lastLoopTime = System.nanoTime();
+    public void loop() {
 
         while (menu.isGameRunning()) {
             long now = System.nanoTime();
             long updateLength = now - lastLoopTime;
             lastLoopTime = now;
-            double delta = updateLength / ((double) optimalTime);
+            //double delta = updateLength / ((double) optimalTime);
 
             lastFpsTime += (int) updateLength;
             fps++;
 
-            if (lastFpsTime >= 1000000000) {
+            if (lastFpsTime >= ONE_BILLION) {
                 lastFpsTime = 0;
                 fps = 0;
             }
@@ -59,22 +60,26 @@ public class GameLoop {
 
             frame.repaint();
 
-            try {
-                Thread.sleep((lastLoopTime - System.nanoTime() + optimalTime) / 1000000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (Exception ignored) {
-            }
+            sleep();
         }
+    }
+
+    private void sleep(){
+        try {
+            Thread.sleep((lastLoopTime - System.nanoTime() + optimalTime) / ONE_MILLION);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        catch(IllegalArgumentException ignored){}
     }
 
     private void doGameUpdates() {
         if (menu.isGameOn()) {
             if(spawner.isFastForward()){
-                optimalTime = 1000000000 / (targetFPS*2);
+                optimalTime = ONE_BILLION / (targetFPS*2);
             }
             else{
-                optimalTime = 1000000000 / (targetFPS);
+                optimalTime = ONE_BILLION / (targetFPS);
             }
             frame.validate();
             frame.pack();

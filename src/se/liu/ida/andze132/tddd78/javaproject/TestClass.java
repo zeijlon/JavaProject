@@ -5,7 +5,6 @@ public final class TestClass {
     }
 
     public static void main(String[] args) {
-
         Menu menu = new Menu();
 
 

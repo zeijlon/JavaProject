@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 
 
 public class GameComponent extends JComponent {
+    private static final int MENU_WIDTH = 819;
+    private static final int MENU_HEIGHT = 460;
     private GRID grid;
     private Shop shop;
     private EnemySpawner spawner;
@@ -15,8 +17,8 @@ public class GameComponent extends JComponent {
 
 
     public final static int TILE_SIZE = 60;
-    public final static int SHOP_SIZE_X = 200;
-    public final static int INFO_BOX = 175;
+    private final static int SHOP_SIZE_X = 200;
+    private final static int INFO_BOX = 175;
 
 
     public GameComponent(GRID grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu) {
@@ -34,7 +36,7 @@ public class GameComponent extends JComponent {
         super.getPreferredSize();
         int row = GRID.checkLargestRow(grid);
         if (menu.isIfMenu()) {
-            return new Dimension(819, 460);
+            return new Dimension(MENU_WIDTH, MENU_HEIGHT);
         } else {
             return new Dimension(row * TILE_SIZE + SHOP_SIZE_X, grid.getSquares().length * TILE_SIZE + INFO_BOX);
         }

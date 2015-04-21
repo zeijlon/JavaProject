@@ -6,17 +6,19 @@ import java.awt.geom.Ellipse2D;
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
  */
-public class Enemy {
+public class Enemy extends EnemyProperties{
 
-    private double originalHp;
+    public static final int HP_BAR_LENGTH = 60;
     private int hp;
-    private double healthBarHp = 60;
+    private double originalHp;
+    private double healthBarHp = GameComponent.TILE_SIZE;
     private int speed;
     private int goldgain;
     private int damage;
     private double angle;
     private int x;
     private int y;
+    private EnemyType type;
 
     private Direction direction = null;
     private int enemyWalk = 0;
@@ -37,10 +39,11 @@ public class Enemy {
 
 
     public Enemy(final EnemyType type) {
-        decideEnemy(type);
+        this.type = type;
+        decideEnemy(this);
     }
 
-    public Ellipse2D getEnemyEllipse() {
+    public Shape getEnemyEllipse() {
         return enemyEllipse;
     }
 
@@ -52,32 +55,34 @@ public class Enemy {
                 break;
             case STILL:
             case DOWN:
-            case UP:
+            case UPWARD:
                 this.enemyEllipse = new Ellipse2D.Float(x + 10, y, GameComponent.TILE_SIZE-20, GameComponent.TILE_SIZE);
                 break;
         }
     }
 
-    public void decideEnemy(EnemyType enemy) {
-        switch (enemy) {
-            case BASICENEMY:
-                originalHp = 100;
-                hp = (int)originalHp;
-                speed = 1;
-                goldgain = 1;
-                damage = 2;
-                image = (Toolkit.getDefaultToolkit().getImage("images/PolarBearNormal.gif"));
-                //image = image.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
-                break;
-            case ARMOREDENEMY:
-                originalHp = 200;
-                hp = (int)originalHp;
-                speed = 2;
-                goldgain = 2;
-                damage = 5;
-                image = (Toolkit.getDefaultToolkit().getImage("images/ArmoredPolarBearNormal60.gif"));
-                break;
-        }
+    public EnemyType getType() {
+        return type;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public void setGoldgain(int goldgain) {
+        this.goldgain = goldgain;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void setOriginalHp(double originalHp) {
+        this.originalHp = originalHp;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public Image getImage() {
@@ -100,8 +105,8 @@ public class Enemy {
         return damage;
     }
 
-    public void setHp(final int damage) {
-        this.hp -= damage;
+    public void setHp(final int hp) {
+        this.hp += hp;
     }
 
     public int getX() {
@@ -202,7 +207,7 @@ public class Enemy {
 
     public void setHealthBarHp(int damage) {
         double x = damage/originalHp;
-        this.healthBarHp = healthBarHp - (60*x);
+        this.healthBarHp = healthBarHp - (HP_BAR_LENGTH *x);
     }
 
     public double getHealthBarHp() {

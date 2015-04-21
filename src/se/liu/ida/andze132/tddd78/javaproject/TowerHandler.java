@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.util.*;
+import java.util.List;
 
 
 /**
@@ -22,7 +23,7 @@ public class TowerHandler {
     private Towers buildTower = null;
     private Rectangle upgradeTower = null;
 
-    private java.util.List<Enemy> enemiesWithinRange = new ArrayList<>();
+    private List<Enemy> enemiesWithinRange = new ArrayList<>();
 
     public TowerHandler(GRID grid, Shop shop, EnemySpawner spawner, BulletHandler bulletHandler, KeyHandler keyHandler) {
         this.grid = grid;
@@ -86,23 +87,20 @@ public class TowerHandler {
     }
 
     public void checkTowerTargeted() {
-        for (Towers tower : towers) {
-            if (keyHandler.getClickPoint() != null) {
-                if (tower.getRectangle().contains(keyHandler.getClickPoint())) {
-                    tower.setTargeted(true);
-                    upgradeTower = new Rectangle(200, grid.getHeight() + 50, 100, 100);
-                } else if (upgradeTower.contains(keyHandler.getClickPoint())) {
-                    if (tower.isTargeted()) {
-                        if (keyHandler.getMouseReleased()) {
-                            upgradeTower(tower);
-                        }
+        towers.stream().filter(tower -> keyHandler.getClickPoint() != null).forEach(tower -> {
+            if (tower.getRectangle().contains(keyHandler.getClickPoint())) {
+                tower.setTargeted(true);
+                upgradeTower = new Rectangle(200, grid.getHeight() + 50, 100, 100);
+            } else if (upgradeTower.contains(keyHandler.getClickPoint())) {
+                if (tower.isTargeted()) {
+                    if (keyHandler.getMouseReleased()) {
+                        upgradeTower(tower);
                     }
-                } else {
-                    tower.setTargeted(false);
                 }
+            } else {
+                tower.setTargeted(false);
             }
-
-        }
+        });
     }
 
     public void towerPhysic() {
@@ -159,8 +157,8 @@ public class TowerHandler {
         for (Towers tower : towers) {
             AffineTransform at = new AffineTransform();
             AffineTransform old = g.getTransform();
-            at.rotate(tower.getAngle(), tower.getX() + tower.getImage().getWidth(null) / 2,
-                    tower.getY() + tower.getImage().getHeight(null) / 2);
+            at.rotate(tower.getAngle(), tower.getX() + (float)tower.getImage().getWidth(null) / 2,
+                    tower.getY() + (float)tower.getImage().getHeight(null) / 2);
             g.transform(at);
             g.drawImage(tower.getImage(), tower.getX(), tower.getY(), null);
             g.setTransform(old);

@@ -16,9 +16,6 @@ public class Shop {
     private Image buttonFocus = Toolkit.getDefaultToolkit().getImage("images/shopButtonFocus60.png").getScaledInstance(80, 80, Image.SCALE_DEFAULT);
     private Image coin = Toolkit.getDefaultToolkit().getImage("images/coin.png");
     private Image heart = Toolkit.getDefaultToolkit().getImage("images/heart.png");
-    private Image trashCan = Toolkit.getDefaultToolkit().getImage("images/trashCan60.png").getScaledInstance(80, 80, Image.SCALE_DEFAULT);
-    private Image basicTowerImage = Toolkit.getDefaultToolkit().getImage("images/basicTower60.png").getScaledInstance(80, 80, Image.SCALE_DEFAULT);
-    private Image armorPiercingTowerImage = Toolkit.getDefaultToolkit().getImage("images/armorPiercingTower60.png").getScaledInstance(80, 80, Image.SCALE_DEFAULT);
     private Image basicTowerInfo = Toolkit.getDefaultToolkit().getImage("images/basicTowerInfo.png");
     private Image apTowerInfo = Toolkit.getDefaultToolkit().getImage("images/apTowerInfo.png");
 
@@ -39,6 +36,9 @@ public class Shop {
 
         this.holdsItem = null;
         defineShopButtons();
+        Image trashCan = Toolkit.getDefaultToolkit().getImage("images/trashCan60.png").getScaledInstance(80, 80, Image.SCALE_DEFAULT);
+        Image armorPiercingTowerImage = Toolkit.getDefaultToolkit().getImage("images/armorPiercingTower60.png").getScaledInstance(80, 80, Image.SCALE_DEFAULT);
+        Image basicTowerImage = Toolkit.getDefaultToolkit().getImage("images/basicTower60.png").getScaledInstance(80, 80, Image.SCALE_DEFAULT);
         towerImages = new Image[][]{{basicTowerImage, armorPiercingTowerImage}, {basicTowerImage, basicTowerImage},
                 {basicTowerImage, basicTowerImage}, {basicTowerImage, trashCan}};
     }
@@ -134,7 +134,4 @@ public class Shop {
         this.holdsItem = holdsItem;
     }
 
-    public Image getBasicTowerImage() {
-        return basicTowerImage;
-    }
 }

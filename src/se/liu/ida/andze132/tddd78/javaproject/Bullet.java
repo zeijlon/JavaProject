@@ -5,22 +5,38 @@ import java.awt.*;
 /**
  * Created by Administrat�r on 2015-03-30.
  */
-public class Bullet {
+public class Bullet extends BulletProperties{
     private double angle;
     private double x;
     private double y;
     private double bulletSpeed;
     private int damage;
+    private BulletType type;
 
-    private Image image;
+    private Image image = null;
 
     private Rectangle bulletRect = null;
 
-    public Bullet(int x, int y, Image image, int bulletSpeed, int damage) {
+    public Bullet(int x, int y, BulletType type) {
         this.x = x;
         this.y = y;
+        this.type = type;
+        decideBullet(this);
+    }
+
+    public BulletType getType() {
+        return type;
+    }
+
+    public void setImage(Image image) {
         this.image = image;
+    }
+
+    public void setBulletSpeed(double bulletSpeed) {
         this.bulletSpeed = bulletSpeed;
+    }
+
+    public void setDamage(int damage) {
         this.damage = damage;
     }
 

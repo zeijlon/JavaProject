@@ -4,19 +4,16 @@ package se.liu.ida.andze132.tddd78.javaproject;
  * Created by Andreas Zeijlon on 2015-03-20.
  */
 
-import javafx.scene.shape.Circle;
-
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
 
-public class Towers {
+public class Towers extends TowerProperties{
 
     private int cost;
-    private int sell;
     private int radius;
     private int reloadTime;
     private int reloadTick;
+    private int sell;
     private boolean shooting;
     private TowerType type;
 
@@ -39,33 +36,12 @@ public class Towers {
     public Towers(TowerType type) {
         this.type = type;
         this.targeted = true;
-        decideEnemy(type);
+        decideEnemy(this);
 
-    }
-
-    public void decideEnemy(TowerType tower) {
-        switch (tower) {
-            case BASICTOWER:
-                image = (Toolkit.getDefaultToolkit().getImage("images/basicTower60.png"));
-                cost = 5;
-                sell = 5;
-                radius = 400;
-                reloadTime = 20; //less is bettter
-                reloadTick = reloadTime;
-                break;
-            case ARMORPIERCINGTOWER:
-                image = (Toolkit.getDefaultToolkit().getImage("images/armorPiercingTower60.png"));
-                cost = 10;
-                sell = 5;
-                radius = 400;
-                reloadTime = 100; //less is bettter
-                reloadTick = reloadTime;
-                break;
-        }
     }
 
     public void setRange() {
-        this.range = new Ellipse2D.Float(x - (this.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), y - (this.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), this.getRadius(), this.getRadius());
+        this.range = new Ellipse2D.Float(x - (float)(radius / 2) + ((float)GameComponent.TILE_SIZE / 2), y - (float)(radius / 2) + ((float)GameComponent.TILE_SIZE / 2), radius, radius);
 
     }
 
@@ -109,7 +85,7 @@ public class Towers {
         return reloadTime;
     }
 
-    public Ellipse2D getRange() {
+    public Shape getRange() {
         return range;
     }
 
@@ -163,6 +139,18 @@ public class Towers {
 
     public void setRectangle(Rectangle rectangle) {
         this.rectangle = rectangle;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public void setSell(int sell) {
+        this.sell = sell;
     }
 }
 
