@@ -49,9 +49,9 @@ public class Menu
     private Image quit = (Toolkit.getDefaultToolkit().getImage("images/QuitGame.png"));
     private Image levelSelect = (Toolkit.getDefaultToolkit().getImage("images/LevelSelect.png"));
     private Image options = (Toolkit.getDefaultToolkit().getImage("images/Options.png"));
-    private Image map1 = (Toolkit.getDefaultToolkit().getImage("images/map1.png"));
-    private Image map2 = (Toolkit.getDefaultToolkit().getImage("images/map2.png"));
-    private Image map3 = (Toolkit.getDefaultToolkit().getImage("images/map3.png"));
+    private Image map1 = (Toolkit.getDefaultToolkit().getImage("images/Map1.png"));
+    private Image map2 = (Toolkit.getDefaultToolkit().getImage("images/Map2.png"));
+    private Image map3 = (Toolkit.getDefaultToolkit().getImage("images/Map3.png"));
 
 
 
