@@ -15,7 +15,7 @@ public class GameComponent extends JComponent {
 
 
     public final static int TILE_SIZE = 60;
-    public final static int SHOP_SIZE_X = 175;
+    public final static int SHOP_SIZE_X = 200;
     public final static int INFO_BOX = 175;
 
 

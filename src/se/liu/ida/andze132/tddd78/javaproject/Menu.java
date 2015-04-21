@@ -1,7 +1,9 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 
@@ -58,17 +60,20 @@ public class Menu
     private Image map1 = (Toolkit.getDefaultToolkit().getImage("images/Map1.png"));
     private Image map2 = (Toolkit.getDefaultToolkit().getImage("images/Map2.png"));
     private Image map3 = (Toolkit.getDefaultToolkit().getImage("images/Map3.png"));
+    private Image map4 = (Toolkit.getDefaultToolkit().getImage("images/Map4.png"));
 
 
 
-    private Rectangle resumeGameButton = new Rectangle(400, 175, 150, 27);
-    private Rectangle newGameButton = new Rectangle(400, 200, 150, 27);
-    private Rectangle selectLevel = new Rectangle(400, 225, 150, 27);
-    private Rectangle optionsButton = new Rectangle(400, 250, 150, 27);
-    private Rectangle quitGameButton = new Rectangle(400, 275, 129, 25);
-    private Rectangle recmap1 = new Rectangle(595, 200, 70, 35);
-    private Rectangle recmap2 = new Rectangle(595, 230, 70, 35);
-    private Rectangle recmap3 = new Rectangle(595, 260, 70, 35);
+    private Rectangle resumeGameButton = new Rectangle(360, 175, 150, 27);
+    private Rectangle newGameButton = new Rectangle(360, 200, 150, 27);
+    private Rectangle selectLevel = new Rectangle(360, 225, 150, 27);
+    private Rectangle optionsButton = new Rectangle(360, 250, 150, 27);
+    private Rectangle quitGameButton = new Rectangle(360, 275, 129, 25);
+    private Rectangle recmap1 = new Rectangle(545, 200, 70, 35);
+    private Rectangle recmap2 = new Rectangle(545, 230, 70, 35);
+    private Rectangle recmap3 = new Rectangle(545, 260, 70, 35);
+    private Rectangle recmap4 = new Rectangle(545, 290, 70, 35);
+
 
 
     public void ifMenuedit() {
@@ -133,6 +138,10 @@ public class Menu
         }
 
         else if (drawlvlslct && recmap3.contains(keyHandler.getClickPoint())) {
+            mapSelected = 3;
+        }
+
+        else if (drawlvlslct && recmap4.contains(keyHandler.getClickPoint())) {
             mapSelected = 4;
         }
 
@@ -148,29 +157,45 @@ public class Menu
     }
 
     public void draw(Graphics g2d) {
-
         g2d.drawImage(menuImage, 0, 0, null);
-        g2d.drawImage(newGame, 400, 200, null);
-        g2d.drawImage(levelSelect, 400, 225, null);
-        g2d.drawImage(options, 400, 250, null);
-        g2d.drawImage(quit, 400, 275, null);
+        g2d.drawImage(newGame, 360, 200, null);
+        g2d.drawImage(levelSelect, 360, 225, null);
+        g2d.drawImage(options, 360, 250, null);
+        g2d.drawImage(quit, 360, 275, null);
         if (drawlvlslct) {
-            g2d.drawImage(map1, 600, 200, null);
-            g2d.drawImage(map2, 600, 230, null);
-            g2d.drawImage(map3, 600, 260, null);
+            g2d.drawImage(map1, 550, 200, null);
+            g2d.drawImage(map2, 550, 230, null);
+            g2d.drawImage(map3, 550, 260, null);
+            g2d.drawImage(map4, 550, 290, null);
+            drawGrid(g2d, Maps.getMap(mapSelected));
+            g2d.setFont(new Font("courier new", Font.BOLD, 28));
+            g2d.setColor(Color.black);
             if (mapSelected == 1) {
-                g2d.drawRect(595, 195, 70, 35);
+                g2d.drawString("VERY EASY", 650, 350);
+                g2d.drawRect(545, 195, 70, 35);
             } else if (mapSelected == 2) {
-                g2d.drawRect(595, 225, 70, 35);
-            } else if (mapSelected == 4) {
-                g2d.drawRect(595, 255, 70, 35);
+                g2d.drawString("EASY", 650, 350);
+                g2d.drawRect(545, 225, 70, 35);
+            } else if (mapSelected == 3) {
+                g2d.drawString("MEDIUM", 650, 350);
+                g2d.drawRect(545, 255, 70, 35);}
+            else if (mapSelected == 4) {
+                g2d.drawString("VERY HARD", 650, 350);
+                g2d.drawRect(545, 285, 70, 35);
 
         }}
         if(ifGamePaused){
-            g2d.drawImage(resumeGame, 400,175,null);
+            g2d.drawImage(resumeGame, 350,175,null);
         }
-
     }
+
+    public void drawGrid(Graphics g2d, int[][] squares){
+    for (int i = 0; i < squares.length; i++) {
+    for (int j = 0; j < squares[i].length; j++) {
+        ImageIcon squareType = new ImageIcon(grid.checkSquareType(squares[i][j]).getScaledInstance(12, 12, Image.SCALE_DEFAULT));
+        g2d.drawImage(squareType.getImage(), 650 + j * 12, 200 + i * 12, null);
+    }}
+}
 
     public boolean isIfMenu() {
         return ifMenu;

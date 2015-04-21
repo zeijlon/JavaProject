@@ -24,8 +24,14 @@ public class EnemySpawner {
     private int healthBar = 60, healthSpace = 3, healthHeight = 6;
     // private int enemyCount = basicEnemyCount+=level*2+armoredEnemyCount;
 
+    private Image nextWave = Toolkit.getDefaultToolkit().getImage("images/nextWave.png").getScaledInstance(150, 150, Image.SCALE_DEFAULT);
+    private Image slowMode = Toolkit.getDefaultToolkit().getImage("images/slowMode.png").getScaledInstance(150, 150, Image.SCALE_DEFAULT);
+    private Image fastMode = Toolkit.getDefaultToolkit().getImage("images/fastMode.png").getScaledInstance(150, 150, Image.SCALE_DEFAULT);
+
+
 
     private boolean betweenRounds;
+    private boolean fastForward;
 
     private Rectangle nextRoundButton;
 
@@ -35,9 +41,10 @@ public class EnemySpawner {
         this.shop = shop;
         this.enemiesSpawned = 0;
         this.betweenRounds = true;
+        this.fastForward = false;
         this.keyHandler = keyHandler;
 
-        this.nextRoundButton = new Rectangle(grid.getWidth() + Shop.SHOP_MARGIN, grid.getHeight() + Shop.SHOP_MARGIN, 50, 50);
+        this.nextRoundButton = new Rectangle(grid.getWidth()+ 10, grid.getHeight() + 10, 150, 150);
     }
 
 
@@ -62,6 +69,7 @@ public class EnemySpawner {
                             armoredEnemyCount += level * 2;
                         }
                         betweenRounds = true;
+                        fastForward = false;
                         enemiesSpawned = 0;
                         enemyCount += level * 2;
                     }
@@ -77,9 +85,12 @@ public class EnemySpawner {
                     if (betweenRounds) {
                         level++;
                         betweenRounds = false;
+                    } else {
+                        fastForward = !isFastForward();
                     }
+                    keyHandler.setClickPoint(null);
+
                 }
-                //GameFrame.clickPoint = new Point();
             }
         }
     }
@@ -96,7 +107,7 @@ public class EnemySpawner {
                 if (grid.getSquares()[y][x] == GRID.START) {
                     Start start = new Start(x, y);
                     starts.add(start);
-                                    }
+                }
             }
         }
         Random random = new Random();
@@ -112,6 +123,7 @@ public class EnemySpawner {
         decideDirection(basic);
         basic.setEnemyEllipse();
     }
+
     public void spawnArmoredEnemy() {
         Enemy armored = new ArmoredEnemy();
         enemies.add(armored);
@@ -174,7 +186,7 @@ public class EnemySpawner {
             }
             enemy.setEnemyEllipse();
             enemy.setEnemyWalk(enemy.getEnemyWalk() + enemy.getSpeed());
-
+            enemy.setPixelsWalked(enemy.getPixelsWalked() + enemy.getSpeed());
 
             if (enemy.getEnemyWalk() >= GameComponent.TILE_SIZE) {
 
@@ -263,16 +275,22 @@ public class EnemySpawner {
             } else if (grid.getSquares()[y][x] == GRID.FINISH) {
                 shop.setHealth(shop.getHealth() - enemies.get(i).getDamage());
                 enemies.remove(enemies.get(i));
-                Sound.playDyingBear();
             }
         }
 
 
     }
 
-    public int transformHp(int health){
-        double hp = ((double) health / 100)*60;
-        return (int) hp;
+    public Enemy checkEnemyWalked(List<Enemy> list) {
+        int walked = 0;
+        Enemy enemy = null;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getPixelsWalked() > walked) {
+                walked = list.get(i).getPixelsWalked();
+                enemy = list.get(i);
+            }
+        }
+        return enemy;
     }
 
     public void draw(Graphics2D g) {
@@ -290,24 +308,24 @@ public class EnemySpawner {
             g.fillRect(enemies.get(i).getX(), enemies.get(i).getY() - (healthSpace + healthHeight), healthBar, healthHeight);
 
             g.setColor(Color.green);
-            g.fillRect(enemies.get(i).getX(), enemies.get(i).getY() - (healthSpace + healthHeight),  (int)enemies.get(i).getHealthBarHp(), healthHeight);
+            g.fillRect(enemies.get(i).getX(), enemies.get(i).getY() - (healthSpace + healthHeight), (int) enemies.get(i).getHealthBarHp(), healthHeight);
 
             g.setColor(Color.black);
-            g.drawRect(enemies.get(i).getX(), enemies.get(i).getY() - (healthSpace + healthHeight), healthBar-1, healthHeight-1);
+            g.drawRect(enemies.get(i).getX(), enemies.get(i).getY() - (healthSpace + healthHeight), healthBar - 1, healthHeight - 1);
         }
         g.setColor(Color.red);
-        g.setFont(new Font("courier new", Font.BOLD, 20));
+        g.setFont(new Font("courier new", Font.BOLD, 32));
         if (level >= 1) {
-            g.drawString("ROUND: " + level, grid.getWidth() + Shop.SHOP_MARGIN, grid.getHeight());
+            g.drawString("ROUND " + level, grid.getWidth() + 10, grid.getHeight());
         }
 
         //Draw next round button
         if (betweenRounds) {
-            g.setColor(Color.black);
-            g.fillRect(grid.getWidth() + Shop.SHOP_MARGIN, grid.getHeight() + Shop.SHOP_MARGIN, 50, 50);
+            g.drawImage(nextWave, grid.getWidth()+10, grid.getHeight() + 10, null);
+        } else if (fastForward) {
+            g.drawImage(fastMode, grid.getWidth()+10, grid.getHeight() + 10, null);
         } else {
-            g.setColor(Color.green);
-            g.fillRect(grid.getWidth() + Shop.SHOP_MARGIN, grid.getHeight() + Shop.SHOP_MARGIN, 50, 50);
+            g.drawImage(slowMode, grid.getWidth()+10, grid.getHeight() + 10, null);
         }
     }
 
@@ -337,5 +355,9 @@ public class EnemySpawner {
 
     public void setEnemyCount(int enemyCount) {
         this.enemyCount = enemyCount;
+    }
+
+    public boolean isFastForward() {
+        return fastForward;
     }
 }

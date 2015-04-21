@@ -3,8 +3,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
 
 /**
@@ -22,6 +21,8 @@ public class TowerHandler {
 
     private Towers buildTower = null;
     private Rectangle upgradeTower = null;
+
+    private java.util.List<Enemy> enemiesWithinRange = new ArrayList<>();
 
     public TowerHandler(GRID grid, Shop shop, EnemySpawner spawner, BulletHandler bulletHandler, KeyHandler keyHandler) {
         this.grid = grid;
@@ -106,9 +107,11 @@ public class TowerHandler {
 
     public void towerPhysic() {
         for (Towers tower : towers) {
-            if (!tower.isShooting()) {
-                checkEnemyWithinReach(tower);
-            } else {
+            checkEnemyWithinReach(tower);
+            if(!enemiesWithinRange.isEmpty()){
+                tower.setShooting(true);
+                tower.setTargetEnemy(spawner.checkEnemyWalked(enemiesWithinRange));
+                enemiesWithinRange = new ArrayList<>();
                 tower.setAngle(Math.atan2(tower.getTargetEnemy().getY() - tower.getY(),
                         tower.getTargetEnemy().getX() - tower.getX()));
                 double x = tower.getTargetEnemy().getX();
@@ -125,18 +128,15 @@ public class TowerHandler {
                     tower.setReloadTick(tower.getReloadTick() + 1);
                 }
             }
-
-        }
-
-    }
+        }}
 
     public void checkEnemyWithinReach(Towers tower) {
-        for (int i = spawner.getEnemies().size() - 1; i >= 0; i--) {
+        for (int i = 0; i < spawner.getEnemies().size(); i++) {
             if (testIntersection(tower.getRange(), spawner.getEnemies().get(i).getEnemyEllipse())) {
-                tower.setShooting(true);
-                tower.setTargetEnemy(spawner.getEnemies().get(i));
+                enemiesWithinRange.add(spawner.getEnemies().get(i));
             }
         }
+
     }
 
     public boolean testIntersection(Shape shapeA, Shape shapeB) {

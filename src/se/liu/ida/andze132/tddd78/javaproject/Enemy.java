@@ -20,6 +20,7 @@ public class Enemy {
 
     private Direction direction = null;
     private int enemyWalk = 0;
+    private int pixelsWalked = 0;
     private int yC = 0;
     private int xC = 0;
 
@@ -66,7 +67,7 @@ public class Enemy {
                 goldgain = 1;
                 damage = 2;
                 image = (Toolkit.getDefaultToolkit().getImage("images/PolarBearNormal.gif"));
-                //image = image.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+                //image = image.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
                 break;
             case ARMOREDENEMY:
                 originalHp = 200;
@@ -206,6 +207,14 @@ public class Enemy {
 
     public double getHealthBarHp() {
         return healthBarHp;
+    }
+
+    public int getPixelsWalked() {
+        return pixelsWalked;
+    }
+
+    public void setPixelsWalked(int pixelsWalked) {
+        this.pixelsWalked = pixelsWalked;
     }
 }
 

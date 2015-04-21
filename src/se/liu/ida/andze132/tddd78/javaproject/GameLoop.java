@@ -14,6 +14,8 @@ public class GameLoop {
     private TowerHandler towerHandler;
     private BulletHandler bulletHandler;
     private Menu menu;
+    private int targetFPS;
+    private long optimalTime;
 
 
     private int lastFpsTime, fps;
@@ -28,6 +30,8 @@ public class GameLoop {
         this.menu = menu;
         this.keyHandler = keyHandler;
 
+        this.targetFPS = 60;
+        this.optimalTime = 1000000000 / targetFPS;
         this.lastFpsTime = 0;
         this.fps = 0;
 
@@ -36,8 +40,6 @@ public class GameLoop {
 
     public void gameLoop() {
         long lastLoopTime = System.nanoTime();
-        final int targetFps = 60;
-        final long optimalTime = 1000000000 / targetFps;
 
         while (menu.isGameRunning()) {
             long now = System.nanoTime();
@@ -68,6 +70,12 @@ public class GameLoop {
 
     private void doGameUpdates() {
         if (menu.isGameOn()) {
+            if(spawner.isFastForward()){
+                optimalTime = 1000000000 / (targetFPS*2);
+            }
+            else{
+                optimalTime = 1000000000 / (targetFPS);
+            }
             frame.validate();
             frame.pack();
             spawner.waveHandler();

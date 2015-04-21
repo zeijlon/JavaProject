@@ -13,6 +13,7 @@ public class GameFrame extends JFrame {
         this.setLayout(new BorderLayout());
         this.add(gameComponent, BorderLayout.CENTER);
         this.getContentPane().setBackground(Color.LIGHT_GRAY);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.createMenus();
         this.pack();
         this.setVisible(true);
