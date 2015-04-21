@@ -24,6 +24,7 @@ public class Menu
     private boolean gameOn;
     private boolean gameRunning;
     private boolean drawlvlslct;
+    private boolean drawoptions;
     private Maps map;
     private boolean ifGamePaused;
     private int mapSelected;
@@ -41,6 +42,7 @@ public class Menu
         ifNoBearSound = false;
         ifMainSound = false;
         mapSelected = 1;
+	drawoptions = false;
         this.keyHandler = new KeyHandler();
         this.grid =  new GRID(mapSelected);
         this.shop = new Shop(grid, keyHandler);
@@ -56,14 +58,19 @@ public class Menu
     private Image newGame = (Toolkit.getDefaultToolkit().getImage("images/NewGameT.png"));
     private Image quit = (Toolkit.getDefaultToolkit().getImage("images/QuitGame.png"));
     private Image levelSelect = (Toolkit.getDefaultToolkit().getImage("images/LevelSelect.png"));
-    private Image options = (Toolkit.getDefaultToolkit().getImage("images/Options.png"));
     private Image map1 = (Toolkit.getDefaultToolkit().getImage("images/Map1.png"));
     private Image map2 = (Toolkit.getDefaultToolkit().getImage("images/Map2.png"));
     private Image map3 = (Toolkit.getDefaultToolkit().getImage("images/Map3.png"));
     private Image map4 = (Toolkit.getDefaultToolkit().getImage("images/Map4.png"));
+    private Image options = (Toolkit.getDefaultToolkit().getImage("images/Options.png"));
+    private Image gameAudioOff = (Toolkit.getDefaultToolkit().getImage("images/gameaudiooff.png"));
+    private Image gameMusicOff = (Toolkit.getDefaultToolkit().getImage("images/gamemusicoff.png"));
 
 
 
+    
+    private Rectangle gameAudiooff = new Rectangle(595, 230, 150, 30);
+    private Rectangle gameMusicoff = new Rectangle(595, 260, 150, 30);
     private Rectangle resumeGameButton = new Rectangle(360, 175, 150, 27);
     private Rectangle newGameButton = new Rectangle(360, 200, 150, 27);
     private Rectangle selectLevel = new Rectangle(360, 225, 150, 27);
@@ -99,17 +106,23 @@ public class Menu
             towerHandler.setTowers(new ArrayList<>());
             bulletHandler.setBullets(new ArrayList<>());
             drawlvlslct = false;
+	    drawoptions = false;
+
         }
         else if (resumeGameButton.contains(keyHandler.getClickPoint())) {
             ifMenu = false;
             gameOn = true;
             ifGamePaused = false;
             drawlvlslct = false;
+	    drawoptions = false;
+
 
         }
 
         else if (quitGameButton.contains(keyHandler.getClickPoint())) {
             drawlvlslct = false;
+	    drawoptions = false;
+
             int answer = JOptionPane
                     .showConfirmDialog(null, "Are you sure you want to quit? ", "Confirm", JOptionPane.YES_NO_OPTION);
             if (answer == JOptionPane.YES_OPTION) {
@@ -122,12 +135,23 @@ public class Menu
 
         else if (selectLevel.contains(keyHandler.getClickPoint())) {
             drawlvlslct = true;
+	    drawoptions = false;
+
         }
 
         else if (optionsButton.contains(keyHandler.getClickPoint())) {
             drawlvlslct = false;
-
+	    drawoptions = true;
         }
+	else if (drawoptions && gameAudiooff.contains(keyHandler.getClickPoint())) {
+	    if(Sound.noGameAudio = true){Sound.noGameAudio = false;}
+	    if(Sound.noGameAudio = false){Sound.noGameAudio = true;}
+	        }
+	else if (drawoptions && gameMusicoff.contains(keyHandler.getClickPoint())) {
+	    if(Sound.noMusic = true){Sound.noMusic = false;}
+	    if(Sound.noMusic = false){Sound.noMusic = true;}
+	        }
+
 
         else if (drawlvlslct && recmap1.contains(keyHandler.getClickPoint())) {
             mapSelected = 1;
@@ -145,7 +169,9 @@ public class Menu
             mapSelected = 4;
         }
 
-            else{            drawlvlslct = false;
+            else{drawlvlslct = false;
+	    drawoptions = false;
+
         }
     }}
 
@@ -182,8 +208,18 @@ public class Menu
             else if (mapSelected == 4) {
                 g2d.drawString("VERY HARD", 650, 350);
                 g2d.drawRect(545, 285, 70, 35);
+            } }
+	if(drawoptions){
+	    g2d.drawImage(gameAudioOff,595, 230,null);
+	    g2d.drawImage(gameMusicOff,595, 260,null);
+	    if(Sound.noGameAudio){
+		g2d.drawRect(595, 230,150,30);
+	    }
+	     if(Sound.noMusic){
+		g2d.drawRect(595, 260,150,30);
 
-        }}
+	    }
+		}
         if(ifGamePaused){
             g2d.drawImage(resumeGame, 350,175,null);
         }
