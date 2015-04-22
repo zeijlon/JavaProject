@@ -38,7 +38,7 @@ public class Enemy extends EnemyProperties{
     private Ellipse2D enemyEllipse = null;
 
 
-    public Enemy(final EnemyType type) {
+    Enemy(final EnemyType type) {
         this.type = type;
         decideEnemy(this);
     }

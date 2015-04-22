@@ -33,7 +33,7 @@ public class Towers extends TowerProperties{
     private int x;
     private int y;
 
-    public Towers(TowerType type) {
+    Towers(TowerType type) {
         this.type = type;
         this.targeted = true;
         decideEnemy(this);

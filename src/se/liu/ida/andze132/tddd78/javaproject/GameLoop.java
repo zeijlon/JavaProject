@@ -5,7 +5,7 @@ import javax.swing.*;
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
  */
-public class GameLoop {
+class GameLoop {
 
     private static final int ONE_BILLION = 1000000000;
     private static final int ONE_MILLION = 1000000;
@@ -23,7 +23,7 @@ public class GameLoop {
     private int lastFpsTime, fps;
 
 
-    public GameLoop(Shop shop, JFrame frame, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu, KeyHandler keyHandler) {
+    GameLoop(Shop shop, JFrame frame, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu, KeyHandler keyHandler) {
         this.shop = shop;
         this.frame = frame;
         this.spawner = spawner;
@@ -40,7 +40,7 @@ public class GameLoop {
         loop();
     }
 
-    public void loop() {
+    private void loop() {
 
         while (menu.isGameRunning()) {
             long now = System.nanoTime();
@@ -97,7 +97,7 @@ public class GameLoop {
             if (shop.getHealth() <= 0) {
                 menu.setGameOn(false);
                 menu.setIfMenu(true);
-                keyHandler.setClickPoint(null);
+                keyHandler.setClickPoint();
             }
         } else if (menu.isIfMenu()) {
             menu.ifMenuedit();

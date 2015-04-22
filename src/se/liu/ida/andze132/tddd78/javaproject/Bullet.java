@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Created by Administrat�r on 2015-03-30.
  */
-public class Bullet extends BulletProperties{
+class Bullet extends BulletProperties{
     private double angle;
     private double x;
     private double y;
@@ -17,7 +17,7 @@ public class Bullet extends BulletProperties{
 
     private Rectangle bulletRect = null;
 
-    public Bullet(int x, int y, BulletType type) {
+    Bullet(int x, int y, BulletType type) {
         this.x = x;
         this.y = y;
         this.type = type;

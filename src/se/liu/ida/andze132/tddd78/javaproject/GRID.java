@@ -2,7 +2,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
 
-public class GRID {
+class GRID {
     protected final static int GRASS = 0;
     protected final static int PATH = 1;
     protected final static int TOWER = 2;
@@ -10,7 +10,7 @@ public class GRID {
     protected final static int FINISH = 4;
     protected final static int CROSSROAD = 5;
 
-    private int Width;
+    private int WIDTH;
     private int Height;
 
     private int[][] squares;
@@ -18,9 +18,9 @@ public class GRID {
 
     private Rectangle gridSize;
 
-    public GRID(int n) {
+    GRID(int n) {
         this.squares = Maps.getMap(n);
-        this.Width = checkLargestRow(this) * GameComponent.TILE_SIZE;
+        this.WIDTH = checkLargestRow(this) * GameComponent.TILE_SIZE;
         this.Height = squares.length * GameComponent.TILE_SIZE;
 
         rectangles = new Rectangle[squares.length][checkLargestRow(this)];
@@ -89,7 +89,7 @@ public class GRID {
     }
 
     public int getWidth() {
-        return Width;
+        return WIDTH;
     }
 
     public int getHeight() {

@@ -7,22 +7,22 @@ import java.util.List;
 /**
  * Created by Andreas Zeijlon on 2015-04-01.
  */
-public class BulletHandler {
+class BulletHandler {
 
-    public static final int RECT_SIZE = 20;
+    private static final int RECT_SIZE = 20;
     private GRID grid;
     private EnemySpawner spawner;
     private List<Bullet> bullets = new ArrayList<>();
 
 
 
-    public BulletHandler(GRID grid, EnemySpawner spawner) {
+    BulletHandler(GRID grid, EnemySpawner spawner) {
         this.grid = grid;
         this.spawner = spawner;
 
     }
 
-    public void defineBullets(Bullet bullet) {
+    private void defineBullets(Bullet bullet) {
         Double x = bullet.getX();
         int xValue = x.intValue();
         Double y = bullet.getY();
@@ -33,11 +33,12 @@ public class BulletHandler {
     public void shootEnemy(Enemy enemy, Towers tower) {
         //Random random = new Random(); + Math.toRadians(random.nextInt(360))
         Bullet bullet = decideBullet(tower);
+        assert bullet != null;
         bullet.setAngle(Math.toDegrees(Math.atan2(enemy.getY() + RECT_SIZE - bullet.getY(), enemy.getX() + RECT_SIZE - bullet.getX())));
         bullets.add(bullet);
     }
 
-    public Bullet decideBullet(Towers tower) {
+    private Bullet decideBullet(Towers tower) {
         TowerType type = tower.getType();
         switch (type) {
             case BASICTOWER:

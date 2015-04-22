@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by Administrat�r on 2015-04-13.
  */
-public class Menu {
+class Menu {
     private KeyHandler keyHandler;
     private GRID grid;
     private Shop shop;
@@ -25,7 +25,7 @@ public class Menu {
     private int mapSelected;
 
 
-    public Menu() {
+    Menu() {
         ifMenu = true;
         gameOn = false;
         gameRunning = true;
@@ -90,7 +90,6 @@ public class Menu {
                 spawner.setEnemies(new ArrayList<>());
                 spawner.setLevel(0);
                 spawner.setEnemyCount(1);
-                spawner.setBasicEnemyCount(1);
                 spawner.setArmoredEnemyCount(1);
 
                 towerHandler.setTowers(new ArrayList<>());
@@ -115,7 +114,7 @@ public class Menu {
                 if (answer == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 } else {
-                    keyHandler.setClickPoint(null);
+                    keyHandler.setClickPoint();
                 }
             } else if (selectLevel.contains(keyHandler.getClickPoint())) {
                 drawlvlslct = true;
@@ -152,7 +151,7 @@ public class Menu {
 
             }
         }
-        keyHandler.setClickPoint(null);
+        keyHandler.setClickPoint();
     }
 
     public void escape() {
@@ -210,7 +209,7 @@ public class Menu {
         }
     }
 
-    public void drawGrid(Graphics g2d, int[][] squares) {
+    private void drawGrid(Graphics g2d, int[][] squares) {
         for (int i = 0; i < squares.length; i++) {
             for (int j = 0; j < squares[i].length; j++) {
                 ImageIcon squareType = new ImageIcon(grid.checkSquareType(squares[i][j]).getScaledInstance(12, 12, Image.SCALE_DEFAULT));

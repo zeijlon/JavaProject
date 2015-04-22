@@ -5,7 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 
-public class GameComponent extends JComponent {
+@SuppressWarnings("ALL")
+class GameComponent extends JComponent {
     private static final int MENU_WIDTH = 819;
     private static final int MENU_HEIGHT = 460;
     private GRID grid;
@@ -60,7 +61,7 @@ public class GameComponent extends JComponent {
     }
 
 
-    class EscapeAction extends AbstractAction {
+    private class EscapeAction extends AbstractAction {
         public void actionPerformed(ActionEvent e) {
             menu.escape();
         }

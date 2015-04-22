@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Administratör on 2015-03-24.
  */
-public class TowerHandler {
+class TowerHandler {
 
     private Collection<Towers> towers = new ArrayList<>();
 
@@ -23,9 +23,9 @@ public class TowerHandler {
     private Towers buildTower = null;
     private Rectangle upgradeTower = null;
 
-    private List<Enemy> enemiesWithinRange = new ArrayList<>();
+    private Collection<Enemy> enemiesWithinRange = new ArrayList<>();
 
-    public TowerHandler(GRID grid, Shop shop, EnemySpawner spawner, BulletHandler bulletHandler, KeyHandler keyHandler) {
+    TowerHandler(GRID grid, Shop shop, EnemySpawner spawner, BulletHandler bulletHandler, KeyHandler keyHandler) {
         this.grid = grid;
         this.shop = shop;
         this.spawner = spawner;
@@ -44,7 +44,7 @@ public class TowerHandler {
                     shop.setHoldsItem(null);
                 }
             } else if (shop.getShopButtons()[0][1].contains(keyHandler.getClickPoint())) {
-                Towers tower = new ArmorpiercingTower();
+                Towers tower = new ArmorPiercingTower();
                 if (shop.getGold() >= tower.getCost()) {
                     shop.setHoldsItem(tower);
                     buildTower = tower;
@@ -149,7 +149,7 @@ public class TowerHandler {
             tower.setRange();
             shop.setGold(shop.getGold() - 5);
         }
-        keyHandler.setMouseReleased(false);
+        keyHandler.setMouseReleased();
     }
 
     public void draw(Graphics2D g) {

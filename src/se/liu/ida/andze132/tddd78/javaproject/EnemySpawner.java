@@ -9,8 +9,8 @@ import java.util.Random;
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
  */
-public class EnemySpawner {
-    public static final int WAVE_BUTTON_SIZE = 150;
+class EnemySpawner {
+    private static final int WAVE_BUTTON_SIZE = 150;
     public static final int INT = 60;
     private GRID grid;
     private Shop shop;
@@ -36,7 +36,7 @@ public class EnemySpawner {
     private Rectangle nextRoundButton;
 
 
-    public EnemySpawner(GRID grid, Shop shop, KeyHandler keyHandler) {
+    EnemySpawner(GRID grid, Shop shop, KeyHandler keyHandler) {
         this.grid = grid;
         this.shop = shop;
         this.enemiesSpawned = 0;
@@ -88,7 +88,7 @@ public class EnemySpawner {
                     } else {
                         fastForward = !fastForward;
                     }
-                    keyHandler.setClickPoint(null);
+                    keyHandler.setClickPoint();
 
                 }
             }
@@ -101,7 +101,7 @@ public class EnemySpawner {
 //    }
 // --Commented out by Inspection STOP (2015-04-21 23:57)
 
-    public void spawnBasicEnemy() {
+    private void spawnBasicEnemy() {
         Enemy basic = new BasicEnemy();
         enemies.add(basic);
         for (int y = 0; y < grid.getSquares().length; y++) {
@@ -126,7 +126,7 @@ public class EnemySpawner {
         basic.setEnemyEllipse();
     }
 
-    public void spawnArmoredEnemy() {
+    private void spawnArmoredEnemy() {
         Enemy armored = new ArmoredEnemy();
         enemies.add(armored);
         for (int y = 0; y < grid.getSquares().length; y++) {
@@ -150,13 +150,13 @@ public class EnemySpawner {
     }
 
 
-    public void defineHasWalked(Enemy enemy) {
+    private void defineHasWalked(Enemy enemy) {
         int height = grid.getSquares().length;
         int width = GRID.checkLargestRow(grid);
         enemy.setHasWalked(new int[height][width]);
     }
 
-    public void decideDirection(Enemy enemy) {
+    private void decideDirection(Enemy enemy) {
         if (!collision(enemy, enemy.getyC(), enemy.getxC() + 1)) {
             enemy.setDirection(Direction.RIGHT);
         } else if (!collision(enemy, enemy.getyC(), enemy.getxC() - 1)) {
@@ -231,7 +231,7 @@ public class EnemySpawner {
         }
     }
 
-    public boolean collision(Enemy enemy, int y, int x) {
+    private boolean collision(Enemy enemy, int y, int x) {
         try {
             if (enemy.getHasWalked()[y][x] != GRID.PATH) {
                 if (grid.getSquares()[y][x] == GRID.PATH || grid.getSquares()[y][x] == GRID.CROSSROAD ||
@@ -246,7 +246,7 @@ public class EnemySpawner {
     }
 
 
-    public void changeDirection(Enemy enemy) {
+    private void changeDirection(Enemy enemy) {
         if (enemy.isHasRight() || enemy.isHasLeft()) {
             if (!collision(enemy, enemy.getyC() + 1, enemy.getxC())) {
                 enemy.setDirection(Direction.DOWN);
@@ -283,13 +283,13 @@ public class EnemySpawner {
 
     }
 
-    public Enemy checkEnemyWalked(List<Enemy> list) {
+    public Enemy checkEnemyWalked(Iterable<Enemy> list) {
         int walked = 0;
         Enemy enemy = null;
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getPixelsWalked() > walked) {
-                walked = list.get(i).getPixelsWalked();
-                enemy = list.get(i);
+        for (Enemy aList : list) {
+            if (aList.getPixelsWalked() > walked) {
+                walked = aList.getPixelsWalked();
+                enemy = aList;
             }
         }
         return enemy;
@@ -343,14 +343,11 @@ public class EnemySpawner {
     }
 
     public void setLevel(int level) {
-        this.level = level;
+        this.level = 0;
     }
 
     public void setArmoredEnemyCount(int armoredEnemyCount) {
         this.armoredEnemyCount = armoredEnemyCount;
-    }
-
-    public void setBasicEnemyCount(int basicEnemyCount) {
     }
 
     public void setEnemies(List<Enemy> enemies) {

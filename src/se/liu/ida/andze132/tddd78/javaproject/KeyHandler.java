@@ -42,15 +42,15 @@ public class KeyHandler extends MouseAdapter {
         return clickPoint;
     }
 
-    public void setClickPoint(final Point clickPoint) {
-        this.clickPoint = clickPoint;
+    public void setClickPoint() {
+        this.clickPoint = null;
     }
 
     public Boolean getMouseReleased() {
         return mouseReleased;
     }
 
-    public void setMouseReleased(final Boolean mouseReleased) {
-        this.mouseReleased = mouseReleased;
+    public void setMouseReleased() {
+        this.mouseReleased = false;
     }
 }
