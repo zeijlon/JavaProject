@@ -1,13 +1,10 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
 /**
- * Created by Administratör on 2015-04-12.
+ * Created by Andreas Zeijlon on 2015-04-22.
  */
-public class ArmorpiercingTower extends Towers {
-
-    public ArmorpiercingTower() {
+public class ArmorPiercingTower extends Towers{
+    public ArmorPiercingTower() {
         super(TowerType.ARMORPIERCINGTOWER);
     }
-
 }
-
