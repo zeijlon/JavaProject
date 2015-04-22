@@ -20,8 +20,4 @@ public class GameFrame extends JFrame {
         this.addMouseMotionListener(keyHandler);
 
     }
-
-
-
-
 }
