@@ -58,17 +58,20 @@ public class Menu {
     private Image gameMusicOff = (Toolkit.getDefaultToolkit().getImage("images/gamemusicoff.png"));
 
 
-    private Rectangle gameAudiooff = new Rectangle(595, 210, 150, 30);
-    private Rectangle gameMusicoff = new Rectangle(595, 240, 150, 30);
-    private Rectangle newGameButton = new Rectangle(360, 180, 150, 27);
-    private Rectangle selectLevel = new Rectangle(360, 205, 150, 27);
-    private Rectangle optionsButton = new Rectangle(360, 230, 150, 27);
-    private Rectangle quitGameButton = new Rectangle(360, 255, 129, 25);
-    private Rectangle recmap1 = new Rectangle(545, 180, 70, 35);
-    private Rectangle recmap2 = new Rectangle(545, 210, 70, 35);
-    private Rectangle recmap3 = new Rectangle(545, 240, 70, 35);
-    private Rectangle recmap4 = new Rectangle(545, 270, 70, 35);
+    private Rectangle gameAudiooff = new Rectangle(595, 225, 150, 30);
+    private Rectangle gameMusicoff = new Rectangle(595, 255, 150, 30);
+
     private Rectangle resumeGameButton = new Rectangle();
+    private Rectangle newGameButton = new Rectangle(360, 200, 150, 25);
+    private Rectangle selectLevel = new Rectangle(360, 230, 150, 25);
+    private Rectangle optionsButton = new Rectangle(360, 255, 150, 25);
+    private Rectangle quitGameButton = new Rectangle(360, 280, 129, 25);
+
+    private Rectangle recmap1 = new Rectangle(545, 195, 70, 30);
+    private Rectangle recmap2 = new Rectangle(545, 225, 70, 30);
+    private Rectangle recmap3 = new Rectangle(545, 255, 70, 30);
+    private Rectangle recmap4 = new Rectangle(545, 285, 70, 30);
+
 
 
 

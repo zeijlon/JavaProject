@@ -18,6 +18,7 @@ public class KeyHandler extends MouseAdapter {
     @Override
     public void mousePressed(final MouseEvent e) {
         super.mousePressed(e);
+        System.out.println(e.getX() - 8+"   "+ (e.getY() - MENU_HEIGHT));
         clickPoint = new Point(e.getX() - 8, e.getY() - MENU_HEIGHT);
     }
 
