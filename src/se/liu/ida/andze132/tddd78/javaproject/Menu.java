@@ -58,16 +58,16 @@ public class Menu {
     private Image gameMusicOff = (Toolkit.getDefaultToolkit().getImage("images/gamemusicoff.png"));
 
 
-    private Rectangle gameAudiooff = new Rectangle(595, 230, 150, 30);
-    private Rectangle gameMusicoff = new Rectangle(595, 260, 150, 30);
-    private Rectangle newGameButton = new Rectangle(360, 200, 150, 27);
-    private Rectangle selectLevel = new Rectangle(360, 225, 150, 27);
-    private Rectangle optionsButton = new Rectangle(360, 250, 150, 27);
-    private Rectangle quitGameButton = new Rectangle(360, 275, 129, 25);
-    private Rectangle recmap1 = new Rectangle(545, 200, 70, 35);
-    private Rectangle recmap2 = new Rectangle(545, 230, 70, 35);
-    private Rectangle recmap3 = new Rectangle(545, 260, 70, 35);
-    private Rectangle recmap4 = new Rectangle(545, 290, 70, 35);
+    private Rectangle gameAudiooff = new Rectangle(595, 210, 150, 30);
+    private Rectangle gameMusicoff = new Rectangle(595, 240, 150, 30);
+    private Rectangle newGameButton = new Rectangle(360, 180, 150, 27);
+    private Rectangle selectLevel = new Rectangle(360, 205, 150, 27);
+    private Rectangle optionsButton = new Rectangle(360, 230, 150, 27);
+    private Rectangle quitGameButton = new Rectangle(360, 255, 129, 25);
+    private Rectangle recmap1 = new Rectangle(545, 180, 70, 35);
+    private Rectangle recmap2 = new Rectangle(545, 210, 70, 35);
+    private Rectangle recmap3 = new Rectangle(545, 240, 70, 35);
+    private Rectangle recmap4 = new Rectangle(545, 270, 70, 35);
     private Rectangle resumeGameButton = new Rectangle();
 
 
@@ -160,7 +160,7 @@ public class Menu {
         gameOn = false;
         ifGamePaused = true;
         frame.pack();
-        resumeGameButton = new Rectangle(360, 175, 150, 27);
+        resumeGameButton = new Rectangle(360, 165, 150, 27);
 
 
     }
@@ -171,6 +171,7 @@ public class Menu {
         g2d.drawImage(levelSelect, 360, 225, null);
         g2d.drawImage(options, 360, 250, null);
         g2d.drawImage(quit, 360, 275, null);
+
         if (drawlvlslct) {
             g2d.drawImage(map1, 550, 200, null);
             g2d.drawImage(map2, 550, 230, null);
