@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-
 /**
  * Created by Administrat�r on 2015-04-13.
  */
@@ -16,6 +15,7 @@ public class Menu {
     private TowerHandler towerHandler;
     private BulletHandler bulletHandler;
     private JFrame frame;
+    private Sound mainTheme;
     private boolean ifMenu;
     private boolean gameOn;
     private boolean gameRunning;
@@ -31,7 +31,7 @@ public class Menu {
         gameRunning = true;
         drawlvlslct = false;
         ifGamePaused = false;
-        //boolean ifNoBearSound = false;
+        boolean ifNoBearSound = false;
         mapSelected = 1;
         drawoptions = false;
         this.keyHandler = new KeyHandler();
@@ -80,10 +80,13 @@ public class Menu {
             if (newGameButton.contains(keyHandler.getClickPoint())) {
                 ifMenu = false;
                 gameOn = true;
+		mainTheme = new Sound("sounds/song.wav");
 
                 if(!Sound.isNoMusic()){
-                Sound.playMainTheme();
-                Sound.setIfMainSound(true);}
+			mainTheme.play();
+		    //Sound.playMainTheme();
+                Sound.setIfMainSound(true);
+		}
 
 
                 grid.setMapSize(mapSelected);
@@ -106,6 +109,7 @@ public class Menu {
                 ifGamePaused = false;
                 drawlvlslct = false;
                 drawoptions = false;
+
 
 
             } else if (quitGameButton.contains(keyHandler.getClickPoint())) {

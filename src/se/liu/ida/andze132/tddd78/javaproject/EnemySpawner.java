@@ -3,6 +3,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -17,6 +18,7 @@ public class EnemySpawner {
 
     private List<Enemy> enemies = new ArrayList<>();
     private List<Start> starts = new ArrayList<>();
+    private HashMap<String, Sound> sfx;
     private int spawnTime = 0;
     private int level = 0, enemiesSpawned;
     private int enemyCount = 1;
@@ -42,9 +44,11 @@ public class EnemySpawner {
         this.betweenRounds = true;
         this.fastForward = false;
         this.keyHandler = keyHandler;
-
+	sfx = new HashMap<String, Sound>();
+	//sfx.put("dies", new Sound("sounds/beardeath.wav"));
         this.nextRoundButton = new Rectangle(grid.getWidth()+ 10, grid.getHeight() + 10, WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE);
     }
+
 
 
     public void waveHandler() {
@@ -266,7 +270,8 @@ public class EnemySpawner {
             if (enemies.get(i).getHp() <= 0) {
                 shop.setGold(shop.getGold() + enemies.get(i).getGoldgain());
                 enemies.remove(enemies.get(i));
-                Sound.playDyingBear();
+		sfx.get("dies").play();
+		//Sound.playDyingBear();
             } else if (grid.getSquares()[y][x] == GRID.FINISH) {
                 shop.setHealth(shop.getHealth() - enemies.get(i).getDamage());
                 enemies.remove(enemies.get(i));
