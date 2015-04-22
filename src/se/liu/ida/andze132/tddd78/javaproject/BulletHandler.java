@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Andreas Zeijlon on 2015-04-01.
  */
-class BulletHandler {
+public class BulletHandler {
 
     private static final int RECT_SIZE = 20;
     private GRID grid;
@@ -16,7 +16,7 @@ class BulletHandler {
 
 
 
-    BulletHandler(GRID grid, EnemySpawner spawner) {
+    public BulletHandler(GRID grid, EnemySpawner spawner) {
         this.grid = grid;
         this.spawner = spawner;
 

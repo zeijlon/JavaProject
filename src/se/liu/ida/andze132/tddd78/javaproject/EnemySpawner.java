@@ -9,9 +9,8 @@ import java.util.Random;
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
  */
-class EnemySpawner {
+public class EnemySpawner {
     private static final int WAVE_BUTTON_SIZE = 150;
-    public static final int INT = 60;
     private GRID grid;
     private Shop shop;
     private KeyHandler keyHandler;
@@ -36,7 +35,7 @@ class EnemySpawner {
     private Rectangle nextRoundButton;
 
 
-    EnemySpawner(GRID grid, Shop shop, KeyHandler keyHandler) {
+    public EnemySpawner(GRID grid, Shop shop, KeyHandler keyHandler) {
         this.grid = grid;
         this.shop = shop;
         this.enemiesSpawned = 0;
@@ -94,12 +93,6 @@ class EnemySpawner {
             }
         }
     }
-
-// --Commented out by Inspection START (2015-04-21 23:57):
-//    public void addAllEnemiesForSpawn() {
-//        enemyCount = basicEnemyCount + armoredEnemyCount;
-//    }
-// --Commented out by Inspection STOP (2015-04-21 23:57)
 
     private void spawnBasicEnemy() {
         Enemy basic = new BasicEnemy();

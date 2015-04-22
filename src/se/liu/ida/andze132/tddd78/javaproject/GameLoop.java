@@ -5,7 +5,7 @@ import javax.swing.*;
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
  */
-class GameLoop {
+public class GameLoop {
 
     private static final int ONE_BILLION = 1000000000;
     private static final int ONE_MILLION = 1000000;
@@ -23,7 +23,7 @@ class GameLoop {
     private int lastFpsTime, fps;
 
 
-    GameLoop(Shop shop, JFrame frame, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu, KeyHandler keyHandler) {
+    public GameLoop(Shop shop, JFrame frame, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu, KeyHandler keyHandler) {
         this.shop = shop;
         this.frame = frame;
         this.spawner = spawner;

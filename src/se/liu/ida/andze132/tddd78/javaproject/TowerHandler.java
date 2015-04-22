@@ -4,13 +4,12 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.util.*;
-import java.util.List;
 
 
 /**
  * Created by Administratör on 2015-03-24.
  */
-class TowerHandler {
+public class TowerHandler {
 
     private Collection<Towers> towers = new ArrayList<>();
 
@@ -25,7 +24,7 @@ class TowerHandler {
 
     private Collection<Enemy> enemiesWithinRange = new ArrayList<>();
 
-    TowerHandler(GRID grid, Shop shop, EnemySpawner spawner, BulletHandler bulletHandler, KeyHandler keyHandler) {
+    public TowerHandler(GRID grid, Shop shop, EnemySpawner spawner, BulletHandler bulletHandler, KeyHandler keyHandler) {
         this.grid = grid;
         this.shop = shop;
         this.spawner = spawner;

@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 
 
 @SuppressWarnings("ALL")
-class GameComponent extends JComponent {
+public class GameComponent extends JComponent {
     private static final int MENU_WIDTH = 819;
     private static final int MENU_HEIGHT = 460;
     private GRID grid;

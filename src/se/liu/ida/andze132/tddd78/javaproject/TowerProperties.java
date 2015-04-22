@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Created by Andreas Zeijlon on 2015-04-22.
  */
-class TowerProperties {
+public class TowerProperties {
 
     private static final int BASIC_TOWER_COST = 5;
     private static final int BASIC_TOWER_SELL = 5;

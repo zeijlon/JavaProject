@@ -33,7 +33,7 @@ public class Towers extends TowerProperties{
     private int x;
     private int y;
 
-    Towers(TowerType type) {
+    public Towers(TowerType type) {
         this.type = type;
         this.targeted = true;
         decideEnemy(this);
@@ -87,10 +87,6 @@ public class Towers extends TowerProperties{
 
     public Shape getRange() {
         return range;
-    }
-
-    public boolean isShooting() {
-        return shooting;
     }
 
     public void setShooting(boolean shooting) {

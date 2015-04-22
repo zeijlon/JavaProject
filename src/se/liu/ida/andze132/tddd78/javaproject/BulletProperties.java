@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Created by Andreas Zeijlon on 2015-04-22.
  */
-class BulletProperties {
+public class BulletProperties {
 
     private static final int NORMAL_BULLET_DAMAGE = 10;
     private static final int NORMAL_BULLET_SPEED = 10;

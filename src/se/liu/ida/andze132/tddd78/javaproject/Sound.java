@@ -9,7 +9,7 @@ import java.util.Objects;
 /**
  * Created by Administrat�r on 2015-04-21.
  */
-final class Sound
+final public class Sound
 {
 	private static String bossbeardeath = "sounds/bossbeardeath.wav";
 	private static boolean noMusic = false;

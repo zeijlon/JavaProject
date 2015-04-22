@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by Administrat�r on 2015-04-13.
  */
-class Menu {
+public class Menu {
     private KeyHandler keyHandler;
     private GRID grid;
     private Shop shop;
@@ -25,7 +25,7 @@ class Menu {
     private int mapSelected;
 
 
-    Menu() {
+    public Menu() {
         ifMenu = true;
         gameOn = false;
         gameRunning = true;

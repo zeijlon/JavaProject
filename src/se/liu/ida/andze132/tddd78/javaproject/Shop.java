@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
  */
-class Shop {
+public class Shop {
     private int gold;
     private int health;
     public final static int SHOPBUTTON_SIZE = 80;
@@ -30,7 +30,7 @@ class Shop {
 
     public final static int SHOP_MARGIN = 14;
 
-    Shop(GRID grid, KeyHandler keyHandler) {
+    public Shop(GRID grid, KeyHandler keyHandler) {
         this.grid = grid;
         this.keyHandler = keyHandler;
 

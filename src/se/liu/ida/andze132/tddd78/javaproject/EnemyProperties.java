@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Created by Andreas Zeijlon on 2015-04-22.
  */
-class EnemyProperties {
+public class EnemyProperties {
 
     private static final int BASIC_HEALTH = 100;
     private static final int BASIC_SPEED = 1;
