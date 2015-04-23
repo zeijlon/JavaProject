@@ -19,6 +19,7 @@ public class Enemy extends EnemyProperties{
     private int x;
     private int y;
     private EnemyType type;
+    public final static int ELIPSSIZECORRECTION = 20;
 
     private Direction direction = null;
     private int enemyWalk = 0;
@@ -51,12 +52,12 @@ public class Enemy extends EnemyProperties{
         switch (this.direction) {
             case RIGHT:
             case LEFT:
-                this.enemyEllipse = new Ellipse2D.Float(x, y + 10, GameComponent.TILE_SIZE, GameComponent.TILE_SIZE - 20);
+                this.enemyEllipse = new Ellipse2D.Float(x, y + 10, GameComponent.TILE_SIZE, GameComponent.TILE_SIZE - ELIPSSIZECORRECTION);
                 break;
             case STILL:
             case DOWN:
             case UPWARD:
-                this.enemyEllipse = new Ellipse2D.Float(x + 10, y, GameComponent.TILE_SIZE-20, GameComponent.TILE_SIZE);
+                this.enemyEllipse = new Ellipse2D.Float(x + 10, y, GameComponent.TILE_SIZE-ELIPSSIZECORRECTION, GameComponent.TILE_SIZE);
                 break;
         }
     }

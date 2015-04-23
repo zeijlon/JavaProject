@@ -3,12 +3,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
-/*
-import java.io.File;
-import java.io.IOException;
-import java.util.Objects;
-*/
+
 
 
 /**
@@ -20,7 +15,6 @@ final public class Sound
 	private static String bossbeardeath = "sounds/bossbeardeath.wav";
 	private static boolean noMusic = false;
     private static boolean noGameAudio = false;
-	private static boolean ifMainSound = false;
     	private static boolean clipPlaying = false;
     private static final int MAXVALUE = Integer.MAX_VALUE;
 
@@ -70,28 +64,10 @@ final public class Sound
     		Sound.noGameAudio = noGameAudio;
     	}
 
-    	public static boolean isIfMainSound() {
-    		return ifMainSound;
-    	}
 
-    	public static void setIfMainSound(boolean ifMainSound) {
-    		Sound.ifMainSound = ifMainSound;
-    	}
-
-	public Clip getClip() {
-		return clip;
-	}
 
 	public static String getBossbeardeath() {
 		return bossbeardeath;
-	}
-
-	public static boolean isClipPlaying() {
-		return clipPlaying;
-	}
-
-	public static int getMAXVALUE() {
-		return MAXVALUE;
 	}
 
 	public static boolean getNoGameAudio(){

@@ -12,6 +12,8 @@ import java.util.*;
 public class TowerHandler {
 
     private Collection<Towers> towers = new ArrayList<>();
+    public final static int UPGRADEWIDTHCOORD = 200;
+    public final static int UPGRADEHEIGHTCORRECTIONCOORD = 50;
 
     private GRID grid;
     private Shop shop;
@@ -89,7 +91,7 @@ public class TowerHandler {
         towers.stream().filter(tower -> keyHandler.getClickPoint() != null).forEach(tower -> {
             if (tower.getRectangle().contains(keyHandler.getClickPoint())) {
                 tower.setTargeted(true);
-                upgradeTower = new Rectangle(200, grid.getHeight() + 50, 100, 100);
+                upgradeTower = new Rectangle(UPGRADEWIDTHCOORD, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
             } else if (upgradeTower.contains(keyHandler.getClickPoint())) {
                 if (tower.isTargeted()) {
                     if (keyHandler.getMouseReleased()) {
@@ -163,7 +165,7 @@ public class TowerHandler {
             g.setTransform(old);
             if (tower.isTargeted()) {
                 g.drawOval(tower.getX() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getY() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getRadius(), tower.getRadius());
-                g.fillRect(200, grid.getHeight() + 50, 100, 100);
+                g.fillRect(UPGRADEWIDTHCOORD, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
             }
         }
         Double dX = keyHandler.getMotionPoint().getX();
