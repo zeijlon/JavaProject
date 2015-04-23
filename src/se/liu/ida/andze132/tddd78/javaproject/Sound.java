@@ -22,6 +22,8 @@ final public class Sound
     public static boolean noGameAudio = false;
 	private static boolean ifMainSound = false;
     	public static boolean clipPlaying = false;
+    private static final int MAXVALUE = Integer.MAX_VALUE;
+
 
 
 	public  Sound(String s){
@@ -45,7 +47,7 @@ final public class Sound
     }
     public void loop(){
 	if(!noMusic){
-	clip.loop(999999);}
+	clip.loop(MAXVALUE);}
     }
 
 
@@ -79,49 +81,4 @@ final public class Sound
 
 
 
-/*
-	public static void playSound(final String sound) {
-      new Thread(() -> {
-	try(Clip clip = AudioSystem.getClip();
-		Clip clip2 = AudioSystem.getClip()){
-	    AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(sound));
-	  	    	    clip.open(inputStream);
-	    if(Objects.equals(sound, "sounds/song.aiff")){
-	    AudioInputStream inputStream2 = AudioSystem.getAudioInputStream(new File(sound));
-	    		clip2.open(inputStream2);}
-		if(noMusic){clip2.stop();}
-		while(!noGameAudio){
-
-
-	    	  clip.start();
-	    	}
-		if(!noMusic){
-
-
-		clip2.start();
-			while(ifMainSound && !noMusic){
-		    		clip2.loop(1);
-	    }
-	    }
-
-	    } catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
-		e.printStackTrace();
-	}
-		  catch(IllegalStateException ignored){}
-	  }).start();
-    }
-  public static void playDyingBear(){
-	  String beardeath = "sounds/beardeath.wav";
-	  playSound(beardeath);
-  }
-    public static void playDyingBossBear(){
-        playSound("sounds/bossbeardeath.wav");
-    }
-    public static void playMainTheme(){
-		String mainTheme = "sounds/song.aiff";
-		playSound(mainTheme);
-    }
-
-
-	*/
 }
