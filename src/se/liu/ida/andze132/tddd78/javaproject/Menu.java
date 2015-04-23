@@ -80,13 +80,20 @@ public class Menu {
             if (newGameButton.contains(keyHandler.getClickPoint())) {
                 ifMenu = false;
                 gameOn = true;
-		mainTheme = new Sound("sounds/song.wav");
+		mainTheme = new Sound("sounds/song.aiff");
 
                 if(!Sound.isNoMusic()){
+		    if(!Sound.clipPlaying){
+
 			mainTheme.play();
-		    //Sound.playMainTheme();
+		    	Sound.clipPlaying = true;
+		    	//ska göra en setter till denna jävel
                 Sound.setIfMainSound(true);
-		}
+		}}
+		if(Sound.isNoMusic()){
+		    mainTheme.stop();
+		    Sound.clipPlaying = false;
+						}
 
 
                 grid.setMapSize(mapSelected);
@@ -109,6 +116,16 @@ public class Menu {
                 ifGamePaused = false;
                 drawlvlslct = false;
                 drawoptions = false;
+		if(!Sound.isNoMusic()){
+		    if(!Sound.clipPlaying){
+		    mainTheme.play();
+		    Sound.clipPlaying = true;
+				 }}
+		if(Sound.isNoMusic()){
+		    mainTheme.stop();
+		    Sound.clipPlaying = false;
+				}
+
 
 
 

@@ -19,21 +19,15 @@ final public class Sound
     	private Clip clip;
 	private static String bossbeardeath = "sounds/bossbeardeath.wav";
 	private static boolean noMusic = false;
-    private static boolean noGameAudio = false;
+    public static boolean noGameAudio = false;
 	private static boolean ifMainSound = false;
+    	public static boolean clipPlaying = false;
 
 	public  Sound(String s){
 
 	    try{
-		AudioInputStream inputStream = AudioSystem.getAudioInputStream(getClass().getResourceAsStream(s));
-		//AudioFormat baseFormat = inputStream.getFormat();
-		//AudioFormat decodedFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED,baseFormat.getSampleRate()
-		//	,16,baseFormat.getChannels(),baseFormat.getChannels()*2,baseFormat.getSampleRate(),false);
-		//AudioInputStream decodedInputStream = AudioSystem.getAudioInputStream(decodedFormat,inputStream);
-		//clip =AudioSystem.getClip();
-		//clip.open(decodedInputStream);
-
-		 clip = AudioSystem.getClip();
+		AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(s));
+		clip = AudioSystem.getClip();
 		clip.open(inputStream);
 	    }
 	    catch(Exception e){
@@ -48,11 +42,13 @@ final public class Sound
 
     }
     public void stop(){
-	if(clip.isRunning()) clip.stop();
+	if(clip.isRunning())
+	    clip.stop();
     }
     public void close(){
 	stop();
-	clip.close();}
+	clip.close();
+    }
 
 
 

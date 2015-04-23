@@ -23,7 +23,7 @@ public class EnemySpawner {
     private int level = 0, enemiesSpawned;
     private int enemyCount = 1;
     private int armoredEnemyCount = 1;
-    // private int enemyCount = basicEnemyCount+=level*2+armoredEnemyCount;
+
 
     private Image nextWave = Toolkit.getDefaultToolkit().getImage("images/nextWave.png").getScaledInstance(WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE, Image.SCALE_DEFAULT);
     private Image slowMode = Toolkit.getDefaultToolkit().getImage("images/slowMode.png").getScaledInstance(WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE, Image.SCALE_DEFAULT);
@@ -45,7 +45,7 @@ public class EnemySpawner {
         this.fastForward = false;
         this.keyHandler = keyHandler;
 	sfx = new HashMap<String, Sound>();
-	//sfx.put("dies", new Sound("sounds/beardeath.wav"));
+	sfx.put("dies", new Sound("sounds/beardeath.wav"));
         this.nextRoundButton = new Rectangle(grid.getWidth()+ 10, grid.getHeight() + 10, WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE);
     }
 
@@ -270,8 +270,8 @@ public class EnemySpawner {
             if (enemies.get(i).getHp() <= 0) {
                 shop.setGold(shop.getGold() + enemies.get(i).getGoldgain());
                 enemies.remove(enemies.get(i));
-		sfx.get("dies").play();
-		//Sound.playDyingBear();
+		if(!Sound.noGameAudio){
+		sfx.get("dies").play();}
             } else if (grid.getSquares()[y][x] == GRID.FINISH) {
                 shop.setHealth(shop.getHealth() - enemies.get(i).getDamage());
                 enemies.remove(enemies.get(i));
