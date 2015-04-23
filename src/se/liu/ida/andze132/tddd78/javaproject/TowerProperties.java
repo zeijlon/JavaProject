@@ -7,15 +7,15 @@ import java.awt.*;
  */
 public class TowerProperties {
 
-    private static final int BASIC_TOWER_COST = 5;
+    private static final int BASIC_TOWER_COST = 10;
     private static final int BASIC_TOWER_SELL = 5;
-    private static final int BASIC_TOWER_RADIUS = 400;
-    private static final int BASIC_TOWER_RELOADTIME = 20;
+    private static final int BASIC_TOWER_RADIUS = 200;
+    private static final int BASIC_TOWER_RELOADTIME = 30;
 
-    private static final int AP_TOWER_COST = 10;
+    private static final int AP_TOWER_COST = 20;
     private static final int AP_TOWER_SELL = 10;
     private static final int AP_TOWER_RADIUS = 400;
-    private static final int AP_TOWER_RELOADTIME = 50;
+    private static final int AP_TOWER_RELOADTIME = 60;
 
 
     public void decideEnemy(Towers tower) {

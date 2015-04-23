@@ -11,7 +11,7 @@ public class BulletProperties {
     private static final int NORMAL_BULLET_SPEED = 10;
 
     private static final int FMJ_BULLET_DAMAGE = 20;
-    private static final int FMJ_BULLET_SPEED = 5;
+    private static final int FMJ_BULLET_SPEED = 15;
 
 
     public void decideBullet(Bullet bullet) {

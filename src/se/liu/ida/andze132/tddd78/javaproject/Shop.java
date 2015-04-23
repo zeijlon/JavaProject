@@ -12,8 +12,8 @@ public class Shop {
     private int health;
     public final static int SHOPBUTTON_SIZE = 80;
 
-    private Image button = Toolkit.getDefaultToolkit().getImage("images/shopButton60.png").getScaledInstance(80, 80, Image.SCALE_DEFAULT);
-    private Image buttonFocus = Toolkit.getDefaultToolkit().getImage("images/shopButtonFocus60.png").getScaledInstance(80, 80, Image.SCALE_DEFAULT);
+    private Image button = Toolkit.getDefaultToolkit().getImage("images/shopButton60.png").getScaledInstance(SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
+    private Image buttonFocus = Toolkit.getDefaultToolkit().getImage("images/shopButtonFocus60.png").getScaledInstance(SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
     private Image coin = Toolkit.getDefaultToolkit().getImage("images/coin.png");
     private Image heart = Toolkit.getDefaultToolkit().getImage("images/heart.png");
     private Image basicTowerInfo = Toolkit.getDefaultToolkit().getImage("images/basicTowerInfo.png");
@@ -36,9 +36,9 @@ public class Shop {
 
         this.holdsItem = null;
         defineShopButtons();
-        Image trashCan = Toolkit.getDefaultToolkit().getImage("images/trashCan60.png").getScaledInstance(80, 80, Image.SCALE_DEFAULT);
-        Image armorPiercingTowerImage = Toolkit.getDefaultToolkit().getImage("images/armorPiercingTower60.png").getScaledInstance(80, 80, Image.SCALE_DEFAULT);
-        Image basicTowerImage = Toolkit.getDefaultToolkit().getImage("images/basicTower60.png").getScaledInstance(80, 80, Image.SCALE_DEFAULT);
+        Image trashCan = Toolkit.getDefaultToolkit().getImage("images/trashCan60.png").getScaledInstance(SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
+        Image armorPiercingTowerImage = Toolkit.getDefaultToolkit().getImage("images/armorPiercingTower60.png").getScaledInstance(SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
+        Image basicTowerImage = Toolkit.getDefaultToolkit().getImage("images/basicTower60.png").getScaledInstance(SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
         towerImages = new Image[][]{{basicTowerImage, armorPiercingTowerImage}, {basicTowerImage, basicTowerImage},
                 {basicTowerImage, basicTowerImage}, {basicTowerImage, trashCan}};
     }

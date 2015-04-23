@@ -7,14 +7,14 @@ import java.awt.*;
  */
 public class EnemyProperties {
 
-    private static final int BASIC_HEALTH = 100;
-    private static final int BASIC_SPEED = 1;
+    private static final int BASIC_HEALTH = 50;
+    private static final int BASIC_SPEED = 2;
     private static final int BASIC_GOLD_GAIN = 1;
     private static final int BASIC_DAMAGE = 2;
 
 
     private static final int ARMORED_HEALTH = 200;
-    private static final int ARMORED_SPEED = 2;
+    private static final int ARMORED_SPEED = 1;
     private static final int ARMORED_GOLD_GAIN = 5;
     private static final int ARMORED_DAMAGE = 5;
 
