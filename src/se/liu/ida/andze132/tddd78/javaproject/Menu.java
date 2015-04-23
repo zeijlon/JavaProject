@@ -3,6 +3,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Administrat�r on 2015-04-13.
@@ -23,6 +24,23 @@ public class Menu {
     private boolean drawoptions;
     private boolean ifGamePaused;
     private int mapSelected;
+    private static final int MENUPICWIDTH= 150;
+    private static final int MENUPICWIDTHTWO= 70;
+    private static final int MENUPICALTWIDTH = 129;
+    private static final int MENUPICHEIGHT= 25;
+    private static final int MENUPICHEIGHTTWO= 30;
+    private static final int RESUMECOORDHIGHT = 165;
+    private static final int OPTIONSALTCOORDWIDTH = 595;
+    private static final int FIRSTMAPCOORDHEIGHT = 195;
+    private static final int MAPCOORDWIDTH = 545;
+    private static final int FIRSTCOLUMNCOORDWIDTH = 360;
+    private static final int FIRSTCOLUMNCOORDHEIGHTONE = 200;
+    private static final int ALTCORDHEIGHT = 225;
+    private static final int FIRSTCOLUMNCOORDHEIGHTTWO = 230;
+    private static final int FIRSTCOLUMNCOORDHEIGHTTHREE = 255;
+    private static final int FIRSTCOLUMNCOORDHEIGHTFOUR = 280;
+    private static final int MAPFOURCOORDHEIGHT = 285;
+
 
 
     public Menu() {
@@ -58,19 +76,19 @@ public class Menu {
     private Image gameMusicOff = (Toolkit.getDefaultToolkit().getImage("images/gamemusicoff.png"));
 
 
-    private Rectangle gameAudiooff = new Rectangle(595, 225, 150, 30);
-    private Rectangle gameMusicoff = new Rectangle(595, 255, 150, 30);
+    private Rectangle gameAudiooff = new Rectangle(OPTIONSALTCOORDWIDTH, ALTCORDHEIGHT, MENUPICWIDTH, MENUPICHEIGHT);
+    private Rectangle gameMusicoff = new Rectangle(OPTIONSALTCOORDWIDTH, ALTCORDHEIGHT, MENUPICWIDTH, MENUPICHEIGHT);
 
     private Rectangle resumeGameButton = new Rectangle();
-    private Rectangle newGameButton = new Rectangle(360, 200, 150, 25);
-    private Rectangle selectLevel = new Rectangle(360, 230, 150, 25);
-    private Rectangle optionsButton = new Rectangle(360, 255, 150, 25);
-    private Rectangle quitGameButton = new Rectangle(360, 280, 129, 25);
+    private Rectangle newGameButton = new Rectangle(FIRSTCOLUMNCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTONE, MENUPICWIDTH, MENUPICHEIGHT);
+    private Rectangle selectLevel = new Rectangle(FIRSTCOLUMNCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTWO, MENUPICWIDTH, MENUPICHEIGHT);
+    private Rectangle optionsButton = new Rectangle(FIRSTCOLUMNCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTHREE, MENUPICWIDTH, MENUPICHEIGHT);
+    private Rectangle quitGameButton = new Rectangle(FIRSTCOLUMNCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTFOUR, MENUPICALTWIDTH, MENUPICHEIGHT);
 
-    private Rectangle recmap1 = new Rectangle(545, 195, 70, 30);
-    private Rectangle recmap2 = new Rectangle(545, 225, 70, 30);
-    private Rectangle recmap3 = new Rectangle(545, 255, 70, 30);
-    private Rectangle recmap4 = new Rectangle(545, 285, 70, 30);
+    private Rectangle recmap1 = new Rectangle(MAPCOORDWIDTH, FIRSTMAPCOORDHEIGHT, MENUPICWIDTHTWO, MENUPICHEIGHTTWO);
+    private Rectangle recmap2 = new Rectangle(MAPCOORDWIDTH, ALTCORDHEIGHT, MENUPICWIDTHTWO, MENUPICHEIGHTTWO);
+    private Rectangle recmap3 = new Rectangle(MAPCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTHREE, MENUPICWIDTHTWO, MENUPICHEIGHTTWO);
+    private Rectangle recmap4 = new Rectangle(MAPCOORDWIDTH, MAPFOURCOORDHEIGHT, MENUPICWIDTHTWO, MENUPICHEIGHTTWO);
 
 
 
@@ -87,13 +105,13 @@ public class Menu {
 
 			mainTheme.play();
 			mainTheme.loop();
-		    	Sound.clipPlaying = true;
+		    	Sound.setClipPlaying(true);
 		    	//ska göra en setter till denna jävel
                 Sound.setIfMainSound(true);
 		}}
 		if(Sound.isNoMusic()){
 		    mainTheme.stop();
-		    Sound.clipPlaying = false;
+		    Sound.setClipPlaying(false);
 						}
 
 
@@ -121,11 +139,11 @@ public class Menu {
 		    if(!Sound.clipPlaying){
 		    	mainTheme.play();
 			mainTheme.loop();
-		    Sound.clipPlaying = true;
+		    Sound.setClipPlaying(true);
 				 }}
 		if(Sound.isNoMusic()){
 		    mainTheme.stop();
-		    Sound.clipPlaying = false;
+		    Sound.setClipPlaying(false);
 				}
 
 
@@ -185,17 +203,17 @@ public class Menu {
         gameOn = false;
         ifGamePaused = true;
         frame.pack();
-        resumeGameButton = new Rectangle(360, 165, 150, 27);
+        resumeGameButton = new Rectangle(FIRSTCOLUMNCOORDWIDTH, RESUMECOORDHIGHT, MENUPICWIDTH, MENUPICHEIGHTTWO);
 
 
     }
 
     public void draw(Graphics g2d) {
         g2d.drawImage(menuImage, 0, 0, null);
-        g2d.drawImage(newGame, 360, 200, null);
-        g2d.drawImage(levelSelect, 360, 225, null);
-        g2d.drawImage(options, 360, 250, null);
-        g2d.drawImage(quit, 360, 275, null);
+        g2d.drawImage(newGame, FIRSTCOLUMNCOORDWIDTH, 200, null);
+        g2d.drawImage(levelSelect, FIRSTCOLUMNCOORDWIDTH, 225, null);
+        g2d.drawImage(options, FIRSTCOLUMNCOORDWIDTH, 250, null);
+        g2d.drawImage(quit, FIRSTCOLUMNCOORDWIDTH, 275, null);
 
         if (drawlvlslct) {
             g2d.drawImage(map1, 550, 200, null);
@@ -220,18 +238,18 @@ public class Menu {
             }
         }
         if (drawoptions) {
-            g2d.drawImage(gameAudioOff, 595, 230, null);
-            g2d.drawImage(gameMusicOff, 595, 260, null);
+            g2d.drawImage(gameAudioOff, OPTIONSALTCOORDWIDTH, 230, null);
+            g2d.drawImage(gameMusicOff, OPTIONSALTCOORDWIDTH, 260, null);
             if (Sound.isNoGameAudio()) {
-                g2d.drawRect(595, 230, 150, 30);
+                g2d.drawRect(OPTIONSALTCOORDWIDTH, 230, MENUPICWIDTH, MENUPICHEIGHTTWO);
             }
             if (Sound.isNoMusic()) {
-                g2d.drawRect(595, 260, 150, 30);
+                g2d.drawRect(OPTIONSALTCOORDWIDTH, 260, MENUPICWIDTH, MENUPICHEIGHTTWO);
 
             }
         }
         if (ifGamePaused) {
-            g2d.drawImage(resumeGame, 350, 175, null);
+            g2d.drawImage(resumeGame, FIRSTCOLUMNCOORDWIDTH-10, 175, null);
         }
     }
 

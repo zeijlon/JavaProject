@@ -23,6 +23,7 @@ final public class Sound
 	private static boolean ifMainSound = false;
     	public static boolean clipPlaying = false;
 
+
 	public  Sound(String s){
 
 	    try{
@@ -35,10 +36,7 @@ final public class Sound
 	    }
 	}
     public void play(){
-	if(clip == null) return;
-    	stop();
-	clip.setFramePosition(0);
-	clip.start();
+	if(clip == null) return;clip.setFramePosition(0);clip.start();
 
     }
     public void stop(){
@@ -46,11 +44,14 @@ final public class Sound
 	    clip.stop();
     }
     public void loop(){
-
-	clip.loop(999999);
+	if(!noMusic){
+	clip.loop(999999);}
     }
 
 
+    public static void setClipPlaying(final boolean clipPlaying) {
+	Sound.clipPlaying = clipPlaying;
+    }
 
     public static boolean isNoMusic() {
     		return noMusic;
