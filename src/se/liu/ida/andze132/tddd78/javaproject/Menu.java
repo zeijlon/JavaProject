@@ -77,7 +77,7 @@ public class Menu {
 
 
     private Rectangle gameAudiooff = new Rectangle(OPTIONSALTCOORDWIDTH, ALTCORDHEIGHT, MENUPICWIDTH, MENUPICHEIGHT);
-    private Rectangle gameMusicoff = new Rectangle(OPTIONSALTCOORDWIDTH, ALTCORDHEIGHT, MENUPICWIDTH, MENUPICHEIGHT);
+    private Rectangle gameMusicoff = new Rectangle(OPTIONSALTCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTHREE+5, MENUPICWIDTH, MENUPICHEIGHT);
 
     private Rectangle resumeGameButton = new Rectangle();
     private Rectangle newGameButton = new Rectangle(FIRSTCOLUMNCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTONE, MENUPICWIDTH, MENUPICHEIGHT);
@@ -210,16 +210,16 @@ public class Menu {
 
     public void draw(Graphics g2d) {
         g2d.drawImage(menuImage, 0, 0, null);
-        g2d.drawImage(newGame, FIRSTCOLUMNCOORDWIDTH, 200, null);
-        g2d.drawImage(levelSelect, FIRSTCOLUMNCOORDWIDTH, 225, null);
-        g2d.drawImage(options, FIRSTCOLUMNCOORDWIDTH, 250, null);
-        g2d.drawImage(quit, FIRSTCOLUMNCOORDWIDTH, 275, null);
+        g2d.drawImage(newGame, FIRSTCOLUMNCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTONE, null);
+        g2d.drawImage(levelSelect, FIRSTCOLUMNCOORDWIDTH, ALTCORDHEIGHT, null);
+        g2d.drawImage(options, FIRSTCOLUMNCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTHREE-5, null);
+        g2d.drawImage(quit, FIRSTCOLUMNCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTFOUR-5, null);
 
         if (drawlvlslct) {
-            g2d.drawImage(map1, 550, 200, null);
-            g2d.drawImage(map2, 550, 230, null);
-            g2d.drawImage(map3, 550, 260, null);
-            g2d.drawImage(map4, 550, 290, null);
+            g2d.drawImage(map1, MAPCOORDWIDTH+5, FIRSTCOLUMNCOORDHEIGHTONE, null);
+            g2d.drawImage(map2, MAPCOORDWIDTH+5, FIRSTCOLUMNCOORDHEIGHTTWO, null);
+            g2d.drawImage(map3, MAPCOORDWIDTH+5, FIRSTCOLUMNCOORDHEIGHTTHREE+5, null);
+            g2d.drawImage(map4, MAPCOORDWIDTH+5, FIRSTCOLUMNCOORDHEIGHTFOUR+10, null);
             drawGrid(g2d, Maps.getMap(mapSelected));
             g2d.setFont(new Font("courier new", Font.BOLD, 28));
             g2d.setColor(Color.black);
@@ -238,13 +238,13 @@ public class Menu {
             }
         }
         if (drawoptions) {
-            g2d.drawImage(gameAudioOff, OPTIONSALTCOORDWIDTH, 230, null);
-            g2d.drawImage(gameMusicOff, OPTIONSALTCOORDWIDTH, 260, null);
+            g2d.drawImage(gameAudioOff, OPTIONSALTCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTWO, null);
+            g2d.drawImage(gameMusicOff, OPTIONSALTCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTHREE+5, null);
             if (Sound.isNoGameAudio()) {
-                g2d.drawRect(OPTIONSALTCOORDWIDTH, 230, MENUPICWIDTH, MENUPICHEIGHTTWO);
+                g2d.drawRect(OPTIONSALTCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTWO, MENUPICWIDTH, MENUPICHEIGHTTWO);
             }
             if (Sound.isNoMusic()) {
-                g2d.drawRect(OPTIONSALTCOORDWIDTH, 260, MENUPICWIDTH, MENUPICHEIGHTTWO);
+                g2d.drawRect(OPTIONSALTCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTHREE+5, MENUPICWIDTH, MENUPICHEIGHTTWO);
 
             }
         }
