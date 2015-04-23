@@ -2,10 +2,8 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
@@ -18,7 +16,7 @@ public class EnemySpawner {
 
     private List<Enemy> enemies = new ArrayList<>();
     private List<Start> starts = new ArrayList<>();
-    private HashMap<String, Sound> sfx;
+    private Map<String, Sound> sfx;
     private int spawnTime = 0;
     private int level = 0, enemiesSpawned;
     private int enemyCount = 1;
@@ -44,9 +42,9 @@ public class EnemySpawner {
         this.betweenRounds = true;
         this.fastForward = false;
         this.keyHandler = keyHandler;
-	sfx = new HashMap<String, Sound>();
+	sfx = new HashMap<>();
 	sfx.put("dies", new Sound("sounds/beardeath.wav"));
-        this.nextRoundButton = new Rectangle(grid.getWidth()+ 10, grid.getHeight() + 10, WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE);
+        this.nextRoundButton = new Rectangle(grid.getWidth()+ 20, grid.getHeight() + 50, WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE);
     }
 
 
@@ -270,7 +268,7 @@ public class EnemySpawner {
             if (enemies.get(i).getHp() <= 0) {
                 shop.setGold(shop.getGold() + enemies.get(i).getGoldgain());
                 enemies.remove(enemies.get(i));
-		if(!Sound.noGameAudio){
+		if(!Sound.getNoGameAudio()){
 		sfx.get("dies").play();}
             } else if (grid.getSquares()[y][x] == GRID.FINISH) {
                 shop.setHealth(shop.getHealth() - enemies.get(i).getDamage());
@@ -319,16 +317,16 @@ public class EnemySpawner {
         g.setColor(Color.red);
         g.setFont(new Font("courier new", Font.BOLD, 32));
         if (level >= 1) {
-            g.drawString("ROUND " + level, grid.getWidth() + 10, grid.getHeight());
+            g.drawString("ROUND " + level, grid.getWidth() + 20, grid.getHeight()+50);
         }
 
         //Draw next round button
         if (betweenRounds) {
-            g.drawImage(nextWave, grid.getWidth()+10, grid.getHeight() + 10, null);
+            g.drawImage(nextWave, grid.getWidth()+20, grid.getHeight() + 60, null);
         } else if (fastForward) {
-            g.drawImage(fastMode, grid.getWidth()+10, grid.getHeight() + 10, null);
+            g.drawImage(fastMode, grid.getWidth()+20, grid.getHeight() + 60, null);
         } else {
-            g.drawImage(slowMode, grid.getWidth()+10, grid.getHeight() + 10, null);
+            g.drawImage(slowMode, grid.getWidth()+20, grid.getHeight() + 60, null);
         }
     }
 
@@ -340,7 +338,7 @@ public class EnemySpawner {
         return enemies;
     }
 
-    public void setLevel(int level) {
+    public void setLevel() {
         this.level = 0;
     }
 

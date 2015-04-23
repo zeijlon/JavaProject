@@ -16,12 +16,12 @@ import java.util.Objects;
  */
 final public class Sound
 {
-    	private Clip clip;
+    	private Clip clip = null;
 	private static String bossbeardeath = "sounds/bossbeardeath.wav";
 	private static boolean noMusic = false;
-    public static boolean noGameAudio = false;
+    private static boolean noGameAudio = false;
 	private static boolean ifMainSound = false;
-    	public static boolean clipPlaying = false;
+    	private static boolean clipPlaying = false;
     private static final int MAXVALUE = Integer.MAX_VALUE;
 
 
@@ -32,10 +32,9 @@ final public class Sound
 		AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(s));
 		clip = AudioSystem.getClip();
 		clip.open(inputStream);
-	    }
-	    catch(Exception e){
-		e.printStackTrace();
-	    }
+	    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+			e.printStackTrace();
+		}
 	}
     public void play(){
 	if(clip == null) return;clip.setFramePosition(0);clip.start();
@@ -79,7 +78,27 @@ final public class Sound
     		Sound.ifMainSound = ifMainSound;
     	}
 
+	public Clip getClip() {
+		return clip;
+	}
 
+	public static String getBossbeardeath() {
+		return bossbeardeath;
+	}
 
+	public static boolean isClipPlaying() {
+		return clipPlaying;
+	}
 
+	public static int getMAXVALUE() {
+		return MAXVALUE;
+	}
+
+	public static boolean getNoGameAudio(){
+		return noGameAudio;
+	}
+
+	public static boolean getClipPlaying(){
+		return clipPlaying;
+	}
 }

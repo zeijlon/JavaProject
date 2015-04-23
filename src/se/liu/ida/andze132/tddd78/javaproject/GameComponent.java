@@ -19,7 +19,7 @@ public class GameComponent extends JComponent {
 
     public final static int TILE_SIZE = 60;
     private final static int SHOP_SIZE_X = 200;
-    private final static int INFO_BOX = 175;
+    private final static int INFO_BOX = 250;
 
 
     public GameComponent(GRID grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu) {

@@ -101,7 +101,7 @@ public class GameLoop {
                 keyHandler.setClickPoint();
             }
         } else if (menu.isIfMenu()) {
-            menu.ifMenuedit();
+            menu.menuEdit();
         }
 
     }
