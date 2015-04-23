@@ -86,6 +86,7 @@ public class Menu {
 		    if(!Sound.clipPlaying){
 
 			mainTheme.play();
+			mainTheme.loop();
 		    	Sound.clipPlaying = true;
 		    	//ska göra en setter till denna jävel
                 Sound.setIfMainSound(true);
@@ -118,7 +119,8 @@ public class Menu {
                 drawoptions = false;
 		if(!Sound.isNoMusic()){
 		    if(!Sound.clipPlaying){
-		    mainTheme.play();
+		    	mainTheme.play();
+			mainTheme.loop();
 		    Sound.clipPlaying = true;
 				 }}
 		if(Sound.isNoMusic()){

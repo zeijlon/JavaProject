@@ -45,9 +45,9 @@ final public class Sound
 	if(clip.isRunning())
 	    clip.stop();
     }
-    public void close(){
-	stop();
-	clip.close();
+    public void loop(){
+
+	clip.loop(999999);
     }
 
 
