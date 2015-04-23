@@ -97,6 +97,7 @@ public class GameLoop {
             if (shop.getHealth() <= 0) {
                 menu.setGameOn(false);
                 menu.setIfMenu(true);
+                menu.setIfLost(true);
                 keyHandler.setClickPoint();
             }
         } else if (menu.isIfMenu()) {

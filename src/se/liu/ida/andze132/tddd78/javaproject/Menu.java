@@ -3,7 +3,6 @@ package se.liu.ida.andze132.tddd78.javaproject;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Administrat�r on 2015-04-13.
@@ -23,6 +22,7 @@ public class Menu {
     private boolean drawlvlslct;
     private boolean drawoptions;
     private boolean ifGamePaused;
+    private boolean ifLost;
     private int mapSelected;
     private static final int MENUPICWIDTH= 150;
     private static final int MENUPICWIDTHTWO= 70;
@@ -40,6 +40,11 @@ public class Menu {
     private static final int FIRSTCOLUMNCOORDHEIGHTTHREE = 255;
     private static final int FIRSTCOLUMNCOORDHEIGHTFOUR = 280;
     private static final int MAPFOURCOORDHEIGHT = 285;
+    private static final int MENUSTRINGWIDTH = 650;
+    private static final int MENUSTRINGHEIGHT = 350;
+    private static final int MAGICGRIDMULTIPLYER = 12;
+    private static final int MAGICGRIDWIDTH = 200;
+
 
 
 
@@ -49,9 +54,9 @@ public class Menu {
         gameRunning = true;
         drawlvlslct = false;
         ifGamePaused = false;
-        boolean ifNoBearSound = false;
         mapSelected = 1;
         drawoptions = false;
+        ifLost = false;
         this.keyHandler = new KeyHandler();
         this.grid = new GRID(mapSelected);
         this.shop = new Shop(grid, keyHandler);
@@ -98,25 +103,16 @@ public class Menu {
             if (newGameButton.contains(keyHandler.getClickPoint())) {
                 ifMenu = false;
                 gameOn = true;
+                ifLost = false;
 		mainTheme = new Sound("sounds/song.aiff");
-
-                if(!Sound.isNoMusic()){
-		    if(!Sound.clipPlaying){
-
-			mainTheme.play();
-			mainTheme.loop();
-		    	Sound.setClipPlaying(true);
-		    	//ska göra en setter till denna jävel
-                Sound.setIfMainSound(true);
-		}}
-		if(Sound.isNoMusic()){
-		    mainTheme.stop();
-		    Sound.setClipPlaying(false);
-						}
-
-
                 grid.setMapSize(mapSelected);
-
+                if (!Sound.isNoMusic()) {
+                    if(!Sound.clipPlaying){
+                        mainTheme.play();
+                        mainTheme.loop();
+                        Sound.setClipPlaying(true);
+                    				 }
+                }
                 shop.setHealth(1);
                 shop.setGold(10);
                 spawner.setEnemies(new ArrayList<>());
@@ -135,16 +131,6 @@ public class Menu {
                 ifGamePaused = false;
                 drawlvlslct = false;
                 drawoptions = false;
-		if(!Sound.isNoMusic()){
-		    if(!Sound.clipPlaying){
-		    	mainTheme.play();
-			mainTheme.loop();
-		    Sound.setClipPlaying(true);
-				 }}
-		if(Sound.isNoMusic()){
-		    mainTheme.stop();
-		    Sound.setClipPlaying(false);
-				}
 
 
 
@@ -176,9 +162,16 @@ public class Menu {
                 }
             } else if (drawoptions && gameMusicoff.contains(keyHandler.getClickPoint())) {
                 if (Sound.isNoMusic()) {
+                    if(!Sound.clipPlaying){
+                    		    	mainTheme.play();
+                    			mainTheme.loop();
+                    		    Sound.setClipPlaying(true);
+                    				 }
                     Sound.setNoMusic(false);
                 }
                 else if (!Sound.isNoMusic()) {
+                    mainTheme.stop();
+                    Sound.setClipPlaying(false);
                     Sound.setNoMusic(true);
                 }
             } else if (drawlvlslct && recmap1.contains(keyHandler.getClickPoint())) {
@@ -221,20 +214,20 @@ public class Menu {
             g2d.drawImage(map3, MAPCOORDWIDTH+5, FIRSTCOLUMNCOORDHEIGHTTHREE+5, null);
             g2d.drawImage(map4, MAPCOORDWIDTH+5, FIRSTCOLUMNCOORDHEIGHTFOUR+10, null);
             drawGrid(g2d, Maps.getMap(mapSelected));
-            g2d.setFont(new Font("courier new", Font.BOLD, 28));
+            g2d.setFont(new Font("courier new", Font.BOLD, MENUPICHEIGHTTWO-2));
             g2d.setColor(Color.black);
             if (mapSelected == 1) {
-                g2d.drawString("VERY EASY", 650, 350);
-                g2d.drawRect(545, 195, 70, 35);
+                g2d.drawString("VERY EASY", MENUSTRINGWIDTH, MENUSTRINGHEIGHT);
+                g2d.drawRect(MAPCOORDWIDTH-10, FIRSTMAPCOORDHEIGHT, MENUPICWIDTHTWO, MENUPICHEIGHTTWO+5);
             } else if (mapSelected == 2) {
-                g2d.drawString("EASY", 650, 350);
-                g2d.drawRect(545, 225, 70, 35);
+                g2d.drawString("EASY", MENUSTRINGWIDTH, MENUSTRINGHEIGHT);
+                g2d.drawRect(MAPCOORDWIDTH-10, FIRSTCOLUMNCOORDHEIGHTTWO, MENUPICWIDTHTWO, MENUPICHEIGHTTWO+5);
             } else if (mapSelected == 3) {
-                g2d.drawString("MEDIUM", 650, 350);
-                g2d.drawRect(545, 255, 70, 35);
+                g2d.drawString("MEDIUM", MENUSTRINGWIDTH, MENUSTRINGHEIGHT);
+                g2d.drawRect(MAPCOORDWIDTH-10, ALTCORDHEIGHT, MENUPICWIDTHTWO, MENUPICHEIGHTTWO+5);
             } else if (mapSelected == 4) {
-                g2d.drawString("VERY HARD", 650, 350);
-                g2d.drawRect(545, 285, 70, 35);
+                g2d.drawString("VERY HARD", MENUSTRINGWIDTH, MENUSTRINGHEIGHT);
+                g2d.drawRect(MAPCOORDWIDTH-10, FIRSTCOLUMNCOORDHEIGHTFOUR+5, MENUPICWIDTHTWO, MENUPICHEIGHTTWO+5);
             }
         }
         if (drawoptions) {
@@ -249,15 +242,16 @@ public class Menu {
             }
         }
         if (ifGamePaused) {
-            g2d.drawImage(resumeGame, FIRSTCOLUMNCOORDWIDTH-10, 175, null);
-        }
+            if(!ifLost){
+            g2d.drawImage(resumeGame, FIRSTCOLUMNCOORDWIDTH-10, RESUMECOORDHIGHT+10, null);
+        }}
     }
 
     private void drawGrid(Graphics g2d, int[][] squares) {
         for (int i = 0; i < squares.length; i++) {
             for (int j = 0; j < squares[i].length; j++) {
-                ImageIcon squareType = new ImageIcon(grid.checkSquareType(squares[i][j]).getScaledInstance(12, 12, Image.SCALE_DEFAULT));
-                g2d.drawImage(squareType.getImage(), 650 + j * 12, 200 + i * 12, null);
+                ImageIcon squareType = new ImageIcon(grid.checkSquareType(squares[i][j]).getScaledInstance(MAGICGRIDMULTIPLYER, MAGICGRIDMULTIPLYER, Image.SCALE_DEFAULT));
+                g2d.drawImage(squareType.getImage(), MENUSTRINGWIDTH + j * MAGICGRIDMULTIPLYER, MAGICGRIDWIDTH + i * MAGICGRIDMULTIPLYER, null);
             }
         }
     }
@@ -282,4 +276,7 @@ public class Menu {
         this.gameOn = gameOn;
     }
 
+    public void setIfLost(final boolean ifLost) {
+        this.ifLost = ifLost;
+    }
 }

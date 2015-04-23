@@ -30,6 +30,7 @@ public class GameComponent extends JComponent {
         this.bulletHandler = bulletHandler;
         this.menu = menu;
         this.addKeyBindings();
+
     }
 
     @Override
