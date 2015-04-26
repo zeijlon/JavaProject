@@ -15,7 +15,7 @@ public class Shop {
     public final static int MAGICSHOPCOORDTWO =160;
     public final static int MAGICSHOPCOORDTHREE =140;
     public final static int MAGICSHOPMONEYINT = 95;
-    public final static int BASICTOWERINFOWIDTH =500;
+    public final static int BASICTOWERINFOHEIGHT =320;
     public final static int  MAGICHEARTCOORD =60;
     public final static int STRINGSHOPHEIGHT =125;
 
@@ -27,8 +27,8 @@ public class Shop {
     private Image apTowerInfo = Toolkit.getDefaultToolkit().getImage("images/apTowerInfo.png");
 
 
-    private Rectangle[][] shopButtons = new Rectangle[4][2];
-    private Image[][] towerImages = new Image[4][2];
+    private Rectangle[][] shopButtons = new Rectangle[2][2];
+    private Image[][] towerImages = new Image[2][2];
 
     private Towers holdsItem;
 
@@ -46,8 +46,7 @@ public class Shop {
         Image trashCan = Toolkit.getDefaultToolkit().getImage("images/trashCan60.png").getScaledInstance(SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
         Image armorPiercingTowerImage = Toolkit.getDefaultToolkit().getImage("images/armorPiercingTower60.png").getScaledInstance(SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
         Image basicTowerImage = Toolkit.getDefaultToolkit().getImage("images/basicTower60.png").getScaledInstance(SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
-        towerImages = new Image[][]{{basicTowerImage, armorPiercingTowerImage}, {basicTowerImage, basicTowerImage},
-                {basicTowerImage, basicTowerImage}, {basicTowerImage, trashCan}};
+        towerImages = new Image[][]{{basicTowerImage, armorPiercingTowerImage}, {basicTowerImage, trashCan}};
     }
 
 
@@ -86,9 +85,9 @@ public class Shop {
 
 
         if (shopButtons[0][0].contains(keyHandler.getMotionPoint())) {
-            g.drawImage(basicTowerInfo, grid.getWidth()+10, BASICTOWERINFOWIDTH, null);
+            g.drawImage(basicTowerInfo, grid.getWidth()+15, BASICTOWERINFOHEIGHT, null);
         } else if (shopButtons[0][1].contains(keyHandler.getMotionPoint())) {
-            g.drawImage(apTowerInfo, grid.getWidth()+10, BASICTOWERINFOWIDTH, null);
+            g.drawImage(apTowerInfo, grid.getWidth()+15, BASICTOWERINFOHEIGHT, null);
 
         }
 
@@ -96,8 +95,10 @@ public class Shop {
 
         g.setFont(new Font("Courier New", Font.BOLD, SHOP_MARGIN+4));
         g.setColor(Color.yellow);
-        g.drawString("$" + 5, grid.getWidth() + SHOP_MARGIN + 10, MAGICSHOPCOORDTWO);
-        g.drawString("$" + 10, grid.getWidth() + SHOP_MARGIN +MAGICSHOPMONEYINT, MAGICSHOPCOORDTWO);
+        g.drawString("$" + 10, grid.getWidth() + SHOP_MARGIN + 10, MAGICSHOPCOORDTWO);
+        g.drawString("$" + 20, grid.getWidth() + SHOP_MARGIN +MAGICSHOPMONEYINT, MAGICSHOPCOORDTWO);
+        g.drawString("$" + 40, grid.getWidth() +SHOP_MARGIN + 10, MAGICSHOPCOORDTWO + SHOPBUTTON_SIZE + 10);
+
 
         //Code below draws health and gold on the screen.
         g.setColor(Color.black);

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Menu {
     private KeyHandler keyHandler;
     private GRID grid;
+    private MapEditor editor;
     private Shop shop;
     private EnemySpawner spawner;
     private TowerHandler towerHandler;
@@ -23,6 +24,7 @@ public class Menu {
     private boolean options;
     private boolean ifGamePaused;
     private boolean ifLost;
+    private boolean mapEditor;
     private int mapSelected;
 
     private static final int MENU_TAB_WIDTH = 150;
@@ -58,6 +60,7 @@ public class Menu {
         this.keyHandler = new KeyHandler();
         this.grid = new GRID(mapSelected);
         this.shop = new Shop(grid, keyHandler);
+        this.editor = new MapEditor(grid, keyHandler);
         this.spawner = new EnemySpawner(grid, shop, keyHandler);
         this.bulletHandler = new BulletHandler(grid, spawner);
         this.towerHandler = new TowerHandler(grid, shop, spawner, bulletHandler, keyHandler);
@@ -134,8 +137,8 @@ public class Menu {
         }
 
         grid.setMapSize(mapSelected);
-        shop.setHealth(1);
-        shop.setGold(10);
+        shop.setHealth(100);
+        shop.setGold(100);
         spawner.setEnemies(new ArrayList<>());
         spawner.setLevel();
         spawner.setEnemyCount(1);

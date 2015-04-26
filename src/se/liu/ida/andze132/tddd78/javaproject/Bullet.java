@@ -13,15 +13,16 @@ public class Bullet extends BulletProperties{
     private int damage;
     private BulletType type;
 
+
     private Image image = null;
 
     private Rectangle bulletRect = null;
 
-    public Bullet(int x, int y, BulletType type) {
-        this.x = x;
-        this.y = y;
+    public Bullet(Towers tower, BulletType type) {
+        this.x = tower.getX()+BulletHandler.RECT_SIZE;
+        this.y = tower.getY()+BulletHandler.RECT_SIZE;
         this.type = type;
-        decideBullet(this);
+        decideBullet(this, tower);
     }
 
     public BulletType getType() {

@@ -44,7 +44,7 @@ public class EnemySpawner {
         this.keyHandler = keyHandler;
 	sfx = new HashMap<>();
 	sfx.put("dies", new Sound("sounds/beardeath.wav"));
-        this.nextRoundButton = new Rectangle(grid.getWidth()+ 20, grid.getHeight() + 50, WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE);
+        this.nextRoundButton = new Rectangle(grid.getWidth()+ 20, grid.getHeight() - WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE);
     }
 
 
@@ -54,12 +54,13 @@ public class EnemySpawner {
             final int spawnRate = 75;
             if (spawnTime >= spawnRate) {
                 if (enemiesSpawned < enemyCount) {
-                    spawnBasicEnemy();
+                    spawnEnemy(new BasicEnemy());
                     if (level == 5) {
-                        spawnArmoredEnemy();
+                        spawnEnemy(new SpyEnemy());
                         armoredEnemyCount += 1;
+                        enemyCount = 0;
                     } else if (level > 9) {
-                        spawnArmoredEnemy();
+                        spawnEnemy(new ArmoredEnemy());
                     }
 
                     enemiesSpawned += 1;
@@ -96,9 +97,8 @@ public class EnemySpawner {
         }
     }
 
-    private void spawnBasicEnemy() {
-        Enemy basic = new BasicEnemy();
-        enemies.add(basic);
+    private void spawnEnemy(Enemy enemy) {
+        enemies.add(enemy);
         for (int y = 0; y < grid.getSquares().length; y++) {
             for (int x = 0; x < grid.getSquares()[y].length; x++) {
                 if (grid.getSquares()[y][x] == GRID.START) {
@@ -110,18 +110,18 @@ public class EnemySpawner {
         Random random = new Random();
         int n = starts.size();
         int rnd = random.nextInt(n);
-        basic.setyC(starts.get(rnd).getY());
-        basic.setxC(starts.get(rnd).getX());
-        basic.setY(starts.get(rnd).getY() * GameComponent.TILE_SIZE);
-        basic.setX(starts.get(rnd).getX() * GameComponent.TILE_SIZE);
+        enemy.setyC(starts.get(rnd).getY());
+        enemy.setxC(starts.get(rnd).getX());
+        enemy.setY(starts.get(rnd).getY() * GameComponent.TILE_SIZE);
+        enemy.setX(starts.get(rnd).getX() * GameComponent.TILE_SIZE);
 
 
-        defineHasWalked(basic);
-        decideDirection(basic);
-        basic.setEnemyEllipse();
+        defineHasWalked(enemy);
+        decideDirection(enemy);
+        enemy.setEnemyEllipse();
     }
 
-    private void spawnArmoredEnemy() {
+    /*private void spawnArmoredEnemy() {
         Enemy armored = new ArmoredEnemy();
         enemies.add(armored);
         for (int y = 0; y < grid.getSquares().length; y++) {
@@ -142,7 +142,7 @@ public class EnemySpawner {
         defineHasWalked(armored);
         decideDirection(armored);
         armored.setEnemyEllipse();
-    }
+    }*/
 
 
     private void defineHasWalked(Enemy enemy) {
@@ -312,21 +312,20 @@ public class EnemySpawner {
 
             g.setColor(Color.black);
             g.drawRect(enemies.get(i).getX(), enemies.get(i).getY() - (healthSpace + healthHeight), Enemy.HP_BAR_LENGTH - 1, healthHeight - 1);
-            //System.out.println("HP = "+enemies.get(i).getHp() + "Bar = " + enemies.get(i).getHealthBarHp());
         }
         g.setColor(Color.red);
         g.setFont(new Font("courier new", Font.BOLD, 32));
         if (level >= 1) {
-            g.drawString("ROUND " + level, grid.getWidth() + 20, grid.getHeight()+50);
+            g.drawString("ROUND " + level, grid.getWidth() + 20, grid.getHeight()+30);
         }
 
         //Draw next round button
         if (betweenRounds) {
-            g.drawImage(nextWave, grid.getWidth()+20, grid.getHeight() + 60, null);
+            g.drawImage(nextWave, grid.getWidth()+20, grid.getHeight() - WAVE_BUTTON_SIZE, null);
         } else if (fastForward) {
-            g.drawImage(fastMode, grid.getWidth()+20, grid.getHeight() + 60, null);
+            g.drawImage(fastMode, grid.getWidth()+20, grid.getHeight() - WAVE_BUTTON_SIZE, null);
         } else {
-            g.drawImage(slowMode, grid.getWidth()+20, grid.getHeight() + 60, null);
+            g.drawImage(slowMode, grid.getWidth()+20, grid.getHeight() - WAVE_BUTTON_SIZE, null);
         }
     }
 
