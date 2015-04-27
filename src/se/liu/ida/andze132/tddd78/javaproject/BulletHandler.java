@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class BulletHandler {
 
-    private static final int RECT_SIZE = 20;
+    public static final int RECT_SIZE = 20;
     private GRID grid;
     private EnemySpawner spawner;
     private List<Bullet> bullets = new ArrayList<>();
@@ -42,9 +42,11 @@ public class BulletHandler {
         TowerType type = tower.getType();
         switch (type) {
             case BASICTOWER:
-                return new NormalBullet(tower.getX() + RECT_SIZE, tower.getY() + RECT_SIZE);
+                return new NormalBullet(tower);
             case ARMORPIERCINGTOWER:
-                return new FMJBullet(tower.getX() + RECT_SIZE, tower.getY() + RECT_SIZE);
+                return new FMJBullet(tower);
+            case SCOUTTOWER:
+                return new ScoutBullet(tower);
             default:
                 return null;
         }

@@ -7,24 +7,22 @@ import java.awt.*;
  */
 public class BulletProperties {
 
-    private static final int NORMAL_BULLET_DAMAGE = 10;
-    private static final int NORMAL_BULLET_SPEED = 10;
-
-    private static final int FMJ_BULLET_DAMAGE = 20;
-    private static final int FMJ_BULLET_SPEED = 5;
-
-
-    public void decideBullet(Bullet bullet) {
+    public void decideBullet(Bullet bullet, Towers tower) {
         switch (bullet.getType()) {
             case NORMALBULLET:
-                bullet.setBulletSpeed(NORMAL_BULLET_SPEED);
-                bullet.setDamage(NORMAL_BULLET_DAMAGE);
+                bullet.setBulletSpeed(tower.getBulletSpeed());
+                bullet.setDamage(tower.getDamage());
                 bullet.setImage(Toolkit.getDefaultToolkit().getImage("images/normalBullet.png"));
                 break;
             case FMJ:
-                bullet.setBulletSpeed(FMJ_BULLET_SPEED);
-                bullet.setDamage(FMJ_BULLET_DAMAGE);
+                bullet.setBulletSpeed(tower.getBulletSpeed());
+                bullet.setDamage(tower.getDamage());
                 bullet.setImage(Toolkit.getDefaultToolkit().getImage("images/coin.png"));
+                break;
+            case SCOUTBULLET:
+                bullet.setBulletSpeed(tower.getBulletSpeed());
+                bullet.setDamage(tower.getDamage());
+                bullet.setImage(Toolkit.getDefaultToolkit().getImage("images/heart.png"));
                 break;
         }
     }

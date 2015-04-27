@@ -6,7 +6,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
  */
 public class NormalBullet extends Bullet {
 
-    public NormalBullet(int x, int y) {
-        super(x, y, BulletType.NORMALBULLET);
+    public NormalBullet(Towers tower) {
+        super(tower, BulletType.NORMALBULLET);
     }
 }

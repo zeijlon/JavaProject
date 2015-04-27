@@ -7,8 +7,18 @@ package se.liu.ida.andze132.tddd78.javaproject;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
+/**
+ *
+ */
 public class Towers extends TowerProperties{
 
+    private int upgradeRangeCost;
+    private int upgradeASCost;
+    private int upgradeDamageCost;
+    private int upgrades;
+
+    private int damage;
+    private int bulletSpeed;
     private int cost;
     private int radius;
     private int reloadTime;
@@ -20,6 +30,7 @@ public class Towers extends TowerProperties{
     private Enemy targetEnemy = null;
 
     private Image image = null;
+    private Image bulletImage = null;
 
     private Ellipse2D range = null;
 
@@ -36,6 +47,10 @@ public class Towers extends TowerProperties{
     public Towers(TowerType type) {
         this.type = type;
         this.targeted = true;
+        this.upgradeRangeCost = 5;
+        this.upgradeASCost = 5;
+        this.upgradeDamageCost = 5;
+        this.upgrades = 0;
         decideEnemy(this);
 
     }
@@ -148,5 +163,62 @@ public class Towers extends TowerProperties{
     public void setSell(int sell) {
         this.sell = sell;
     }
-}
+
+    public int getSell() {
+        return sell;
+    }
+
+    public int getUpgradeRangeCost(){
+        return upgradeRangeCost;
+    }
+
+    public int getUpgradeASCost(){
+        return upgradeASCost;
+    }
+
+    public int getUpgradeDamageCost(){
+        return upgradeDamageCost;
+    }
+
+    public void setUpgradeRangeCost(int upgradeRangeCost) {
+        this.upgradeRangeCost = upgradeRangeCost;
+    }
+
+    public void setUpgradeDamageCost(int upgradeDamageCost) {
+        this.upgradeDamageCost = upgradeDamageCost;
+    }
+    public void setUpgradeASCost(int upgradeASCost) {
+        this.upgradeASCost = upgradeASCost;
+    }
+
+    public int getDamage(){
+        return damage;
+    }
+
+    public int getBulletSpeed(){
+        return bulletSpeed;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+    public void setBulletSpeed(int bulletSpeed) {
+        this.bulletSpeed = bulletSpeed;
+    }
+
+    public void setBulletImage(Image bulletImage) {
+        this.bulletImage = bulletImage;
+    }
+
+    public Image getBulletImage() {
+        return bulletImage;
+    }
+
+    public void setUpgrades(int upgrades){
+        this.upgrades = upgrades;
+    }
+
+    public int getUpgrades(){
+        return upgrades;
+}}
 

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Menu {
     private KeyHandler keyHandler;
     private GRID grid;
+    private MapEditor editor;
     private Shop shop;
     private EnemySpawner spawner;
     private TowerHandler towerHandler;
@@ -23,27 +24,26 @@ public class Menu {
     private boolean options;
     private boolean ifGamePaused;
     private boolean ifLost;
+    private boolean mapEditor;
     private int mapSelected;
-    private static final int MENUPICWIDTH = 150;
-    private static final int MENUPICWIDTHTWO = 70;
-    private static final int MENUPICALTWIDTH = 129;
-    private static final int MENUPICHEIGHT = 25;
-    private static final int MENUPICHEIGHTTWO = 30;
-    private static final int RESUMECOORDHIGHT = 165;
-    private static final int OPTIONSALTCOORDWIDTH = 595;
-    private static final int FIRSTMAPCOORDHEIGHT = 195;
-    private static final int MAPCOORDWIDTH = 545;
-    private static final int FIRSTCOLUMNCOORDWIDTH = 360;
-    private static final int FIRSTCOLUMNCOORDHEIGHTONE = 200;
-    private static final int ALTCORDHEIGHT = 225;
-    private static final int FIRSTCOLUMNCOORDHEIGHTTWO = 230;
-    private static final int FIRSTCOLUMNCOORDHEIGHTTHREE = 255;
-    private static final int FIRSTCOLUMNCOORDHEIGHTFOUR = 280;
-    private static final int MAPFOURCOORDHEIGHT = 285;
-    private static final int MENUSTRINGWIDTH = 650;
-    private static final int MENUSTRINGHEIGHT = 350;
-    private static final int MAGICGRIDMULTIPLYER = 12;
-    private static final int MAGICGRIDWIDTH = 200;
+
+    private static final int MENU_TAB_WIDTH = 150;
+    private static final int MENU_TAB_HEIGHT = 25;
+
+    private static final int MAP_TAB_WIDTH = 70;
+    private static final int MAP_TAB_HEIGHT = 30;
+
+    private static final int FIRST_COLUMN_X = 360;
+    private static final int FIRST_COLUMN_Y = 165;
+
+    private static final int SECOND_COLUMN_X = 550;
+    private static final int SECOND_COLUMN_Y = 195;
+
+    private static final int MENU_GRID_X = 650;
+    private static final int MENU_GRID_Y = 200;
+    private static final int DIFFICULTY_Y = 350;
+    private static final int MENU_GRID_TILE_SIZE = 12;
+
 
 
 
@@ -60,6 +60,7 @@ public class Menu {
         this.keyHandler = new KeyHandler();
         this.grid = new GRID(mapSelected);
         this.shop = new Shop(grid, keyHandler);
+        this.editor = new MapEditor(grid, keyHandler);
         this.spawner = new EnemySpawner(grid, shop, keyHandler);
         this.bulletHandler = new BulletHandler(grid, spawner);
         this.towerHandler = new TowerHandler(grid, shop, spawner, bulletHandler, keyHandler);
@@ -77,23 +78,23 @@ public class Menu {
     private Image map3 = (Toolkit.getDefaultToolkit().getImage("images/Map3.png"));
     private Image map4 = (Toolkit.getDefaultToolkit().getImage("images/Map4.png"));
     private Image optionsImage = (Toolkit.getDefaultToolkit().getImage("images/Options.png"));
-    private Image gameAudioOff = (Toolkit.getDefaultToolkit().getImage("images/gameaudiooff.png"));
-    private Image gameMusicOff = (Toolkit.getDefaultToolkit().getImage("images/gamemusicoff.png"));
+    private Image audio = (Toolkit.getDefaultToolkit().getImage("images/gameaudiooff.png"));
+    private Image music = (Toolkit.getDefaultToolkit().getImage("images/gamemusicoff.png"));
 
 
-    private Rectangle gameAudiooff = new Rectangle(OPTIONSALTCOORDWIDTH, ALTCORDHEIGHT, MENUPICWIDTH, MENUPICHEIGHT);
-    private Rectangle gameMusicoff = new Rectangle(OPTIONSALTCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTHREE + 5, MENUPICWIDTH, MENUPICHEIGHT);
+    private Rectangle audioRect = new Rectangle(SECOND_COLUMN_X, SECOND_COLUMN_Y, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
+    private Rectangle musicRect = new Rectangle(SECOND_COLUMN_X, SECOND_COLUMN_Y + MENU_TAB_HEIGHT, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
 
     private Rectangle resumeGameButton = new Rectangle();
-    private Rectangle newGameButton = new Rectangle(FIRSTCOLUMNCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTONE, MENUPICWIDTH, MENUPICHEIGHT);
-    private Rectangle selectLevel = new Rectangle(FIRSTCOLUMNCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTWO, MENUPICWIDTH, MENUPICHEIGHT);
-    private Rectangle optionsButton = new Rectangle(FIRSTCOLUMNCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTHREE, MENUPICWIDTH, MENUPICHEIGHT);
-    private Rectangle quitGameButton = new Rectangle(FIRSTCOLUMNCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTFOUR, MENUPICALTWIDTH, MENUPICHEIGHT);
+    private Rectangle newGameButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y+MAP_TAB_HEIGHT, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
+    private Rectangle selectLevel = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*2, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
+    private Rectangle optionsButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*3, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
+    private Rectangle quitGameButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*4, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
 
-    private Rectangle recmap1 = new Rectangle(MAPCOORDWIDTH, FIRSTMAPCOORDHEIGHT, MENUPICWIDTHTWO, MENUPICHEIGHTTWO);
-    private Rectangle recmap2 = new Rectangle(MAPCOORDWIDTH, ALTCORDHEIGHT, MENUPICWIDTHTWO, MENUPICHEIGHTTWO);
-    private Rectangle recmap3 = new Rectangle(MAPCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTHREE, MENUPICWIDTHTWO, MENUPICHEIGHTTWO);
-    private Rectangle recmap4 = new Rectangle(MAPCOORDWIDTH, MAPFOURCOORDHEIGHT, MENUPICWIDTHTWO, MENUPICHEIGHTTWO);
+    private Rectangle rectMap1 = new Rectangle(SECOND_COLUMN_X, SECOND_COLUMN_Y, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
+    private Rectangle rectMap2 = new Rectangle(SECOND_COLUMN_X, SECOND_COLUMN_Y+MAP_TAB_HEIGHT, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
+    private Rectangle rectMap3 = new Rectangle(SECOND_COLUMN_X, SECOND_COLUMN_Y + MAP_TAB_HEIGHT*2, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
+    private Rectangle rectMap4 = new Rectangle(SECOND_COLUMN_X, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*3, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
 
     public void menuEdit() {
         if (keyHandler.getClickPoint() != null) {
@@ -136,8 +137,8 @@ public class Menu {
         }
 
         grid.setMapSize(mapSelected);
-        shop.setHealth(1);
-        shop.setGold(10);
+        shop.setHealth(100);
+        shop.setGold(100);
         spawner.setEnemies(new ArrayList<>());
         spawner.setLevel();
         spawner.setEnemyCount(1);
@@ -171,13 +172,13 @@ public class Menu {
     }
 
     public void chooseMap() {
-        if (recmap1.contains(keyHandler.getClickPoint())) {
+        if (rectMap1.contains(keyHandler.getClickPoint())) {
             mapSelected = 1;
-        } else if (recmap2.contains(keyHandler.getClickPoint())) {
+        } else if (rectMap2.contains(keyHandler.getClickPoint())) {
             mapSelected = 2;
-        } else if (recmap3.contains(keyHandler.getClickPoint())) {
+        } else if (rectMap3.contains(keyHandler.getClickPoint())) {
             mapSelected = 3;
-        } else if (recmap4.contains(keyHandler.getClickPoint())) {
+        } else if (rectMap4.contains(keyHandler.getClickPoint())) {
             mapSelected = 4;
         } else {
             levelSelect = false;
@@ -185,13 +186,13 @@ public class Menu {
     }
 
     public void options() {
-        if (gameAudiooff.contains(keyHandler.getClickPoint())) {
+        if (audioRect.contains(keyHandler.getClickPoint())) {
             if (Sound.isNoGameAudio()) {
                 Sound.setNoGameAudio(false);
             } else if (!Sound.isNoGameAudio()) {
                 Sound.setNoGameAudio(true);
             }
-        } else if (gameMusicoff.contains(keyHandler.getClickPoint())) {
+        } else if (musicRect.contains(keyHandler.getClickPoint())) {
             if (Sound.isNoMusic()) {
                 if(!Sound.getClipPlaying()){
                     mainTheme.play();
@@ -215,60 +216,65 @@ public class Menu {
         gameOn = false;
         ifGamePaused = true;
         frame.pack();
-        resumeGameButton = new Rectangle(FIRSTCOLUMNCOORDWIDTH, RESUMECOORDHIGHT, MENUPICWIDTH, MENUPICHEIGHTTWO);
+        resumeGameButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
     }
 
     public void draw(Graphics g2d) {
         g2d.drawImage(menuImage, 0, 0, null);
-        g2d.drawImage(newGame, FIRSTCOLUMNCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTONE, null);
-        g2d.drawImage(levelSelectImage, FIRSTCOLUMNCOORDWIDTH, ALTCORDHEIGHT, null);
-        g2d.drawImage(optionsImage, FIRSTCOLUMNCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTHREE - 5, null);
-        g2d.drawImage(quit, FIRSTCOLUMNCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTFOUR - 5, null);
+        g2d.drawImage(newGame, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT, null);
+        g2d.drawImage(levelSelectImage, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT*2, null);
+        g2d.drawImage(optionsImage, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT*3, null);
+        g2d.drawImage(quit, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT*4, null);
 
         if (levelSelect) {
-            g2d.drawImage(map1, MAPCOORDWIDTH + 5, FIRSTCOLUMNCOORDHEIGHTONE, null);
-            g2d.drawImage(map2, MAPCOORDWIDTH + 5, FIRSTCOLUMNCOORDHEIGHTTWO, null);
-            g2d.drawImage(map3, MAPCOORDWIDTH + 5, FIRSTCOLUMNCOORDHEIGHTTHREE + 5, null);
-            g2d.drawImage(map4, MAPCOORDWIDTH + 5, FIRSTCOLUMNCOORDHEIGHTFOUR + 10, null);
+            g2d.drawImage(map1, SECOND_COLUMN_X, SECOND_COLUMN_Y, null);
+            g2d.drawImage(map2, SECOND_COLUMN_X, SECOND_COLUMN_Y+MAP_TAB_HEIGHT, null);
+            g2d.drawImage(map3, SECOND_COLUMN_X, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*2, null);
+            g2d.drawImage(map4, SECOND_COLUMN_X, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*3, null);
             drawGrid(g2d, Maps.getMap(mapSelected));
-            g2d.setFont(new Font("courier new", Font.BOLD, MENUPICHEIGHTTWO-2));
+            g2d.setFont(new Font("courier new", Font.BOLD, MAP_TAB_HEIGHT));
             g2d.setColor(Color.black);
-            if (mapSelected == 1) {
-                g2d.drawString("VERY EASY", MENUSTRINGWIDTH, MENUSTRINGHEIGHT);
-                g2d.drawRect(MAPCOORDWIDTH-10, FIRSTMAPCOORDHEIGHT, MENUPICWIDTHTWO, MENUPICHEIGHTTWO+5);
-            } else if (mapSelected == 2) {
-                g2d.drawString("EASY", MENUSTRINGWIDTH, MENUSTRINGHEIGHT);
-                g2d.drawRect(MAPCOORDWIDTH-10, FIRSTCOLUMNCOORDHEIGHTTWO, MENUPICWIDTHTWO, MENUPICHEIGHTTWO+5);
-            } else if (mapSelected == 3) {
-                g2d.drawString("MEDIUM", MENUSTRINGWIDTH, MENUSTRINGHEIGHT);
-                g2d.drawRect(MAPCOORDWIDTH-10, ALTCORDHEIGHT, MENUPICWIDTHTWO, MENUPICHEIGHTTWO+5);
-            } else if (mapSelected == 4) {
-                g2d.drawString("VERY HARD", MENUSTRINGWIDTH, MENUSTRINGHEIGHT);
-                g2d.drawRect(MAPCOORDWIDTH-10, FIRSTCOLUMNCOORDHEIGHTFOUR+5, MENUPICWIDTHTWO, MENUPICHEIGHTTWO+5);
+            switch(mapSelected){
+                case 1:
+                g2d.drawString("VERY EASY", MENU_GRID_X, DIFFICULTY_Y);
+                g2d.drawRect(SECOND_COLUMN_X -5, SECOND_COLUMN_Y, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
+                    break;
+                case 2:
+                g2d.drawString("EASY", MENU_GRID_X, DIFFICULTY_Y);
+                g2d.drawRect(SECOND_COLUMN_X -5, SECOND_COLUMN_Y+MAP_TAB_HEIGHT, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
+                    break;
+                case 3:
+                g2d.drawString("MEDIUM", MENU_GRID_X, DIFFICULTY_Y);
+                g2d.drawRect(SECOND_COLUMN_X -5, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*2, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
+                    break;
+                case 4:
+                g2d.drawString("VERY HARD", MENU_GRID_X, DIFFICULTY_Y);
+                g2d.drawRect(SECOND_COLUMN_X -5, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*3, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
+                    break;
             }
         }
-        if (options) {
-            g2d.drawImage(gameAudioOff, OPTIONSALTCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTWO, null);
-            g2d.drawImage(gameMusicOff, OPTIONSALTCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTHREE + 5, null);
+        else if (options) {
+            g2d.drawImage(audio, SECOND_COLUMN_X, SECOND_COLUMN_Y, null);
+            g2d.drawImage(music, SECOND_COLUMN_X, SECOND_COLUMN_Y+MENU_TAB_HEIGHT, null);
             if (Sound.isNoGameAudio()) {
-                g2d.drawRect(OPTIONSALTCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTWO, MENUPICWIDTH, MENUPICHEIGHTTWO);
+                g2d.drawRect(SECOND_COLUMN_X, SECOND_COLUMN_Y, MENU_TAB_WIDTH, MAP_TAB_HEIGHT);
             }
             if (Sound.isNoMusic()) {
-                g2d.drawRect(OPTIONSALTCOORDWIDTH, FIRSTCOLUMNCOORDHEIGHTTHREE + 5, MENUPICWIDTH, MENUPICHEIGHTTWO);
+                g2d.drawRect(SECOND_COLUMN_X, SECOND_COLUMN_Y+MENU_TAB_HEIGHT, MENU_TAB_WIDTH, MAP_TAB_HEIGHT);
 
             }
         }
         if (ifGamePaused) {
             if(!ifLost){
-            g2d.drawImage(resumeGame, FIRSTCOLUMNCOORDWIDTH-10, RESUMECOORDHIGHT+10, null);
+            g2d.drawImage(resumeGame, FIRST_COLUMN_X -10, FIRST_COLUMN_Y +10, null);
         }
     }}
 
     private void drawGrid(Graphics g2d, int[][] squares) {
         for (int i = 0; i < squares.length; i++) {
             for (int j = 0; j < squares[i].length; j++) {
-                ImageIcon squareType = new ImageIcon(grid.checkSquareType(squares[i][j]).getScaledInstance(MAGICGRIDMULTIPLYER, MAGICGRIDMULTIPLYER, Image.SCALE_DEFAULT));
-                g2d.drawImage(squareType.getImage(), MENUSTRINGWIDTH + j * MAGICGRIDMULTIPLYER, MAGICGRIDWIDTH + i * MAGICGRIDMULTIPLYER, null);
+                ImageIcon squareType = new ImageIcon(grid.checkSquareType(squares[i][j]).getScaledInstance(MENU_GRID_TILE_SIZE, MENU_GRID_TILE_SIZE, Image.SCALE_DEFAULT));
+                g2d.drawImage(squareType.getImage(), MENU_GRID_X + j * MENU_GRID_TILE_SIZE, MENU_GRID_Y + i * MENU_GRID_TILE_SIZE, null);
             }
         }
     }

@@ -2,6 +2,9 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
 
+/**
+ *
+ */
 public class GRID {
     protected final static int GRASS = 0;
     protected final static int PATH = 1;
