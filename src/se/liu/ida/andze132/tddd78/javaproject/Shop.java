@@ -18,6 +18,8 @@ public class Shop {
     public final static int BASICTOWERINFOHEIGHT =320;
     public final static int  MAGICHEARTCOORD =60;
     public final static int STRINGSHOPHEIGHT =125;
+    public final static int SHOP_MARGIN = 14;
+
 
     private Image button = Toolkit.getDefaultToolkit().getImage("images/shopButton60.png").getScaledInstance(SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
     private Image buttonFocus = Toolkit.getDefaultToolkit().getImage("images/shopButtonFocus60.png").getScaledInstance(SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
@@ -35,7 +37,6 @@ public class Shop {
     private GRID grid;
     private KeyHandler keyHandler;
 
-    public final static int SHOP_MARGIN = 14;
 
     public Shop(GRID grid, KeyHandler keyHandler) {
         this.grid = grid;

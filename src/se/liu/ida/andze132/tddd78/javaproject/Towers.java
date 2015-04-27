@@ -7,6 +7,9 @@ package se.liu.ida.andze132.tddd78.javaproject;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
+/**
+ *
+ */
 public class Towers extends TowerProperties{
 
     private int upgradeRangeCost;

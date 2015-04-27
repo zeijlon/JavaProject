@@ -31,7 +31,6 @@ public class TowerProperties {
     private static final int SCOUT_TOWER_RADIUS = 500;
     private static final int SCOUT_TOWER_RELOADTIME = 40;
 
-
     public void decideEnemy(Towers tower) {
         switch (tower.getType()) {
             case BASICTOWER:

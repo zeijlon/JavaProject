@@ -19,7 +19,10 @@ public class GameLoop {
     private long targetFPS;
     private long optimalTime;
     private long lastLoopTime;
-    public final static int TARGETFPS = 60;
+    /**
+     *
+     */
+    public final static int TARGET_FPS = 60;
 
     private int lastFpsTime, fps;
 
@@ -33,7 +36,7 @@ public class GameLoop {
         this.menu = menu;
         this.keyHandler = keyHandler;
 
-        this.targetFPS = TARGETFPS;
+        this.targetFPS = TARGET_FPS;
         this.optimalTime = ONE_BILLION / targetFPS;
         this.lastFpsTime = 0;
         this.fps = 0;

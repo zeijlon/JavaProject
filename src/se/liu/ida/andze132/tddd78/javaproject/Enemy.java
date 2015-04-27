@@ -8,6 +8,9 @@ import java.awt.geom.Ellipse2D;
  */
 public class Enemy extends EnemyProperties{
 
+    /**
+     * Constant for the length of enemies health bar.
+     */
     public static final int HP_BAR_LENGTH = 60;
     private int hp;
     private double originalHp;
@@ -19,7 +22,7 @@ public class Enemy extends EnemyProperties{
     private int x;
     private int y;
     private EnemyType type;
-    public final static int ELIPSSIZECORRECTION = 20;
+    public final static int ELLIPSE_SIZE_CORRECTION = 20;
 
     private Direction direction = null;
     private int enemyWalk = 0;
@@ -52,12 +55,12 @@ public class Enemy extends EnemyProperties{
         switch (this.direction) {
             case RIGHT:
             case LEFT:
-                this.enemyEllipse = new Ellipse2D.Float(x, y + 10, GameComponent.TILE_SIZE, GameComponent.TILE_SIZE - ELIPSSIZECORRECTION);
+                this.enemyEllipse = new Ellipse2D.Float(x, y + 10, GameComponent.TILE_SIZE, GameComponent.TILE_SIZE - ELLIPSE_SIZE_CORRECTION);
                 break;
             case STILL:
             case DOWN:
             case UPWARD:
-                this.enemyEllipse = new Ellipse2D.Float(x + 10, y, GameComponent.TILE_SIZE-ELIPSSIZECORRECTION, GameComponent.TILE_SIZE);
+                this.enemyEllipse = new Ellipse2D.Float(x + 10, y, GameComponent.TILE_SIZE- ELLIPSE_SIZE_CORRECTION, GameComponent.TILE_SIZE);
                 break;
         }
     }

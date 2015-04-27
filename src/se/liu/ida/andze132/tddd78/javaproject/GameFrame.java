@@ -3,6 +3,9 @@ package se.liu.ida.andze132.tddd78.javaproject;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *
+ */
 public class GameFrame extends JFrame {
 
     public GameFrame(GRID grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu, KeyHandler keyHandler) throws HeadlessException {

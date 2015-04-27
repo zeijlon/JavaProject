@@ -10,6 +10,9 @@ import java.util.List;
  */
 public class EnemySpawner {
     private static final int WAVE_BUTTON_SIZE = 150;
+    public static final int SPACE_WAVE_BUTTON_Y = 60;
+    public static final int SPACE_WAVE_BUTTON_X = 20;
+
     private GRID grid;
     private Shop shop;
     private KeyHandler keyHandler;
