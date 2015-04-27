@@ -85,6 +85,7 @@ public class Menu {
     private Rectangle audioRect = new Rectangle(SECOND_COLUMN_X, SECOND_COLUMN_Y, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
     private Rectangle musicRect = new Rectangle(SECOND_COLUMN_X, SECOND_COLUMN_Y + MENU_TAB_HEIGHT, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
 
+
     private Rectangle resumeGameButton = new Rectangle();
     private Rectangle newGameButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y+MAP_TAB_HEIGHT, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
     private Rectangle selectLevel = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*2, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
@@ -127,6 +128,7 @@ public class Menu {
         gameOn = true;
         ifLost = false;
         mainTheme = new Sound("sounds/song.aiff");
+
 
         if (!Sound.isNoMusic()) {
             if (!Sound.getClipPlaying()) {
@@ -267,8 +269,9 @@ public class Menu {
         if (ifGamePaused) {
             if(!ifLost){
             g2d.drawImage(resumeGame, FIRST_COLUMN_X -10, FIRST_COLUMN_Y +10, null);
-        }
-    }}
+        }}
+
+    }
 
     private void drawGrid(Graphics g2d, int[][] squares) {
         for (int i = 0; i < squares.length; i++) {

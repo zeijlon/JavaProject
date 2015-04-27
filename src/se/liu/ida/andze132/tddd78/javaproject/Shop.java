@@ -27,6 +27,14 @@ public class Shop {
     private Image heart = Toolkit.getDefaultToolkit().getImage("images/heart.png");
     private Image basicTowerInfo = Toolkit.getDefaultToolkit().getImage("images/basicTowerInfo.png");
     private Image apTowerInfo = Toolkit.getDefaultToolkit().getImage("images/apTowerInfo.png");
+    private Image theX = Toolkit.getDefaultToolkit().getImage("images/X.png");
+    private Image speaker = Toolkit.getDefaultToolkit().getImage("images/speaker.png");
+    private Image note = Toolkit.getDefaultToolkit().getImage("images/note.png");
+    private Rectangle inGameAudioRect = new Rectangle(920, 50, 30, 30);
+    private Rectangle inGameMusicRect = new Rectangle(880, 50, 30, 30);
+
+    private Rectangle audioRect = new Rectangle(880,50,30,30);
+    private Rectangle musicRect = new Rectangle(920,50,30,30);
 
 
     private Rectangle[][] shopButtons = new Rectangle[2][2];
@@ -58,16 +66,44 @@ public class Shop {
                         new Rectangle(grid.getWidth() + SHOP_MARGIN + j * (SHOPBUTTON_SIZE+10), i * (SHOPBUTTON_SIZE + 10) + MAGICSHOPCOORDTHREE, SHOPBUTTON_SIZE,
                                 SHOPBUTTON_SIZE);
 
-            }
         }
-
+	}/*
+			if(inGameAudioRect.contains(keyHandler.getClickPoint())){
+	    			System.out.println("fitta");
+	    				if (Sound.isNoGameAudio()) {
+	        		                    //Sound.setNoGameAudio(false);
+	        		                } else if (!Sound.isNoGameAudio()) {
+	        		                    //Sound.setNoGameAudio(true);
+	        		}}
+	        		else if(inGameMusicRect.contains(keyHandler.getClickPoint())){
+	    				System.out.println("kuk");
+	    					if (Sound.isNoMusic()) {
+	        		                    if(!Sound.getClipPlaying()){
+	        		                        //mainTheme.play();
+	        		                        //mainTheme.loop();
+	        		                        //Sound.setClipPlaying(true);
+	        				}
+	                    }}
+*/
     }
+
+
 
 
     public void draw(Graphics g) {
         g.setColor(Color.black);
         g.setFont(new Font("Courier New", Font.BOLD, MAGICSHOPCOORDONE-1));
         g.drawString("SHOP", grid.getWidth() + SHOP_MARGIN + MAGICSHOPCOORDONE+10, STRINGSHOPHEIGHT);
+	g.drawImage(note, 880,50,null);
+		g.drawImage(speaker, 920,50,null);
+			if(Sound.isNoMusic()){
+			    g.drawImage(theX,880,50,null);
+			}
+			if(Sound.isNoGameAudio()){
+				    g.drawImage(theX,920,50,null);
+				}
+
+
         // Code below draws the Shop buttons on the screen.
 
         for (int y = 0; y < shopButtons.length; y++) {

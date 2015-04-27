@@ -24,6 +24,7 @@ public class EnemySpawner {
     private int level = 0, enemiesSpawned;
     private int enemyCount = 1;
     private int armoredEnemyCount = 1;
+    private int spyEnemyCount = 1;
 
 
     private Image nextWave = Toolkit.getDefaultToolkit().getImage("images/nextWave.png").getScaledInstance(WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE, Image.SCALE_DEFAULT);
@@ -60,18 +61,29 @@ public class EnemySpawner {
                     spawnEnemy(new BasicEnemy());
                     if (level == 5) {
                         spawnEnemy(new SpyEnemy());
-                        armoredEnemyCount += 1;
+
                         enemyCount = 0;
-                    } else if (level > 9) {
+                    } else if(level > 5){
+			spawnEnemy(new SpyEnemy());
+		    } else if (level == 10) {
+			armoredEnemyCount += 10;
                         spawnEnemy(new ArmoredEnemy());
-                    }
+                    }else if (level > 10){
+			spawnEnemy(new ArmoredEnemy());
+			spawnEnemy(new SpyEnemy());
+		    }
 
                     enemiesSpawned += 1;
                     spawnTime = 0;
                 } else {
                     if (enemies.isEmpty()) {
-                        if (level > 9) {
-                            armoredEnemyCount += level * 2;
+			if(5 < level && level < 10){
+			    spyEnemyCount += 6*level%7;
+			}
+                        if (level > 10) {
+			    spyEnemyCount += 6*level%4;
+                            armoredEnemyCount += 2*level%3;
+
                         }
                         betweenRounds = true;
                         fastForward = false;

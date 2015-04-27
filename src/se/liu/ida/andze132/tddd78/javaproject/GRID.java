@@ -56,17 +56,17 @@ public class GRID {
     public Image checkSquareType(int squaretype) {
         switch (squaretype) {
             case GRASS:
-                return Toolkit.getDefaultToolkit().getImage("images/grass60.png");
+                return Toolkit.getDefaultToolkit().getImage("images/ice.png");
             case PATH:
-                return Toolkit.getDefaultToolkit().getImage("images/path60.png");
+                return Toolkit.getDefaultToolkit().getImage("images/icepath.png");
             case TOWER:
-                return Toolkit.getDefaultToolkit().getImage("images/grass60.png");
+                return Toolkit.getDefaultToolkit().getImage("images/towerbase.png");
             case START:
-                return Toolkit.getDefaultToolkit().getImage("images/start60.png");
+                return Toolkit.getDefaultToolkit().getImage("images/start.png");
             case FINISH:
                 return Toolkit.getDefaultToolkit().getImage("images/finish60.png");
             case CROSSROAD:
-                return Toolkit.getDefaultToolkit().getImage("images/path60.png");
+                return Toolkit.getDefaultToolkit().getImage("images/icepath.png");
             default:
                 throw new IllegalArgumentException("Invalid input squaretype");
         }

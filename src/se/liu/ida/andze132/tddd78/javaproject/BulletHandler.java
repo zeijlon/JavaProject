@@ -44,7 +44,7 @@ public class BulletHandler {
             case BASICTOWER:
                 return new NormalBullet(tower);
             case ARMORPIERCINGTOWER:
-                return new FMJBullet(tower);
+                return new APBullet(tower);
             case SCOUTTOWER:
                 return new ScoutBullet(tower);
             default:
