@@ -16,6 +16,8 @@ public class EnemySpawner {
     private GRID grid;
     private Shop shop;
     private KeyHandler keyHandler;
+    private Sound dies = new Sound("sounds/beardeath.wav");;
+
 
     private List<Enemy> enemies = new ArrayList<>();
     private List<Start> starts = new ArrayList<>();
@@ -284,7 +286,9 @@ public class EnemySpawner {
                 shop.setGold(shop.getGold() + enemies.get(i).getGoldgain());
                 enemies.remove(enemies.get(i));
 		if(!Sound.getNoGameAudio()){
-		sfx.get("dies").play();}
+		//sfx.get("dies").play();
+                    dies.play();
+                }
             } else if (grid.getSquares()[y][x] == GRID.FINISH) {
                 shop.setHealth(shop.getHealth() - enemies.get(i).getDamage());
                 enemies.remove(enemies.get(i));

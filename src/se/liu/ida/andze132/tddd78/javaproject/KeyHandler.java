@@ -15,13 +15,10 @@ public class KeyHandler extends MouseAdapter {
     private static final int MENU_HEIGHT = 30;
     private Point motionPoint = null;
     private Point clickPoint = null;
-    private Boolean mouseReleased = true;
-
 
     @Override
     public void mousePressed(final MouseEvent e) {
         super.mousePressed(e);
-        System.out.println(e.getX() - 8+"   "+ (e.getY() - MENU_HEIGHT));
         clickPoint = new Point(e.getX() - 8, e.getY() - MENU_HEIGHT);
     }
 
@@ -29,7 +26,6 @@ public class KeyHandler extends MouseAdapter {
     public void mouseReleased(final MouseEvent e) {
         super.mouseReleased(e);
         clickPoint = null;
-        mouseReleased = true;
     }
 
     @Override
@@ -48,13 +44,5 @@ public class KeyHandler extends MouseAdapter {
 
     public void setClickPoint() {
         this.clickPoint = null;
-    }
-
-    public Boolean getMouseReleased() {
-        return mouseReleased;
-    }
-
-    public void setMouseReleased() {
-        this.mouseReleased = false;
     }
 }

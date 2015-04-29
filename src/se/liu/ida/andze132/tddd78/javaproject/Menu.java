@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Menu {
     private KeyHandler keyHandler;
     private GRID grid;
-    private MapEditor editor;
+    //private MapEditor editor;
     private Shop shop;
     private EnemySpawner spawner;
     private TowerHandler towerHandler;
@@ -57,10 +57,11 @@ public class Menu {
         mapSelected = 1;
         options = false;
         ifLost = false;
+        mapEditor = false;
         this.keyHandler = new KeyHandler();
         this.grid = new GRID(mapSelected);
         this.shop = new Shop(grid, keyHandler);
-        this.editor = new MapEditor(grid, keyHandler);
+        //this.editor = new MapEditor(grid, shop, keyHandler);
         this.spawner = new EnemySpawner(grid, shop, keyHandler);
         this.bulletHandler = new BulletHandler(grid, spawner);
         this.towerHandler = new TowerHandler(grid, shop, spawner, bulletHandler, keyHandler);
@@ -90,15 +91,16 @@ public class Menu {
     private Rectangle newGameButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y+MAP_TAB_HEIGHT, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
     private Rectangle selectLevel = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*2, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
     private Rectangle optionsButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*3, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
+    //private Rectangle mapEditorButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*4, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
     private Rectangle quitGameButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*4, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
 
-    private Rectangle rectMap1 = new Rectangle(SECOND_COLUMN_X, SECOND_COLUMN_Y, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
-    private Rectangle rectMap2 = new Rectangle(SECOND_COLUMN_X, SECOND_COLUMN_Y+MAP_TAB_HEIGHT, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
-    private Rectangle rectMap3 = new Rectangle(SECOND_COLUMN_X, SECOND_COLUMN_Y + MAP_TAB_HEIGHT*2, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
-    private Rectangle rectMap4 = new Rectangle(SECOND_COLUMN_X, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*3, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
+    private Rectangle rectMap1 = new Rectangle(SECOND_COLUMN_X-5, SECOND_COLUMN_Y, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
+    private Rectangle rectMap2 = new Rectangle(SECOND_COLUMN_X-5, SECOND_COLUMN_Y+MAP_TAB_HEIGHT, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
+    private Rectangle rectMap3 = new Rectangle(SECOND_COLUMN_X-5, SECOND_COLUMN_Y + MAP_TAB_HEIGHT*2, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
+    private Rectangle rectMap4 = new Rectangle(SECOND_COLUMN_X-5, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*3, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
 
     public void menuEdit() {
-        if (keyHandler.getClickPoint() != null) {
+        if (keyHandler.getClickPoint()!=null) {
             if (newGameButton.contains(keyHandler.getClickPoint())) {
                 newGame();
             } else if (resumeGameButton.contains(keyHandler.getClickPoint())) {
@@ -115,12 +117,22 @@ public class Menu {
                 chooseMap();
             } else if (options) {
                 options();
-            } else {
+            } /*else if (mapEditorButton.contains(keyHandler.getClickPoint())){
+                levelSelect = false;
+                options = false;
+                mapEditor();
+            }*/
+            else {
                 levelSelect = false;
                 options = false;
             }
         }
-        keyHandler.setClickPoint();
+    }
+
+    public void mapEditor(){
+        mapEditor = true;
+        ifMenu = false;
+        ifLost = false;
     }
 
     public void newGame() {
@@ -140,7 +152,7 @@ public class Menu {
 
         grid.setMapSize(mapSelected);
         shop.setHealth(100);
-        shop.setGold(100);
+        shop.setGold(10000);
         spawner.setEnemies(new ArrayList<>());
         spawner.setLevel();
         spawner.setEnemyCount(1);
@@ -163,7 +175,6 @@ public class Menu {
     public void quitGame() {
         levelSelect = false;
         options = false;
-
         int answer = JOptionPane
                 .showConfirmDialog(null, "Are you sure you want to quit? ", "Confirm", JOptionPane.YES_NO_OPTION);
         if (answer == JOptionPane.YES_OPTION) {
@@ -228,13 +239,20 @@ public class Menu {
         g2d.drawImage(optionsImage, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT*3, null);
         g2d.drawImage(quit, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT*4, null);
 
+        /*g2d.drawRect(SECOND_COLUMN_X-5, SECOND_COLUMN_Y, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
+        g2d.drawRect(SECOND_COLUMN_X-5, SECOND_COLUMN_Y+MAP_TAB_HEIGHT, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
+        g2d.drawRect(SECOND_COLUMN_X-5, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*2, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
+        g2d.drawRect(SECOND_COLUMN_X-5, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*3, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
+*/
+
+
         if (levelSelect) {
             g2d.drawImage(map1, SECOND_COLUMN_X, SECOND_COLUMN_Y, null);
             g2d.drawImage(map2, SECOND_COLUMN_X, SECOND_COLUMN_Y+MAP_TAB_HEIGHT, null);
             g2d.drawImage(map3, SECOND_COLUMN_X, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*2, null);
             g2d.drawImage(map4, SECOND_COLUMN_X, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*3, null);
             drawGrid(g2d, Maps.getMap(mapSelected));
-            g2d.setFont(new Font("courier new", Font.BOLD, MAP_TAB_HEIGHT));
+            g2d.setFont(new Font("courier new", Font.BOLD, 24));
             g2d.setColor(Color.black);
             switch(mapSelected){
                 case 1:
@@ -305,4 +323,10 @@ public class Menu {
     public void setIfLost(final boolean ifLost) {
         this.ifLost = ifLost;
     }
+
+    public boolean isMapEditor() {
+        return mapEditor;
+    }
+
+
 }

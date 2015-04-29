@@ -79,14 +79,14 @@ public class GameLoop {
 
     private void doGameUpdates() {
         if (menu.isGameOn()) {
+            frame.validate();
+            frame.pack();
             if(spawner.isFastForward()){
                 optimalTime = ONE_BILLION / (targetFPS*2);
             }
             else{
                 optimalTime = ONE_BILLION / (targetFPS);
             }
-            frame.validate();
-            frame.pack();
             spawner.waveHandler();
             spawner.checkEnemyFinished();
             spawner.moveEnemy();
