@@ -47,8 +47,6 @@ public class Menu {
 
 
     public Menu() {
-        mainTheme = new Sound("sounds/song.aiff");
-
         ifMenu = true;
         gameOn = false;
         gameRunning = true;
@@ -57,7 +55,7 @@ public class Menu {
         mapSelected = 1;
         options = false;
         ifLost = false;
-
+	mainTheme = new Sound("sounds/song.aiff");
         this.grid = new GRID(mapSelected);
         this.shop = new Shop(grid);
         this.spawner = new EnemySpawner(grid, shop);
@@ -136,8 +134,8 @@ public class Menu {
         shop.setGold(15);
         spawner.setEnemies(new ArrayList<>());
         spawner.setLevel();
-        spawner.setArmoredEnemyCount(3);
-        spawner.setSpyEnemyCount(2);
+        spawner.setArmoredEnemyCount(1);
+        spawner.setSpyEnemyCount(1);
         towerHandler.setTowers(new ArrayList<>());
         bulletHandler.setBullets(new ArrayList<>());
         levelSelect = false;
@@ -184,7 +182,7 @@ public class Menu {
     public void options(Point p) {
         if (audioRect.contains(p)) {
             if (Sound.isNoGameAudio()) {
-                Sound.setNoGameAudio(false);
+		Sound.setNoGameAudio(false);
             } else if (!Sound.isNoGameAudio()) {
                 Sound.setNoGameAudio(true);
             }

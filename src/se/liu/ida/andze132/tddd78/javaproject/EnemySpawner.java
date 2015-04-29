@@ -8,16 +8,17 @@ import java.util.List;
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
  */
-public class EnemySpawner
-{
+public class EnemySpawner {
     private static final int WAVE_BUTTON_SIZE = 150;
     public static final int SPACE_WAVE_BUTTON_Y = 60;
     public static final int SPACE_WAVE_BUTTON_X = 20;
 
     private GRID grid;
     private Shop shop;
+    private KeyHandler keyHandler;
+    private Sound bearDies = new Sound("sounds/beardeath.wav");
+    private Sound bossBearDeath = new Sound("sounds/bossbeardearth.wav");
 
-    private Sound dies = new Sound("sounds/beardeath.wav");;
 
 
     private List<Enemy> enemies = new ArrayList<>();
@@ -280,7 +281,8 @@ public class EnemySpawner
                 shop.setGold(shop.getGold() + enemies.get(i).getGoldgain());
                 enemies.remove(enemies.get(i));
 		if(!Sound.getNoGameAudio()){
-                    dies.play();
+                    bearDies.play();
+		    bossBearDeath.play();
                 }
             } else if (grid.getSquares()[y][x] == GRID.FINISH) {
                 shop.setHealth(shop.getHealth() - enemies.get(i).getDamage());
@@ -362,9 +364,11 @@ public class EnemySpawner
 	this.spyEnemyCount = spyEnemyCount;
     }
 
-    public void setEnemies(List<Enemy> enemies) {
-	this.enemies = enemies;
-    }
+    public void setBasicEnemyCount(int enemyCount) {
+        this.basicEnemyCount = enemyCount;
+    } public void setEnemies(List<Enemy> enemies) {
+    	this.enemies = enemies;
+        }
 
     public boolean isFastForward() {
 	return fastForward;

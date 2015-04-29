@@ -7,7 +7,7 @@ import java.awt.*;
  */
 public class EnemyProperties {
 
-    private static int basicHealth = 40;
+    private static int basicHealth = 50;
     private static int basicSpeed = 2;
     private static final int BASIC_GOLD_GAIN = 1;
     private static final int BASIC_DAMAGE = 2;
@@ -23,9 +23,9 @@ public class EnemyProperties {
     private static final int SPY_GOLD_GAIN = 5;
     private static final int SPY_DAMAGE = 10;
 
-    private static int bossHealth = 10000;
-    private static int bossSpeed = 1;
-    private static final int BOSS_GOLD_GAIN = 1000;
+    private static final int BOSS_HEALTH = 10000;
+    private static final int BOSS_SPEED = 1;
+    private static final int BOSS_GOLD_GAIN = 100;
     private static final int BOSS_DAMAGE = 100;
 
     public void decideEnemy(Enemy enemy) {
@@ -52,16 +52,16 @@ public class EnemyProperties {
                 enemy.setSpeed(spySpeed);
                 enemy.setGoldgain(SPY_GOLD_GAIN);
                 enemy.setDamage(SPY_DAMAGE);
-                enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/SpyPolarBearfast.gif"));
-                break;
-            case BOSSENEMY:
-                enemy.setOriginalHp(bossHealth);
-                enemy.setHp(bossHealth);
-                enemy.setSpeed(bossSpeed);
-                enemy.setGoldgain(BOSS_GOLD_GAIN);
-                enemy.setDamage(BOSS_DAMAGE);
                 enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/ArmoredPolarBearNormal60.gif"));
                 break;
+	    case BOSSENEMY:
+		enemy.setOriginalHp(BOSS_HEALTH);
+		enemy.setHp(BOSS_HEALTH);
+		enemy.setSpeed(BOSS_SPEED);
+		enemy.setGoldgain(BOSS_GOLD_GAIN);
+		enemy.setDamage(BOSS_DAMAGE);
+		enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/bossEnemy.png"));
+		break;
         }
     }
 

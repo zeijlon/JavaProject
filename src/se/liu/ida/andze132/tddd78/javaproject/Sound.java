@@ -12,7 +12,6 @@ import java.io.IOException;
 final public class Sound
 {
     	private Clip clip = null;
-	private static String bossbeardeath = "sounds/bossbeardeath.wav";
 	private static boolean noMusic = false;
     private static boolean noGameAudio = false;
     	private static boolean clipPlaying = false;
@@ -63,12 +62,6 @@ final public class Sound
     	public static void setNoGameAudio(boolean noGameAudio) {
     		Sound.noGameAudio = noGameAudio;
     	}
-
-
-
-	public static String getBossbeardeath() {
-		return bossbeardeath;
-	}
 
 	public static boolean getNoGameAudio(){
 		return noGameAudio;
