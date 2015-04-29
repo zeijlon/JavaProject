@@ -39,7 +39,7 @@ public class Shop {
 
 
     private Rectangle[][] shopButtons = new Rectangle[2][2];
-    private Image[][] towerImages = new Image[2][2];
+    private Image[][] shopImages = new Image[2][2];
 
     private Towers holdsItem;
 
@@ -53,7 +53,7 @@ public class Shop {
         Image trashCan = Toolkit.getDefaultToolkit().getImage("images/trashCan60.png").getScaledInstance(SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
         Image armorPiercingTowerImage = Toolkit.getDefaultToolkit().getImage("images/armorPiercingTower60.png").getScaledInstance(SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
         Image basicTowerImage = Toolkit.getDefaultToolkit().getImage("images/basicTower60.png").getScaledInstance(SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
-        towerImages = new Image[][]{{basicTowerImage, armorPiercingTowerImage}, {basicTowerImage, trashCan}};
+        shopImages = new Image[][]{{basicTowerImage, armorPiercingTowerImage}, {basicTowerImage, trashCan}};
     }
 
 
@@ -113,7 +113,7 @@ public class Shop {
 
                     g.drawImage(button, grid.getWidth() + SHOP_MARGIN + x *(SHOPBUTTON_SIZE + 10), y * (SHOPBUTTON_SIZE + 10) + MAGICSHOPCOORDTHREE, null);
                 }
-                g.drawImage(towerImages[y][x], grid.getWidth() + SHOP_MARGIN + x *(SHOPBUTTON_SIZE + 10), y * (SHOPBUTTON_SIZE + 10) + MAGICSHOPCOORDTHREE, null);
+                g.drawImage(shopImages[y][x], grid.getWidth() + SHOP_MARGIN + x *(SHOPBUTTON_SIZE + 10), y * (SHOPBUTTON_SIZE + 10) + MAGICSHOPCOORDTHREE, null);
 
             }
         }
@@ -123,7 +123,6 @@ public class Shop {
             g.drawImage(basicTowerInfo, grid.getWidth()+15, BASICTOWERINFOHEIGHT, null);
         } else if (shopButtons[0][1].contains(KeyHandler.motionPoint)) {
             g.drawImage(apTowerInfo, grid.getWidth()+15, BASICTOWERINFOHEIGHT, null);
-
         }
 
 
@@ -152,7 +151,6 @@ public class Shop {
         return shopButtons;
     }
 
-
     public Towers getHoldsItem() {
         return holdsItem;
     }
@@ -177,4 +175,12 @@ public class Shop {
         this.holdsItem = holdsItem;
     }
 
+
+    public Image[][] getShopImages() {
+        return shopImages;
+    }
+
+    public void setShopImages(final Image[][] shopImages) {
+        this.shopImages = shopImages;
+    }
 }

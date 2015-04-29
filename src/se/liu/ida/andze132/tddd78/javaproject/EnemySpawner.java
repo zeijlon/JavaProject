@@ -17,11 +17,14 @@ public class EnemySpawner
     private GRID grid;
     private Shop shop;
 
+    private Sound dies = new Sound("sounds/beardeath.wav");;
+
+
     private List<Enemy> enemies = new ArrayList<>();
     private List<Start> starts = new ArrayList<>();
     private Map<String, Sound> sfx;
     private int spawnTime = 0;
-    private int level = 0, enemiesSpawned;
+    private int level = 0;
     private int basicEnemyCount = 1;
     private int armoredEnemyCount = 1;
     private int spyEnemyCount = 1;
@@ -45,7 +48,6 @@ public class EnemySpawner
     public EnemySpawner(GRID grid, Shop shop) {
 	this.grid = grid;
 	this.shop = shop;
-	this.enemiesSpawned = 0;
 	this.betweenRounds = true;
 	this.fastForward = false;
 	sfx = new HashMap<>();
@@ -272,22 +274,19 @@ public class EnemySpawner
 
     public void checkEnemyFinished() {
 	for (int i = 0; i < enemies.size(); i++) {
-	    int x = enemies.get(i).getxC();
-	    int y = enemies.get(i).getyC();
-	    if (enemies.get(i).getHp() <= 0) {
-		shop.setGold(shop.getGold() + enemies.get(i).getGoldgain());
-		enemies.remove(enemies.get(i));
-		if (!Sound.getNoGameAudio()) {
-		    sfx.get("dies").play();
-		}
-	    } else if (grid.getSquares()[y][x] == GRID.FINISH) {
-		shop.setHealth(shop.getHealth() - enemies.get(i).getDamage());
-		enemies.remove(enemies.get(i));
-	    }
-	}
-
-
-
+            int x = enemies.get(i).getxC();
+            int y = enemies.get(i).getyC();
+            if (enemies.get(i).getHp() <= 0) {
+                shop.setGold(shop.getGold() + enemies.get(i).getGoldgain());
+                enemies.remove(enemies.get(i));
+		if(!Sound.getNoGameAudio()){
+                    dies.play();
+                }
+            } else if (grid.getSquares()[y][x] == GRID.FINISH) {
+                shop.setHealth(shop.getHealth() - enemies.get(i).getDamage());
+                enemies.remove(enemies.get(i));
+            }
+        }
     }
 
     public Enemy checkEnemyWalked(Iterable<Enemy> list) {

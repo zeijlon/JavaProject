@@ -80,6 +80,8 @@ public class GameLoop {
     private void doGameUpdates() {
 
         if (menu.isGameOn()) {
+            frame.validate();
+            frame.pack();
             if(spawner.isFastForward()){
                 optimalTime = ONE_BILLION / (targetFPS*2);
             }
@@ -87,7 +89,7 @@ public class GameLoop {
                 optimalTime = ONE_BILLION / (targetFPS);
             }
             frame.pack();
-            spawner.checkEnemyFinished();
+spawner.checkEnemyFinished();
             spawner.moveEnemy();
             spawner.checkRoundFinished();
 

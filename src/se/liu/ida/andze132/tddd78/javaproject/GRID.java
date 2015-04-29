@@ -13,6 +13,16 @@ public class GRID {
     protected final static int FINISH = 4;
     protected final static int CROSSROAD = 5;
 
+    /*private Image grassImg = Toolkit.getDefaultToolkit().getImage("images/grass60.png");
+    private Image pathImg = Toolkit.getDefaultToolkit().getImage("images/path60.png");
+    private Image crossRoadImg = Toolkit.getDefaultToolkit().getImage("images/path60.png");
+    private Image towerImg = Toolkit.getDefaultToolkit().getImage("images/grass60.png");
+    private Image startImg = Toolkit.getDefaultToolkit().getImage("images/start60.png");
+    private Image finishImg = Toolkit.getDefaultToolkit().getImage("images/finish60.png");
+*/
+
+
+
     private int width;
     private int height;
 
@@ -60,7 +70,7 @@ public class GRID {
             case PATH:
                 return Toolkit.getDefaultToolkit().getImage("images/icepath.png");
             case TOWER:
-                return Toolkit.getDefaultToolkit().getImage("images/towerbase.png");
+                return Toolkit.getDefaultToolkit().getImage("images/towerBase.png");
             case START:
                 return Toolkit.getDefaultToolkit().getImage("images/start.png");
             case FINISH:
@@ -103,8 +113,32 @@ public class GRID {
     {
         squares = Maps.getMap(n);
     }
+/*
+    public Image getGrassImg() {
+        return grassImg;
+    }
 
-// --Commented out by Inspection START (2015-04-21 23:57):
+    public Image getPathImg() {
+        return pathImg;
+    }
+
+    public Image getCrossRoadImg() {
+        return crossRoadImg;
+    }
+
+    public Image getTowerImg() {
+        return towerImg;
+    }
+
+    public Image getStartImg() {
+        return startImg;
+    }
+
+    public Image getFinishImg() {
+        return finishImg;
+    }*/
+
+    // --Commented out by Inspection START (2015-04-21 23:57):
 //    public void setSquares(int[][] squares) {
 //        this.squares = squares;
 //    }

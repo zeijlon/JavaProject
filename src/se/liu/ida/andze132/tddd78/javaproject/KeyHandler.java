@@ -34,6 +34,7 @@ public class KeyHandler extends MouseAdapter {
         this.bulletHandler = bulletHandler;
     }
 
+
     @Override
     public void mousePressed(final MouseEvent e) {
         super.mousePressed(e);
@@ -48,7 +49,6 @@ public class KeyHandler extends MouseAdapter {
             towerHandler.checkTowerTargeted(p);
         }
     }
-
 
     @Override
     public void mouseMoved(final MouseEvent e) {

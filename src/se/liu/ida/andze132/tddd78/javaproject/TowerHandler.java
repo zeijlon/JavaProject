@@ -3,19 +3,21 @@ package se.liu.ida.andze132.tddd78.javaproject;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
 /**
  * Created by Administratör on 2015-03-24.
  */
-public class TowerHandler {
+public class TowerHandler
+{
 
     private List<Towers> towers = new ArrayList<>();
-    public final static int UPGRADEWIDTHCOORD = 200;
-    public final static int UPGRADEHEIGHTCORRECTIONCOORD = 30;
-    private final static int maxUpgrades = 15;
+    private final static int UPGRADEWIDTHCOORD = 200;
+    private final static int UPGRADEHEIGHTCORRECTIONCOORD = 30;
+    private final static int MAX_UPGRADES = 15;
 
     private GRID grid;
     private Shop shop;
@@ -131,93 +133,98 @@ public class TowerHandler {
         }
 
 
+
+
     public void towerPhysic() {
-        for (Towers tower : towers) {
-            if(spawner.isBetweenRounds()){
-                tower.setReloadTick(tower.getReloadTime());
-            }
-            checkEnemyWithinReach(tower);
-            if (!enemiesWithinRange.isEmpty()) {
-                tower.setShooting(true);
-                tower.setTargetEnemy(spawner.checkEnemyWalked(enemiesWithinRange));
-                enemiesWithinRange = new ArrayList<>();
-                tower.setAngle(Math.atan2(tower.getTargetEnemy().getY() - tower.getY(),
-                        tower.getTargetEnemy().getX() - tower.getX()));
-                double x = tower.getTargetEnemy().getX();
-                double y = tower.getTargetEnemy().getY();
-                double w = GameComponent.TILE_SIZE;
-                double h = GameComponent.TILE_SIZE;
-                if (spawner.isBetweenRounds() || tower.getTargetEnemy().getHp() <= 0 ||
-                        !tower.getRange().intersects(x, y, w, h)) {
-                    tower.setShooting(false);
-                } else if (tower.getReloadTick() >= tower.getReloadTime()) {
-                    bulletHandler.shootEnemy(tower.getTargetEnemy(), tower);
-                    tower.setReloadTick(0);
-                } else {
-                    tower.setReloadTick(tower.getReloadTick() + 1);
-                }
-            }
-        }
+	for (Towers tower : towers) {
+	    if (spawner.isBetweenRounds()) {
+		tower.setReloadTick(tower.getReloadTime());
+	    }
+	    checkEnemyWithinReach(tower);
+	    if (!enemiesWithinRange.isEmpty()) {
+		tower.setShooting(true);
+		tower.setTargetEnemy(spawner.checkEnemyWalked(enemiesWithinRange));
+		enemiesWithinRange = new ArrayList<>();
+		tower.setAngle(
+			Math.atan2(tower.getTargetEnemy().getY() - tower.getY(), tower.getTargetEnemy().getX() - tower.getX()));
+		double x = tower.getTargetEnemy().getX();
+		double y = tower.getTargetEnemy().getY();
+		double w = GameComponent.TILE_SIZE;
+		double h = GameComponent.TILE_SIZE;
+		if (spawner.isBetweenRounds() || tower.getTargetEnemy().getHp() <= 0 ||
+		    !tower.getRange().intersects(x, y, w, h)) {
+		    tower.setShooting(false);
+		} else if (tower.getReloadTick() >= tower.getReloadTime()) {
+		    bulletHandler.shootEnemy(tower.getTargetEnemy(), tower);
+		    tower.setReloadTick(0);
+		} else {
+		    tower.setReloadTick(tower.getReloadTick() + 1);
+		}
+	    }
+	}
     }
 
     public void checkEnemyWithinReach(Towers tower) {
-        for (int i = 0; i < spawner.getEnemies().size(); i++) {
-            if (testIntersection(tower.getRange(), spawner.getEnemies().get(i).getEnemyEllipse())) {
-                if (spawner.getEnemies().get(i).getType() == EnemyType.SPYENEMY) {
-                    if (tower.getType() == TowerType.SCOUTTOWER) {
-                        enemiesWithinRange.add(spawner.getEnemies().get(i));
-                    }
-                } else {
-                    enemiesWithinRange.add(spawner.getEnemies().get(i));
-                }
-            }
+	for (int i = 0; i < spawner.getEnemies().size(); i++) {
+	    if (testIntersection(tower.getRange(), spawner.getEnemies().get(i).getEnemyEllipse())) {
+		if (spawner.getEnemies().get(i).getType() == EnemyType.SPYENEMY) {
+		    if (tower.getType() == TowerType.SCOUTTOWER) {
+			enemiesWithinRange.add(spawner.getEnemies().get(i));
+		    }
+		} else {
+		    enemiesWithinRange.add(spawner.getEnemies().get(i));
+		}
+	    }
 
-        }
+	}
     }
 
     public boolean testIntersection(Shape shapeA, Shape shapeB) {
-        Area areaA = new Area(shapeA);
-        areaA.intersect(new Area(shapeB));
-        return !areaA.isEmpty();
+	Area areaA = new Area(shapeA);
+	areaA.intersect(new Area(shapeB));
+	return !areaA.isEmpty();
     }
 
     public void upgradeDamage(Towers tower) {
-        if (shop.getGold() >= tower.getUpgradeDamageCost()) {
-            if(tower.getUpgrades()<maxUpgrades){
-            shop.setGold(shop.getGold() - tower.getUpgradeDamageCost());
-            tower.setUpgradeDamageCost(tower.getUpgradeDamageCost() * 2);
-            tower.setDamage(tower.getDamage() + 5);
-            tower.setUpgrades(tower.getUpgrades()+1);
-            }}
+	if (shop.getGold() >= tower.getUpgradeDamageCost()) {
+	    if (tower.getUpgrades() < MAX_UPGRADES) {
+		shop.setGold(shop.getGold() - tower.getUpgradeDamageCost());
+		tower.setUpgradeDamageCost(tower.getUpgradeDamageCost() * 2);
+		tower.setDamage(tower.getDamage() + 5);
+		tower.setUpgrades(tower.getUpgrades() + 1);
+	    }
+	}
     }
 
     public void upgradeAS(Towers tower) {
-        if (shop.getGold() >= tower.getUpgradeASCost()) {
-            if(tower.getUpgrades()<maxUpgrades){
-            shop.setGold(shop.getGold() - tower.getUpgradeASCost());
-            tower.setUpgradeASCost(tower.getUpgradeASCost() * 2);
-            tower.setReloadTime(tower.getReloadTime() - 5);
-            tower.setBulletSpeed(tower.getBulletSpeed() + 1);
-            tower.setUpgrades(tower.getUpgrades() + 1);
+	if (shop.getGold() >= tower.getUpgradeASCost()) {
+	    if (tower.getUpgrades() < MAX_UPGRADES) {
+		shop.setGold(shop.getGold() - tower.getUpgradeASCost());
+		tower.setUpgradeASCost(tower.getUpgradeASCost() * 2);
+		tower.setReloadTime(tower.getReloadTime() - 5);
+		tower.setBulletSpeed(tower.getBulletSpeed() + 1);
+		tower.setUpgrades(tower.getUpgrades() + 1);
 
-        }}
+	    }
+	}
     }
 
     public void upgradeRange(Towers tower) {
-        if (shop.getGold() >= tower.getUpgradeRangeCost()) {
-            if(tower.getUpgrades()<maxUpgrades){
-            shop.setGold(shop.getGold() - tower.getUpgradeRangeCost());
-            tower.setUpgradeRangeCost(tower.getUpgradeRangeCost() * 2);
-            tower.setRadius((int) (tower.getRadius() * 1.2));
-            tower.setRange();
-            tower.setUpgrades(tower.getUpgrades()+1);
-        }}
+	if (shop.getGold() >= tower.getUpgradeRangeCost()) {
+	    if (tower.getUpgrades() < MAX_UPGRADES) {
+		shop.setGold(shop.getGold() - tower.getUpgradeRangeCost());
+		tower.setUpgradeRangeCost(tower.getUpgradeRangeCost() * 2);
+		tower.setRadius((int) (tower.getRadius() * 1.2));
+		tower.setRange();
+		tower.setUpgrades(tower.getUpgrades() + 1);
+	    }
+	}
     }
 
     public void sellTower(Towers tower) {
-        shop.setGold(shop.getGold() + tower.getSell());
-        towers.remove(tower);
-        grid.getSquares()[tower.getY() / GameComponent.TILE_SIZE][tower.getX() / GameComponent.TILE_SIZE] = GRID.GRASS;
+	shop.setGold(shop.getGold() + tower.getSell());
+	towers.remove(tower);
+	grid.getSquares()[tower.getY() / GameComponent.TILE_SIZE][tower.getX() / GameComponent.TILE_SIZE] = GRID.GRASS;
     }
 
     public void draw(Graphics2D g) {
@@ -242,7 +249,7 @@ public class TowerHandler {
                 g.drawString("Range", UPGRADEWIDTHCOORD, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD - 10);
                 g.drawString("Damage", UPGRADEWIDTHCOORD * 2, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD - 10);
                 g.drawString("Sell", UPGRADEWIDTHCOORD * 3, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD - 10);
-                g.drawString("Upgrades: "+tower.getUpgrades()+"/"+maxUpgrades, UPGRADEWIDTHCOORD * 3 + 100, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD + 20);
+                g.drawString("Upgrades: "+tower.getUpgrades()+"/"+MAX_UPGRADES, UPGRADEWIDTHCOORD * 3 + 100, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD + 20);
 
                 g.setFont(new Font("courier new", Font.BOLD, 16));
                 g.setColor(Color.yellow);
@@ -268,10 +275,11 @@ public class TowerHandler {
                     shop.getHoldsItem().getRadius(), shop.getHoldsItem().getRadius());
         }
 
+
     }
 
     public void setTowers(List<Towers> towers) {
-        this.towers = towers;
+	this.towers = towers;
     }
 }
 
