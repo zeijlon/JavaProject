@@ -22,7 +22,8 @@ public class Shop {
 
 
     private Image button = Toolkit.getDefaultToolkit().getImage("images/shopButton60.png").getScaledInstance(SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
-    private Image buttonFocus = Toolkit.getDefaultToolkit().getImage("images/shopButtonFocus60.png").getScaledInstance(SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
+    private Image buttonFocus = Toolkit.getDefaultToolkit().getImage("images/shopButtonFocus60.png").getScaledInstance(
+            SHOPBUTTON_SIZE, SHOPBUTTON_SIZE, Image.SCALE_DEFAULT);
     private Image coin = Toolkit.getDefaultToolkit().getImage("images/coin.png");
     private Image heart = Toolkit.getDefaultToolkit().getImage("images/heart.png");
     private Image basicTowerInfo = Toolkit.getDefaultToolkit().getImage("images/basicTowerInfo.png");
@@ -43,12 +44,9 @@ public class Shop {
     private Towers holdsItem;
 
     private GRID grid;
-    private KeyHandler keyHandler;
 
-
-    public Shop(GRID grid, KeyHandler keyHandler) {
+    public Shop(GRID grid) {
         this.grid = grid;
-        this.keyHandler = keyHandler;
 
         this.holdsItem = null;
         defineShopButtons();
@@ -108,7 +106,7 @@ public class Shop {
 
         for (int y = 0; y < shopButtons.length; y++) {
             for (int x = 0; x < shopButtons[y].length; x++) {
-                if (shopButtons[y][x].contains(keyHandler.getMotionPoint())) {
+                if (shopButtons[y][x].contains(KeyHandler.motionPoint)) {
                     g.drawImage(buttonFocus, grid.getWidth() + SHOP_MARGIN + x *(SHOPBUTTON_SIZE + 10), y * (SHOPBUTTON_SIZE + 10) + MAGICSHOPCOORDTHREE, null);
 
                 } else {
@@ -121,9 +119,9 @@ public class Shop {
         }
 
 
-        if (shopButtons[0][0].contains(keyHandler.getMotionPoint())) {
+        if (shopButtons[0][0].contains(KeyHandler.motionPoint)) {
             g.drawImage(basicTowerInfo, grid.getWidth()+15, BASICTOWERINFOHEIGHT, null);
-        } else if (shopButtons[0][1].contains(keyHandler.getMotionPoint())) {
+        } else if (shopButtons[0][1].contains(KeyHandler.motionPoint)) {
             g.drawImage(apTowerInfo, grid.getWidth()+15, BASICTOWERINFOHEIGHT, null);
 
         }

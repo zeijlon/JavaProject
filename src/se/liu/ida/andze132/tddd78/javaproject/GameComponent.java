@@ -50,9 +50,7 @@ public class GameComponent extends JComponent {
         final Graphics2D g2d = (Graphics2D) g;
         if (menu.isIfMenu()) {
             menu.draw(g2d);
-        } else {
-
-
+        }  else {
             grid.draw(g2d);
             shop.draw(g2d);
             spawner.draw(g2d);

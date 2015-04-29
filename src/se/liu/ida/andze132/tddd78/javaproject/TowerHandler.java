@@ -21,7 +21,6 @@ public class TowerHandler {
     private Shop shop;
     private EnemySpawner spawner;
     private BulletHandler bulletHandler;
-    private KeyHandler keyHandler;
 
     private Towers buildTower = null;
     private Rectangle upgradeTowerRange = null;
@@ -33,17 +32,15 @@ public class TowerHandler {
 
     private Collection<Enemy> enemiesWithinRange = new ArrayList<>();
 
-    public TowerHandler(GRID grid, Shop shop, EnemySpawner spawner, BulletHandler bulletHandler, KeyHandler keyHandler) {
+    public TowerHandler(GRID grid, Shop shop, EnemySpawner spawner, BulletHandler bulletHandler) {
         this.grid = grid;
         this.shop = shop;
         this.spawner = spawner;
         this.bulletHandler = bulletHandler;
-        this.keyHandler = keyHandler;
     }
 
-    public void checkButtonClick() {
-        if (keyHandler.getClickPoint() != null) {
-            if (shop.getShopButtons()[0][0].contains(keyHandler.getClickPoint())) {
+    public void checkButtonClick(Point p) {
+            if (shop.getShopButtons()[0][0].contains(p)) {
                 Towers tower = new BasicTower();
                 if (shop.getGold() >= tower.getCost()) {
                     shop.setHoldsItem(tower);
@@ -51,7 +48,7 @@ public class TowerHandler {
                 } else {
                     shop.setHoldsItem(null);
                 }
-            } else if (shop.getShopButtons()[0][1].contains(keyHandler.getClickPoint())) {
+            } else if (shop.getShopButtons()[0][1].contains(p)) {
                 Towers tower = new ArmorPiercingTower();
                 if (shop.getGold() >= tower.getCost()) {
                     shop.setHoldsItem(tower);
@@ -59,7 +56,7 @@ public class TowerHandler {
                 } else {
                     shop.setHoldsItem(null);
                 }
-            } else if (shop.getShopButtons()[1][0].contains(keyHandler.getClickPoint())) {
+            } else if (shop.getShopButtons()[1][0].contains(p)) {
                 Towers tower = new ScoutTower();
                 if (shop.getGold() >= tower.getCost()) {
                     shop.setHoldsItem(tower);
@@ -67,23 +64,22 @@ public class TowerHandler {
                 } else {
                     shop.setHoldsItem(null);
                 }
-            } else if (shop.getShopButtons()[1][1].contains(keyHandler.getClickPoint())) {
+            } else if (shop.getShopButtons()[1][1].contains(p)) {
                 shop.setHoldsItem(null);
             }
 
             if (buildTower != null) {
-                buildTower(buildTower);
+                buildTower(buildTower, p);
             }
         }
-    }
 
 
-    public void buildTower(Towers tower) {
-        if (keyHandler.getClickPoint() != null) {
+
+    public void buildTower(Towers tower, Point p) {
             for (int i = 0; i < grid.getRectangles().length; i++) {
                 for (int j = 0; j < grid.getRectangles()[i].length; j++) {
                     try {
-                        if (grid.getRectangles()[i][j].contains(keyHandler.getClickPoint()))
+                        if (grid.getRectangles()[i][j].contains(p))
                             if (grid.getSquares()[i][j] == GRID.GRASS) {
                                 towers.add(tower);
                                 grid.getSquares()[i][j] = GRID.TOWER;
@@ -102,35 +98,30 @@ public class TowerHandler {
             }
 
         }
-    }
 
-    public void checkTowerTargeted() {
+
+    public void checkTowerTargeted(Point p) {
         for (int i = 0; i < towers.size(); i++) {
-            if (keyHandler.getClickPoint() != null) {
-                if (towers.get(i).getRectangle().contains(keyHandler.getClickPoint())) {
+                if (towers.get(i).getRectangle().contains(p)) {
                     towers.get(i).setTargeted(true);
                     upgradeTowerAS = new Rectangle(0, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
                     upgradeTowerRange = new Rectangle(UPGRADEWIDTHCOORD, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
                     upgradeTowerDamage = new Rectangle(UPGRADEWIDTHCOORD * 2, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
                     sellTower = new Rectangle(UPGRADEWIDTHCOORD * 3, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 50, 50);
                 } else if (towers.get(i).isTargeted()) {
-                    if (upgradeTowerAS.contains(keyHandler.getClickPoint())) {
-                        if (keyHandler.getMouseReleased()) {
+                    if (upgradeTowerAS.contains(p)) {
                             upgradeAS(towers.get(i));
-                        }
-                    } else if (upgradeTowerRange.contains(keyHandler.getClickPoint())) {
-                        if (keyHandler.getMouseReleased()) {
-                            upgradeRange(towers.get(i));
-                        }
-                    } else if (upgradeTowerDamage.contains(keyHandler.getClickPoint())) {
-                        if (keyHandler.getMouseReleased()) {
-                            upgradeDamage(towers.get(i));
-                        }
 
-                    } else if (sellTower.contains(keyHandler.getClickPoint())) {
-                        if (keyHandler.getMouseReleased()) {
+                    } else if (upgradeTowerRange.contains(p)) {
+                            upgradeRange(towers.get(i));
+
+                    } else if (upgradeTowerDamage.contains(p)) {
+                            upgradeDamage(towers.get(i));
+
+
+                    } else if (sellTower.contains(p)) {
                             sellTower(towers.get(i));
-                        }
+
 
                     } else {
                         towers.get(i).setTargeted(false);
@@ -138,7 +129,6 @@ public class TowerHandler {
                 }
             }
         }
-    }
 
 
     public void towerPhysic() {
@@ -199,7 +189,6 @@ public class TowerHandler {
             tower.setDamage(tower.getDamage() + 5);
             tower.setUpgrades(tower.getUpgrades()+1);
             }}
-        keyHandler.setMouseReleased();
     }
 
     public void upgradeAS(Towers tower) {
@@ -212,7 +201,6 @@ public class TowerHandler {
             tower.setUpgrades(tower.getUpgrades() + 1);
 
         }}
-        keyHandler.setMouseReleased();
     }
 
     public void upgradeRange(Towers tower) {
@@ -224,7 +212,6 @@ public class TowerHandler {
             tower.setRange();
             tower.setUpgrades(tower.getUpgrades()+1);
         }}
-        keyHandler.setMouseReleased();
     }
 
     public void sellTower(Towers tower) {
@@ -271,8 +258,8 @@ public class TowerHandler {
 
             }
         }
-        Double dX = keyHandler.getMotionPoint().getX();
-        Double dY = keyHandler.getMotionPoint().getY();
+        Double dX = KeyHandler.motionPoint.getX();
+        Double dY = KeyHandler.motionPoint.getY();
         int x = dX.intValue();
         int y = dY.intValue();
         if (shop.getHoldsItem() != null) {

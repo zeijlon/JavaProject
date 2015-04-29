@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class Menu {
     private KeyHandler keyHandler;
     private GRID grid;
-    private MapEditor editor;
     private Shop shop;
     private EnemySpawner spawner;
     private TowerHandler towerHandler;
@@ -26,6 +25,7 @@ public class Menu {
     private boolean ifLost;
     private boolean mapEditor;
     private int mapSelected;
+    private static int goldCount =0;
 
     private static final int MENU_TAB_WIDTH = 150;
     private static final int MENU_TAB_HEIGHT = 25;
@@ -49,6 +49,8 @@ public class Menu {
 
 
     public Menu() {
+        mainTheme = new Sound("sounds/song.aiff");
+
         ifMenu = true;
         gameOn = false;
         gameRunning = true;
@@ -57,13 +59,12 @@ public class Menu {
         mapSelected = 1;
         options = false;
         ifLost = false;
-        this.keyHandler = new KeyHandler();
         this.grid = new GRID(mapSelected);
-        this.shop = new Shop(grid, keyHandler);
-        this.editor = new MapEditor(grid, keyHandler);
-        this.spawner = new EnemySpawner(grid, shop, keyHandler);
+        this.shop = new Shop(grid);
+        this.spawner = new EnemySpawner(grid, shop);
         this.bulletHandler = new BulletHandler(grid, spawner);
-        this.towerHandler = new TowerHandler(grid, shop, spawner, bulletHandler, keyHandler);
+        this.towerHandler = new TowerHandler(grid, shop, spawner, bulletHandler);
+        this.keyHandler = new KeyHandler(grid, shop, spawner, towerHandler, this, bulletHandler);
         this.frame = new GameFrame(grid, shop, spawner, towerHandler, bulletHandler, this, keyHandler);
         GameLoop gameloop = new GameLoop(shop, frame, spawner, towerHandler, bulletHandler, this, keyHandler);
     }
@@ -97,39 +98,30 @@ public class Menu {
     private Rectangle rectMap3 = new Rectangle(SECOND_COLUMN_X, SECOND_COLUMN_Y + MAP_TAB_HEIGHT*2, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
     private Rectangle rectMap4 = new Rectangle(SECOND_COLUMN_X, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*3, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
 
-    public void menuEdit() {
-        if (keyHandler.getClickPoint() != null) {
-            if (newGameButton.contains(keyHandler.getClickPoint())) {
+    public void menuEdit(Point p) {
+            if (newGameButton.contains(p)) {
                 newGame();
-            } else if (resumeGameButton.contains(keyHandler.getClickPoint())) {
+            } else if (resumeGameButton.contains(p)) {
                 resumeGame();
-            } else if (quitGameButton.contains(keyHandler.getClickPoint())) {
+            } else if (quitGameButton.contains(p)) {
                 quitGame();
-            } else if (selectLevel.contains(keyHandler.getClickPoint())) {
+            } else if (selectLevel.contains(p)) {
                 levelSelect = true;
                 options = false;
-            } else if (optionsButton.contains(keyHandler.getClickPoint())) {
+            } else if (optionsButton.contains(p)) {
                 options = true;
                 levelSelect = false;
             } else if (levelSelect) {
-                chooseMap();
+                chooseMap(p);
             } else if (options) {
-                options();
+                options(p);
             } else {
                 levelSelect = false;
                 options = false;
             }
         }
-        keyHandler.setClickPoint();
-    }
 
     public void newGame() {
-        ifMenu = false;
-        gameOn = true;
-        ifLost = false;
-        mainTheme = new Sound("sounds/song.aiff");
-
-
         if (!Sound.isNoMusic()) {
             if (!Sound.getClipPlaying()) {
                 mainTheme.play();
@@ -140,15 +132,20 @@ public class Menu {
 
         grid.setMapSize(mapSelected);
         shop.setHealth(100);
-        shop.setGold(100);
+        shop.setGold(15);
+        goldCount += 15;
         spawner.setEnemies(new ArrayList<>());
         spawner.setLevel();
-        spawner.setEnemyCount(1);
-        spawner.setArmoredEnemyCount(1);
+        spawner.setArmoredEnemyCount(3);
+        spawner.setSpyEnemyCount(2);
         towerHandler.setTowers(new ArrayList<>());
         bulletHandler.setBullets(new ArrayList<>());
         levelSelect = false;
         options = false;
+
+                ifMenu = false;
+                gameOn = true;
+                ifLost = false;
     }
 
     public void resumeGame() {
@@ -168,33 +165,31 @@ public class Menu {
                 .showConfirmDialog(null, "Are you sure you want to quit? ", "Confirm", JOptionPane.YES_NO_OPTION);
         if (answer == JOptionPane.YES_OPTION) {
             System.exit(0);
-        } else {
-            keyHandler.setClickPoint();
         }
     }
 
-    public void chooseMap() {
-        if (rectMap1.contains(keyHandler.getClickPoint())) {
+    public void chooseMap(Point p) {
+        if (rectMap1.contains(p)) {
             mapSelected = 1;
-        } else if (rectMap2.contains(keyHandler.getClickPoint())) {
+        } else if (rectMap2.contains(p)) {
             mapSelected = 2;
-        } else if (rectMap3.contains(keyHandler.getClickPoint())) {
+        } else if (rectMap3.contains(p)) {
             mapSelected = 3;
-        } else if (rectMap4.contains(keyHandler.getClickPoint())) {
+        } else if (rectMap4.contains(p)) {
             mapSelected = 4;
         } else {
             levelSelect = false;
         }
     }
 
-    public void options() {
-        if (audioRect.contains(keyHandler.getClickPoint())) {
+    public void options(Point p) {
+        if (audioRect.contains(p)) {
             if (Sound.isNoGameAudio()) {
                 Sound.setNoGameAudio(false);
             } else if (!Sound.isNoGameAudio()) {
                 Sound.setNoGameAudio(true);
             }
-        } else if (musicRect.contains(keyHandler.getClickPoint())) {
+        } else if (musicRect.contains(p)) {
             if (Sound.isNoMusic()) {
                 if(!Sound.getClipPlaying()){
                     mainTheme.play();
@@ -304,5 +299,13 @@ public class Menu {
 
     public void setIfLost(final boolean ifLost) {
         this.ifLost = ifLost;
+    }
+
+    public static void setGoldCount(final int goldCount) {
+        Menu.goldCount = goldCount;
+    }
+
+    public static int getGoldCount() {
+        return goldCount;
     }
 }

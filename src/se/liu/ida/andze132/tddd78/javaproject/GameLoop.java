@@ -78,6 +78,7 @@ public class GameLoop {
     }
 
     private void doGameUpdates() {
+
         if (menu.isGameOn()) {
             if(spawner.isFastForward()){
                 optimalTime = ONE_BILLION / (targetFPS*2);
@@ -85,27 +86,21 @@ public class GameLoop {
             else{
                 optimalTime = ONE_BILLION / (targetFPS);
             }
-            frame.validate();
             frame.pack();
-            spawner.waveHandler();
             spawner.checkEnemyFinished();
             spawner.moveEnemy();
+            spawner.checkRoundFinished();
 
-            towerHandler.checkButtonClick();
             towerHandler.towerPhysic();
 
             bulletHandler.updateBullets();
 
-            towerHandler.checkTowerTargeted();
 
             if (shop.getHealth() <= 0) {
                 menu.setGameOn(false);
                 menu.setIfMenu(true);
                 menu.setIfLost(true);
-                keyHandler.setClickPoint();
             }
-        } else if (menu.isIfMenu()) {
-            menu.menuEdit();
         }
 
     }

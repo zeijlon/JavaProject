@@ -17,12 +17,12 @@ public class BulletProperties {
             case APBULLET:
                 bullet.setBulletSpeed(tower.getBulletSpeed());
                 bullet.setDamage(tower.getDamage());
-                bullet.setImage(Toolkit.getDefaultToolkit().getImage("images/coin.png"));
+                bullet.setImage(Toolkit.getDefaultToolkit().getImage("images/apBullet.png"));
                 break;
             case SCOUTBULLET:
                 bullet.setBulletSpeed(tower.getBulletSpeed());
                 bullet.setDamage(tower.getDamage());
-                bullet.setImage(Toolkit.getDefaultToolkit().getImage("images/heart.png"));
+                bullet.setImage(Toolkit.getDefaultToolkit().getImage("images/scoutBullet.png"));
                 break;
         }
     }
