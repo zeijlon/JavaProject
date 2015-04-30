@@ -89,20 +89,22 @@ public class GameLoop {
                 optimalTime = ONE_BILLION / (targetFPS);
             }
             frame.pack();
-spawner.checkEnemyFinished();
-            spawner.moveEnemy();
-            spawner.checkRoundFinished();
+	    if(!spawner.isBetweenRounds()){
+		spawner.kukenStår();
 
-            towerHandler.towerPhysic();
+		spawner.checkEnemyFinished();
+		spawner.moveEnemy();
 
-            bulletHandler.updateBullets();
+		towerHandler.towerPhysic();
+
+		bulletHandler.updateBullets();
 
 
-            if (shop.getHealth() <= 0) {
-                menu.setGameOn(false);
-                menu.setIfMenu(true);
-                menu.setIfLost(true);
-            }
+		if (shop.getHealth() <= 0) {
+		    menu.setGameOn(false);
+		    menu.setIfMenu(true);
+		    menu.setIfLost(true);
+            }}
         }
 
     }

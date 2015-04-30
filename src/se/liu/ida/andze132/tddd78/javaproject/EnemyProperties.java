@@ -30,7 +30,7 @@ public class EnemyProperties {
 
     public void decideEnemy(Enemy enemy) {
         switch (enemy.getType()) {
-            case BASICENEMY:
+            case BASIC:
                 enemy.setOriginalHp(basicHealth);
                 enemy.setHp(basicHealth);
                 enemy.setSpeed(basicSpeed);
@@ -38,7 +38,7 @@ public class EnemyProperties {
                 enemy.setDamage(BASIC_DAMAGE);
                 enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/PolarBearNormal.gif"));
                 break;
-            case ARMOREDENEMY:
+            case ARMORED:
                 enemy.setOriginalHp(armoredHealth);
                 enemy.setHp(armoredHealth);
                 enemy.setSpeed(armoredSpeed);
@@ -46,15 +46,15 @@ public class EnemyProperties {
                 enemy.setDamage(ARMORED_DAMAGE);
                 enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/ArmoredPolarBearNormal60.gif"));
                 break;
-            case SPYENEMY:
+            case SPY:
                 enemy.setOriginalHp(spyHealth);
                 enemy.setHp(spyHealth);
                 enemy.setSpeed(spySpeed);
                 enemy.setGoldgain(SPY_GOLD_GAIN);
                 enemy.setDamage(SPY_DAMAGE);
-                enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/ArmoredPolarBearNormal60.gif"));
+                enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/SpyPolarBearFast.gif"));
                 break;
-	    case BOSSENEMY:
+	    case BOSS:
 		enemy.setOriginalHp(BOSS_HEALTH);
 		enemy.setHp(BOSS_HEALTH);
 		enemy.setSpeed(BOSS_SPEED);

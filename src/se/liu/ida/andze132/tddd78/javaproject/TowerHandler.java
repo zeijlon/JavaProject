@@ -167,7 +167,7 @@ public class TowerHandler
     public void checkEnemyWithinReach(Towers tower) {
 	for (int i = 0; i < spawner.getEnemies().size(); i++) {
 	    if (testIntersection(tower.getRange(), spawner.getEnemies().get(i).getEnemyEllipse())) {
-		if (spawner.getEnemies().get(i).getType() == EnemyType.SPYENEMY) {
+		if (spawner.getEnemies().get(i).getType() == EnemyType.SPY) {
 		    if (tower.getType() == TowerType.SCOUTTOWER) {
 			enemiesWithinRange.add(spawner.getEnemies().get(i));
 		    }

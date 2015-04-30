@@ -45,6 +45,7 @@ public class Enemy extends EnemyProperties{
     public Enemy(final EnemyType type) {
         this.type = type;
         decideEnemy(this);
+
     }
 
     public Shape getEnemyEllipse() {

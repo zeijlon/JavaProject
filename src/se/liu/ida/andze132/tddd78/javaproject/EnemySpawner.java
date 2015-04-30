@@ -23,7 +23,10 @@ public class EnemySpawner {
 
     private List<Enemy> enemies = new ArrayList<>();
     private List<Start> starts = new ArrayList<>();
-    private Map<String, Sound> sfx;
+    private List<Enemy> basic = new ArrayList<>();
+    private List<Enemy> armored = new ArrayList<>();
+    private List<Enemy> spy = new ArrayList<>();
+    private List<Enemy> boss = new ArrayList<>();
     private int spawnTime = 0;
     private int level = 0;
     private int basicEnemyCount = 1;
@@ -51,8 +54,6 @@ public class EnemySpawner {
 	this.shop = shop;
 	this.betweenRounds = true;
 	this.fastForward = false;
-	sfx = new HashMap<>();
-	sfx.put("dies", new Sound("sounds/beardeath.wav"));
 	this.nextRoundButton =
 		new Rectangle(grid.getWidth() + 20, grid.getHeight() - WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE);
     }
@@ -60,40 +61,40 @@ public class EnemySpawner {
 
     public void waveHandler() {
 	if (level == 5) {
-	    spawnEnemy(new ArmoredEnemy(), armoredEnemyCount);
+	    addSpawnEnemies(EnemyType.ARMORED, armoredEnemyCount, armored);
 	    armoredEnemyCount += 6*level%7;
 	} else if (level == 10) {
-	    spawnEnemy(new SpyEnemy(), spyEnemyCount);
+	    addSpawnEnemies(EnemyType.SPY, spyEnemyCount, spy);
 	    spyEnemyCount +=  6*level%7;
 
 	} else if (level == 20) {
-	    spawnEnemy(new BossEnemy(), bossEnemyCount);
+	    addSpawnEnemies(EnemyType.BOSS, bossEnemyCount, boss);
 	    bossEnemyCount +=  1;
 	}else if (level > 20) {
-	    spawnEnemy(new BasicEnemy(), basicEnemyCount);
-	    spawnEnemy(new ArmoredEnemy(), armoredEnemyCount);
-	    spawnEnemy(new SpyEnemy(), spyEnemyCount);
-	    spawnEnemy(new BossEnemy(), bossEnemyCount);
+	    addSpawnEnemies(EnemyType.BASIC, basicEnemyCount,basic);
+	    addSpawnEnemies(EnemyType.ARMORED, armoredEnemyCount,armored);
+	    addSpawnEnemies(EnemyType.SPY, spyEnemyCount, spy);
+	    addSpawnEnemies(EnemyType.BOSS, bossEnemyCount, boss);
 	    basicEnemyCount += level*2%3;
 	    armoredEnemyCount += 6*level%7;
 	    spyEnemyCount +=  6*level%7;
 	    bossEnemyCount += 1;
 		}
 	else if (level > 10) {
-	    spawnEnemy(new BasicEnemy(), basicEnemyCount);
-	    spawnEnemy(new ArmoredEnemy(), armoredEnemyCount);
-	    spawnEnemy(new SpyEnemy(), spyEnemyCount);
+	    addSpawnEnemies(EnemyType.BASIC, basicEnemyCount, basic);
+	    addSpawnEnemies(EnemyType.ARMORED, armoredEnemyCount, armored);
+	    addSpawnEnemies(EnemyType.SPY, spyEnemyCount, spy);
 	    basicEnemyCount += level*2%3;
 	    armoredEnemyCount += 6*level%7;
 	    spyEnemyCount +=  6*level%7;
 
 	} else if (level > 5) {
-	    spawnEnemy(new ArmoredEnemy(), armoredEnemyCount);
-	    spawnEnemy(new BasicEnemy(), basicEnemyCount);
+	    addSpawnEnemies(EnemyType.ARMORED, armoredEnemyCount, armored);
+	    addSpawnEnemies(EnemyType.BASIC, basicEnemyCount, basic);
 	    basicEnemyCount += level*2%3;
 	    armoredEnemyCount += 6*level%7;
 	} else {
-	    spawnEnemy(new BasicEnemy(), basicEnemyCount);
+	    addSpawnEnemies(EnemyType.BASIC, basicEnemyCount, basic);
 	    basicEnemyCount += level*2%3;
 	}}
 
@@ -103,7 +104,6 @@ public class EnemySpawner {
 		betweenRounds = true;
 		fastForward = false;
 		if (level <= 10) {
-		    System.out.println("kuken" + shop.getGold());
 		    shop.setGold(shop.getGold() + 11 - level);
 		}
 		else {
@@ -129,10 +129,27 @@ public class EnemySpawner {
 	    }
 	}
 
-    private void spawnEnemy(Enemy enemy, int count) {
+    private void addSpawnEnemies(EnemyType type, int count, Collection<Enemy> list) {
+	for (int i = 0; i < count ; i++) {
+	    list.add(new Enemy(type));}
+    }
+
+    public void kukenStår(){
 	int spawnRate = 75;
-	if (spawnTime >= spawnRate) {
-	    for (int i = 0; i < count; i++) {
+	if(spawnTime>= spawnRate){
+	    spawnEnemies(basic);
+	    spawnEnemies(armored);
+	    spawnEnemies(spy);
+	    spawnEnemies(boss);
+	    spawnTime = 0;
+	}
+	else{
+	    spawnTime++;
+	}
+    }
+    public void spawnEnemies(List<Enemy> list){
+	    if(!list.isEmpty()){
+		Enemy enemy = list.get(0);
 		enemies.add(enemy);
 		for (int y = 0; y < grid.getSquares().length; y++) {
 		    for (int x = 0; x < grid.getSquares()[y].length; x++) {
@@ -154,8 +171,11 @@ public class EnemySpawner {
 		defineHasWalked(enemy);
 		decideDirection(enemy);
 		enemy.setEnemyEllipse();
-	    }
-	}}
+		list.remove(0);
+	    }		spawnTime = 0;
+
+
+    }
 
 
     private void defineHasWalked(Enemy enemy) {
@@ -280,13 +300,16 @@ public class EnemySpawner {
             if (enemies.get(i).getHp() <= 0) {
                 shop.setGold(shop.getGold() + enemies.get(i).getGoldgain());
                 enemies.remove(enemies.get(i));
+		checkRoundFinished();
 		if(!Sound.getNoGameAudio()){
                     bearDies.play();
+		    if(level>19){
 		    bossBearDeath.play();
-                }
+                }}
             } else if (grid.getSquares()[y][x] == GRID.FINISH) {
                 shop.setHealth(shop.getHealth() - enemies.get(i).getDamage());
                 enemies.remove(enemies.get(i));
+		checkRoundFinished();
             }
         }
     }
@@ -372,5 +395,21 @@ public class EnemySpawner {
 
     public boolean isFastForward() {
 	return fastForward;
+    }
+
+    public List<Enemy> getBasic() {
+	return basic;
+    }
+
+    public List<Enemy> getArmored() {
+	return armored;
+    }
+
+    public List<Enemy> getSpy() {
+	return spy;
+    }
+
+    public List<Enemy> getBoss() {
+	return boss;
     }
 }
