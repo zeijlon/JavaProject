@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class BulletHandler {
 
-    public static final int RECT_SIZE = 20;
+    private static final int RECT_SIZE = 20;
     private GRID grid;
     private EnemySpawner spawner;
     private List<Bullet> bullets = new ArrayList<>();
@@ -45,7 +45,7 @@ public class BulletHandler {
             case BASIC:
                 return new Bullet(tower,BulletType.NORMAL);
             case ARMORPIERCING:
-                return new Bullet(tower, BulletType.AP);
+                return new Bullet(tower, BulletType.ARMORPIERING);
             case SCOUT:
                 return new Bullet(tower, BulletType.SCOUT);
             default:

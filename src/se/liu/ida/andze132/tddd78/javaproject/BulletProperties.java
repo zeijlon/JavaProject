@@ -14,7 +14,7 @@ public class BulletProperties {
                 bullet.setDamage(tower.getDamage());
                 bullet.setImage(Toolkit.getDefaultToolkit().getImage("images/normalBullet.png"));
                 break;
-            case AP:
+            case ARMORPIERING:
                 bullet.setBulletSpeed(tower.getBulletSpeed());
                 bullet.setDamage(tower.getDamage());
                 bullet.setImage(Toolkit.getDefaultToolkit().getImage("images/apBullet.png"));

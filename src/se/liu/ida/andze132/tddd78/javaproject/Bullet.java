@@ -19,8 +19,8 @@ public class Bullet extends BulletProperties{
     private Rectangle bulletRect = null;
 
     public Bullet(Towers tower, BulletType type) {
-        this.x = tower.getX()+BulletHandler.RECT_SIZE;
-        this.y = tower.getY()+BulletHandler.RECT_SIZE;
+        this.x = tower.getX()+(float)GameComponent.TILE_SIZE/2;
+        this.y = tower.getY()+(float)GameComponent.TILE_SIZE/2;
         this.type = type;
         decideBullet(this, tower);
     }

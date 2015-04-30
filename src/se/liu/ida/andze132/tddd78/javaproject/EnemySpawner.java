@@ -17,7 +17,6 @@ public class EnemySpawner {
     private GRID grid;
     private Shop shop;
     private Sound bearDies = new Sound("sounds/beardeath.wav");
-    private Sound bossBearDeath = new Sound("sounds/bossbeardearth.wav");
 
 
 
@@ -66,7 +65,6 @@ public class EnemySpawner {
 	} else if (level == 10) {
 	    addEnemiesToSpawn(EnemyType.SPY, spyEnemyCount, spy);
 	    spyEnemyCount +=  level;
-
 	} else if (level == 20) {
 	    addEnemiesToSpawn(EnemyType.BOSS, bossEnemyCount, boss);
 	    bossEnemyCount +=  1;
@@ -394,5 +392,29 @@ public class EnemySpawner {
 
     public void setBossEnemyCount(final int bossEnemyCount) {
 	this.bossEnemyCount = bossEnemyCount;
+    }
+
+    public void setBetweenRounds(final boolean betweenRounds) {
+	this.betweenRounds = betweenRounds;
+    }
+
+    public void setBasic(final List<Enemy> basic) {
+	this.basic = basic;
+    }
+
+    public void setArmored(final List<Enemy> armored) {
+	this.armored = armored;
+    }
+
+    public void setSpy(final List<Enemy> spy) {
+	this.spy = spy;
+    }
+
+    public void setBoss(final List<Enemy> boss) {
+	this.boss = boss;
+    }
+
+    public void setStarts(final List<Start> starts) {
+	this.starts = starts;
     }
 }

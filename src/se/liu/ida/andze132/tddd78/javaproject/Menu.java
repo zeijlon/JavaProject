@@ -142,6 +142,7 @@ public class Menu {
                 Sound.setClipPlaying(true);
             }
         }
+        spawner.setBetweenRounds(true);
         grid.setMapSize(mapSelected);
         shop.setHealth(1);
         shop.setGold(STARTGOLD);
@@ -155,6 +156,7 @@ public class Menu {
 	spawner.setBossEnemyCount(1);
         levelSelect = false;
         options = false;
+        spawner.setStarts(new ArrayList<>());
 
                 ifMenu = false;
                 gameOn = true;

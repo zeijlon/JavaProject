@@ -34,7 +34,6 @@ public class KeyHandler extends MouseAdapter {
         Point p = new Point(e.getX() - 8, e.getY() - MENU_HEIGHT);
         if (menu.isIfMenu()) {
             menu.menuEdit(p);
-            System.out.println("hej");
         }
         else if(menu.isGameOn()) {
             spawner.nextWave(p);

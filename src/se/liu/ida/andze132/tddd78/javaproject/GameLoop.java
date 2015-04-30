@@ -2,6 +2,8 @@ package se.liu.ida.andze132.tddd78.javaproject;
 
 
 import javax.swing.*;
+import java.util.ArrayList;
+
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
  */
@@ -99,8 +101,13 @@ public class GameLoop {
 		    menu.setGameOn(false);
 		    menu.setIfMenu(true);
 		    menu.setIfLost(true);
+                    shop.setHoldsItem(null);
                     HighScore hs = new HighScore(name, spawner.getLevel());
                     HighScoreList.addToHighScore(hs);
+                    spawner.setArmored(new ArrayList<>());
+                    spawner.setBasic(new ArrayList<>());
+                    spawner.setBoss(new ArrayList<>());
+                    spawner.setSpy(new ArrayList<>());
             }}
         }
 
