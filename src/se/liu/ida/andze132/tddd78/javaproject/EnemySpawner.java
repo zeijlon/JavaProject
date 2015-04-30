@@ -61,40 +61,40 @@ public class EnemySpawner {
 
     public void waveHandler() {
 	if (level == 5) {
-	    addSpawnEnemies(EnemyType.ARMORED, armoredEnemyCount, armored);
+	    addEnemiesToSpawn(EnemyType.ARMORED, armoredEnemyCount, armored);
 	    armoredEnemyCount += 6*level%7;
 	} else if (level == 10) {
-	    addSpawnEnemies(EnemyType.SPY, spyEnemyCount, spy);
+	    addEnemiesToSpawn(EnemyType.SPY, spyEnemyCount, spy);
 	    spyEnemyCount +=  6*level%7;
 
 	} else if (level == 20) {
-	    addSpawnEnemies(EnemyType.BOSS, bossEnemyCount, boss);
+	    addEnemiesToSpawn(EnemyType.BOSS, bossEnemyCount, boss);
 	    bossEnemyCount +=  1;
 	}else if (level > 20) {
-	    addSpawnEnemies(EnemyType.BASIC, basicEnemyCount,basic);
-	    addSpawnEnemies(EnemyType.ARMORED, armoredEnemyCount,armored);
-	    addSpawnEnemies(EnemyType.SPY, spyEnemyCount, spy);
-	    addSpawnEnemies(EnemyType.BOSS, bossEnemyCount, boss);
+	    addEnemiesToSpawn(EnemyType.BASIC, basicEnemyCount, basic);
+	    addEnemiesToSpawn(EnemyType.ARMORED, armoredEnemyCount, armored);
+	    addEnemiesToSpawn(EnemyType.SPY, spyEnemyCount, spy);
+	    addEnemiesToSpawn(EnemyType.BOSS, bossEnemyCount, boss);
 	    basicEnemyCount += level*2%3;
 	    armoredEnemyCount += 6*level%7;
 	    spyEnemyCount +=  6*level%7;
 	    bossEnemyCount += 1;
 		}
 	else if (level > 10) {
-	    addSpawnEnemies(EnemyType.BASIC, basicEnemyCount, basic);
-	    addSpawnEnemies(EnemyType.ARMORED, armoredEnemyCount, armored);
-	    addSpawnEnemies(EnemyType.SPY, spyEnemyCount, spy);
+	    addEnemiesToSpawn(EnemyType.BASIC, basicEnemyCount, basic);
+	    addEnemiesToSpawn(EnemyType.ARMORED, armoredEnemyCount, armored);
+	    addEnemiesToSpawn(EnemyType.SPY, spyEnemyCount, spy);
 	    basicEnemyCount += level*2%3;
 	    armoredEnemyCount += 6*level%7;
 	    spyEnemyCount +=  6*level%7;
 
 	} else if (level > 5) {
-	    addSpawnEnemies(EnemyType.ARMORED, armoredEnemyCount, armored);
-	    addSpawnEnemies(EnemyType.BASIC, basicEnemyCount, basic);
+	    addEnemiesToSpawn(EnemyType.ARMORED, armoredEnemyCount, armored);
+	    addEnemiesToSpawn(EnemyType.BASIC, basicEnemyCount, basic);
 	    basicEnemyCount += level*2%3;
 	    armoredEnemyCount += 6*level%7;
 	} else {
-	    addSpawnEnemies(EnemyType.BASIC, basicEnemyCount, basic);
+	    addEnemiesToSpawn(EnemyType.BASIC, basicEnemyCount, basic);
 	    basicEnemyCount += level*2%3;
 	}}
 
@@ -129,25 +129,25 @@ public class EnemySpawner {
 	    }
 	}
 
-    private void addSpawnEnemies(EnemyType type, int count, Collection<Enemy> list) {
+    private void addEnemiesToSpawn(EnemyType type, int count, Collection<Enemy> list) {
 	for (int i = 0; i < count ; i++) {
 	    list.add(new Enemy(type));}
     }
 
-    public void kukenStår(){
+    public void spawnEnemies(){
 	int spawnRate = 75;
 	if(spawnTime>= spawnRate){
-	    spawnEnemies(basic);
-	    spawnEnemies(armored);
-	    spawnEnemies(spy);
-	    spawnEnemies(boss);
+	    spawnEnemyType(basic);
+	    spawnEnemyType(armored);
+	    spawnEnemyType(spy);
+	    spawnEnemyType(boss);
 	    spawnTime = 0;
 	}
 	else{
 	    spawnTime++;
 	}
     }
-    public void spawnEnemies(List<Enemy> list){
+    public void spawnEnemyType(List<Enemy> list){
 	    if(!list.isEmpty()){
 		Enemy enemy = list.get(0);
 		enemies.add(enemy);
@@ -411,5 +411,9 @@ public class EnemySpawner {
 
     public List<Enemy> getBoss() {
 	return boss;
+    }
+
+    public int getLevel() {
+	return level;
     }
 }

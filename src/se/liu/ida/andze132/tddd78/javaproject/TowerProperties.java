@@ -9,7 +9,7 @@ public class TowerProperties {
 
     private static final Image BASIC_TOWER_IMAGE = Toolkit.getDefaultToolkit().getImage("images/basicTower60.png");
     private static final int BASIC_TOWER_DAMAGE = 10;
-    private static final int BASIC_TOWER_BULLETSPEED = 10;
+    private static final int BASIC_TOWER_BULLETSPEED = 6;
     private static final int BASIC_TOWER_COST = 10;
     private static final int BASIC_TOWER_SELL = 5;
     private static final int BASIC_TOWER_RADIUS = 200;

@@ -90,7 +90,7 @@ public class GameLoop {
             }
             frame.pack();
 	    if(!spawner.isBetweenRounds()){
-		spawner.kukenStår();
+		spawner.spawnEnemies();
 
 		spawner.checkEnemyFinished();
 		spawner.moveEnemy();
@@ -101,9 +101,12 @@ public class GameLoop {
 
 
 		if (shop.getHealth() <= 0) {
+                    String name = JOptionPane.showInputDialog(frame, "Input your name please.", "Highscore", 1);
 		    menu.setGameOn(false);
 		    menu.setIfMenu(true);
 		    menu.setIfLost(true);
+                    HighScore hs = new HighScore(name, spawner.getLevel());
+                    HighScoreList.addToHighScore(hs);
             }}
         }
 

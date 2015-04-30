@@ -23,6 +23,7 @@ public class Menu {
     private boolean options;
     private boolean ifGamePaused;
     private boolean ifLost;
+    private boolean leaderboard;
     private int mapSelected;
 
     private static final int MENU_TAB_WIDTH = 150;
@@ -55,6 +56,7 @@ public class Menu {
         mapSelected = 1;
         options = false;
         ifLost = false;
+        leaderboard = false;
 	mainTheme = new Sound("sounds/song.aiff");
         this.grid = new GRID(mapSelected);
         this.shop = new Shop(grid);
@@ -88,8 +90,8 @@ public class Menu {
     private Rectangle newGameButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y+MAP_TAB_HEIGHT, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
     private Rectangle selectLevel = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*2, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
     private Rectangle optionsButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*3, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
-    //private Rectangle mapEditorButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*4, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
-    private Rectangle quitGameButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*4, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
+    private Rectangle Leaderboard = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*4, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
+    private Rectangle quitGameButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*5, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
 
     private Rectangle rectMap1 = new Rectangle(SECOND_COLUMN_X-5, SECOND_COLUMN_Y, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
     private Rectangle rectMap2 = new Rectangle(SECOND_COLUMN_X-5, SECOND_COLUMN_Y+MAP_TAB_HEIGHT, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
@@ -102,14 +104,21 @@ public class Menu {
                 newGame();
             } else if (resumeGameButton.contains(p)) {
                 resumeGame();
-            } else if (quitGameButton.contains(p)) {
+            }else if (Leaderboard.contains(p)) {
+                            leaderboard = true;
+                levelSelect = false;
+                options = false;
+                        }
+            else if (quitGameButton.contains(p)) {
                 quitGame();
             } else if (selectLevel.contains(p)) {
                 levelSelect = true;
                 options = false;
+                leaderboard = false;
             } else if (optionsButton.contains(p)) {
                 options = true;
                 levelSelect = false;
+                leaderboard = false;
             } else if (levelSelect) {
                 chooseMap(p);
             } else if (options) {
@@ -117,8 +126,10 @@ public class Menu {
             }else{
                 levelSelect = false;
                 options = false;
+                leaderboard = false;
             }
         }
+
 
 
     public void newGame() {
@@ -130,7 +141,7 @@ public class Menu {
             }
         }
         grid.setMapSize(mapSelected);
-        shop.setHealth(100);
+        shop.setHealth(1);
         shop.setGold(15);
         spawner.setEnemies(new ArrayList<>());
         spawner.setLevel();
@@ -219,6 +230,7 @@ public class Menu {
         g2d.drawImage(levelSelectImage, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT*2, null);
         g2d.drawImage(optionsImage, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT*3, null);
         g2d.drawImage(quit, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT*4, null);
+        g2d.drawImage(quit, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT*5, null);
 
         /*g2d.drawRect(SECOND_COLUMN_X-5, SECOND_COLUMN_Y, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
         g2d.drawRect(SECOND_COLUMN_X-5, SECOND_COLUMN_Y+MAP_TAB_HEIGHT, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
@@ -226,8 +238,16 @@ public class Menu {
         g2d.drawRect(SECOND_COLUMN_X-5, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*3, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
 */
 
+        if(leaderboard){
+            g2d.setFont(new Font("courier new", Font.BOLD, 18));
+            g2d.drawString("# : Name : Round", SECOND_COLUMN_X, SECOND_COLUMN_Y);
+            g2d.setFont(new Font("courier new", Font.BOLD, 16));
+            for (int i = 0; i < HighScoreList.getINSTANCE().getHighScoreList().size(); i++) {
+                g2d.drawString(i+1 + " : "+HighScoreList.showHighScore(i).getName() + " : " + HighScoreList.showHighScore(i).getHighScore(),
+                               SECOND_COLUMN_X, SECOND_COLUMN_Y + 16 + (i * 16));
+        }}
 
-        if (levelSelect) {
+        else if (levelSelect) {
             g2d.drawImage(map1, SECOND_COLUMN_X, SECOND_COLUMN_Y, null);
             g2d.drawImage(map2, SECOND_COLUMN_X, SECOND_COLUMN_Y+MAP_TAB_HEIGHT, null);
             g2d.drawImage(map3, SECOND_COLUMN_X, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*2, null);
@@ -268,9 +288,7 @@ public class Menu {
         if (ifGamePaused) {
             if(!ifLost){
             g2d.drawImage(resumeGame, FIRST_COLUMN_X -10, FIRST_COLUMN_Y +10, null);
-        }}
-
-    }
+        }}}
 
     private void drawGrid(Graphics g2d, int[][] squares) {
         for (int i = 0; i < squares.length; i++) {

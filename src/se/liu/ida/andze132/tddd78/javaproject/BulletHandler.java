@@ -1,6 +1,7 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,8 @@ public class BulletHandler {
         //Random random = new Random(); + Math.toRadians(random.nextInt(360))
         Bullet bullet = decideBullet(tower);
         assert bullet != null;
-        bullet.setAngle(Math.toDegrees(Math.atan2(enemy.getY() + RECT_SIZE - bullet.getY(), enemy.getX() + RECT_SIZE - bullet.getX())));
+        bullet.setAngle(Math.atan2((enemy.getY() + (float)GameComponent.TILE_SIZE/2) - (bullet.getY()+(float)RECT_SIZE/2),
+                                   (enemy.getX() + (float)GameComponent.TILE_SIZE/2) - (bullet.getX()+(float)RECT_SIZE/2)));
         bullets.add(bullet);
     }
 
@@ -55,8 +57,8 @@ public class BulletHandler {
     public void updateBullets() {
         for (int i = 0; i < bullets.size(); i++) {
             defineBullets(bullets.get(i));
-            bullets.get(i).setX(bullets.get(i).getX() + bullets.get(i).getBulletSpeed() * Math.cos(Math.toRadians(bullets.get(i).getAngle())));
-            bullets.get(i).setY(bullets.get(i).getY() + bullets.get(i).getBulletSpeed() * Math.sin(Math.toRadians(bullets.get(i).getAngle())));
+            bullets.get(i).setX(bullets.get(i).getX() + bullets.get(i).getBulletSpeed() * Math.cos(bullets.get(i).getAngle()));
+            bullets.get(i).setY(bullets.get(i).getY() + bullets.get(i).getBulletSpeed() * Math.sin(bullets.get(i).getAngle()));
             if (!grid.getGridSize().contains(bullets.get(i).getX(), bullets.get(i).getY())) {
                 bullets.remove(i);
             }
@@ -76,11 +78,19 @@ public class BulletHandler {
 
     public void draw(Graphics2D g) {
         for (int i = 0; i < bullets.size(); i++) {
-            Double x = bullets.get(i).getX();
+            AffineTransform at = new AffineTransform();
+            AffineTransform old = g.getTransform();
+            at.rotate(bullets.get(i).getAngle()+Math.PI/2, bullets.get(i).getX() + 10,
+                      bullets.get(i).getY()+10);
+                        g.transform(at);
+                        g.drawImage(bullets.get(i).getImage(), (int)bullets.get(i).getX(),(int) bullets.get(i).getY(), null);
+                        g.setTransform(old);
+
+            /*Double x = bullets.get(i).getX();
             int xValue = x.intValue();
             Double y = bullets.get(i).getY();
             int yValue = y.intValue();
-            g.drawImage(bullets.get(i).getImage(), xValue, yValue, null);
+            g.drawImage(bullets.get(i).getImage(), xValue, yValue, null);*/
             //g.drawRect((int)bullets.get(i).getBulletRect().getX(), (int)bullets.get(i).getBulletRect().getY(), (int)bullets.get(i).getBulletRect().getWidth(), (int)bullets.get(i).getBulletRect().getHeight());
         }
     }
