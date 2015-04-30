@@ -43,7 +43,7 @@ public class TowerHandler
 
     public void checkButtonClick(Point p) {
             if (shop.getShopButtons()[0][0].contains(p)) {
-                Towers tower = new BasicTower();
+                Towers tower = new Towers(TowerType.BASIC);
                 if (shop.getGold() >= tower.getCost()) {
                     shop.setHoldsItem(tower);
                     buildTower = tower;
@@ -51,7 +51,7 @@ public class TowerHandler
                     shop.setHoldsItem(null);
                 }
             } else if (shop.getShopButtons()[0][1].contains(p)) {
-                Towers tower = new ArmorPiercingTower();
+                Towers tower = new Towers(TowerType.ARMORPIERCING);
                 if (shop.getGold() >= tower.getCost()) {
                     shop.setHoldsItem(tower);
                     buildTower = tower;
@@ -59,7 +59,7 @@ public class TowerHandler
                     shop.setHoldsItem(null);
                 }
             } else if (shop.getShopButtons()[1][0].contains(p)) {
-                Towers tower = new ScoutTower();
+                Towers tower = new Towers(TowerType.SCOUT);
                 if (shop.getGold() >= tower.getCost()) {
                     shop.setHoldsItem(tower);
                     buildTower = tower;
@@ -136,29 +136,30 @@ public class TowerHandler
 
 
     public void towerPhysic() {
-	for (Towers tower : towers) {
+	for (int i = 0; i < towers.size(); i++) {
+
 	    if (spawner.isBetweenRounds()) {
-		tower.setReloadTick(tower.getReloadTime());
+		towers.get(i).setReloadTick(towers.get(i).getReloadTime());
 	    }
-	    checkEnemyWithinReach(tower);
+	    checkEnemyWithinReach(towers.get(i));
 	    if (!enemiesWithinRange.isEmpty()) {
-		tower.setShooting(true);
-		tower.setTargetEnemy(spawner.checkEnemyWalked(enemiesWithinRange));
+		towers.get(i).setShooting(true);
+		towers.get(i).setTargetEnemy(spawner.checkEnemyWalked(enemiesWithinRange));
 		enemiesWithinRange = new ArrayList<>();
-		tower.setAngle(
-			Math.atan2(tower.getTargetEnemy().getY() - tower.getY(), tower.getTargetEnemy().getX() - tower.getX()));
-		double x = tower.getTargetEnemy().getX();
-		double y = tower.getTargetEnemy().getY();
+		towers.get(i).setAngle(
+			Math.atan2(towers.get(i).getTargetEnemy().getY() - towers.get(i).getY(), towers.get(i).getTargetEnemy().getX() - towers.get(i).getX()));
+		double x = towers.get(i).getTargetEnemy().getX();
+		double y = towers.get(i).getTargetEnemy().getY();
 		double w = GameComponent.TILE_SIZE;
 		double h = GameComponent.TILE_SIZE;
-		if (spawner.isBetweenRounds() || tower.getTargetEnemy().getHp() <= 0 ||
-		    !tower.getRange().intersects(x, y, w, h)) {
-		    tower.setShooting(false);
-		} else if (tower.getReloadTick() >= tower.getReloadTime()) {
-		    bulletHandler.shootEnemy(tower.getTargetEnemy(), tower);
-		    tower.setReloadTick(0);
+		if (spawner.isBetweenRounds() || towers.get(i).getTargetEnemy().getHp() <= 0 ||
+		    !towers.get(i).getRange().intersects(x, y, w, h)) {
+		    towers.get(i).setShooting(false);
+		} else if (towers.get(i).getReloadTick() >= towers.get(i).getReloadTime()) {
+		    bulletHandler.shootEnemy(towers.get(i).getTargetEnemy(), towers.get(i));
+		    towers.get(i).setReloadTick(0);
 		} else {
-		    tower.setReloadTick(tower.getReloadTick() + 1);
+		    towers.get(i).setReloadTick(towers.get(i).getReloadTick() + 1);
 		}
 	    }
 	}
@@ -168,7 +169,7 @@ public class TowerHandler
 	for (int i = 0; i < spawner.getEnemies().size(); i++) {
 	    if (testIntersection(tower.getRange(), spawner.getEnemies().get(i).getEnemyEllipse())) {
 		if (spawner.getEnemies().get(i).getType() == EnemyType.SPY) {
-		    if (tower.getType() == TowerType.SCOUTTOWER) {
+		    if (tower.getType() == TowerType.SCOUT) {
 			enemiesWithinRange.add(spawner.getEnemies().get(i));
 		    }
 		} else {

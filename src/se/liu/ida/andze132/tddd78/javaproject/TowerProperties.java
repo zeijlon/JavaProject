@@ -33,7 +33,7 @@ public class TowerProperties {
 
     public void decideEnemy(Towers tower) {
         switch (tower.getType()) {
-            case BASICTOWER:
+            case BASIC:
                 tower.setImage(BASIC_TOWER_IMAGE);
                 tower.setDamage(BASIC_TOWER_DAMAGE);
                 tower.setBulletSpeed(BASIC_TOWER_BULLETSPEED);
@@ -43,7 +43,7 @@ public class TowerProperties {
                 tower.setReloadTime(BASIC_TOWER_RELOADTIME); //less is bettter
                 tower.setReloadTick(tower.getReloadTime());
                 break;
-            case ARMORPIERCINGTOWER:
+            case ARMORPIERCING:
                 tower.setImage(AP_TOWER_IMAGE);
                 tower.setDamage(AP_TOWER_DAMAGE);
                 tower.setBulletSpeed(AP_TOWER_BULLETSPEED);
@@ -53,7 +53,7 @@ public class TowerProperties {
                 tower.setReloadTime(AP_TOWER_RELOADTIME); //less is bettter
                 tower.setReloadTick(tower.getReloadTime());
                 break;
-            case SCOUTTOWER:
+            case SCOUT:
                 tower.setImage(SCOUT_TOWER_IMAGE);
                 tower.setDamage(SCOUT_TOWER_DAMAGE);
                 tower.setBulletSpeed(SCOUT_TOWER_BULLETSPEED);

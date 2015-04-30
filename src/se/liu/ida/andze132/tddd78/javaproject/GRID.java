@@ -13,14 +13,6 @@ public class GRID {
     protected final static int FINISH = 4;
     protected final static int CROSSROAD = 5;
 
-    /*private Image grassImg = Toolkit.getDefaultToolkit().getImage("images/grass60.png");
-    private Image pathImg = Toolkit.getDefaultToolkit().getImage("images/path60.png");
-    private Image crossRoadImg = Toolkit.getDefaultToolkit().getImage("images/path60.png");
-    private Image towerImg = Toolkit.getDefaultToolkit().getImage("images/grass60.png");
-    private Image startImg = Toolkit.getDefaultToolkit().getImage("images/start60.png");
-    private Image finishImg = Toolkit.getDefaultToolkit().getImage("images/finish60.png");
-*/
-
 
 
     private int width;

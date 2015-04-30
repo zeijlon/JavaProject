@@ -9,17 +9,17 @@ public class BulletProperties {
 
     public void decideBullet(Bullet bullet, Towers tower) {
         switch (bullet.getType()) {
-            case NORMALBULLET:
+            case NORMAL:
                 bullet.setBulletSpeed(tower.getBulletSpeed());
                 bullet.setDamage(tower.getDamage());
                 bullet.setImage(Toolkit.getDefaultToolkit().getImage("images/normalBullet.png"));
                 break;
-            case APBULLET:
+            case AP:
                 bullet.setBulletSpeed(tower.getBulletSpeed());
                 bullet.setDamage(tower.getDamage());
                 bullet.setImage(Toolkit.getDefaultToolkit().getImage("images/apBullet.png"));
                 break;
-            case SCOUTBULLET:
+	    case SCOUT:
                 bullet.setBulletSpeed(tower.getBulletSpeed());
                 bullet.setDamage(tower.getDamage());
                 bullet.setImage(Toolkit.getDefaultToolkit().getImage("images/scoutBullet.png"));

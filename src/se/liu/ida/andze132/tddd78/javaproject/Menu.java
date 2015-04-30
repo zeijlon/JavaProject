@@ -149,6 +149,8 @@ public class Menu {
         spawner.setSpyEnemyCount(1);
         towerHandler.setTowers(new ArrayList<>());
         bulletHandler.setBullets(new ArrayList<>());
+	spawner.setBasicEnemyCount(1);
+	spawner.setBossEnemyCount(1);
         levelSelect = false;
         options = false;
 

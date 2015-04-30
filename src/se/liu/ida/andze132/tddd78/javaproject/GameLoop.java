@@ -50,8 +50,6 @@ public class GameLoop {
             long now = System.nanoTime();
             long updateLength = now - lastLoopTime;
             lastLoopTime = now;
-            //double delta = updateLength / ((double) optimalTime);
-
             lastFpsTime += (int) updateLength;
             fps++;
 
@@ -60,7 +58,7 @@ public class GameLoop {
                 fps = 0;
             }
 
-            doGameUpdates();
+            updateGame();
 
             frame.repaint();
 
@@ -77,10 +75,9 @@ public class GameLoop {
         catch(IllegalArgumentException ignored){}
     }
 
-    private void doGameUpdates() {
+    private void updateGame() {
 
         if (menu.isGameOn()) {
-            frame.validate();
             frame.pack();
             if(spawner.isFastForward()){
                 optimalTime = ONE_BILLION / (targetFPS*2);
@@ -88,7 +85,6 @@ public class GameLoop {
             else{
                 optimalTime = ONE_BILLION / (targetFPS);
             }
-            frame.pack();
 	    if(!spawner.isBetweenRounds()){
 		spawner.spawnEnemies();
 

@@ -32,7 +32,6 @@ public class BulletHandler {
     }
 
     public void shootEnemy(Enemy enemy, Towers tower) {
-        //Random random = new Random(); + Math.toRadians(random.nextInt(360))
         Bullet bullet = decideBullet(tower);
         assert bullet != null;
         bullet.setAngle(Math.atan2((enemy.getY() + (float)GameComponent.TILE_SIZE/2) - (bullet.getY()+(float)RECT_SIZE/2),
@@ -43,12 +42,12 @@ public class BulletHandler {
     private Bullet decideBullet(Towers tower) {
         TowerType type = tower.getType();
         switch (type) {
-            case BASICTOWER:
-                return new NormalBullet(tower);
-            case ARMORPIERCINGTOWER:
-                return new APBullet(tower);
-            case SCOUTTOWER:
-                return new ScoutBullet(tower);
+            case BASIC:
+                return new Bullet(tower,BulletType.NORMAL);
+            case ARMORPIERCING:
+                return new Bullet(tower, BulletType.AP);
+            case SCOUT:
+                return new Bullet(tower, BulletType.SCOUT);
             default:
                 return null;
         }
@@ -86,13 +85,7 @@ public class BulletHandler {
                         g.drawImage(bullets.get(i).getImage(), (int)bullets.get(i).getX(),(int) bullets.get(i).getY(), null);
                         g.setTransform(old);
 
-            /*Double x = bullets.get(i).getX();
-            int xValue = x.intValue();
-            Double y = bullets.get(i).getY();
-            int yValue = y.intValue();
-            g.drawImage(bullets.get(i).getImage(), xValue, yValue, null);*/
-            //g.drawRect((int)bullets.get(i).getBulletRect().getX(), (int)bullets.get(i).getBulletRect().getY(), (int)bullets.get(i).getBulletRect().getWidth(), (int)bullets.get(i).getBulletRect().getHeight());
-        }
+            }
     }
 
     public void setBullets(List<Bullet> bullets) {

@@ -62,10 +62,10 @@ public class EnemySpawner {
     public void waveHandler() {
 	if (level == 5) {
 	    addEnemiesToSpawn(EnemyType.ARMORED, armoredEnemyCount, armored);
-	    armoredEnemyCount += 6*level%7;
+	    armoredEnemyCount += level;
 	} else if (level == 10) {
 	    addEnemiesToSpawn(EnemyType.SPY, spyEnemyCount, spy);
-	    spyEnemyCount +=  6*level%7;
+	    spyEnemyCount +=  level;
 
 	} else if (level == 20) {
 	    addEnemiesToSpawn(EnemyType.BOSS, bossEnemyCount, boss);
@@ -75,27 +75,27 @@ public class EnemySpawner {
 	    addEnemiesToSpawn(EnemyType.ARMORED, armoredEnemyCount, armored);
 	    addEnemiesToSpawn(EnemyType.SPY, spyEnemyCount, spy);
 	    addEnemiesToSpawn(EnemyType.BOSS, bossEnemyCount, boss);
-	    basicEnemyCount += level*2%3;
-	    armoredEnemyCount += 6*level%7;
-	    spyEnemyCount +=  6*level%7;
+	    basicEnemyCount += level*2;
+	    armoredEnemyCount += level;
+	    spyEnemyCount += level;
 	    bossEnemyCount += 1;
 		}
 	else if (level > 10) {
 	    addEnemiesToSpawn(EnemyType.BASIC, basicEnemyCount, basic);
 	    addEnemiesToSpawn(EnemyType.ARMORED, armoredEnemyCount, armored);
 	    addEnemiesToSpawn(EnemyType.SPY, spyEnemyCount, spy);
-	    basicEnemyCount += level*2%3;
-	    armoredEnemyCount += 6*level%7;
-	    spyEnemyCount +=  6*level%7;
+	    basicEnemyCount += level*2;
+	    armoredEnemyCount += level;
+	    spyEnemyCount +=  level;
 
 	} else if (level > 5) {
 	    addEnemiesToSpawn(EnemyType.ARMORED, armoredEnemyCount, armored);
 	    addEnemiesToSpawn(EnemyType.BASIC, basicEnemyCount, basic);
-	    basicEnemyCount += level*2%3;
-	    armoredEnemyCount += 6*level%7;
+	    basicEnemyCount += level*2;
+	    armoredEnemyCount += level;
 	} else {
 	    addEnemiesToSpawn(EnemyType.BASIC, basicEnemyCount, basic);
-	    basicEnemyCount += level*2%3;
+	    basicEnemyCount += level*2;
 	}}
 
     public void checkRoundFinished(){
@@ -190,10 +190,10 @@ public class EnemySpawner {
 	} else if (!collision(enemy, enemy.getyC(), enemy.getxC() - 1)) {
 	    enemy.setDirection(Direction.LEFT);
 	}
-	if (!collision(enemy, enemy.getyC() + 1, enemy.getxC())) {
+	else if (!collision(enemy, enemy.getyC() + 1, enemy.getxC())) {
 	    enemy.setDirection(Direction.DOWN);
 	}
-	if (!collision(enemy, enemy.getyC() - 1, enemy.getxC())) {
+	 else if (!collision(enemy, enemy.getyC() - 1, enemy.getxC())) {
 	    enemy.setDirection(Direction.UPWARD);
 	}
     }
@@ -218,37 +218,31 @@ public class EnemySpawner {
 	    enemy.setPixelsWalked(enemy.getPixelsWalked() + enemy.getSpeed());
 
 	    if (enemy.getEnemyWalk() >= GameComponent.TILE_SIZE) {
+		enemy.getHasWalked()[enemy.getyC()][enemy.getxC()] = grid.getSquares()[enemy.getyC()][enemy.getxC()];
 
 		if (enemy.getDirection() == Direction.RIGHT) {
-		    enemy.getHasWalked()[enemy.getyC()][enemy.getxC()] = grid.getSquares()[enemy.getyC()][enemy.getxC()];
 		    enemy.setxC(enemy.getxC() + 1);
 		    if (collision(enemy, enemy.getyC(), enemy.getxC() + 1)) {
 			enemy.setHasRight(true);
-			changeDirection(enemy);
 		    }
 		} else if (enemy.getDirection() == Direction.LEFT) {
-		    enemy.getHasWalked()[enemy.getyC()][enemy.getxC()] = grid.getSquares()[enemy.getyC()][enemy.getxC()];
 		    enemy.setxC(enemy.getxC() - 1);
 		    if (collision(enemy, enemy.getyC(), enemy.getxC() - 1)) {
 			enemy.setHasLeft(true);
-			changeDirection(enemy);
 		    }
 		} else if (enemy.getDirection() == Direction.DOWN) {
-		    enemy.getHasWalked()[enemy.getyC()][enemy.getxC()] = grid.getSquares()[enemy.getyC()][enemy.getxC()];
 		    enemy.setyC(enemy.getyC() + 1);
 		    if (collision(enemy, enemy.getyC() + 1, enemy.getxC())) {
 			enemy.setHasDown(true);
-			changeDirection(enemy);
 		    }
 		} else if (enemy.getDirection() == Direction.UPWARD) {
-		    enemy.getHasWalked()[enemy.getyC()][enemy.getxC()] = grid.getSquares()[enemy.getyC()][enemy.getxC()];
 		    enemy.setyC(enemy.getyC() - 1);
 		    if (collision(enemy, enemy.getyC() - 1, enemy.getxC())) {
 			enemy.setHasUp(true);
-			changeDirection(enemy);
 
 		    }
 		}
+		changeDirection(enemy);
 		enemy.setHasDown(false);
 		enemy.setHasLeft(false);
 		enemy.setHasUp(false);
@@ -328,7 +322,6 @@ public class EnemySpawner {
 
     public void draw(Graphics2D g) {
 	for (int i = enemies.size() - 1; i >= 0; i--) {
-	    //g.drawOval((int) enemies.get(i).getEnemyEllipse().getX(), (int) enemies.get(i).getEnemyEllipse().getY(), (int) enemies.get(i).getEnemyEllipse().getWidth(), (int) enemies.get(i).getEnemyEllipse().getHeight());
 	    AffineTransform at = new AffineTransform();
 	    AffineTransform old = g.getTransform();
 	    at.rotate(enemies.get(i).getAngle(), enemies.get(i).getX() + (float) enemies.get(i).getImage().getWidth(null) / 2,
@@ -415,5 +408,9 @@ public class EnemySpawner {
 
     public int getLevel() {
 	return level;
+    }
+
+    public void setBossEnemyCount(final int bossEnemyCount) {
+	this.bossEnemyCount = bossEnemyCount;
     }
 }
