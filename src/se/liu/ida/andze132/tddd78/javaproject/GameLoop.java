@@ -11,7 +11,6 @@ public class GameLoop {
     private static final int ONE_MILLION = 1000000;
     private Shop shop;
     private JFrame frame;
-    private KeyHandler keyHandler;
     private EnemySpawner spawner;
     private TowerHandler towerHandler;
     private BulletHandler bulletHandler;
@@ -27,14 +26,13 @@ public class GameLoop {
     private int lastFpsTime, fps;
 
 
-    public GameLoop(Shop shop, JFrame frame, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu, KeyHandler keyHandler) {
+    public GameLoop(Shop shop, JFrame frame, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu) {
         this.shop = shop;
         this.frame = frame;
         this.spawner = spawner;
         this.towerHandler = towerHandler;
         this.bulletHandler = bulletHandler;
         this.menu = menu;
-        this.keyHandler = keyHandler;
 
         this.targetFPS = TARGET_FPS;
         this.optimalTime = ONE_BILLION / targetFPS;
@@ -97,7 +95,7 @@ public class GameLoop {
 
 
 		if (shop.getHealth() <= 0) {
-                    String name = JOptionPane.showInputDialog(frame, "Input your name please.", "Highscore", 1);
+                    String name = JOptionPane.showInputDialog(frame, "Input your name please.", "Highscore", JOptionPane.PLAIN_MESSAGE);
 		    menu.setGameOn(false);
 		    menu.setIfMenu(true);
 		    menu.setIfLost(true);

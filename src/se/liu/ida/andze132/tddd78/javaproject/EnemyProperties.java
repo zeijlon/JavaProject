@@ -6,20 +6,21 @@ import java.awt.*;
  * Created by Andreas Zeijlon on 2015-04-22.
  */
 public class EnemyProperties {
+    private static final int BASICSTARTHEALTH = 50;
+    private static final int ARMOREDSTARTHEALTH = 200;
+    private static final int SPYSTARTHEALTH = 60;
 
-    private static int basicHealth = 50;
-    private static int basicSpeed = 2;
+
+    private static int basicHealth = BASICSTARTHEALTH;
     private static final int BASIC_GOLD_GAIN = 1;
     private static final int BASIC_DAMAGE = 2;
 
 
-    private static int armoredHealth = 200;
-    private static int armoredSpeed = 1;
+    private static int armoredHealth = ARMOREDSTARTHEALTH;
     private static final int ARMORED_GOLD_GAIN = 5;
     private static final int ARMORED_DAMAGE = 5;
 
-    private static int spyHealth = 60;
-    private static int spySpeed = 3;
+    private static int spyHealth = SPYSTARTHEALTH;
     private static final int SPY_GOLD_GAIN = 5;
     private static final int SPY_DAMAGE = 10;
 
@@ -33,7 +34,8 @@ public class EnemyProperties {
             case BASIC:
                 enemy.setOriginalHp(basicHealth);
                 enemy.setHp(basicHealth);
-                enemy.setSpeed(basicSpeed);
+		final int basicSpeed = 2;
+		enemy.setSpeed(basicSpeed);
                 enemy.setGoldgain(BASIC_GOLD_GAIN);
                 enemy.setDamage(BASIC_DAMAGE);
                 enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/PolarBearNormal.gif"));
@@ -41,7 +43,8 @@ public class EnemyProperties {
             case ARMORED:
                 enemy.setOriginalHp(armoredHealth);
                 enemy.setHp(armoredHealth);
-                enemy.setSpeed(armoredSpeed);
+		final int armoredSpeed = 1;
+		enemy.setSpeed(armoredSpeed);
                 enemy.setGoldgain(ARMORED_GOLD_GAIN);
                 enemy.setDamage(ARMORED_DAMAGE);
                 enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/ArmoredPolarBearNormal60.gif"));
@@ -49,7 +52,8 @@ public class EnemyProperties {
             case SPY:
                 enemy.setOriginalHp(spyHealth);
                 enemy.setHp(spyHealth);
-                enemy.setSpeed(spySpeed);
+		final int spySpeed = 3;
+		enemy.setSpeed(spySpeed);
                 enemy.setGoldgain(SPY_GOLD_GAIN);
                 enemy.setDamage(SPY_DAMAGE);
                 enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/SpyPolarBearFast.gif"));
@@ -69,23 +73,23 @@ public class EnemyProperties {
         basicHealth = health;
     }
 
-    public static void setBasicSpeed(final int speed) {
-        basicSpeed = speed;
-    }
-
     public static void setArmoredHealth(final int health) {
         armoredHealth = health;
-    }
-
-    public static void setArmoredSpeed(final int speed) {
-        armoredSpeed = speed;
     }
 
     public static void setSpyHealth(final int health) {
         spyHealth = health;
     }
 
-    public static void setSpySpeed(final int speed) {
-        spySpeed = speed;
+    public static int getBasicstarthealth() {
+	return BASICSTARTHEALTH;
+    }
+
+    public static int getArmoredstarthealth() {
+	return ARMOREDSTARTHEALTH;
+    }
+
+    public static int getSpystarthealth() {
+	return SPYSTARTHEALTH;
     }
 }

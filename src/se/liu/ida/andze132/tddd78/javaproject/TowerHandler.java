@@ -109,7 +109,7 @@ public class TowerHandler
                     upgradeTowerAS = new Rectangle(0, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
                     upgradeTowerRange = new Rectangle(UPGRADEWIDTHCOORD, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
                     upgradeTowerDamage = new Rectangle(UPGRADEWIDTHCOORD * 2, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
-                    sellTower = new Rectangle(UPGRADEWIDTHCOORD * 3, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 50, 50);
+                    sellTower = new Rectangle(UPGRADEWIDTHCOORD * 3, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
                 } else if (towers.get(i).isTargeted()) {
                     if (upgradeTowerAS.contains(p)) {
                             upgradeAS(towers.get(i));
@@ -143,19 +143,12 @@ public class TowerHandler
 	    }
 	    checkEnemyWithinReach(towers.get(i));
 	    if (!enemiesWithinRange.isEmpty()) {
-		towers.get(i).setShooting(true);
 		towers.get(i).setTargetEnemy(spawner.checkEnemyWalked(enemiesWithinRange));
 		enemiesWithinRange = new ArrayList<>();
 		towers.get(i).setAngle(
 			Math.atan2(towers.get(i).getTargetEnemy().getY() - towers.get(i).getY(), towers.get(i).getTargetEnemy().getX() - towers.get(i).getX()));
-		double x = towers.get(i).getTargetEnemy().getX();
-		double y = towers.get(i).getTargetEnemy().getY();
-		double w = GameComponent.TILE_SIZE;
-		double h = GameComponent.TILE_SIZE;
-		if (spawner.isBetweenRounds() || towers.get(i).getTargetEnemy().getHp() <= 0 ||
-		    !towers.get(i).getRange().intersects(x, y, w, h)) {
-		    towers.get(i).setShooting(false);
-		} else if (towers.get(i).getReloadTick() >= towers.get(i).getReloadTime()) {
+
+		if (towers.get(i).getReloadTick() >= towers.get(i).getReloadTime()) {
 		    bulletHandler.shootEnemy(towers.get(i).getTargetEnemy(), towers.get(i));
 		    towers.get(i).setReloadTick(0);
 		} else {
@@ -244,7 +237,7 @@ public class TowerHandler
                 g.fillRect(0, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
                 g.fillRect(UPGRADEWIDTHCOORD, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
                 g.fillRect(UPGRADEWIDTHCOORD * 2, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
-                g.fillRect(UPGRADEWIDTHCOORD * 3, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 50, 50);
+                g.fillRect(UPGRADEWIDTHCOORD * 3, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
                 g.drawOval(tower.getX() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getY() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getRadius(), tower.getRadius());
                 g.drawString("Attack Speed", 0, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD - 10);
                 g.drawString("Range", UPGRADEWIDTHCOORD, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD - 10);

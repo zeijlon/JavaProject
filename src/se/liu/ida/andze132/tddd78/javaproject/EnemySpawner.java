@@ -10,12 +10,12 @@ import java.util.List;
  */
 public class EnemySpawner {
     private static final int WAVE_BUTTON_SIZE = 150;
-    public static final int SPACE_WAVE_BUTTON_Y = 60;
-    public static final int SPACE_WAVE_BUTTON_X = 20;
+    private static final int WAVE_BUTTON_MARGIN = 20;
+    private static final int SPAWNRATE = 20;
+
 
     private GRID grid;
     private Shop shop;
-    private KeyHandler keyHandler;
     private Sound bearDies = new Sound("sounds/beardeath.wav");
     private Sound bossBearDeath = new Sound("sounds/bossbeardearth.wav");
 
@@ -55,7 +55,7 @@ public class EnemySpawner {
 	this.betweenRounds = true;
 	this.fastForward = false;
 	this.nextRoundButton =
-		new Rectangle(grid.getWidth() + 20, grid.getHeight() - WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE);
+		new Rectangle(grid.getWidth() + WAVE_BUTTON_MARGIN, grid.getHeight() - WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE);
     }
 
 
@@ -104,12 +104,12 @@ public class EnemySpawner {
 		betweenRounds = true;
 		fastForward = false;
 		if (level <= 10) {
-		    shop.setGold(shop.getGold() + 11 - level);
+		    shop.setGold(shop.getGold() + 10 - (level-1));
 		}
 		else {
-		    EnemyProperties.setBasicHealth(50 + level * 5);
-		    EnemyProperties.setArmoredHealth(50 + level * 5);
-		    EnemyProperties.setSpyHealth(50 + level * 5);
+		    EnemyProperties.setBasicHealth(EnemyProperties.getBasicstarthealth()*2 + level * 5);
+		    EnemyProperties.setArmoredHealth(EnemyProperties.getArmoredstarthealth()*2 + level * 5);
+		    EnemyProperties.setSpyHealth(EnemyProperties.getSpystarthealth()*2 + level * 5);
 		}
 	    }
 	}
@@ -135,7 +135,7 @@ public class EnemySpawner {
     }
 
     public void spawnEnemies(){
-	int spawnRate = 75;
+	int spawnRate = SPAWNRATE;
 	if(spawnTime>= spawnRate){
 	    spawnEnemyType(basic);
 	    spawnEnemyType(armored);
@@ -297,9 +297,7 @@ public class EnemySpawner {
 		checkRoundFinished();
 		if(!Sound.getNoGameAudio()){
                     bearDies.play();
-		    if(level>19){
-		    bossBearDeath.play();
-                }}
+		    }
             } else if (grid.getSquares()[y][x] == GRID.FINISH) {
                 shop.setHealth(shop.getHealth() - enemies.get(i).getDamage());
                 enemies.remove(enemies.get(i));
@@ -347,16 +345,16 @@ public class EnemySpawner {
 	g.setColor(Color.red);
 	g.setFont(new Font("courier new", Font.BOLD, 32));
 	if (level >= 1) {
-	    g.drawString("ROUND " + level, grid.getWidth() + 20, grid.getHeight() + 30);
+	    g.drawString("ROUND " + level, grid.getWidth() + WAVE_BUTTON_MARGIN, grid.getHeight() + 30);
 	}
 
 	//Draw next round button
 	if (betweenRounds) {
-	    g.drawImage(nextWave, grid.getWidth() + 20, grid.getHeight() - WAVE_BUTTON_SIZE, null);
+	    g.drawImage(nextWave, grid.getWidth() + WAVE_BUTTON_MARGIN, grid.getHeight() - WAVE_BUTTON_SIZE, null);
 	} else if (fastForward) {
-	    g.drawImage(fastMode, grid.getWidth() + 20, grid.getHeight() - WAVE_BUTTON_SIZE, null);
+	    g.drawImage(fastMode, grid.getWidth() + WAVE_BUTTON_MARGIN, grid.getHeight() - WAVE_BUTTON_SIZE, null);
 	} else {
-	    g.drawImage(slowMode, grid.getWidth() + 20, grid.getHeight() - WAVE_BUTTON_SIZE, null);
+	    g.drawImage(slowMode, grid.getWidth() + WAVE_BUTTON_MARGIN, grid.getHeight() - WAVE_BUTTON_SIZE, null);
 	}
     }
 
@@ -388,22 +386,6 @@ public class EnemySpawner {
 
     public boolean isFastForward() {
 	return fastForward;
-    }
-
-    public List<Enemy> getBasic() {
-	return basic;
-    }
-
-    public List<Enemy> getArmored() {
-	return armored;
-    }
-
-    public List<Enemy> getSpy() {
-	return spy;
-    }
-
-    public List<Enemy> getBoss() {
-	return boss;
     }
 
     public int getLevel() {

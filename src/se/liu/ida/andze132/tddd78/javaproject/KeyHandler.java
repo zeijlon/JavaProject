@@ -15,23 +15,16 @@ public class KeyHandler extends MouseAdapter {
     private static final int MENU_HEIGHT = 30;
     protected static Point motionPoint = null;
 
-    private GRID grid;
-    private Shop shop;
     private EnemySpawner spawner;
     private TowerHandler towerHandler;
     private Menu menu;
-    private BulletHandler bulletHandler;
 
 
-    public KeyHandler(final GRID grid, final Shop shop, final EnemySpawner spawner, final TowerHandler towerHandler,
-                      final Menu menu, final BulletHandler bulletHandler)
+    public KeyHandler(final EnemySpawner spawner, final TowerHandler towerHandler, final Menu menu)
     {
-        this.grid = grid;
-        this.shop = shop;
-        this.spawner = spawner;
+	this.spawner = spawner;
         this.towerHandler = towerHandler;
         this.menu = menu;
-        this.bulletHandler = bulletHandler;
     }
 
 

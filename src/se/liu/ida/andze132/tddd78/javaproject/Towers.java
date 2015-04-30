@@ -24,13 +24,11 @@ public class Towers extends TowerProperties{
     private int reloadTime;
     private int reloadTick;
     private int sell;
-    private boolean shooting;
     private TowerType type;
 
     private Enemy targetEnemy = null;
 
     private Image image = null;
-    private Image bulletImage = null;
 
     private Ellipse2D range = null;
 
@@ -102,10 +100,6 @@ public class Towers extends TowerProperties{
 
     public Shape getRange() {
         return range;
-    }
-
-    public void setShooting(boolean shooting) {
-        this.shooting = shooting;
     }
 
     public Enemy getTargetEnemy() {
@@ -204,14 +198,6 @@ public class Towers extends TowerProperties{
     }
     public void setBulletSpeed(int bulletSpeed) {
         this.bulletSpeed = bulletSpeed;
-    }
-
-    public void setBulletImage(Image bulletImage) {
-        this.bulletImage = bulletImage;
-    }
-
-    public Image getBulletImage() {
-        return bulletImage;
     }
 
     public void setUpgrades(int upgrades){

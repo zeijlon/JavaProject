@@ -8,7 +8,6 @@ import java.util.ArrayList;
  * Created by Administrat�r on 2015-04-13.
  */
 public class Menu {
-    private KeyHandler keyHandler;
     private GRID grid;
     private Shop shop;
     private EnemySpawner spawner;
@@ -29,6 +28,8 @@ public class Menu {
     private static final int MENU_TAB_WIDTH = 150;
     private static final int MENU_TAB_HEIGHT = 25;
 
+    private static final int STARTGOLD = 15;
+    private static final int HIGHSCORESIZE = 16;
     private static final int MAP_TAB_WIDTH = 70;
     private static final int MAP_TAB_HEIGHT = 30;
 
@@ -63,14 +64,15 @@ public class Menu {
         this.spawner = new EnemySpawner(grid, shop);
         this.bulletHandler = new BulletHandler(grid, spawner);
         this.towerHandler = new TowerHandler(grid, shop, spawner, bulletHandler);
-        this.keyHandler = new KeyHandler(grid, shop, spawner, towerHandler, this, bulletHandler);
+	final KeyHandler keyHandler = new KeyHandler(spawner, towerHandler, this);
         this.frame = new GameFrame(grid, shop, spawner, towerHandler, bulletHandler, this, keyHandler);
-        GameLoop gameloop = new GameLoop(shop, frame, spawner, towerHandler, bulletHandler, this, keyHandler);
+        GameLoop gameloop = new GameLoop(shop, frame, spawner, towerHandler, bulletHandler, this);
     }
 
     private Image menuImage = (Toolkit.getDefaultToolkit().getImage("images/DawnofthePolarBears.png"));
     private Image resumeGame = (Toolkit.getDefaultToolkit().getImage("images/ResumeGame.png"));
     private Image newGame = (Toolkit.getDefaultToolkit().getImage("images/NewGameT.png"));
+    private Image leaderboardimg = (Toolkit.getDefaultToolkit().getImage("images/leaderboard.png"));
     private Image quit = (Toolkit.getDefaultToolkit().getImage("images/QuitGame.png"));
     private Image levelSelectImage = (Toolkit.getDefaultToolkit().getImage("images/LevelSelect.png"));
     private Image map1 = (Toolkit.getDefaultToolkit().getImage("images/Map1.png"));
@@ -90,7 +92,7 @@ public class Menu {
     private Rectangle newGameButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y+MAP_TAB_HEIGHT, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
     private Rectangle selectLevel = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*2, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
     private Rectangle optionsButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*3, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
-    private Rectangle Leaderboard = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*4, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
+    private Rectangle leaderBoard = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*4, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
     private Rectangle quitGameButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y + MENU_TAB_HEIGHT*5, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
 
     private Rectangle rectMap1 = new Rectangle(SECOND_COLUMN_X-5, SECOND_COLUMN_Y, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
@@ -104,7 +106,7 @@ public class Menu {
                 newGame();
             } else if (resumeGameButton.contains(p)) {
                 resumeGame();
-            }else if (Leaderboard.contains(p)) {
+            }else if (leaderBoard.contains(p)) {
                             leaderboard = true;
                 levelSelect = false;
                 options = false;
@@ -142,7 +144,7 @@ public class Menu {
         }
         grid.setMapSize(mapSelected);
         shop.setHealth(1);
-        shop.setGold(15);
+        shop.setGold(STARTGOLD);
         spawner.setEnemies(new ArrayList<>());
         spawner.setLevel();
         spawner.setArmoredEnemyCount(1);
@@ -231,22 +233,17 @@ public class Menu {
         g2d.drawImage(newGame, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT, null);
         g2d.drawImage(levelSelectImage, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT*2, null);
         g2d.drawImage(optionsImage, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT*3, null);
-        g2d.drawImage(quit, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT*4, null);
+        g2d.drawImage(leaderboardimg, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT*4, null);
         g2d.drawImage(quit, FIRST_COLUMN_X, FIRST_COLUMN_Y+MENU_TAB_HEIGHT*5, null);
 
-        /*g2d.drawRect(SECOND_COLUMN_X-5, SECOND_COLUMN_Y, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
-        g2d.drawRect(SECOND_COLUMN_X-5, SECOND_COLUMN_Y+MAP_TAB_HEIGHT, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
-        g2d.drawRect(SECOND_COLUMN_X-5, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*2, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
-        g2d.drawRect(SECOND_COLUMN_X-5, SECOND_COLUMN_Y+MAP_TAB_HEIGHT*3, MAP_TAB_WIDTH, MAP_TAB_HEIGHT);
-*/
 
         if(leaderboard){
             g2d.setFont(new Font("courier new", Font.BOLD, 18));
             g2d.drawString("# : Name : Round", SECOND_COLUMN_X, SECOND_COLUMN_Y);
-            g2d.setFont(new Font("courier new", Font.BOLD, 16));
+            g2d.setFont(new Font("courier new", Font.BOLD, HIGHSCORESIZE));
             for (int i = 0; i < HighScoreList.getINSTANCE().getHighScoreList().size(); i++) {
                 g2d.drawString(i+1 + " : "+HighScoreList.showHighScore(i).getName() + " : " + HighScoreList.showHighScore(i).getHighScore(),
-                               SECOND_COLUMN_X, SECOND_COLUMN_Y + 16 + (i * 16));
+                               SECOND_COLUMN_X, SECOND_COLUMN_Y + HIGHSCORESIZE + (i * HIGHSCORESIZE));
         }}
 
         else if (levelSelect) {
