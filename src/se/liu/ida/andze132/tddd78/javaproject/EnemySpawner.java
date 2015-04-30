@@ -11,7 +11,7 @@ import java.util.List;
 public class EnemySpawner {
     private static final int WAVE_BUTTON_SIZE = 150;
     private static final int WAVE_BUTTON_MARGIN = 20;
-    private static final int SPAWNRATE = 20;
+    private static final int SPAWNRATE = 75;
 
 
     private GRID grid;
