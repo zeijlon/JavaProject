@@ -144,8 +144,8 @@ public class Menu {
         }
         spawner.setBetweenRounds(true);
         grid.setMapSize(mapSelected);
-        shop.setHealth(1);
-        shop.setGold(STARTGOLD);
+        shop.setHealth(33);
+        shop.setGold(STARTGOLD+30);
         spawner.setEnemies(new ArrayList<>());
         spawner.setLevel();
         spawner.setArmoredEnemyCount(1);

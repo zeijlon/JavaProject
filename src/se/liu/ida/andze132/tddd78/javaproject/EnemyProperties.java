@@ -64,7 +64,7 @@ public class EnemyProperties {
 		enemy.setSpeed(BOSS_SPEED);
 		enemy.setGoldgain(BOSS_GOLD_GAIN);
 		enemy.setDamage(BOSS_DAMAGE);
-		enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/bossEnemy.png"));
+		enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/bossEnemy.gif"));
 		break;
         }
     }

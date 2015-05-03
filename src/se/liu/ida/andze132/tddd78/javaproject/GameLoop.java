@@ -108,8 +108,10 @@ public class GameLoop {
                     spawner.setBasic(new ArrayList<>());
                     spawner.setBoss(new ArrayList<>());
                     spawner.setSpy(new ArrayList<>());
+                    bulletHandler.setBullets(new ArrayList<>());
             }}
-        }
+	    else bulletHandler.setBullets(new ArrayList<>());
+	}
 
     }
 

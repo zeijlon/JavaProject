@@ -21,6 +21,7 @@ final public class Sound
 
 	public  Sound(String s){
 
+
 	    try{
 		AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(s));
 		clip = AudioSystem.getClip();
