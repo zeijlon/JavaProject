@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Created by Andreas Zeijlon on 2015-04-22.
  */
-public class EnemyProperties {
+public class EnemyProperties extends Enemy{
     private static final int BASICSTARTHEALTH = 50;
     private static final int ARMOREDSTARTHEALTH = 200;
     private static final int SPYSTARTHEALTH = 60;
@@ -29,43 +29,49 @@ public class EnemyProperties {
     private static final int BOSS_GOLD_GAIN = 100;
     private static final int BOSS_DAMAGE = 100;
 
-    public void decideEnemy(Enemy enemy) {
-        switch (enemy.getType()) {
+    public EnemyProperties(EnemyType type) {
+        super();
+        this.setType(type);
+        decideEnemy(type);
+    }
+
+    public void decideEnemy(EnemyType type) {
+        switch (type) {
             case BASIC:
-                enemy.setOriginalHp(basicHealth);
-                enemy.setHp(basicHealth);
+                this.setOriginalHp(basicHealth);
+                this.setHp(basicHealth);
 		final int basicSpeed = 2;
-		enemy.setSpeed(basicSpeed);
-                enemy.setGoldgain(BASIC_GOLD_GAIN);
-                enemy.setDamage(BASIC_DAMAGE);
-                enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/PolarBearNormal.gif"));
+		this.setSpeed(basicSpeed);
+                this.setGoldgain(BASIC_GOLD_GAIN);
+                this.setDamage(BASIC_DAMAGE);
+                this.setImage(Toolkit.getDefaultToolkit().getImage("images/PolarBearNormal.gif"));
                 break;
             case ARMORED:
-                enemy.setOriginalHp(armoredHealth);
-                enemy.setHp(armoredHealth);
+                this.setOriginalHp(armoredHealth);
+                this.setHp(armoredHealth);
 		final int armoredSpeed = 1;
-		enemy.setSpeed(armoredSpeed);
-                enemy.setGoldgain(ARMORED_GOLD_GAIN);
-                enemy.setDamage(ARMORED_DAMAGE);
-                enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/ArmoredPolarBearNormal60.gif"));
+                this.setSpeed(armoredSpeed);
+                this.setGoldgain(ARMORED_GOLD_GAIN);
+                this.setDamage(ARMORED_DAMAGE);
+                this.setImage(Toolkit.getDefaultToolkit().getImage("images/ArmoredPolarBearNormal60.gif"));
                 break;
             case SPY:
-                enemy.setOriginalHp(spyHealth);
-                enemy.setHp(spyHealth);
+                this.setOriginalHp(spyHealth);
+                this.setHp(spyHealth);
 		final int spySpeed = 3;
-		enemy.setSpeed(spySpeed);
-                enemy.setGoldgain(SPY_GOLD_GAIN);
-                enemy.setDamage(SPY_DAMAGE);
-                enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/SpyPolarBearFast.gif"));
+                this.setSpeed(spySpeed);
+                this.setGoldgain(SPY_GOLD_GAIN);
+                this.setDamage(SPY_DAMAGE);
+                this.setImage(Toolkit.getDefaultToolkit().getImage("images/SpyPolarBearFast.gif"));
                 break;
 	    case BOSS:
-		enemy.setOriginalHp(BOSS_HEALTH);
-		enemy.setHp(BOSS_HEALTH);
-		enemy.setSpeed(BOSS_SPEED);
-		enemy.setGoldgain(BOSS_GOLD_GAIN);
-		enemy.setDamage(BOSS_DAMAGE);
-		enemy.setImage(Toolkit.getDefaultToolkit().getImage("images/bossEnemy.gif"));
-		break;
+            this.setOriginalHp(BOSS_HEALTH);
+            this.setHp(BOSS_HEALTH);
+            this.setSpeed(BOSS_SPEED);
+            this.setGoldgain(BOSS_GOLD_GAIN);
+            this.setDamage(BOSS_DAMAGE);
+            this.setImage(Toolkit.getDefaultToolkit().getImage("images/bossEnemy.gif"));
+		    break;
         }
     }
 

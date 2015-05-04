@@ -11,27 +11,23 @@ import java.util.List;
 public class BulletHandler {
 
     private static final int RECT_SIZE = 20;
-    private GRID grid;
+    private Grid grid;
     private EnemySpawner spawner;
     private List<Bullet> bullets = new ArrayList<>();
 
 
 
-    public BulletHandler(GRID grid, EnemySpawner spawner) {
+    public BulletHandler(Grid grid, EnemySpawner spawner) {
         this.grid = grid;
         this.spawner = spawner;
 
     }
 
     private void defineBullets(Bullet bullet) {
-        Double x = bullet.getX();
-        int xValue = x.intValue();
-        Double y = bullet.getY();
-        int yValue = y.intValue();
-        bullet.setBulletRect(new Rectangle(xValue, yValue, RECT_SIZE, RECT_SIZE));
+        bullet.setBulletRect(new Rectangle(bullet.getX(), bullet.getY(), RECT_SIZE, RECT_SIZE));
     }
 
-    public void shootEnemy(Enemy enemy, Towers tower) {
+    public void shootEnemy(Enemy enemy, Tower tower) {
         Bullet bullet = decideBullet(tower);
         assert bullet != null;
         bullet.setAngle(Math.atan2((enemy.getY() + (float)GameComponent.TILE_SIZE/2) - (bullet.getY()+(float)RECT_SIZE/2),
@@ -39,15 +35,15 @@ public class BulletHandler {
         bullets.add(bullet);
     }
 
-    private Bullet decideBullet(Towers tower) {
+    private Bullet decideBullet(Tower tower) {
         TowerType type = tower.getType();
         switch (type) {
             case BASIC:
-                return new Bullet(tower,BulletType.NORMAL);
+                return new BulletProperties(tower,BulletType.NORMAL);
             case ARMORPIERCING:
-                return new Bullet(tower, BulletType.ARMORPIERING);
+                return new BulletProperties(tower, BulletType.ARMORPIERING);
             case SCOUT:
-                return new Bullet(tower, BulletType.SCOUT);
+                return new BulletProperties(tower, BulletType.SCOUT);
             default:
                 return null;
         }
@@ -76,16 +72,16 @@ public class BulletHandler {
 
 
     public void draw(Graphics2D g) {
-        for (int i = 0; i < bullets.size(); i++) {
+        for (Bullet bullet : bullets) {
             AffineTransform at = new AffineTransform();
             AffineTransform old = g.getTransform();
-            at.rotate(bullets.get(i).getAngle()+Math.PI/2, bullets.get(i).getX() + 10,
-                      bullets.get(i).getY()+10);
-                        g.transform(at);
-                        g.drawImage(bullets.get(i).getImage(), (int)bullets.get(i).getX(),(int) bullets.get(i).getY(), null);
-                        g.setTransform(old);
+            at.rotate(bullet.getAngle() + Math.PI / 2, bullet.getX() + 10,
+                    bullet.getY() + 10);
+            g.transform(at);
+            g.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), null);
+            g.setTransform(old);
 
-            }
+        }
     }
 
     public void setBullets(List<Bullet> bullets) {

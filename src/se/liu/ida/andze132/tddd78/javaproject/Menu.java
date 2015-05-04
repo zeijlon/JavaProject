@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by Administrat�r on 2015-04-13.
  */
 public class Menu {
-    private GRID grid;
+    private Grid grid;
     private Shop shop;
     private EnemySpawner spawner;
     private TowerHandler towerHandler;
@@ -59,7 +59,7 @@ public class Menu {
         ifLost = false;
         leaderboard = false;
 	mainTheme = new Sound("sounds/song.aiff");
-        this.grid = new GRID(mapSelected);
+        this.grid = new Grid(mapSelected);
         this.shop = new Shop(grid);
         this.spawner = new EnemySpawner(grid, shop);
         this.bulletHandler = new BulletHandler(grid, spawner);

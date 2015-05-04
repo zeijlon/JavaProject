@@ -14,7 +14,7 @@ public class EnemySpawner {
     private static final int SPAWNRATE = 75;
 
 
-    private GRID grid;
+    private Grid grid;
     private Shop shop;
     private Sound bearDies = new Sound("sounds/beardeath.wav");
 
@@ -48,7 +48,7 @@ public class EnemySpawner {
     private Rectangle nextRoundButton;
 
 
-    public EnemySpawner(GRID grid, Shop shop) {
+    public EnemySpawner(Grid grid, Shop shop) {
 	this.grid = grid;
 	this.shop = shop;
 	this.betweenRounds = true;
@@ -129,7 +129,7 @@ public class EnemySpawner {
 
     private void addEnemiesToSpawn(EnemyType type, int count, Collection<Enemy> list) {
 	for (int i = 0; i < count ; i++) {
-	    list.add(new Enemy(type));}
+	    list.add(new EnemyProperties(type));}
     }
 
     public void spawnEnemies(){
@@ -151,7 +151,7 @@ public class EnemySpawner {
 		enemies.add(enemy);
 		for (int y = 0; y < grid.getSquares().length; y++) {
 		    for (int x = 0; x < grid.getSquares()[y].length; x++) {
-			if (grid.getSquares()[y][x] == GRID.START) {
+			if (grid.getSquares()[y][x] == Grid.START) {
 			    Start start = new Start(x, y);
 			    starts.add(start);
 			}
@@ -178,7 +178,7 @@ public class EnemySpawner {
 
     private void defineHasWalked(Enemy enemy) {
 	int height = grid.getSquares().length;
-	int width = GRID.checkLargestRow(grid);
+	int width = Grid.checkLargestRow(grid);
 	enemy.setHasWalked(new int[height][width]);
     }
 
@@ -252,9 +252,9 @@ public class EnemySpawner {
 
     private boolean collision(Enemy enemy, int y, int x) {
 	try {
-	    if (enemy.getHasWalked()[y][x] != GRID.PATH) {
-		if (grid.getSquares()[y][x] == GRID.PATH || grid.getSquares()[y][x] == GRID.CROSSROAD ||
-		    grid.getSquares()[y][x] == GRID.FINISH) {
+	    if (enemy.getHasWalked()[y][x] != Grid.PATH) {
+		if (grid.getSquares()[y][x] == Grid.PATH || grid.getSquares()[y][x] == Grid.CROSSROAD ||
+		    grid.getSquares()[y][x] == Grid.FINISH) {
 		    return false;
 		}
 	    }
@@ -296,7 +296,7 @@ public class EnemySpawner {
 		if(!Sound.getNoGameAudio()){
                     bearDies.play();
 		    }
-            } else if (grid.getSquares()[y][x] == GRID.FINISH) {
+            } else if (grid.getSquares()[y][x] == Grid.FINISH) {
                 shop.setHealth(shop.getHealth() - enemies.get(i).getDamage());
                 enemies.remove(enemies.get(i));
 		checkRoundFinished();

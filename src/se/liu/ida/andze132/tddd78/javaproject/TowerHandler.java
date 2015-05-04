@@ -14,17 +14,17 @@ import java.util.List;
 public class TowerHandler
 {
 
-    private List<Towers> towers = new ArrayList<>();
+    private List<Tower> towers = new ArrayList<>();
     private final static int UPGRADEWIDTHCOORD = 200;
     private final static int UPGRADEHEIGHTCORRECTIONCOORD = 30;
     private final static int MAX_UPGRADES = 15;
 
-    private GRID grid;
+    private Grid grid;
     private Shop shop;
     private EnemySpawner spawner;
     private BulletHandler bulletHandler;
 
-    private Towers buildTower = null;
+    private Tower buildTower = null;
     private Rectangle upgradeTowerRange = null;
     private Rectangle upgradeTowerDamage = null;
     private Rectangle upgradeTowerAS = null;
@@ -34,7 +34,7 @@ public class TowerHandler
 
     private Collection<Enemy> enemiesWithinRange = new ArrayList<>();
 
-    public TowerHandler(GRID grid, Shop shop, EnemySpawner spawner, BulletHandler bulletHandler) {
+    public TowerHandler(Grid grid, Shop shop, EnemySpawner spawner, BulletHandler bulletHandler) {
         this.grid = grid;
         this.shop = shop;
         this.spawner = spawner;
@@ -43,7 +43,7 @@ public class TowerHandler
 
     public void checkButtonClick(Point p) {
             if (shop.getShopButtons()[0][0].contains(p)) {
-                Towers tower = new Towers(TowerType.BASIC);
+                Tower tower = new TowerProperties(TowerType.BASIC);
                 if (shop.getGold() >= tower.getCost()) {
                     shop.setHoldsItem(tower);
                     buildTower = tower;
@@ -51,7 +51,7 @@ public class TowerHandler
                     shop.setHoldsItem(null);
                 }
             } else if (shop.getShopButtons()[0][1].contains(p)) {
-                Towers tower = new Towers(TowerType.ARMORPIERCING);
+                Tower tower = new TowerProperties(TowerType.ARMORPIERCING);
                 if (shop.getGold() >= tower.getCost()) {
                     shop.setHoldsItem(tower);
                     buildTower = tower;
@@ -59,7 +59,7 @@ public class TowerHandler
                     shop.setHoldsItem(null);
                 }
             } else if (shop.getShopButtons()[1][0].contains(p)) {
-                Towers tower = new Towers(TowerType.SCOUT);
+                Tower tower = new TowerProperties(TowerType.SCOUT);
                 if (shop.getGold() >= tower.getCost()) {
                     shop.setHoldsItem(tower);
                     buildTower = tower;
@@ -77,14 +77,14 @@ public class TowerHandler
 
 
 
-    public void buildTower(Towers tower, Point p) {
+    public void buildTower(Tower tower, Point p) {
             for (int i = 0; i < grid.getRectangles().length; i++) {
                 for (int j = 0; j < grid.getRectangles()[i].length; j++) {
                     try {
                         if (grid.getRectangles()[i][j].contains(p))
-                            if (grid.getSquares()[i][j] == GRID.GRASS) {
+                            if (grid.getSquares()[i][j] == Grid.GRASS) {
                                 towers.add(tower);
-                                grid.getSquares()[i][j] = GRID.TOWER;
+                                grid.getSquares()[i][j] = Grid.TOWER;
                                 tower.setX(j * GameComponent.TILE_SIZE);
                                 tower.setY(i * GameComponent.TILE_SIZE);
                                 tower.setRange();
@@ -158,7 +158,7 @@ public class TowerHandler
 	}
     }
 
-    public void checkEnemyWithinReach(Towers tower) {
+    public void checkEnemyWithinReach(Tower tower) {
 	for (int i = 0; i < spawner.getEnemies().size(); i++) {
 	    if (testIntersection(tower.getRange(), spawner.getEnemies().get(i).getEnemyEllipse())) {
 		if (spawner.getEnemies().get(i).getType() == EnemyType.SPY) {
@@ -179,7 +179,7 @@ public class TowerHandler
 	return !areaA.isEmpty();
     }
 
-    public void upgradeDamage(Towers tower) {
+    public void upgradeDamage(Tower tower) {
 	if (shop.getGold() >= tower.getUpgradeDamageCost()) {
 	    if (tower.getUpgrades() < MAX_UPGRADES) {
 		shop.setGold(shop.getGold() - tower.getUpgradeDamageCost());
@@ -190,7 +190,7 @@ public class TowerHandler
 	}
     }
 
-    public void upgradeAS(Towers tower) {
+    public void upgradeAS(Tower tower) {
 	if (shop.getGold() >= tower.getUpgradeASCost()) {
 	    if (tower.getUpgrades() < MAX_UPGRADES) {
 		shop.setGold(shop.getGold() - tower.getUpgradeASCost());
@@ -203,7 +203,7 @@ public class TowerHandler
 	}
     }
 
-    public void upgradeRange(Towers tower) {
+    public void upgradeRange(Tower tower) {
 	if (shop.getGold() >= tower.getUpgradeRangeCost()) {
 	    if (tower.getUpgrades() < MAX_UPGRADES) {
 		shop.setGold(shop.getGold() - tower.getUpgradeRangeCost());
@@ -215,15 +215,15 @@ public class TowerHandler
 	}
     }
 
-    public void sellTower(Towers tower) {
+    public void sellTower(Tower tower) {
 	shop.setGold(shop.getGold() + tower.getSell());
 	towers.remove(tower);
-	grid.getSquares()[tower.getY() / GameComponent.TILE_SIZE][tower.getX() / GameComponent.TILE_SIZE] = GRID.GRASS;
+	grid.getSquares()[tower.getY() / GameComponent.TILE_SIZE][tower.getX() / GameComponent.TILE_SIZE] = Grid.GRASS;
     }
 
     public void draw(Graphics2D g) {
         g.setColor(Color.black);
-        for (Towers tower : towers) {
+        for (Tower tower : towers) {
             AffineTransform at = new AffineTransform();
             AffineTransform old = g.getTransform();
             at.rotate(tower.getAngle(), tower.getX() + (float) tower.getImage().getWidth(null) / 2,
@@ -272,7 +272,7 @@ public class TowerHandler
 
     }
 
-    public void setTowers(List<Towers> towers) {
+    public void setTowers(List<Tower> towers) {
 	this.towers = towers;
     }
 }

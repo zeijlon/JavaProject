@@ -1,9 +1,27 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
 /**
- *
+ * This enum contains all the directions for enemies to walk.
  */
-@SuppressWarnings("JavaDoc")
 public enum Direction {
-    RIGHT, LEFT, UPWARD, DOWN, STILL
+    /**
+     * Walk to the right.
+     */
+    RIGHT,
+    /**
+     * Walk to the left.
+     */
+    LEFT,
+    /**
+     * Walk upwards.
+     */
+    UPWARD,
+    /**
+     * Walk downwards.
+     */
+    DOWN,
+    /**
+     * Stand still.
+     */
+    STILL
 }

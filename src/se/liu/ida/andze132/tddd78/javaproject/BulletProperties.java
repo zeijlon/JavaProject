@@ -5,24 +5,31 @@ import java.awt.*;
 /**
  * Created by Andreas Zeijlon on 2015-04-22.
  */
-public class BulletProperties {
+public class BulletProperties extends Bullet{
 
-    public void decideBullet(Bullet bullet, Towers tower) {
-        switch (bullet.getType()) {
+    public BulletProperties(Tower tower, BulletType type) {
+        super();
+        decideBullet(type, tower);
+        setX(tower.getX()+(float)GameComponent.TILE_SIZE/2);
+        setY(tower.getY()+(float)GameComponent.TILE_SIZE/2);
+    }
+
+    public void decideBullet(BulletType type, Tower tower) {
+        switch (type) {
             case NORMAL:
-                bullet.setBulletSpeed(tower.getBulletSpeed());
-                bullet.setDamage(tower.getDamage());
-                bullet.setImage(Toolkit.getDefaultToolkit().getImage("images/normalBullet.png"));
+                this.setBulletSpeed(tower.getBulletSpeed());
+                this.setDamage(tower.getDamage());
+                this.setImage(Toolkit.getDefaultToolkit().getImage("images/normalBullet.png"));
                 break;
             case ARMORPIERING:
-                bullet.setBulletSpeed(tower.getBulletSpeed());
-                bullet.setDamage(tower.getDamage());
-                bullet.setImage(Toolkit.getDefaultToolkit().getImage("images/apBullet.png"));
+                this.setBulletSpeed(tower.getBulletSpeed());
+                this.setDamage(tower.getDamage());
+                this.setImage(Toolkit.getDefaultToolkit().getImage("images/apBullet.png"));
                 break;
 	    case SCOUT:
-                bullet.setBulletSpeed(tower.getBulletSpeed());
-                bullet.setDamage(tower.getDamage());
-                bullet.setImage(Toolkit.getDefaultToolkit().getImage("images/scoutBullet.png"));
+            this.setBulletSpeed(tower.getBulletSpeed());
+            this.setDamage(tower.getDamage());
+            this.setImage(Toolkit.getDefaultToolkit().getImage("images/scoutBullet.png"));
                 break;
         }
     }

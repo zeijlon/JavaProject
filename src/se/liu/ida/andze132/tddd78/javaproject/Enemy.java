@@ -6,7 +6,7 @@ import java.awt.geom.Ellipse2D;
 /**
  * Created by Andreas Zeijlon on 2015-03-21.
  */
-public class Enemy extends EnemyProperties{
+public class Enemy implements GameObject {
 
     /**
      * Constant for the length of enemies health bar.
@@ -42,10 +42,7 @@ public class Enemy extends EnemyProperties{
     private Ellipse2D enemyEllipse = null;
 
 
-    public Enemy(final EnemyType type) {
-        this.type = type;
-        decideEnemy(this);
-
+    public Enemy() {
     }
 
     public Shape getEnemyEllipse() {
@@ -69,6 +66,10 @@ public class Enemy extends EnemyProperties{
 
     public EnemyType getType() {
         return type;
+    }
+
+    public void setType(EnemyType type) {
+        this.type = type;
     }
 
     public void setDamage(int damage) {

@@ -1,9 +1,23 @@
 package se.liu.ida.andze132.tddd78.javaproject;
 
 /**
- *
+ * This enum contains all enemy types.
  */
-@SuppressWarnings("JavaDoc")
 public enum EnemyType {
-    BASIC, ARMORED, SPY, BOSS
+    /**
+     * Basic enemy.
+     */
+    BASIC,
+    /**
+     * Armored enemy.
+     */
+    ARMORED,
+    /**
+     * Spy enemy.
+     */
+    SPY,
+    /**
+     * Boss enemy.
+     */
+    BOSS
 }

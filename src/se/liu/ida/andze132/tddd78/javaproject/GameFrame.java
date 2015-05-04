@@ -8,7 +8,7 @@ import java.awt.*;
  */
 public class GameFrame extends JFrame {
 
-    public GameFrame(GRID grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu, KeyHandler keyHandler) throws HeadlessException {
+    public GameFrame(Grid grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu, KeyHandler keyHandler) throws HeadlessException {
         super("DAWN OF THE POLAR BEARS");
         GameComponent gameComponent = new GameComponent(grid, shop, spawner, towerHandler, bulletHandler, menu);
         this.setLayout(new BorderLayout());

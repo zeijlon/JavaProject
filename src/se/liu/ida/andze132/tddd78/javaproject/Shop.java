@@ -43,11 +43,11 @@ public class Shop {
     private Rectangle[][] shopButtons = new Rectangle[2][2];
     private Image[][] shopImages = new Image[2][2];
 
-    private Towers holdsItem;
+    private Tower holdsItem;
 
-    private GRID grid;
+    private Grid grid;
 
-    public Shop(GRID grid) {
+    public Shop(Grid grid) {
         this.grid = grid;
 
         this.holdsItem = null;
@@ -136,7 +136,7 @@ public class Shop {
         return shopButtons;
     }
 
-    public Towers getHoldsItem() {
+    public Tower getHoldsItem() {
         return holdsItem;
     }
 
@@ -156,7 +156,7 @@ public class Shop {
         this.health = health;
     }
 
-    public void setHoldsItem(final Towers holdsItem) {
+    public void setHoldsItem(final Tower holdsItem) {
         this.holdsItem = holdsItem;
     }
 

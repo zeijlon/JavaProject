@@ -5,28 +5,19 @@ import java.awt.*;
 /**
  * Created by Administrat�r on 2015-03-30.
  */
-public class Bullet extends BulletProperties{
+public class Bullet implements GameObject {
     private double angle;
     private double x;
     private double y;
     private double bulletSpeed;
     private int damage;
-    private BulletType type;
 
 
     private Image image = null;
 
     private Rectangle bulletRect = null;
 
-    public Bullet(Towers tower, BulletType type) {
-        this.x = tower.getX()+(float)GameComponent.TILE_SIZE/2;
-        this.y = tower.getY()+(float)GameComponent.TILE_SIZE/2;
-        this.type = type;
-        decideBullet(this, tower);
-    }
-
-    public BulletType getType() {
-        return type;
+    public Bullet() {
     }
 
     public void setImage(Image image) {
@@ -45,12 +36,12 @@ public class Bullet extends BulletProperties{
         return angle;
     }
 
-    public double getX() {
-        return x;
+    public int getX() {
+        return (int)x;
     }
 
-    public double getY() {
-        return y;
+    public int getY() {
+        return (int)y;
     }
 
 

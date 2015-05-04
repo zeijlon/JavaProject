@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 public class GameComponent extends JComponent {
     private static final int MENU_WIDTH = 819;
     private static final int MENU_HEIGHT = 460;
-    private GRID grid;
+    private Grid grid;
     private Shop shop;
     private EnemySpawner spawner;
     private TowerHandler towerHandler;
@@ -22,7 +22,7 @@ public class GameComponent extends JComponent {
     private final static int INFO_BOX = 250;
 
 
-    public GameComponent(GRID grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu) {
+    public GameComponent(Grid grid, Shop shop, EnemySpawner spawner, TowerHandler towerHandler, BulletHandler bulletHandler, Menu menu) {
         this.grid = grid;
         this.shop = shop;
         this.spawner = spawner;
@@ -36,7 +36,7 @@ public class GameComponent extends JComponent {
     @Override
     public Dimension getPreferredSize() {
         super.getPreferredSize();
-        int row = GRID.checkLargestRow(grid);
+        int row = Grid.checkLargestRow(grid);
         if (menu.isIfMenu()) {
             return new Dimension(MENU_WIDTH, MENU_HEIGHT);
         } else {
