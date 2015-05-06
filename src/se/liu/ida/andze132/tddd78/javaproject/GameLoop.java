@@ -77,7 +77,7 @@ public class GameLoop {
 
     private void updateGame() {
 
-        if (menu.isGameOn()) {
+        if (menu.getState() == State.INGAME) {
             frame.pack();
             if(spawner.isFastForward()){
                 optimalTime = ONE_BILLION / (targetFPS*2);
@@ -98,8 +98,7 @@ public class GameLoop {
 
 		if (shop.getHealth() <= 0) {
                     String name = JOptionPane.showInputDialog(frame, "Input your name please.", "Highscore", JOptionPane.PLAIN_MESSAGE);
-		    menu.setGameOn(false);
-		    menu.setIfMenu(true);
+                    menu.setState(State.MENU);
 		    menu.setIfLost(true);
                     shop.setHoldsItem(null);
                     HighScore hs = new HighScore(name, spawner.getLevel());
@@ -112,6 +111,9 @@ public class GameLoop {
             }}
 	    else bulletHandler.setBullets(new ArrayList<>());
 	}
+        else if (menu.getState() == State.MENU){
+            System.out.println("nrgagagf");
+        }
 
     }
 

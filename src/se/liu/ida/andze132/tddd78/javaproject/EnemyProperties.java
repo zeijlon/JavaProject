@@ -30,7 +30,6 @@ public class EnemyProperties extends Enemy{
     private static final int BOSS_DAMAGE = 100;
 
     public EnemyProperties(EnemyType type) {
-        super();
         this.setType(type);
         decideEnemy(type);
     }

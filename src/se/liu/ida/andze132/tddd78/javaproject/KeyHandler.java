@@ -32,11 +32,11 @@ public class KeyHandler extends MouseAdapter {
     public void mousePressed(final MouseEvent e) {
         super.mousePressed(e);
         Point p = new Point(e.getX() - 8, e.getY() - MENU_HEIGHT);
-        if (menu.isIfMenu()) {
+        if (menu.getState() == State.MENU) {
             menu.menuEdit(p);
         }
-        else if(menu.isGameOn()) {
-            spawner.nextWave(p);
+        else  {
+            spawner.checkNextWave(p);
             towerHandler.checkButtonClick(p);
             towerHandler.checkTowerTargeted(p);
         }
@@ -47,4 +47,6 @@ public class KeyHandler extends MouseAdapter {
         super.mouseMoved(e);
         motionPoint = new Point(e.getX() - 8, e.getY() - MENU_HEIGHT);
     }
+
+
 }

@@ -3,7 +3,7 @@ package se.liu.ida.andze132.tddd78.javaproject;
 import java.awt.*;
 
 /**
- * Created by Administrat�r on 2015-03-30.
+ * This class define what a bullet gameobjectiv consist of and creates all setters and getters for
  */
 public class Bullet implements GameObject {
     private double angle;
@@ -16,9 +16,6 @@ public class Bullet implements GameObject {
     private Image image = null;
 
     private Rectangle bulletRect = null;
-
-    public Bullet() {
-    }
 
     public void setImage(Image image) {
         this.image = image;

@@ -27,7 +27,7 @@ public class BulletHandler {
         bullet.setBulletRect(new Rectangle(bullet.getX(), bullet.getY(), RECT_SIZE, RECT_SIZE));
     }
 
-    public void shootEnemy(Enemy enemy, Tower tower) {
+    public void shootEnemy(GameObject enemy, Tower tower) {
         Bullet bullet = decideBullet(tower);
         assert bullet != null;
         bullet.setAngle(Math.atan2((enemy.getY() + (float)GameComponent.TILE_SIZE/2) - (bullet.getY()+(float)RECT_SIZE/2),

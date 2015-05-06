@@ -8,7 +8,6 @@ import java.awt.*;
 public class BulletProperties extends Bullet{
 
     public BulletProperties(Tower tower, BulletType type) {
-        super();
         decideBullet(type, tower);
         setX(tower.getX()+(float)GameComponent.TILE_SIZE/2);
         setY(tower.getY()+(float)GameComponent.TILE_SIZE/2);

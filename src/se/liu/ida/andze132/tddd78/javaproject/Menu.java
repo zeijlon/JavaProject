@@ -15,8 +15,6 @@ public class Menu {
     private BulletHandler bulletHandler;
     private JFrame frame;
     private Sound mainTheme = null;
-    private boolean ifMenu;
-    private boolean gameOn;
     private boolean gameRunning;
     private boolean levelSelect;
     private boolean options;
@@ -24,6 +22,8 @@ public class Menu {
     private boolean ifLost;
     private boolean leaderboard;
     private int mapSelected;
+
+    private State state;
 
     private static final int MENU_TAB_WIDTH = 150;
     private static final int MENU_TAB_HEIGHT = 25;
@@ -49,8 +49,7 @@ public class Menu {
 
 
     public Menu() {
-        ifMenu = true;
-        gameOn = false;
+        state = State.MENU;
         gameRunning = true;
         levelSelect = false;
         ifGamePaused = false;
@@ -157,15 +156,12 @@ public class Menu {
         levelSelect = false;
         options = false;
         spawner.setStarts(new ArrayList<>());
-
-                ifMenu = false;
-                gameOn = true;
+        state = State.INGAME;
                 ifLost = false;
     }
 
     public void resumeGame() {
-        ifMenu = false;
-        gameOn = true;
+        state = State.INGAME;
         ifGamePaused = false;
         levelSelect = false;
         options = false;
@@ -223,8 +219,7 @@ public class Menu {
     }
 
     public void escape() {
-        ifMenu = true;
-        gameOn = false;
+        state = State.MENU;
         ifGamePaused = true;
         frame.pack();
         resumeGameButton = new Rectangle(FIRST_COLUMN_X, FIRST_COLUMN_Y, MENU_TAB_WIDTH, MENU_TAB_HEIGHT);
@@ -300,27 +295,23 @@ public class Menu {
         }
     }
 
-    public boolean isIfMenu() {
-        return ifMenu;
-    }
 
-    public void setIfMenu(final boolean ifMenu) {
-        this.ifMenu = ifMenu;
-    }
-
-    public boolean isGameOn() {
-        return gameOn;
-    }
+    public Sound getMainTheme() {
+        return mainTheme;}
 
     public boolean isGameRunning() {
         return gameRunning;
     }
 
-    public void setGameOn(final boolean gameOn) {
-        this.gameOn = gameOn;
-    }
-
     public void setIfLost(final boolean ifLost) {
         this.ifLost = ifLost;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(final State state) {
+        this.state = state;
     }
 }

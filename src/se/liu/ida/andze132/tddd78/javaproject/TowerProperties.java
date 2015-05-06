@@ -23,7 +23,7 @@ public class TowerProperties extends Tower{
     private static final int AP_TOWER_RADIUS = 300;
     private static final int AP_TOWER_RELOADTIME = 60;
 
-    private static final Image SCOUT_TOWER_IMAGE = Toolkit.getDefaultToolkit().getImage("images/armorPiercingTower60.png");
+    private static final Image SCOUT_TOWER_IMAGE = Toolkit.getDefaultToolkit().getImage("images/scoutTower.png");
     private static final int SCOUT_TOWER_DAMAGE = 10;
     private static final int SCOUT_TOWER_BULLETSPEED = 10;
     private static final int SCOUT_TOWER_COST = 40;
@@ -32,7 +32,6 @@ public class TowerProperties extends Tower{
     private static final int SCOUT_TOWER_RELOADTIME = 40;
 
     public TowerProperties(TowerType type) {
-        super();
         decideStats(type);
         setType(type);
         setTargeted(true);

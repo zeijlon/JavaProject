@@ -21,7 +21,7 @@ public class Enemy implements GameObject {
     private double angle;
     private int x;
     private int y;
-    private EnemyType type;
+    private EnemyType type = null;
     private final static int ELLIPSE_SIZE_CORRECTION = 20;
 
     private Direction direction = Direction.STILL;
@@ -41,9 +41,6 @@ public class Enemy implements GameObject {
 
     private Ellipse2D enemyEllipse = null;
 
-
-    public Enemy() {
-    }
 
     public Shape getEnemyEllipse() {
         return enemyEllipse;

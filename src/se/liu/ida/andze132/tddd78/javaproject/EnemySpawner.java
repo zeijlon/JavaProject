@@ -34,7 +34,7 @@ public class EnemySpawner {
     private int bossEnemyCount = 1;
 
 
-    private Image nextWave = Toolkit.getDefaultToolkit().getImage("images/nextWave.png")
+    private Image nextWaveImg = Toolkit.getDefaultToolkit().getImage("images/nextWaveImg.png")
 	    .getScaledInstance(WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE, Image.SCALE_DEFAULT);
     private Image slowMode = Toolkit.getDefaultToolkit().getImage("images/slowMode.png")
 	    .getScaledInstance(WAVE_BUTTON_SIZE, WAVE_BUTTON_SIZE, Image.SCALE_DEFAULT);
@@ -113,19 +113,23 @@ public class EnemySpawner {
 	}
     }
 
-    public void nextWave(Point p) {
+    public void checkNextWave(Point p) {
 	if (shop.getHoldsItem() == null) {
 		if (nextRoundButton.contains(p)) {
-		    if (betweenRounds) {
-			level++;
-			betweenRounds = false;
-			waveHandler();
-		    } else {
-			fastForward = !fastForward;
-		    }
+			nextWave();
 		}
 	    }
 	}
+
+public void nextWave(){
+    if (betweenRounds) {
+    			level++;
+    			betweenRounds = false;
+    			waveHandler();
+    		    } else {
+    			fastForward = !fastForward;
+    		    }
+}
 
     private void addEnemiesToSpawn(EnemyType type, int count, Collection<Enemy> list) {
 	for (int i = 0; i < count ; i++) {
@@ -348,7 +352,7 @@ public class EnemySpawner {
 
 	//Draw next round button
 	if (betweenRounds) {
-	    g.drawImage(nextWave, grid.getWidth() + WAVE_BUTTON_MARGIN, grid.getHeight() - WAVE_BUTTON_SIZE, null);
+	    g.drawImage(nextWaveImg, grid.getWidth() + WAVE_BUTTON_MARGIN, grid.getHeight() - WAVE_BUTTON_SIZE, null);
 	} else if (fastForward) {
 	    g.drawImage(fastMode, grid.getWidth() + WAVE_BUTTON_MARGIN, grid.getHeight() - WAVE_BUTTON_SIZE, null);
 	} else {
@@ -390,6 +394,7 @@ public class EnemySpawner {
 	return level;
     }
 
+
     public void setBossEnemyCount(final int bossEnemyCount) {
 	this.bossEnemyCount = bossEnemyCount;
     }
@@ -417,4 +422,9 @@ public class EnemySpawner {
     public void setStarts(final List<Start> starts) {
 	this.starts = starts;
     }
+
+    public void setFastForward(final boolean fastForward) {
+	this.fastForward = fastForward;
+    }
+
 }

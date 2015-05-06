@@ -16,8 +16,20 @@ public class TowerHandler
 
     private List<Tower> towers = new ArrayList<>();
     private final static int UPGRADEWIDTHCOORD = 200;
+    private final static int STATUPGRADEWIDTHCOORD = 100;
     private final static int UPGRADEHEIGHTCORRECTIONCOORD = 30;
     private final static int MAX_UPGRADES = 15;
+    private final static int UPGRADEPICSIZE = 50;
+    private Image attackSpeed = Toolkit.getDefaultToolkit().getImage("images/speed.png");
+    private Image stats = Toolkit.getDefaultToolkit().getImage("images/stats.png");
+    private Image statsASBoost = Toolkit.getDefaultToolkit().getImage("images/statsASBoost.png");
+    private Image statsARBoost = Toolkit.getDefaultToolkit().getImage("images/statsARBoost.png");
+    private Image statsDBoost = Toolkit.getDefaultToolkit().getImage("images/statsDBoost.png");
+    private Image damage = Toolkit.getDefaultToolkit().getImage("images/damage.png");
+    private Image attackRange = Toolkit.getDefaultToolkit().getImage("images/range.png");
+    private Image sell = Toolkit.getDefaultToolkit().getImage("images/sell.png");
+
+
 
     private Grid grid;
     private Shop shop;
@@ -40,32 +52,40 @@ public class TowerHandler
         this.spawner = spawner;
         this.bulletHandler = bulletHandler;
     }
-
+    public void buyBasic(){
+        Tower tower = new TowerProperties(TowerType.BASIC);
+                        if (shop.getGold() >= tower.getCost()) {
+                            shop.setHoldsItem(tower);
+                            buildTower = tower;
+                        } else {
+                            shop.setHoldsItem(null);
+                        }
+    }
+    public void buyArmorpiercing(){
+            Tower tower = new TowerProperties(TowerType.ARMORPIERCING);
+                            if (shop.getGold() >= tower.getCost()) {
+                                shop.setHoldsItem(tower);
+                                buildTower = tower;
+                            } else {
+                                shop.setHoldsItem(null);
+                            }
+        }
+    public void buyScout(){
+            Tower tower = new TowerProperties(TowerType.SCOUT);
+                            if (shop.getGold() >= tower.getCost()) {
+                                shop.setHoldsItem(tower);
+                                buildTower = tower;
+                            } else {
+                                shop.setHoldsItem(null);
+                            }
+        }
     public void checkButtonClick(Point p) {
             if (shop.getShopButtons()[0][0].contains(p)) {
-                Tower tower = new TowerProperties(TowerType.BASIC);
-                if (shop.getGold() >= tower.getCost()) {
-                    shop.setHoldsItem(tower);
-                    buildTower = tower;
-                } else {
-                    shop.setHoldsItem(null);
-                }
+               buyBasic();
             } else if (shop.getShopButtons()[0][1].contains(p)) {
-                Tower tower = new TowerProperties(TowerType.ARMORPIERCING);
-                if (shop.getGold() >= tower.getCost()) {
-                    shop.setHoldsItem(tower);
-                    buildTower = tower;
-                } else {
-                    shop.setHoldsItem(null);
-                }
+		buyArmorpiercing();
             } else if (shop.getShopButtons()[1][0].contains(p)) {
-                Tower tower = new TowerProperties(TowerType.SCOUT);
-                if (shop.getGold() >= tower.getCost()) {
-                    shop.setHoldsItem(tower);
-                    buildTower = tower;
-                } else {
-                    shop.setHoldsItem(null);
-                }
+                buyScout();
             } else if (shop.getShopButtons()[1][1].contains(p)) {
                 shop.setHoldsItem(null);
             }
@@ -106,10 +126,10 @@ public class TowerHandler
         for (int i = 0; i < towers.size(); i++) {
                 if (towers.get(i).getRectangle().contains(p)) {
                     towers.get(i).setTargeted(true);
-                    upgradeTowerAS = new Rectangle(0, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
-                    upgradeTowerRange = new Rectangle(UPGRADEWIDTHCOORD, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
-                    upgradeTowerDamage = new Rectangle(UPGRADEWIDTHCOORD * 2, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
-                    sellTower = new Rectangle(UPGRADEWIDTHCOORD * 3, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
+                    upgradeTowerAS = new Rectangle(STATUPGRADEWIDTHCOORD*2, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, UPGRADEPICSIZE, UPGRADEPICSIZE);
+                    upgradeTowerRange = new Rectangle(STATUPGRADEWIDTHCOORD*3, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, UPGRADEPICSIZE, UPGRADEPICSIZE);
+                    upgradeTowerDamage = new Rectangle(STATUPGRADEWIDTHCOORD*4, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, UPGRADEPICSIZE, UPGRADEPICSIZE);
+                    sellTower = new Rectangle(STATUPGRADEWIDTHCOORD*5, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, UPGRADEPICSIZE, UPGRADEPICSIZE);
                 } else if (towers.get(i).isTargeted()) {
                     if (upgradeTowerAS.contains(p)) {
                             upgradeAS(towers.get(i));
@@ -234,27 +254,37 @@ public class TowerHandler
             if (tower.isTargeted()) {
                 g.setColor(Color.black);
                 g.setFont(new Font("courier new", Font.BOLD, 18));
-                g.fillRect(0, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
-                g.fillRect(UPGRADEWIDTHCOORD, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
-                g.fillRect(UPGRADEWIDTHCOORD * 2, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
-                g.fillRect(UPGRADEWIDTHCOORD * 3, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, 100, 100);
-                g.drawOval(tower.getX() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getY() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getRadius(), tower.getRadius());
-                g.drawString("Attack Speed", 0, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD - 10);
-                g.drawString("Range", UPGRADEWIDTHCOORD, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD - 10);
-                g.drawString("Damage", UPGRADEWIDTHCOORD * 2, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD - 10);
-                g.drawString("Sell", UPGRADEWIDTHCOORD * 3, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD - 10);
-                g.drawString("Upgrades: "+tower.getUpgrades()+"/"+MAX_UPGRADES, UPGRADEWIDTHCOORD * 3 + 100, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD + 20);
+                g.drawImage(stats, 0, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, null);
+                if(upgradeTowerAS.contains(KeyHandler.motionPoint)){
+                    g.drawImage(statsASBoost, 0, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD,null);
+                }
+		else if(upgradeTowerRange.contains(KeyHandler.motionPoint)){
+                    g.drawImage(statsARBoost, 0, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD,null);
+                }
+		else if(upgradeTowerDamage.contains(KeyHandler.motionPoint)){
+                    g.drawImage(statsDBoost, 0, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD,null);
+                }
+
+                g.drawImage(attackSpeed,STATUPGRADEWIDTHCOORD*2, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD,null);
+                g.drawImage(attackRange, STATUPGRADEWIDTHCOORD * 3 , grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, null);
+                g.drawImage(damage, STATUPGRADEWIDTHCOORD * 4, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, null);
+                g.drawImage(sell,STATUPGRADEWIDTHCOORD * 5, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD, null);
+                g.drawOval(tower.getX() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2),
+                           tower.getY() - (tower.getRadius() / 2) + (GameComponent.TILE_SIZE / 2), tower.getRadius(),
+                           tower.getRadius());
+
+                g.drawString("Upgrades: "+tower.getUpgrades()+"/"+MAX_UPGRADES, UPGRADEWIDTHCOORD * 3, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD + 20);
 
                 g.setFont(new Font("courier new", Font.BOLD, 16));
-                g.setColor(Color.yellow);
+                g.setColor(Color.black);
 
-                g.drawString("$" + tower.getUpgradeASCost(), 0, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD + 10);
+                g.drawString("$" + tower.getUpgradeASCost(),  UPGRADEWIDTHCOORD, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD + 10);
 
-                g.drawString("$" + tower.getUpgradeRangeCost(), UPGRADEWIDTHCOORD, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD + 10);
+                g.drawString("$" + tower.getUpgradeRangeCost(), STATUPGRADEWIDTHCOORD*3, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD + 10);
 
-                g.drawString("$" + tower.getUpgradeDamageCost(), UPGRADEWIDTHCOORD * 2, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD + 10);
+                g.drawString("$" + tower.getUpgradeDamageCost(), STATUPGRADEWIDTHCOORD *4, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD + 10);
 
-                g.drawString("$" + tower.getSell(), UPGRADEWIDTHCOORD * 3, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD + 10);
+                g.drawString("$" + tower.getSell(), STATUPGRADEWIDTHCOORD * 5, grid.getHeight() + UPGRADEHEIGHTCORRECTIONCOORD + 10);
 
 
             }
